@@ -1,0 +1,133 @@
+<div class="col-md-6 col-md-offset-3">
+  
+	<div class="panel panel-gray">
+  <div class="panel-heading">
+  </div>
+  <div class="prospect-show">  
+  
+		<h3><%= @prospect.organization %></h3>
+		<br>
+		<p class="prospect-posted-by">Posted by <%= @prospect.user.advisor_first_name + ' ' +
+		@prospect.user.advisor_last_name %> <%= time_ago_in_words(@prospect.created_at) %> ago  
+		and last updated <%= time_ago_in_words(@prospect.updated_at) %> ago.</p>
+		
+		<table align="center">
+		  <tr>
+		    <td width="350" valign="top">
+		      <%= @prospect.street_address %><% if !@prospect.address2.nil? %>, <%= @prospect.address2 %><% end %><br>
+        	<%= @prospect.city %>, <%= @prospect.state %> <%= @prospect.zip %><br>
+        	<%= @prospect.phone %><br>
+        	<%= @prospect.website %><br>
+        	Employees: <%= @prospect.employees %>
+		    </td>
+		    
+		    <td width="100">&nbsp;</td>
+		    
+		    <td width="350" valign="top">
+		      <% if !@prospect.contact1_first_name.nil? %>
+          <%= @prospect.contact1_first_name %> <%= @prospect.contact1_last_name %><br>
+          Title: <%= @prospect.contact1_title %><br>
+          Phone: <%= @prospect.contact1_phone %><br>
+          Mobile: <%= @prospect.contact1_mobile %><br>
+          <%= @prospect.contact1_email %><br>
+          <% end %>
+          <br>
+		      <% if !@prospect.contact2_first_name.nil? %>
+          <%= @prospect.contact2_first_name %> <%= @prospect.contact2_last_name %><br>
+          Title: <%= @prospect.contact2_title %><br>
+          Phone: <%= @prospect.contact2_phone %><br>
+          Mobile: <%= @prospect.contact2_mobile %><br>
+          Email: <%= @prospect.contact2_email %><br>
+          <% end %>
+		    </td>
+		  </tr>
+		</table>
+		
+		<table>
+		  <tr>
+		    <td>&nbsp;</td>
+		  </tr>
+		  <tr>
+		    <td>Prospect Note: <%= @prospect.prospect_note %></td>
+		  </tr>
+		  <tr>
+		    <td>&nbsp;</td>
+		  </tr>
+		  
+		</table>
+  	
+  	<table>
+  	  <tr>
+  	    <td width="350" valign="top">
+  	      Intro Pres Date: <% if !@prospect.intro_presentation_date.nil? %>
+				  <%= @prospect.intro_presentation_date.strftime("%m/%d/%Y") %><% end %>
+				  <br>
+				  Intro Presented by: <%= @prospect.intro_presenter %>
+  	    </td>
+  	     
+  	     <td width="100"></td>
+  	     
+  	    <td width="350" valign="top">
+          Current Health benefit Cost: <%= number_to_currency(@prospect.current_health_benefit_cost, precision: 0) %><br>
+          New Est Health Benefit Cost: <%= number_to_currency(@prospect.new_estimated_health_benefit_cost, precision: 0) %><br>
+          Savings Percentage: <% if (@prospect.new_estimated_health_benefit_cost / @prospect.current_health_benefit_cost) > 0.00001 %>
+  		    <%= number_to_percentage((@prospect.new_estimated_health_benefit_cost / @prospect.current_health_benefit_cost)*100, precision: 1) %><% end %><br>    
+  	       
+        </td>
+  	  </tr>
+  	</table>
+    <p>&nbsp;</p>
+  	<table>
+  	  <tr>
+  	    <td width="350" valign="top">
+  	      SME Fact Finding Call: <% if !@prospect.hcs_sme_fact_finding_call_date.nil? %>
+				  <%= @prospect.hcs_sme_fact_finding_call_date.strftime("%m/%d/%Y") %><% end %><br>
+				  Subject Matter Expert: <%= @prospect.hcs_sme %><br>
+  	    </td>
+  	     
+        <td width="100"></td>
+  	     
+  	    <td width="350" valign="top">
+  	      Proposal Meeting: <% if !@prospect.hcs_sme_proposal_meeting_date.nil? %>
+				  <%= @prospect.hcs_sme_proposal_meeting_date.strftime("%m/%d/%Y") %><% end %>
+				  <br>
+  	      Agreement Date: <% if !@prospect.agreement_date.nil? %>
+				  <%= @prospect.agreement_date.strftime("%m/%d/%Y") %><% end %>
+				  <br>
+  	      Effective Date: <% if !@prospect.effective_date.nil? %>
+				  <%= @prospect.effective_date.strftime("%m/%d/%Y") %><% end %>
+  	     </td>
+        </td>
+  	  </tr>
+  	</table>
+  	
+		<table>
+		  <tr>
+		    <td>&nbsp;</td>
+		  </tr>
+		  <tr>
+		    <td><h4>Status: <%= @prospect.status %></h4></td>
+		  </tr>
+		  <tr>
+		    <td>&nbsp;</td>
+		  </tr>
+		</table>
+
+		<hr>
+
+		<p><%= render @prospect.comments %></p>
+
+		<%= render 'comments/form' %>
+
+    <br>
+
+	</div>
+	
+  <div class="panel-footer">
+		<%= link_to "Back", prospects_path, class: "btn btn-default" %>
+		<%= link_to "bchq", bchq_path(@prospect), class: "btn btn-warning" %>
+		<%= link_to "Edit & More Fields", edit_prospect_path(@prospect), class: "btn btn-warning" %>
+		<%= link_to "Delete", prospect_path(@prospect), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+  </div>	
+
+</div>

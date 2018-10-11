@@ -1,0 +1,245 @@
+<% if current_user.manager || current_user.support %>
+
+  <div class="col-md-4 col-md-offset-4">
+  	<div class="prospect-show">
+  	  <table>
+  	    <!--<tr>-->
+  	    <!--  <td>-->
+      	<!--   <table>-->
+      	<!--    <tr>-->
+      	<!--      <td><#%= image_tag avatar_url(@user, 100) %></td>-->
+      	<!--    </tr>-->
+      	<!--   </table>-->
+      	<!-- </td>-->
+  	    <!-- <td>&nbsp;&nbsp;-->
+      	<!-- </td>-->
+  	    <!-- <td>-->
+       <!--   <table>-->
+            <tr>
+              <td colspan="2"><h4><%= @user.advisor_first_name + ' ' + @user.advisor_last_name %></h4></td>
+            </tr>
+              <td>Phone:</td><td><%= @user.advisor_phone %></td>
+            </tr>
+            <tr>
+              <td>Mobile:</td><td><%= @user.advisor_mobile %></td>    
+            </tr>
+              <td>Email:</td><td><%= @user.email %></td>
+        <!--    </tr>-->
+        <!--  </table>-->
+        <!--</td>-->
+      </tr>
+    </table>
+    
+  		<div class="links">
+  			<%= link_to "Back", users_path, class: "btn btn-info" %> &nbsp;&nbsp;
+  			<%= link_to "Edit User", edit_user_path(@user), class: "btn btn-warning" %>
+        <%#= link_to "Delete User", user_path(@user), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-danger" %>
+  		</div>
+    </div>
+  </div>
+<% end %>
+  
+
+
+<% if current_user.manager %>
+
+<% total_employees = 0 %>
+<% total_current_cost = 0 %>
+<% total_estimated_new_cost = 0 %>
+<% total_hcs_monthly_savings_fee = 0 %>
+<% total_hcs_pepm_fee = 0 %>
+
+
+<div class="col-md-12">
+  <p>&nbsp;</p>
+
+	<div class="panel panel-gray">
+	  <div class="panel-heading">
+	  	
+	  	<div class="row">
+	  		<div class="col-md-6">
+	  			<h4>Listing
+						<% if current_user.manager %>
+			 				<%= @user.prospects.count %>
+						<% else %>
+							All
+						<% end %>
+					Prospects</h4>
+	  		</div>
+	  		<div class="col-md-6">
+		  		<%= form_tag(prospects_path, :method => "get", id: "search-form") do %>
+						<%= text_field_tag :search, params[:search], placeholder: "Search Prospects" %>
+						<%= submit_tag "Search", class:"btn btn-slate btn-sm" %>
+					<% end %>
+	  		</div>
+	  	</div>
+	  	
+	  </div>
+	
+	
+		<div class="prospect-show table-responsive">
+			
+			<table class="table index-table table-condensed">
+			  <thead>
+			    <tr>
+			      <th>Consultant</th>
+			      <th>Prospect</th>
+				    <th>Employees</th>
+			      <th>Intro Pres<br>
+								Days Since</th>
+			      <th>Current Health<br>
+			      		Benefit Cost</th>
+				    <th>Fact Finding<br>
+			      		Call Date</th>
+			      <th>HCB Subject<br>
+			      		Matter Expert</th>
+				    <th>Proposal<br>
+								Meeting</th>
+			      <th>Estimated<br>
+								New Cost</th>
+			      <th>%<br>Savings</th>
+			      <th>Agreement<br>
+								Date</th>
+			      <th>Effective<br>
+								Date</th>
+			      <th>Monthly<br>
+								Savings Fee</th>
+			      <th>PEPM<br>
+								Fee</th>
+			      <th>Deal</th>
+	
+			    </tr>
+			  </thead>
+				
+			  <tbody class="bordered">
+					<% @user.prospects.each do |prospect| %>
+						<% if (prospect.user_id == current_user.id) || current_user.manager %>
+					    <tr>
+	
+					      <td class="td-left">
+					      	<%= prospect.user.advisor_first_name + ' ' + prospect.user.advisor_last_name %>
+					      </td>
+					      
+					      <td class="td-left">
+					     		<em><%= link_to prospect.organization, prospect %></em>
+					      </td>
+	
+					      <td>
+					      	<%= prospect.employees %>
+					      </td>
+					      
+					      <td>
+					      	<% if !prospect.intro_presentation_date.nil? %>
+					      		<%= prospect.intro_presentation_date.strftime("%m/%d/%Y") %>
+					      	<% end %>
+					      	<br>
+					      	<% if !prospect.intro_presentation_date.nil? && (prospect.intro_presentation_date < Date.today) %>
+	              		<%= (Date.today - prospect.intro_presentation_date).to_i %> days
+					      	<% end %>
+					      </td>
+		
+					      <td>
+					      	<%= number_to_currency(prospect.current_health_benefit_cost, precision: 0) %>
+					      </td>
+	
+						    <td>
+						    	<% if !prospect.hcs_sme_fact_finding_call_date.nil? %>
+					      		<%= prospect.hcs_sme_fact_finding_call_date.strftime("%m/%d/%Y") %>
+					      	<% end %>
+					      	<br>
+					      	<% if !prospect.hcs_sme_fact_finding_call_date.nil? && (prospect.hcs_sme_fact_finding_call_date < Date.today) %>
+	              		<%= (Date.today - prospect.hcs_sme_fact_finding_call_date).to_i %> days
+					      	<% end %>
+					      </td>
+	
+					      <td>
+					      	<%= prospect.hcs_sme %>
+					      </td>
+					      
+						    <td>
+						    	<% if !prospect.hcs_sme_proposal_meeting_date.nil? %>
+					      		<%= prospect.hcs_sme_proposal_meeting_date.strftime("%m/%d/%Y") %>
+					      	<% end %>
+					      	<br>
+					      	<% if !prospect.hcs_sme_proposal_meeting_date.nil? && (prospect.hcs_sme_proposal_meeting_date < Date.today) %>
+	              		<%= (Date.today - prospect.hcs_sme_proposal_meeting_date).to_i %> days
+					      	<% end %>
+					      </td>
+					      
+					      <td>
+					      	<%= number_to_currency(prospect.new_estimated_health_benefit_cost, precision: 0) %>
+					      </td>
+	
+					      <td>
+					      	<% if (prospect.new_estimated_health_benefit_cost / prospect.current_health_benefit_cost) > 0.00001 %>
+					      		<%= number_to_percentage((prospect.new_estimated_health_benefit_cost / prospect.current_health_benefit_cost)*100, precision: 1) %>
+					      		<% end %>
+					      </td>
+					      
+					      <td>
+					      	<% if !prospect.agreement_date.nil? %>
+					      		<%= prospect.agreement_date.strftime("%m/%d/%Y") %>
+					      	<% end %>
+					      </td>
+	
+					      <td>
+					      	<% if !prospect.effective_date.nil? %>
+					      		<%= prospect.effective_date.strftime("%m/%d/%Y") %>
+					      	<% end %>
+					      </td>
+	
+					      <td>
+					      	<%= prospect.hcs_monthly_savings_fee %>
+					      </td>
+	
+					      <td>
+					      	<%= prospect.hcs_pepm_fee %>
+					      </td>
+	
+					      <td>
+					      	<%= prospect.status %>
+					      </td>
+					      
+					    </tr>
+						<% end %>
+						<% total_employees = total_employees + prospect.employees %>
+						<% total_current_cost = total_current_cost + prospect.current_health_benefit_cost %>
+						<% total_estimated_new_cost = total_estimated_new_cost + prospect.new_estimated_health_benefit_cost %>
+						<% total_hcs_monthly_savings_fee = total_hcs_monthly_savings_fee + prospect.hcs_monthly_savings_fee %>
+						<% total_hcs_pepm_fee = total_hcs_pepm_fee + prospect.hcs_pepm_fee %>
+					<% end %>
+			  </tbody>
+				<% if current_user.manager? %>
+				  <tfoot>		  
+						<tr>
+							<td>Total</td>
+							<td></td>
+							<td><%= total_employees %></td>
+							<td></td>
+							<td><%= number_to_currency(total_current_cost, precision: 0) %></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><%= number_to_currency(total_estimated_new_cost, precision: 0) %></td>
+				      <td>
+								<% if total_estimated_new_cost > 0 && total_current_cost > 0 %>
+				      		<% if (total_estimated_new_cost / total_current_cost) > 0.00001 %>
+				      			<%= number_to_percentage((total_estimated_new_cost / total_current_cost)*100, precision: 1) %>
+				      		<% end %>
+				      	<% end %>
+				      </td>
+							<td></td>
+							<td></td>
+							<td><%= number_to_currency(total_hcs_monthly_savings_fee, precision: 0) %></td>
+							<td><%= number_to_currency(total_hcs_pepm_fee, precision: 0) %></td>
+							<td></td>
+						</tr>
+				  </tfoot>
+				 <% end %>
+			</table>
+  	</div>
+  	<div class="panel-footer">
+
+	 	</div>
+  </div>
+<% end %>

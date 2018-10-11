@@ -1,0 +1,189 @@
+<div class="col-md-4 col-md-offset-4">
+  
+  
+	<div class="panel panel-gray">
+  <div class="panel-heading">
+		<h4>Edit Prospect</h4>
+  </div>
+  <div class="prospect-show">
+
+
+		<%= simple_form_for @prospect do |f| %>
+			<%= f.hidden_field :status, value: "Intro Presentation Scheduled" %>
+			<%= f.input :organization, required: true, autofocus: true, label: "Prospect Company or Organization Name" %>
+			
+			<div class="row">
+				<div class="col-md-8"><%= f.input :street_address %></div>
+				<div class="col-md-4"><%= f.input :address2, label: "Suite # (etc)" %></div>		
+			</div>	
+			<div class="row">
+				<div class="col-md-4"><%= f.input :city %></div>
+				<div class="col-md-4"><%= f.input :state, collection: [
+																	      ['Alabama', 'AL'],
+																	      ['Alaska', 'AK'],
+																	      ['Arizona', 'AZ'],
+																	      ['Arkansas', 'AR'],
+																	      ['California', 'CA'],
+																	      ['Colorado', 'CO'],
+																	      ['Connecticut', 'CT'],
+																	      ['Delaware', 'DE'],
+																	      ['District of Columbia', 'DC'],
+																	      ['Florida', 'FL'],
+																	      ['Georgia', 'GA'],
+																	      ['Hawaii', 'HI'],
+																	      ['Idaho', 'ID'],
+																	      ['Illinois', 'IL'],
+																	      ['Indiana', 'IN'],
+																	      ['Iowa', 'IA'],
+																	      ['Kansas', 'KS'],
+																	      ['Kentucky', 'KY'],
+																	      ['Louisiana', 'LA'],
+																	      ['Maine', 'ME'],
+																	      ['Maryland', 'MD'],
+																	      ['Massachusetts', 'MA'],
+																	      ['Michigan', 'MI'],
+																	      ['Minnesota', 'MN'],
+																	      ['Mississippi', 'MS'],
+																	      ['Missouri', 'MO'],
+																	      ['Montana', 'MT'],
+																	      ['Nebraska', 'NE'],
+																	      ['Nevada', 'NV'],
+																	      ['New Hampshire', 'NH'],
+																	      ['New Jersey', 'NJ'],
+																	      ['New Mexico', 'NM'],
+																	      ['New York', 'NY'],
+																	      ['North Carolina', 'NC'],
+																	      ['North Dakota', 'ND'],
+																	      ['Ohio', 'OH'],
+																	      ['Oklahoma', 'OK'],
+																	      ['Oregon', 'OR'],
+																	      ['Pennsylvania', 'PA'],
+																	      ['Puerto Rico', 'PR'],
+																	      ['Rhode Island', 'RI'],
+																	      ['South Carolina', 'SC'],
+																	      ['South Dakota', 'SD'],
+																	      ['Tennessee', 'TN'],
+																	      ['Texas', 'TX'],
+																	      ['Utah', 'UT'],
+																	      ['Vermont', 'VT'],
+																	      ['Virginia', 'VA'],
+																	      ['Washington', 'WA'],
+																	      ['West Virginia', 'WV'],
+																	      ['Wisconsin', 'WI'],
+																	      ['Wyoming', 'WY']
+																	    ] %>
+				</div>
+				<div class="col-md-4"><%= f.input :zip %></div>
+			</div>
+		
+		
+			<div class="row">
+				<div class="col-md-4"><%= f.input :phone %></div>
+				<div class="col-md-4"><%= f.input :website %></div>
+				<div class="col-md-4"><%= f.input :employees, label: "Employees" %></div>
+			</div>
+		
+			<hr>
+		  <h4>Contact 1</h4>		
+			<div class="row">
+				<div class="col-md-4"><%= f.input :contact1_first_name, label: "First Name" %></div>
+				<div class="col-md-4"><%= f.input :contact1_last_name, label: "Last Name" %></div>
+				<div class="col-md-4"><%= f.input :contact1_title, label: "Title" %></div>
+			</div>
+		
+			<div class="row">
+				<div class="col-md-4"><%= f.input :contact1_phone, label: "Direct Phone or Ext" %></div>
+				<div class="col-md-4"><%= f.input :contact1_mobile, label: "Mobile" %></div>
+				<div class="col-md-4"><%= f.input :contact1_email, label: "Email" %></div>
+			</div>
+		
+			<hr>
+		  <h4>Contact 2</h4>		
+			<div class="row">
+				<div class="col-md-4"><%= f.input :contact2_first_name, label: "First Name" %></div>
+				<div class="col-md-4"><%= f.input :contact2_last_name, label: "Last Name" %></div>
+				<div class="col-md-4"><%= f.input :contact2_title, label: "Title" %></div>
+			</div>
+		
+			<div class="row">
+				<div class="col-md-4"><%= f.input :contact2_phone, label: "Direct Phone or Ext" %></div>
+				<div class="col-md-4"><%= f.input :contact2_mobile, label: "Mobile" %></div>
+				<div class="col-md-4"><%= f.input :contact2_email, label: "Email" %></div>
+			</div>
+		
+		
+			<hr>
+			<%= f.input :prospect_note, label: "Note" %>
+			<%= f.input :intro_presentation_date, 
+				{:include_blank => true, :default => nil, order: [:day, :month, :year] } %>
+		  <%= f.input :intro_presenter, label: "Intro Presentation (who presented?)" %>
+			<br>			
+		
+    <%= f.input :current_health_benefit_cost, label: "Current Health Benefit Cost" %>
+    <%= f.input :new_estimated_health_benefit_cost, label: "New Estimated Health Benefit Cost" %>
+    <%= f.input :hcs_sme_fact_finding_call_date, {:include_blank => true, :default => nil, order: [:day, :month, :year], label: "SME Fact Finding Call" } %>
+		<%= f.input :hcs_sme, label: "HealthCare Subject Matter Expert" %>
+    <%= f.input :hcs_sme_proposal_meeting_date, {:include_blank => true, :default => nil, order: [:day, :month, :year], label: "SME Proposal Meeting" } %>
+		<%= f.input :prospect_note, label: "Note" %>
+		<%= f.input :status, collection: [
+																			'Intro Presentation Scheduled',
+																			'Scheduling Fact Finding Call',
+																			'Fact Finding Call Scheduled',
+																			'Scheduling Proposal Meeting',
+																			'Proposal Meeting Scheduled',
+																			'Waiting for NDA',
+																			'Waiting for Claims Data',
+																			'Waiting on Agreement',
+																			'Closed - Enrollment Scheduled',
+																			'Closed - Group is Effective',
+																			'Intro Pres Given - No Sale',
+																			'Fact Finder Call Done - No Sale',
+																			'Proposal Given - No Sale',
+																			'Not Qualified'
+																			], label: "Deal Status" %>
+    <%= f.input :agreement_date, {:include_blank => true, :default => nil, order: [:day, :month, :year] } %>
+    <%= f.input :effective_date, {:include_blank => true, :default => nil, order: [:day, :month, :year] } %>
+    <br>
+    
+    
+    
+<%= f.input :hcbq_business_type, label: 
+  "Nature of Business or SIC Code" %>
+<%= f.input :hcbq_no_of_eligible_employees, label: 
+  "# of Eligible Employees" %>
+<%= f.input :hcbq_total_participation, label: 
+  "Total Participating" %>
+<%= f.input :hcbq_current_carrier, label: 
+  "Current Carrier" %>
+<%= f.input :hcbq_current_coverage_type, label: 
+  "Type of Current Coverage" %>
+<%= f.input :current_health_benefit_cost, label: 
+  "1) What is your annual total health care expenditure?  (employer & employee contributions)" %>
+<%= f.input :hcbq_most_important, label: 
+  "2) For you & your employees, what is the 3 most important elements of your health plan" %>
+<%= f.input :hcbq_sustainable, label: 
+  "3) Do you think the last 3 years of compounding increases in your health benefit costs would be sustainable if it persisted in the same manner for the next three years?" %>
+<%= f.input :hcbq_oop, label: 
+  "4) Do you think your employees can afford their deductible & out-of-pocket expense under your current plan?" %>
+<%= f.input :hcbq_like_best, label: 
+  "5) What do you like best about your health plan?" %>
+<%= f.input :hcbq_like_least, label: 
+  "6) What do you like least about your health plan?" %>
+<%= f.input :hcbq_scale, label: 
+  "7) On a scale of 1 to 10, how would you rate your current agent/broker/consultant?" %>
+<%= f.input :hcbq_perfect_plan, label: 
+  "8) If you could design the perfect benefit plan for your company what would it look like?" %>
+<%= f.input :hcbq_notes, label: 
+  "Additional notes and/or comments" %>
+    
+    
+    
+	</div>
+	
+  <div class="panel-footer">
+		<%= link_to "Back", prospect_path, class: "btn btn-default" %>
+      <%= f.button :submit, class:"btn btn-slate" %>
+    <% end %>
+  </div>
+	
+</div>

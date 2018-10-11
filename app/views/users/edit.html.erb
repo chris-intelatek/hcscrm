@@ -1,0 +1,42 @@
+<div class="col-md-4 col-md-offset-4">
+	<div class="prospect-show">
+	
+    <h3>Edit </h3>
+    
+    <%= simple_form_for @user do |f| %>
+      <%= f.error_notification %>
+    
+      <div class="form-inputs">
+        <%= f.input :advisor_first_name, required: true, autofocus: true, label: 'First Name' %>
+        <%= f.input :advisor_last_name, required: true, label: 'Last Name'  %>
+        <%= f.input :advisor_phone, label: 'Phone'  %>
+        <%= f.input :advisor_mobile, label: 'Mobile'  %>
+        <%= f.input :email, required: true, autofocus: true %>
+        <%= f.input :password, autocomplete: "off", required: false %>
+        <%= f.input :password_confirmation %>
+
+        <% if current_user.admin || current_user.manager %>
+          <%= f.input :group, required: true %>
+          Admin&#63; <%= f.check_box :admin? %> &nbsp; | &nbsp; Manager&#63; <%= f.check_box :manager? %> &nbsp; | &nbsp; Suport&#63; <%= f.check_box :support? %>
+        <% end %>
+        
+        <p>&nbsp;</p>
+        
+      </div>
+    
+      <div class="form-actions">
+        <%= f.button :submit, "Update", class:"btn btn-info btn-block" %>
+      </div>
+      
+    <% end %>
+    
+    <p>&nbsp;</p>
+		<div class="links">
+  		<%= link_to "Back", :back, class: "btn btn-default" %> &nbsp;&nbsp;
+      <%= link_to "Delete User", user_path(@user), data: { confirm: "Caution: Deleteing a user will delete all of their prospects and associated comments." }, method: :delete, class:"btn btn-danger" %>
+    </div>
+    <br>
+    <em>Caution: Deleteing a user will delete all of their prospects and associated comments.</em>
+    
+  </div>
+</div>
