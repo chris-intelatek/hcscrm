@@ -48,6 +48,7 @@ class ProspectsController < ApplicationController
   def new_lead_create
     @prospect = Prospect.new(prospect_params)
     if @prospect.save
+      
       flash[:success] = "New prospect added."
       redirect_to prospects_path
     else
