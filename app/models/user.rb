@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   end
   
   def advisor_name
-    [advisor_first_name, advisor_last_name].join(' ')
+    [advisor_first_name, advisor_last_name].select(&:present?).join(' ')
   end
   
   def self.collection

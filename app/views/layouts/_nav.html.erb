@@ -20,7 +20,7 @@
     					  <li><%= link_to users_path do %><i class="fa fa-users"></i> Users<% end %></li>
               <% end %>
               <li><%= link_to prospects_path, class: 'nav-link' do %><i class="fa fa-crosshairs"></i> Prospects<% end %></li>
-    					<li><%= link_to edit_user_registration_path do %><i class="fa fa-gear"></i> <%= current_user.advisor_first_name + ' ' + current_user.advisor_last_name %><% end %></li>
+    					<li><%= link_to edit_user_registration_path do %><i class="fa fa-gear"></i> <%= current_user.advisor_name  %><% end %></li>
 
     					<li><%= link_to destroy_user_session_path, method: :delete do %><i class="fa fa-lock"></i> Sign out<% end %></li>
     					<li> <%= image_tag avatar_url(current_user, 60) %></li>
