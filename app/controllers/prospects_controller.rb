@@ -1,5 +1,6 @@
 class ProspectsController < ApplicationController
-  before_action :find_prospect, only: [:show, :edit, :update, :destroy]
+  before_action :find_prospect, only: [:show, :edit, :update, :destroy, :bchq, :bchq_update
+  ]
   before_action :authenticate_user!
   
   def index
@@ -39,11 +40,36 @@ class ProspectsController < ApplicationController
       render 'new'
     end
   end
+  
+  def new_lead
+    @prospect = Prospect.new
+  end
+  
+  def new_lead_create
+    @prospect = Prospect.new(prospect_params)
+    if @prospect.save
+      flash[:success] = "New prospect added."
+      redirect_to prospects_path
+    else
+      render 'new_lead'
+    end
+  end
+  
 
   def edit
   end
   
   def bchq
+  end
+  
+  def bchq_update
+    if @prospect.update(prospect_params)
+      BchqMailer.new_bchq(@prospect).deliver_later
+      flash[:success] = "Prospect has been updated."
+      redirect_to prospect_path
+    else
+      render 'bchq'
+    end
   end
   
   def update

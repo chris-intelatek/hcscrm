@@ -1,45 +1,42 @@
 <% if current_user.manager || current_user.support %>
 
   <div class="col-md-4 col-md-offset-4">
-  	<div class="prospect-show">
-  	  <table>
-  	    <!--<tr>-->
-  	    <!--  <td>-->
-      	<!--   <table>-->
-      	<!--    <tr>-->
-      	<!--      <td><#%= image_tag avatar_url(@user, 100) %></td>-->
-      	<!--    </tr>-->
-      	<!--   </table>-->
-      	<!-- </td>-->
-  	    <!-- <td>&nbsp;&nbsp;-->
-      	<!-- </td>-->
-  	    <!-- <td>-->
-       <!--   <table>-->
-            <tr>
-              <td colspan="2"><h4><%= @user.advisor_first_name + ' ' + @user.advisor_last_name %></h4></td>
-            </tr>
-              <td>Phone:</td><td><%= @user.advisor_phone %></td>
-            </tr>
-            <tr>
-              <td>Mobile:</td><td><%= @user.advisor_mobile %></td>    
-            </tr>
-              <td>Email:</td><td><%= @user.email %></td>
-        <!--    </tr>-->
-        <!--  </table>-->
-        <!--</td>-->
-      </tr>
-    </table>
-    
-  		<div class="links">
-  			<%= link_to "Back", users_path, class: "btn btn-info" %> &nbsp;&nbsp;
-  			<%= link_to "Edit User", edit_user_path(@user), class: "btn btn-warning" %>
-        <%#= link_to "Delete User", user_path(@user), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-danger" %>
-  		</div>
-    </div>
-  </div>
-<% end %>
-  
 
+  	<div class="panel panel-gray">
+      <div class="panel-heading">
+        <h4><%= @user.advisor_first_name + ' ' + @user.advisor_last_name %></h4>
+      </div>
+      <div class="prospect-show">
+
+    	  <div class="row">
+    	    <div class="col-md-4">
+    	      <%= image_tag avatar_url(@user, 120) %>
+    	    </div>
+    	    <div class="col-md-8">
+            <table valign="middle">
+              <tr>
+                <td>Phone:</td><td><%= @user.advisor_phone %></td>
+              </tr>
+              <tr>
+                <td>Mobile:</td><td><%= @user.advisor_mobile %></td>    
+              </tr>
+                <td>Email:</td><td><%= @user.email %></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    	<div class="panel-footer">
+    		<div class="links center">
+    			<%= link_to "Back", users_path, class: "btn btn-info" %> &nbsp;&nbsp;
+    			<%= link_to "Edit User", edit_user_path(@user), class: "btn btn-warning" %>
+          <%#= link_to "Delete User", user_path(@user), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-danger" %>
+    		</div>
+       </div>
+    </div>
+    <% end %>
+  </div>
 
 <% if current_user.manager %>
 

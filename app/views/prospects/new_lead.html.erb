@@ -11,7 +11,7 @@
 			<%= simple_form_for @prospect, url: new_lead_create_path do |f| %>
 				<%= f.hidden_field :status, value: "Intro Presentation Scheduled" %>
 				<%= f.input :organization, required: true, autofocus: true, label: "Prospect Company or Organization Name" %>
-				
+				<div class="col-md-4"><%= f.input :user, collection: User.collection %>
 				<div class="row">
 					<div class="col-md-8"><%= f.input :street_address %></div>
 					<div class="col-md-4"><%= f.input :address2, label: "Suite # (etc)" %></div>		

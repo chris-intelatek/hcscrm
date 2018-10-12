@@ -33,5 +33,9 @@ class User < ActiveRecord::Base
   def advisor_name
     [advisor_first_name, advisor_last_name].join(' ')
   end
+  
+  def self.collection
+    order(:advisor_first_name).map { |u| [u.advisor_name, u.id] }
+  end
 
 end

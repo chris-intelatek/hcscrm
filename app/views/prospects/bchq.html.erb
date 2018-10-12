@@ -8,7 +8,7 @@
   <div class="prospect-show">
 
 
-		<%= simple_form_for @prospect do |f| %>
+		<%= simple_form_for @prospect, url: bchq_update_path do |f| %>
 			<%= f.hidden_field :status, value: "Intro Presentation Scheduled" %>
 			<%= f.input :organization, required: true, autofocus: true, label: "Prospect Company or Organization Name" %>
 			

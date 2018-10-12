@@ -13,8 +13,11 @@ Rails.application.routes.draw do
   get 'lead-generation', to: 'pages#lead-generation'
   get 'lead-generation-faq', to: 'pages#lead-generation-faq'
   
-  get 'bchq/:id', to: 'prospects#bchq', as: :bchq  
   
+  get :new_lead, to: 'prospects#new_lead', as: :new_lead
+  get :new_lead, to: 'prospects#new_lead_create', as: :new_lead_create
+  get 'bchq/:id', to: 'prospects#bchq', as: :bchq  
+  post 'bchq/:id', to: 'prospects#bchq_update', as: :bchq_update
   
   
   
