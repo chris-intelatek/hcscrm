@@ -3,7 +3,7 @@ class Prospect < ActiveRecord::Base
   has_many :comments, :dependent => :delete_all
   validates :organization, :presence => true
 
-
+  delegate :email, to: :user, allow_nil: true, prefix: true
 
 
   def self.to_csv

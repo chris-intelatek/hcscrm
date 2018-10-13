@@ -8,7 +8,7 @@
 	  </div>
 	  <div class="prospect-show">
 	  	
-			<%= simple_form_for @prospect, url: new_lead_create_path do |f| %>
+			<%= simple_form_for @prospect do |f| %>
 				<%= f.hidden_field :status, value: "Intro Presentation Scheduled" %>
 				<%= f.input :organization, required: true, autofocus: true, label: "Prospect Company or Organization Name" %>
 				

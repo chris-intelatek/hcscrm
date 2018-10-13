@@ -48,9 +48,9 @@ class ProspectsController < ApplicationController
   def new_lead_create
     @prospect = Prospect.new(prospect_params)
     if @prospect.save
-      
+      NotificationMailer.new_meeting(@prospect).deliver_later
       flash[:success] = "New prospect added."
-      redirect_to prospects_path
+      redirect_to root_path
     else
       render 'new_lead'
     end
@@ -65,7 +65,7 @@ class ProspectsController < ApplicationController
   
   def bchq_update
     if @prospect.update(prospect_params)
-      BchqMailer.new_bchq(@prospect).deliver_later
+      NotificationMailer.new_bchq(@prospect).deliver_later
       flash[:success] = "Prospect has been updated."
       redirect_to prospect_path
     else

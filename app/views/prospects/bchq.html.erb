@@ -4,7 +4,7 @@
 		<h4>BCHQ</h4>
   </div>
   <div class="prospect-show">
-		<%= simple_form_for @prospect, url: bchq_update_path do |f| %>
+		<%= simple_form_for @prospect, url: bchq_update_path, method: :post do |f| %>
 			<%= f.input :organization, required: true, autofocus: true, label: "Prospect Company or Organization Name" %>
 			<div class="row">
 				<div class="col-md-8"><%= f.input :street_address %></div>

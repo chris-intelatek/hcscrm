@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
 		@comment.user_id = current_user.id
 
 		if @comment.save
+		  NotificationMailer.new_comment(@comment).deliver_later
 			redirect_to prospect_path(@prospect)
 		else
 			render 'new'

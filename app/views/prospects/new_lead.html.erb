@@ -9,7 +9,7 @@
 
 			<div class="row">
 				<div class="col-md-6"><%= f.input :organization, required: true, autofocus: true, label: "Prospect Company or Organization Name" %></div>
-				<div class="col-md-6"><%= f.input :user_id, required: true, collection: User.collection, label: "Consultant Name" %></div>
+				<div class="col-md-6"><%= f.input :user_id, required: true, collection: User.collection, label: "Consultant Name", include_blank: false, include_hidden: false %></div>
 			</div>
 			<div class="row">
 				<div class="col-md-8"><%= f.input :street_address %></div>
