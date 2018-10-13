@@ -10,18 +10,17 @@ class ProspectsController < ApplicationController
         @prospects = Prospect.search(params[:search]).order("created_at DESC")
       else
         @prospects = Prospect.all.order('user_id DESC')
-        
-        # respond_to do |format|
-        #   format.html
-        #   format.csv { send_data @prospects.to_csv, filename: "Prospects-#{Date.today}.csv" }
-        # end
-        
       end
 
     else
       @prospects = Prospect.where(status: params[:status])
     end
     @status = Prospect.select(:status).order(:status).distinct
+    
+    respond_to do |format|
+      format.html
+      format.csv { send_data @prospects.to_csv, filename: "Prospects-#{Date.today}.csv" }
+    end
   end
   
   def show

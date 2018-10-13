@@ -7,7 +7,7 @@ class Prospect < ActiveRecord::Base
 
 
   def self.to_csv
-    attributes = %w{advisor_first_name advisor_last_name organization street_address address2 city state zip phone website employees revenue vc_already prospect_note intro_presentation_date estimated_ap sm_presentation_date actual_ap sm_conversion_est conversion_percentage status agreement_date sm_received_date sm_status contact1_first_name contact1_last_name contact1_title contact1_phone contact1_mobile contact1_email contact2_first_name contact2_last_name contact2_title contact2_phone contact2_mobile contact2_email primary_contact intro_presenter sm_presenter close_date references_given}
+    attributes = %w[advisor_first_name advisor_last_name organization]
 
     CSV.generate(headers: true) do |csv|
       csv << attributes

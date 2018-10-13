@@ -1,1 +1,38 @@
-New Meeting submitted
+	<h4>New Meeting Scheduled</h4>
+			
+			<div class="row">
+				<div class="col-md-6"><%= @prospect.organization %></div>
+      </div>
+			<div class="row">
+				<div class="col-md-8"></div><%= @prospect.street_address %></div>
+				<div class="col-md-4"><%= @prospect.address2 %></div>		
+			</div>
+			<div class="row">
+				<div class="col-md-4"><%= @prospect.city %></div>
+				<div class="col-md-4"><%= @prospect.state %></div>
+				<div class="col-md-4"><%= @prospect.zip %></div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"><%= @prospect.phone %></div>
+				<div class="col-md-4"><%= @prospect.website %></div>
+				<div class="col-md-4">Emp <%= @prospect.employees %></div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"><%= @prospect.contact1_first_name %></div>
+				<div class="col-md-4"><%= @prospect.contact1_last_name %></div>
+				<div class="col-md-4"><%= @prospect.contact1_title %></div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-md-2"><%= @prospect.intelatek_day %>			
+				</div>
+				<div class="col-md-6"><%= @prospect.intro_presentation_date %></div>
+				<div class="col-md-2"><%= @prospect.intelatek_timezone %></div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">Set by IntelaTek BDA <%= @prospect.intelatek_bda %>			
+			</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12"><%= @prospect.intelatek_notes %></div>
+			</div>

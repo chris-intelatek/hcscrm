@@ -1,3 +1,53 @@
+<% if current_user.manager %>
+	<div class="col-md-12">
+		
+		<div class="col-md-3 well prospect-show">
+			<h2 align="center"><%= @prospects.where(status: "Intro Presentation Scheduled").count %></h2>
+			<br>
+			<p align="center"><strong>Intro Presentations Scheduled</strong></p>
+		</div>
+		
+		<div class="col-md-3 well prospect-show">
+			<h2 align="center"><%= @prospects.where(status: "Fact Finding Call Scheduled").count %></h2>
+			<br>
+			<p align="center"><strong>Fact Finding Call Scheduled</strong></p>
+		</div>
+	
+		<div class="col-md-3 well prospect-show">
+			<h2 align="center"><%= @prospects.where(status: "Proposal Meeting Scheduled").count %></h2>
+			<br>
+			<p align="center"><strong>Proposal Meeting Scheduled</strong></p>
+		</div>
+	
+		<div class="col-md-3 well prospect-show">
+			<h2 align="center"><%= @prospects.where(status: "Waiting for Claims Data").count %></h2>
+			<br>
+			<p align="center"><strong>Waiting for Claims Data</strong></p>
+		</div>		
+	
+		<div class="col-md-3 well prospect-show">
+			<h2 align="center"><%= @prospects.where(status: "Waiting on Agreement").count %></h2>
+			<br>
+			<p align="center"><strong>Waiting on Agreement</strong></p>
+		</div>
+		
+		<div class="col-md-3 well prospect-show">
+			<h2 align="center"><%= @prospects.where(status: "Closed - Enrollment Scheduled").count %></h2>
+			<br>
+			<p align="center"><strong>Closed - Enrollment Scheduled</strong></p>
+		</div>			
+		
+		<div class="col-md-3 well prospect-show">
+			<h2 align="center"><%= @prospects.where(status: "Closed - Group is Effective").count %></h2>
+			<br>
+			<p align="center"><strong>Closed - Group is Effective</strong></p>
+		</div>
+	</div>
+<% end %>
+
+
+
+
 <% total_employees = 0 %>
 <% total_current_cost = 0 %>
 <% total_estimated_new_cost = 0 %>
@@ -6,7 +56,6 @@
 
 
 <div class="col-md-12">
-
 	<div class="panel panel-gray">
 	  <div class="panel-heading">
 	  	
@@ -20,11 +69,14 @@
 						<% end %>
 					Prospects</h4>
 	  		</div>
-	  		<div class="col-md-6">
+	  		<div class="col-md-4">
 		  		<%= form_tag(prospects_path, :method => "get", id: "search-form") do %>
 						<%= text_field_tag :search, params[:search], placeholder: "Search Prospects" %>
 						<%= submit_tag "Search", class:"btn btn-slate btn-sm" %>
 					<% end %>
+				</div>
+	  		<div class="col-md-2 pull-right">
+					<%= link_to "Download CSV", prospects_path(format: "csv"), class: "btn btn-beige btn-sm" %>
 	  		</div>
 	  	</div>
 	  	
