@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181011213609) do
+ActiveRecord::Schema.define(version: 20181013031916) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20181011213609) do
     t.string   "intelatek_timezone"
     t.decimal  "hcs_monthly_savings_fee",           default: 0.0, null: false
     t.decimal  "hcs_pepm_fee",                      default: 0.0, null: false
+    t.string   "intelatek_time"
   end
 
   create_table "users", force: :cascade do |t|

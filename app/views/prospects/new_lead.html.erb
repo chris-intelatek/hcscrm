@@ -1,55 +1,115 @@
-
 <div class="col-md-6 col-md-offset-3">
-
-
 	<div class="panel panel-gray">
 	  <div class="panel-heading">
-			<h4>Add New Prospect</h4>
+			<h4>New Meeting Scheduled</h4>
 	  </div>
 	  <div class="prospect-show">
-	  	
 			<%= simple_form_for @prospect, url: new_lead_create_path do |f| %>
-				<%= f.hidden_field :status, value: "Intro Presentation Scheduled" %>
-				<%= f.input :organization, required: true, autofocus: true, label: "Prospect Company or Organization Name" %>
-				<div class="col-md-4"><%= f.input :user_id, collection: User.collection %>
-				<div class="row">
-					<div class="col-md-8"><%= f.input :street_address %></div>
-					<div class="col-md-4"><%= f.input :address2, label: "Suite # (etc)" %></div>		
-				</div>	
-				<div class="row">
-					<div class="col-md-4"><%= f.input :city %></div>
-					<div class="col-md-4"><%= f.input :state, collection: STATES %>
-					</div>
-					<div class="col-md-4"><%= f.input :zip %></div>
+			<%= f.hidden_field :status, value: "Intro Presentation Scheduled" %>		
+
+			<div class="row">
+				<div class="col-md-6"><%= f.input :organization, required: true, autofocus: true, label: "Prospect Company or Organization Name" %></div>
+				<div class="col-md-6"><%= f.input :user_id, required: true, collection: User.collection, label: "Consultant Name" %></div>
+			</div>
+			<div class="row">
+				<div class="col-md-8"><%= f.input :street_address %></div>
+				<div class="col-md-4"><%= f.input :address2, label: "Suite # (etc)" %></div>		
+			</div>
+			<div class="row">
+				<div class="col-md-4"><%= f.input :city %></div>
+				<div class="col-md-4"><%= f.input :state, collection: STATES %></div>
+				<div class="col-md-4"><%= f.input :zip %></div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"><%= f.input :phone %></div>
+				<div class="col-md-4"><%= f.input :website %></div>
+				<div class="col-md-4"><%= f.input :employees, label: "Employees" %></div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"><%= f.input :contact1_first_name, label: "Contact First Name" %></div>
+				<div class="col-md-4"><%= f.input :contact1_last_name, label: "Last Name" %></div>
+				<div class="col-md-4"><%= f.input :contact1_title, label: "Title" %></div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-md-2"><%= f.input :intelatek_day, collection: [
+																																			'Monday',
+																																			'Tuesday',
+																																			'Wednesday',
+																																			'Thursday',
+																																			'Friday'
+																																			], label: "Day" %>			
 				</div>
-			
-			
-				<div class="row">
-					<div class="col-md-4"><%= f.input :phone %></div>
-					<div class="col-md-4"><%= f.input :website %></div>
-					<div class="col-md-4"><%= f.input :employees, label: "Employees" %></div>
+				<div class="col-md-6"><%= f.input :intro_presentation_date, 
+							{:include_blank => true, :default => nil, order: [:month, :day, :year] } %></div>
+				<div class="col-md-2"><%= f.input :intelatek_timezone, collection: [
+																																						'8:00',
+																																						'8:15',
+																																						'8:30',
+																																						'8:45',
+																																						'9:00',
+																																						'9:15',
+																																						'9:30',
+																																						'9:45',
+																																						'10:00',
+																																						'10:15',
+																																						'10:30',
+																																						'10:45',
+																																						'11:00',
+																																						'11:15',
+																																						'11:30',
+																																						'11:45',
+																																						'12:00',
+																																						'12:15',
+																																						'12:30',
+																																						'12:45',
+																																						'1:00',
+																																						'1:15',
+																																						'1:30',
+																																						'1:45',
+																																						'2:00',
+																																						'2:15',
+																																						'2:30',
+																																						'2:45',
+																																						'3:00',
+																																						'3:15',
+																																						'3:30',
+																																						'3:45',
+																																						'4:00',
+																																						'4:15',
+																																						'4:30',
+																																						'4:45',
+																																						'5:00',
+																																						'5:15',
+																																						'5:30',
+																																						'5:45',
+																																						'6:00'
+																																						], label: "Time" %>			
 				</div>
-			
-				<hr>
-			
-				<div class="row">
-					<div class="col-md-4"><%= f.input :contact1_first_name, label: "First Name" %></div>
-					<div class="col-md-4"><%= f.input :contact1_last_name, label: "Last Name" %></div>
-					<div class="col-md-4"><%= f.input :contact1_title, label: "Title" %></div>
+				<div class="col-md-2"><%= f.input :intelatek_timezone, collection: [
+																																						'ET',
+																																						'CT',
+																																						'MT',
+																																						'PT',
+																																						'AT',
+																																						'HT'
+																																						], label: "TimeZone" %>
 				</div>
-			
-				<div class="row">
-					<div class="col-md-4"><%= f.input :contact1_phone, label: "Direct Phone or Ext" %></div>
-					<div class="col-md-4"><%= f.input :contact1_mobile, label: "Mobile" %></div>
-					<div class="col-md-4"><%= f.input :contact1_email, label: "Email" %></div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<%= f.input :intelatek_bda, collection: [
+																									'Chris Cunningham',
+																									'Laura Scott',
+																									'Patty Clark',
+																									'Rich Davis',
+																									'Scott Campbell'
+																									], label: "IntelaTek BDA" %>			
 				</div>
-			
-				<hr>
-				<%= f.input :prospect_note, label: "Note" %>
-				<%= f.input :intro_presentation_date, 
-					{:include_blank => true, :default => nil, order: [:day, :month, :year] } %>
-				<br>
-				
+			</div>
+			<div class="row">
+				<div class="col-md-12"><%= f.input :intelatek_notes, label: "Notes" %></div>
+			</div>
 		</div>
     <div class="panel-footer">
 				<%= link_to "Back", prospects_path, class: "btn btn-beige" %>
@@ -57,5 +117,4 @@
 			<% end %>
     </div>
 	</div>
-
 </div>
