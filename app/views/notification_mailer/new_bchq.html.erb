@@ -1,1 +1,58 @@
-New BCHQ submitted
+<h4>New BCHQ Submitted</h4>
+
+<p>Prospect Company or Organization Name: <%= @prospect.organization %></p>
+<p>Address:  <%= @prospect.street_address %>, <%= @prospect.address2 %>, <%= @prospect.city %>, <%= @prospect.state %> <%= @prospect.zip %></p>
+<p>&nbsp;</p>
+<p>Phone: <%= @prospect.phone %></p>
+<p>Employees: <%= @prospect.employees %></p>
+<p>Website: <%= @prospect.website %></p>
+<p>&nbsp;</p>
+<strong>Contact 1</strong>
+<p>Name: <%= @prospect.contact1_first_name %> <%= @prospect.contact1_last_name %>, <%= @prospect.contact1_title %></p>
+<p>Direct Phone/Ext: <%= @prospect.contact1_phone %></p>
+<p>Mobile: <%= @prospect.contact1_mobile %></p>
+<p>Email: <%= @prospect.contact1_email %></p>
+<p>&nbsp;</p>
+<strong>Contact 2</strong>
+<p>Name: <%= @prospect.contact2_first_name %> <%= @prospect.contact2_last_name %>, <%= @prospect.contact2_title %></p>
+<p>Direct Phone/Ext: <%= @prospect.contact2_phone %></p>
+<p>Mobile: <%= @prospect.contact2_mobile %></p>
+<p>Email: <%= @prospect.contact2_email %></p>
+<p>&nbsp;</p>
+<p>Notes: <%= @prospect.prospect_note %></p>
+
+<p><strong>Fact Finding Call Date: <%= @prospect.hcs_sme_fact_finding_call_date %></strong></p>
+
+<p>Current Health Benefit Cost: <%= @prospect.current_health_benefit_cost %></p>
+
+<p>Nature of Business or SIC Code: <%= @prospect.hcbq_business_type %></p>
+<p># of Eligible Employees: <%= @prospect.hcbq_no_of_eligible_employees %></p>
+<p>Total Participating: <%= @prospect.hcbq_total_participation %></p>
+
+<p>Current Carrier: <%= @prospect.hcbq_current_carrier %></p>
+
+<p>Current Coverage Type: <%= @prospect.hcbq_current_coverage_type %></p>
+
+<p>1) What is your total annual healthcare expenditure?  (employer & employee contributions)<br>
+<%= @prospect.current_health_benefit_cost %></p>
+
+<p>2) For you & your employees, what are the 3 most important elements of your health plan?<br>
+<%= @prospect.hcbq_sustainable %></p>
+
+<p>3) Do you think the last 3 years of compounding increases in your health benefit costs would be sustainable if continued for the next three years?<br>
+<%= @prospect.hcbq_oop %></p>
+
+<p>4) Do you think your employees can afford their deductible & out-of-pocket expense under your current plan?<br>
+<%= @prospect.hcbq_like_best %></p>
+
+<p>5) What do you like best about your health plan?<br>
+<%= @prospect.hcbq_like_least %></p>
+
+<p>6) What do you like least about your health plan?<br>
+<%= @prospect.hcbq_scale %></p>
+
+<p>7) On a scale of 1 to 10, how would you rate your current agent/broker/consultant?<br>
+<%= @prospect.hcbq_perfect_plan %></p>
+
+<p>8) If you could design the perfect benefit plan for your company what would it look like?<br>
+<%= @prospect.hcbq_notes %></p>

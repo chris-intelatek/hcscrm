@@ -1,38 +1,22 @@
-	<h4>New Meeting Scheduled</h4>
-			
-			<div class="row">
-				<div class="col-md-6"><%= @prospect.organization %></div>
-      </div>
-			<div class="row">
-				<div class="col-md-8"></div><%= @prospect.street_address %></div>
-				<div class="col-md-4"><%= @prospect.address2 %></div>		
-			</div>
-			<div class="row">
-				<div class="col-md-4"><%= @prospect.city %></div>
-				<div class="col-md-4"><%= @prospect.state %></div>
-				<div class="col-md-4"><%= @prospect.zip %></div>
-			</div>
-			<div class="row">
-				<div class="col-md-4"><%= @prospect.phone %></div>
-				<div class="col-md-4"><%= @prospect.website %></div>
-				<div class="col-md-4">Emp <%= @prospect.employees %></div>
-			</div>
-			<div class="row">
-				<div class="col-md-4"><%= @prospect.contact1_first_name %></div>
-				<div class="col-md-4"><%= @prospect.contact1_last_name %></div>
-				<div class="col-md-4"><%= @prospect.contact1_title %></div>
-			</div>
-			<hr>
-			<div class="row">
-				<div class="col-md-2"><%= @prospect.intelatek_day %>			
-				</div>
-				<div class="col-md-6"><%= @prospect.intro_presentation_date %></div>
-				<div class="col-md-2"><%= @prospect.intelatek_timezone %></div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">Set by IntelaTek BDA <%= @prospect.intelatek_bda %>			
-			</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12"><%= @prospect.intelatek_notes %></div>
-			</div>
+<h4>New Meeting Scheduled</h4>
+
+<p><%= @prospect.user.advisor_first_name %>,</p>
+<p>We just scheduled a meeting for you.  The meeting has been added to the CRM and your calendar through Calendly, based on your availability.  The meeting details are below.</p>
+<p>&nbsp;</p>
+<p>Company name: <%= @prospect.organization %></p>
+<p>Address:  <%= @prospect.street_address %>, <%= @prospect.address2 %>, <%= @prospect.city %>, <%= @prospect.state %> <%= @prospect.zip %></p>
+<p>&nbsp;</p>
+<p>Contact Name: <%= @prospect.contact1_first_name %> <%= @prospect.contact1_last_name %>, <%= @prospect.contact1_title %></p>
+<p>Phone: <%= @prospect.phone %></p>
+<p>Employees: <%= @prospect.employees %></p>
+<p>&nbsp;</p>
+<p><%= @prospect.intelatek_day %> <%= @prospect.intro_presentation_date %></p>
+<p><%= @prospect.intelatek_time %> <%= @prospect.intelatek_timezone %></p>
+<p>&nbsp;</p>
+<p><%= @prospect.intelatek_notes %></p>
+<p>&nbsp;</p>
+<p>Set by IntelaTek BDA:  <%= @prospect.intelatek_bda %></p>
+<p>&nbsp;</p>
+<p>Thanks,</p>
+<p>IntelaTek Support<br>
+support@intelatek.com</p>

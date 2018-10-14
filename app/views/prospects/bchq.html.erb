@@ -52,39 +52,11 @@
 				<div class="col-md-4"><%= f.input :contact2_email, label: "Email" %></div>
 			</div>
 		
-		
+			<%= f.input :prospect_note, label: "Note" %>		
 			<hr>
-			<%= f.input :prospect_note, label: "Note" %>
-			<%= f.input :intro_presentation_date, 
-				{:include_blank => true, :default => nil, order: [:day, :month, :year] } %>
-		  <%= f.input :intro_presenter, label: "Intro Presentation (who presented?)" %>
-			<br>			
-		
-    <%= f.input :current_health_benefit_cost, label: "Current Health Benefit Cost" %>
-    <%= f.input :new_estimated_health_benefit_cost, label: "New Estimated Health Benefit Cost" %>
-    <%= f.input :hcs_sme_fact_finding_call_date, {:include_blank => true, :default => nil, order: [:day, :month, :year], label: "SME Fact Finding Call" } %>
-		<%= f.input :hcs_sme, label: "HealthCare Subject Matter Expert" %>
-    <%= f.input :hcs_sme_proposal_meeting_date, {:include_blank => true, :default => nil, order: [:day, :month, :year], label: "SME Proposal Meeting" } %>
-		<%= f.input :prospect_note, label: "Note" %>
-		<%= f.input :status, collection: [
-																			'Intro Presentation Scheduled',
-																			'Scheduling Fact Finding Call',
-																			'Fact Finding Call Scheduled',
-																			'Proposal Meeting Scheduled',
-																			'Waiting for Claims Data',
-																			'Waiting on Agreement',
-																			'Closed - Enrollment Scheduled',
-																			'Closed - Group is Effective',
-																			'Intro Pres Given - No Sale',
-																			'Fact Finder Call Done - No Sale',
-																			'Proposal Given - No Sale',
-																			'Not Qualified'
-																			], label: "Deal Status" %>
-    <%= f.input :agreement_date, {:include_blank => true, :default => nil, order: [:day, :month, :year] } %>
-    <%= f.input :effective_date, {:include_blank => true, :default => nil, order: [:day, :month, :year] } %>
-    <br>
-    
 
+    <%= f.input :hcs_sme_fact_finding_call_date, {:include_blank => true, :default => nil, order: [:day, :month, :year], label: "SME Fact Finding Call" } %>
+    <%= f.input :current_health_benefit_cost, label: "Current Health Benefit Cost" %>
 		<%= f.input :hcbq_business_type, label: "Nature of Business or SIC Code" %>
 
 			<div class="row">
@@ -101,7 +73,6 @@
 				</div>
   		</div>
   		
-  		
 		<%= f.input :current_health_benefit_cost, label: 
 		  "1) What is your total annual healthcare expenditure?  (employer & employee contributions)" %>
 		<%= f.input :hcbq_most_important, label: 
@@ -115,7 +86,6 @@
 		<%= f.input :hcbq_scale, label: "7) On a scale of 1 to 10, how would you rate your current agent/broker/consultant?" %>
 		<%= f.input :hcbq_perfect_plan, label: "8) If you could design the perfect benefit plan for your company what would it look like?" %>
 		<%= f.input :hcbq_notes, label: "Additional notes and/or comments" %>
-
 
 	</div>
 	
