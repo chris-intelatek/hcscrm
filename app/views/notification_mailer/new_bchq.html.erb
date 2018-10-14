@@ -1,5 +1,8 @@
 <h4>New BCHQ Submitted</h4>
 
+<p>Consultant's Name: <%= @prospect.user.advisor_first_name + ' ' + @prospect.user.advisor_last_name %>/p>
+<p>Fact Finding Call Date: <%= @prospect.hcs_sme_fact_finding_call_date %></p>
+<p>&nbsp;
 <p>Prospect Company or Organization Name: <%= @prospect.organization %></p>
 <p>Address:  <%= @prospect.street_address %>, <%= @prospect.address2 %>, <%= @prospect.city %>, <%= @prospect.state %> <%= @prospect.zip %></p>
 <p>&nbsp;</p>
@@ -21,7 +24,6 @@
 <p>&nbsp;</p>
 <p>Notes: <%= @prospect.prospect_note %></p>
 
-<p><strong>Fact Finding Call Date: <%= @prospect.hcs_sme_fact_finding_call_date %></strong></p>
 
 <p>Current Health Benefit Cost: <%= @prospect.current_health_benefit_cost %></p>
 
@@ -51,7 +53,7 @@
 <p>6) What do you like least about your health plan?<br>
 <%= @prospect.hcbq_scale %></p>
 
-<p>7) On a scale of 1 to 10, how would you rate your current agent/broker/consultant?<br>
+<p>7) On a scale of 1 to 10, how would you rate your current agent/broker/ant?<br>
 <%= @prospect.hcbq_perfect_plan %></p>
 
 <p>8) If you could design the perfect benefit plan for your company what would it look like?<br>
