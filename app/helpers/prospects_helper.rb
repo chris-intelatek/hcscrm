@@ -10,7 +10,8 @@ module ProspectsHelper
     @prospects.where(status: "Intro Pres Given - No Sale").count +
     @prospects.where(status: "Fact Finder Call Done - No Sale").count +
     @prospects.where(status: "Proposal Given - No Sale").count +
-    @prospects.where(status: "Not Qualified").count
+    @prospects.where(status: "Not Qualified").count +
+    @prospects.where(status: "Other - No Sale").count
   end
 
 end

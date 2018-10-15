@@ -22,6 +22,7 @@ class UsersController < ApplicationController
 
   def start_page
     if current_user.manager
+      @users = User.all
       @prospects = Prospect.all
       render(:template => 'prospects/dashboard')
     else
