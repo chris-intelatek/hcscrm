@@ -143,7 +143,6 @@ nav .navbar-nav li a:hover {
 	padding: 1.4em 1.4em;
 	height: 150px;
 	border-bottom: 4px solid #0a8fd5;
-
 	.prospect-title {
 		font-size: 1.5em;
 		font-family: 'Muli', sans-serif;
@@ -152,11 +151,9 @@ nav .navbar-nav li a:hover {
 		color: white;
 		margin-bottom: 25px;
 	}
-
 	.btn-custom {
 		margin-top: 20px;
 	}
-
 }
 
 .prospect:nth-child(4n) {
@@ -167,7 +164,7 @@ nav .navbar-nav li a:hover {
 
 .panel-heading, .panel-footer {
 	background-color: #393D3F;
-	color: #C6C5B9;
+	color: #C6C5B9
 	h4 {
 		text-shadow: 2px 2px 4px black;
 	}
@@ -185,22 +182,18 @@ nav .navbar-nav li a:hover {
 	h2 {
 		margin-top: 0;
 	}
-
 	.prospect-desc {
 		font-size: 1.1em;
 		line-height: 1.75;
 		margin-bottom: 50px;
 	}
-
 	.prospect-posted-by {
 		color: #C6C5B9;
 		font-size: 0.9em;
 	}
-
 	.reply-to-prospect {
 		margin-top: 50px;
 	}
-
 }
 
 
@@ -273,11 +266,9 @@ nav .navbar-nav li a:hover {
 	border-bottom: .5px dotted;
 	padding-top: 15px;
 	padding-bottom: 15px;
-
 	.comment-content {
 		font-size: 1.25em;
 	}	
-
 	.comment-posted-by {
 		color: #eee;
 		font-size: 0.8em;

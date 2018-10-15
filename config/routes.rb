@@ -29,5 +29,6 @@ Rails.application.routes.draw do
   resources :prospects do
     resources :comments
   end
-  root 'users#start_page'
+  root 'pages#home'
+  # root 'users#start_page'
 end
