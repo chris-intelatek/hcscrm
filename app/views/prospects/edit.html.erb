@@ -66,9 +66,9 @@
   		
       <%= f.input :current_health_benefit_cost, label: "Current Health Benefit Cost" %>
       <%= f.input :new_estimated_health_benefit_cost, label: "New Estimated Health Benefit Cost" %>
-      <%= f.input :hcs_sme_fact_finding_call_date, {:include_blank => true, :default => nil, order: [:day, :month, :year], label: "SME Fact Finding Call" } %>
+      <%= f.input :hcs_sme_fact_finding_call_date, {:include_blank => true, :default => nil, order: [:month, :day, :year], label: "SME Fact Finding Call" } %>
   		<%= f.input :hcs_sme, label: "HealthCare Subject Matter Expert" %>
-      <%= f.input :hcs_sme_proposal_meeting_date, {:include_blank => true, :default => nil, order: [:day, :month, :year], label: "SME Proposal Meeting" } %>
+      <%= f.input :hcs_sme_proposal_meeting_date, {:include_blank => true, :default => nil, order: [:month, :day, :year], label: "SME Proposal Meeting" } %>
   		<%= f.input :prospect_note, label: "Note" %>
   		<%= f.input :status, required: true, include_blank: false, include_hidden: false,
   																collection: [
@@ -85,8 +85,8 @@
 			  																			'Not Qualified - No Sale',
 			  																			'Other - No Sale'
 			  																			], label: "Deal Status" %>
-      <%= f.input :agreement_date, {:include_blank => true, :default => nil, order: [:day, :month, :year] } %>
-      <%= f.input :effective_date, {:include_blank => true, :default => nil, order: [:day, :month, :year] } %>
+      <%= f.input :agreement_date, {:include_blank => true, :default => nil, order: [:month, :day, :year] } %>
+      <%= f.input :effective_date, {:include_blank => true, :default => nil, order: [:month, :day, :year] } %>
       <br>
       
     	</div>
