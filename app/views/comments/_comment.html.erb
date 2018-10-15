@@ -1,11 +1,19 @@
 <div class="comment">
-	<p><%= comment.content %></p>
-	<p class="comment-posted-by">Posted by <%= comment.user.advisor_first_name + ' ' + comment.user.advisor_last_name %> <%= time_ago_in_words(comment.created_at) %> ago</p>
-
-	<div class="links">
-		<% if comment.user_id == current_user.id %>
-			<%= link_to "Edit", edit_prospect_comment_path(comment.prospect, comment), class: "edit-comment" %>| &nbsp; 
-			<%= link_to "Delete", prospect_comment_path(comment.prospect, comment), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-comment" %>
-		<% end %>
+  <div class="row">
+    <div class="col-md-12">
+    	<%= comment.content %>
+		</div>
+	</div>
+	<div class="row">
+    <div class="col-md-9">    	
+			<p class="comment-posted-by">Posted by <%= comment.user.advisor_first_name + ' ' + comment.user.advisor_last_name %> <%= time_ago_in_words(comment.created_at) %> ago</p>
+		</div>
+    <div class="col-md-3">
+			<% if comment.user_id == current_user.id %>
+				<%= link_to "Edit", edit_prospect_comment_path(comment.prospect, comment), class: "btn btn-warning btn-sm" %> &nbsp; 
+				<%= link_to "Delete", prospect_comment_path(comment.prospect, comment), method: :delete,
+						data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+			<% end %>
+		</div>
 	</div>
 </div>

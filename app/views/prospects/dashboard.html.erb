@@ -1,0 +1,94 @@
+<% if current_user.manager %>
+
+	<div class="col-md-12">
+
+		<div class="col-md-4">
+			<div class="well dashboard-panel dashboard-bckg-1 ">
+				<h1 align="center"><%= all_in_crm %></h1>
+				<p>&nbsp;</p>
+				<h4 align="center">Total Prospects in CRM</h4>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="well dashboard-panel dashboard-bckg-2 ">
+				<h1 align="center"><%= @users.count %></h1>
+				<p>&nbsp;</p>
+				<h4 align="center">Total Users in CRM</h4>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="well dashboard-panel dashboard-bckg-3 ">
+				<h1 align="center"><%= (all_in_crm - no_sale) %></h1>
+				<p>&nbsp;</p>
+				<h4 align="center">Total Current Opportunities</h4>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="well dashboard-panel dashboard-bckg-4 ">
+				<h1 align="center"><%= @prospects.where(status: "Intro Presentation Scheduled").count %></h1>
+				<p>&nbsp;</p>
+				<h4 align="center">Intro Presentation Scheduled</h4>
+			</div>
+		</div>
+		
+		<div class="col-md-3">
+			<div class="well dashboard-panel dashboard-bckg-5 ">
+			<h1 align="center"><%= @prospects.where(status: "Fact Finding Call Scheduled").count %></h1>
+			<p>&nbsp;</p>
+			<h4 align="center">Fact Finding Call Scheduled</h4>
+			</div>
+		</div>
+	
+		<div class="col-md-3">
+			<div class="well dashboard-panel dashboard-bckg-6 ">
+				<h1 align="center"><%= @prospects.where(status: "Proposal Meeting Scheduled").count %></h1>
+				<p>&nbsp;</p>
+				<h4 align="center">Proposal Meeting Scheduled</h4>
+			</div>
+		</div>
+	
+		<div class="col-md-3">
+			<div class="well dashboard-panel dashboard-bckg-7 ">
+				<h1 align="center"><%= @prospects.where(status: "Waiting for Claims Data").count %></h1>
+				<p>&nbsp;</p>
+				<h4 align="center">Waiting for Claims Data</h4>
+			</div>
+		</div>
+	
+		<div class="col-md-3">
+			<div class="well dashboard-panel dashboard-bckg-8 ">
+				<h1 align="center"><%= @prospects.where(status: "Waiting on Agreement").count %></h1>
+				<p>&nbsp;</p>
+				<h4 align="center">Waiting on Agreement</h4>
+			</div>
+		</div>
+		
+		<div class="col-md-3">
+			<div class="well dashboard-panel dashboard-bckg-9 ">
+				<h1 align="center"><%= @prospects.where(status: "Closed - Enrollment Scheduled").count %></h1>
+				<p>&nbsp;</p>
+				<h4 align="center">Closed - Enrollment Scheduled</h4>
+			</div>
+		</div>			
+		
+		<div class="col-md-3">
+			<div class="well dashboard-panel dashboard-bckg-10 ">
+				<h1 align="center"><%= @prospects.where(status: "Closed - Group is Effective").count %></h1>
+				<p>&nbsp;</p>
+				<h4 align="center">Closed - Group is Effective</h4>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="well dashboard-panel dashboard-bckg-11 ">
+				<h1 align="center"><%= no_sale %></h1>
+				<p>&nbsp;</p>
+				<h4 align="center">No Sale</h4>
+			</div>
+		</div>
+
+	</div>
+<% end %>

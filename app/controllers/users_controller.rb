@@ -20,6 +20,15 @@ class UsersController < ApplicationController
   def show
   end
 
+  def start_page
+    if current_user.manager
+      @prospects = Prospect.all
+      render(:template => 'prospects/dashboard')
+    else
+      render(:template => 'pages/home')
+    end
+  end
+
   def edit
   end
   
@@ -35,7 +44,8 @@ class UsersController < ApplicationController
 	  	render 'edit'
 	  end
   end
-  
+
+
   private
   
   def set_user

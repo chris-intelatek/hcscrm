@@ -91,14 +91,18 @@ body {
 
 /* Navbar styles */
 
+
+
 .navbar {
 	background-color: #393D3F;
 	color: #C6C5B9;
 	font-family: 'Muli', sans-serif;
+	text-shadow: 2px 2px 4px black;
 }
 
 .navbar-nav li a {
 	color: #C6C5B9 !important;
+  text-shadow: 2px 2px 4px black;
 }
 
 nav .navbar-nav li a:hover {
@@ -108,6 +112,7 @@ nav .navbar-nav li a:hover {
 
 .navbar-brand {
   padding: 0px;
+  text-shadow: 2px 2px 4px #393D3F;
 }
 
 .navbar-brand>img {
@@ -160,14 +165,13 @@ nav .navbar-nav li a:hover {
 
 /* Prospect show-page styles */
 
-
-
 .panel-heading, .panel-footer {
 	background-color: #393D3F;
 	color: #C6C5B9;
+	h4 {
+		text-shadow: 2px 2px 4px black;
+	}
 }
-
-
 
 .prospect-show {
 	box-sizing: border-box;
@@ -176,8 +180,8 @@ nav .navbar-nav li a:hover {
 	/* border-bottom: 4px solid #0a8fd5; */
 	color: #C6C5B9;
 	font-family: 'Muli', sans-serif;
-	font-weight: 300;
-
+	font-weight: 100;
+	text-shadow: 2px 2px 4px #393D3F;
 	h2 {
 		margin-top: 0;
 	}
@@ -200,10 +204,73 @@ nav .navbar-nav li a:hover {
 }
 
 
+// Start Dashboard Styles
+
+.dashboard-panel {
+	border-radius: 25px;
+	box-sizing: border-box;
+	box-shadow: 6px 6px 5px gray;
+	padding: 2.0em 1.5em;
+	margin: 10px;
+	/* border-bottom: 4px solid #0a8fd5; */
+	color: white;
+	font-family: 'Muli', sans-serif;
+	font-weight: 300;
+  text-shadow: 2px 2px 4px #393D3F;
+}
+
+.dashboard-bckg-1 {
+	background-color: #5CBAE6;
+}
+
+.dashboard-bckg-2 {
+	background-color: #B6D957;
+}
+
+.dashboard-bckg-3 {
+	background-color: #FAC364;
+}
+
+.dashboard-bckg-4 {
+	background-color: #FF0080;
+}
+
+.dashboard-bckg-5 {
+	background-color: #FBA100;
+}
+
+.dashboard-bckg-6 {
+	background-color: #93B9C6;
+}
+
+.dashboard-bckg-7 {
+	background-color: #b96eff;
+}
+
+.dashboard-bckg-8 {
+	background-color: #DBDB46;
+}
+
+.dashboard-bckg-9 {
+	background-color: #B4A198;
+}
+
+.dashboard-bckg-10 {
+	background-color: #98AAFB;
+}
+
+.dashboard-bckg-11 {
+	background-color: #FF4D4D;
+}
+
+// End Dashboard Styles
+
+
+
 /* Comment styles */
 
 .comment {
-	border-bottom: 1px solid #fff;
+	border-bottom: .5px dotted;
 	padding-top: 15px;
 	padding-bottom: 15px;
 
@@ -214,15 +281,6 @@ nav .navbar-nav li a:hover {
 	.comment-posted-by {
 		color: #eee;
 		font-size: 0.8em;
-	}
-
-	.links {
-		margin-top: 15px;
-		a {
-			color: #ffbb33;
-			//color: #0a8fd5;
-			margin-right: 15px;
-		}
 	}
 }
 
