@@ -18,7 +18,6 @@ gem 'sendgrid-ruby'
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug'
-  gem 'pry-rails'
 end
 
 group :development do

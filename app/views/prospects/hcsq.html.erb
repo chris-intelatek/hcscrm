@@ -5,7 +5,9 @@
   </div>
   <div class="prospect-show">
 		<%= simple_form_for @prospect, url: hcsq_update_path, method: :post do |f| %>
-		<%= f.hidden_field :status, value: "Fact Finding Call Scheduled" %>	
+			<%= f.hidden_field :status, value: "Fact Finding Call Scheduled" %>
+			<%= f.hidden_field :submitted_hcsq, value: 'true' %>
+
 			<%= f.input :organization, required: true, autofocus: true, label: "Prospect Company or Organization Name" %>
 			<div class="row">
 				<div class="col-md-8"><%= f.input :street_address %></div>
@@ -102,9 +104,12 @@
 	</div>
 	
   <div class="panel-footer">
-		<%= link_to "Back", prospect_path, class: "btn btn-default" %>
-      <%= f.button :submit, class:"btn btn-slate" %>
+  	<div class="row">
+	  	<div class="col-md-5"><%= link_to "Back", prospect_path, class: "btn btn-beige" %></div>
+	  	<div class="col-md-7"><%= f.button :submit, "Submit HCSQ", class:"btn btn-slate btn-block" %></div>
+  	</div>
     <% end %>
   </div>
 	
+</div>
 </div>

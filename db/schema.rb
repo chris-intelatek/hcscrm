@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181013031916) do
+ActiveRecord::Schema.define(version: 20181015182023) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -35,13 +35,13 @@ ActiveRecord::Schema.define(version: 20181013031916) do
     t.string   "website"
     t.integer  "employees",                         default: 0
     t.text     "prospect_note"
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.date     "intro_presentation_date"
     t.date     "hcs_sme_fact_finding_call_date"
-    t.decimal  "current_health_benefit_cost",       default: 0.0, null: false
-    t.decimal  "new_estimated_health_benefit_cost", default: 0.0, null: false
-    t.decimal  "savings_percentage",                default: 0.0, null: false
+    t.decimal  "current_health_benefit_cost",       default: 0.0,   null: false
+    t.decimal  "new_estimated_health_benefit_cost", default: 0.0,   null: false
+    t.decimal  "savings_percentage",                default: 0.0,   null: false
     t.string   "status"
     t.date     "agreement_date"
     t.integer  "user_id"
@@ -80,9 +80,10 @@ ActiveRecord::Schema.define(version: 20181013031916) do
     t.text     "intelatek_notes"
     t.string   "intelatek_day"
     t.string   "intelatek_timezone"
-    t.decimal  "hcs_monthly_savings_fee",           default: 0.0, null: false
-    t.decimal  "hcs_pepm_fee",                      default: 0.0, null: false
+    t.decimal  "hcs_monthly_savings_fee",           default: 0.0,   null: false
+    t.decimal  "hcs_pepm_fee",                      default: 0.0,   null: false
     t.string   "intelatek_time"
+    t.boolean  "submitted_hcsq",                    default: false
   end
 
   create_table "users", force: :cascade do |t|
