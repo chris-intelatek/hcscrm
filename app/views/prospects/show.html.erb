@@ -114,7 +114,7 @@
 	
   <div class="panel-footer">
 		<%= link_to "Back", prospects_path, class: "btn btn-default" %>
-		<%= link_to "HCSQ", hcsq_path(@prospect), class: "btn btn-warning" %>
+		<%= link_to "Submit an HCSQ", hcsq_path(@prospect), class: "btn btn-info pull-right" %>
 		<%= link_to "Edit & More Fields", edit_prospect_path(@prospect), class: "btn btn-warning" %>
 		<%= link_to "Delete", prospect_path(@prospect), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
   </div>	
