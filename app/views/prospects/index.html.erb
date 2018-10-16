@@ -171,11 +171,11 @@
 					      
 					    </tr>
 						<% end %>
-						<% total_employees = total_employees + prospect.employees %>
-						<% total_current_cost = total_current_cost + prospect.current_health_benefit_cost %>
-						<% total_estimated_new_cost = total_estimated_new_cost + prospect.new_estimated_health_benefit_cost %>
-						<% total_hcs_monthly_savings_fee = total_hcs_monthly_savings_fee + prospect.hcs_monthly_savings_fee %>
-						<% total_hcs_pepm_fee = total_hcs_pepm_fee + prospect.hcs_pepm_fee %>
+						<%# total_employees = total_employees + prospect.employees %>
+						<%# total_current_cost = total_current_cost + prospect.current_health_benefit_cost %>
+						<%# total_estimated_new_cost = total_estimated_new_cost + prospect.new_estimated_health_benefit_cost %>
+						<%# total_hcs_monthly_savings_fee = total_hcs_monthly_savings_fee + prospect.hcs_monthly_savings_fee %>
+						<%# total_hcs_pepm_fee = total_hcs_pepm_fee + prospect.hcs_pepm_fee %>
 					<% end %>
 			  </tbody>
 				<% if current_user.manager? %>
@@ -183,24 +183,24 @@
 						<tr>
 							<td>Total</td>
 							<td></td>
-							<td><%= total_employees %></td>
+							<td><%#= total_employees %></td>
 							<td></td>
-							<td><%= number_to_currency(total_current_cost, precision: 0) %></td>
+							<td><%#= number_to_currency(total_current_cost, precision: 0) %></td>
 							<td></td>
 							<td></td>
 							<td></td>
-							<td><%= number_to_currency(total_estimated_new_cost, precision: 0) %></td>
+							<td><%#= number_to_currency(total_estimated_new_cost, precision: 0) %></td>
 				      <td>
-								<% if total_estimated_new_cost > 0 && total_current_cost > 0 %>
-				      		<% if (total_estimated_new_cost / total_current_cost) > 0.00001 %>
-				      			<%= number_to_percentage((total_estimated_new_cost / total_current_cost)*100, precision: 1) %>
-				      		<% end %>
-				      	<% end %>
+								<%# if total_estimated_new_cost > 0 && total_current_cost > 0 %>
+				      		<%# if (total_estimated_new_cost / total_current_cost) > 0.00001 %>
+				      			<%#= number_to_percentage((total_estimated_new_cost / total_current_cost)*100, precision: 1) %>
+				      		<%# end %>
+				      	<%# end %>
 				      </td>
 							<td></td>
 							<td></td>
-							<td><%= number_to_currency(total_hcs_monthly_savings_fee, precision: 0) %></td>
-							<td><%= number_to_currency(total_hcs_pepm_fee, precision: 0) %></td>
+							<td><%#= number_to_currency(total_hcs_monthly_savings_fee, precision: 0) %></td>
+							<td><%#= number_to_currency(total_hcs_pepm_fee, precision: 0) %></td>
 							<td></td>
 						</tr>
 				  </tfoot>
