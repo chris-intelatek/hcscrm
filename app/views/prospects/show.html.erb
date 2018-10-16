@@ -116,13 +116,14 @@
         <p>&nbsp;</p>
         <hr>
         <p>&nbsp;</p>
-        <p>&nbsp;</p>  
+    		<button class="btn btn-beige btn-xs pull-right" type="button" data-toggle="collapse" data-target="#hcsq" aria-expanded="false" aria-controls="collapseExample">Close HCSQ</button>
+    		
         <% if @prospect.submitted_hcsq == false %>
           <center><%= link_to "Submit an HCSQ", hcsq_path(@prospect), class: "btn btn-info" %></center>
           <p>&nbsp;</p>  
         <% else %>
         
-          <h3>Submit HCSQ</h3>
+          <h3>HCSQ</h3>
           <p>&nbsp;</p>          
       		<p>Nature of Business or SIC Code</p>
       			<em><%= @prospect.hcbq_business_type %></em>
