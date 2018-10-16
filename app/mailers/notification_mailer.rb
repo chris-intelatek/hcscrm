@@ -1,13 +1,13 @@
 class NotificationMailer < ApplicationMailer
     def new_hcsq(prospect)
         @prospect = prospect
-        mail(to: 'chris@intelatek.com',
+        mail(to: [prospect.user_email, 'chris@intelatek.com'],
              subject: 'New HCSQ Submitted')
     end
     
     def new_meeting(prospect)
         @prospect = prospect
-        mail(to: [prospect.user_email, 'chris@intelatek.com'],
+        mail(to: [prospect.user_email, 'appointments@intelatek.com'],
              subject: 'New HCS Meeting Scheduled')
     end
     

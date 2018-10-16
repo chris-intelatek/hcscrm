@@ -6,7 +6,7 @@
 <p>Contact Name: <%= @prospect.contact1_first_name %> <%= @prospect.contact1_last_name %>, <%= @prospect.contact1_title %></p>
 <p>Phone: <%= @prospect.phone %></p>
 <p>Employees: <%= @prospect.employees %></p>
-<p><%= @prospect.intelatek_day %> <%= @prospect.intro_presentation_date %></p>
+<p><%= @prospect.intelatek_day %> <%= @prospect.intro_presentation_date.strftime("%m/%d/%Y") %> at 
 <p><%= @prospect.intelatek_time %> <%= @prospect.intelatek_timezone %></p>
 <p><%= @prospect.intelatek_notes %></p>
 <p>Set by IntelaTek BDA:  <%= @prospect.intelatek_bda %></p>
