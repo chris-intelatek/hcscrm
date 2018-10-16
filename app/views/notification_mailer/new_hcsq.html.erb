@@ -1,7 +1,7 @@
 <h4>New HCSQ Submitted</h4>
 <p><em>A copy of this email has been sent to Consultant and SME.</em></p>
 <p>&nbsp;</p>
-<p>Consultant's Name: <em><%= @prospect.user.advisor_first_name + ' ' + @prospect.user.advisor_last_name %></em>/p>
+<p>Consultant's Name: <em><%= @prospect.user.advisor_first_name + ' ' + @prospect.user.advisor_last_name %></em></p>
 <p>SME Fact Finding Call: <% if !@prospect.hcs_sme_fact_finding_call_date.nil? %></em>
   		  <em><%= @prospect.hcs_sme_fact_finding_call_date.strftime("%m/%d/%Y") %></em><% end %></em></p>
 <p>&nbsp;
@@ -28,7 +28,6 @@
 
 <hr>
 
-<p>Current Health Benefit Cost: <em><%= @prospect.current_health_benefit_cost %></em></p>
 <p>Nature of Business or SIC Code: <em><%= @prospect.hcbq_business_type %></em></p>
 <p># of Eligible Employees: <em><%= @prospect.hcbq_no_of_eligible_employees %></em></p>
 <p>Total Participating: <em><%= @prospect.hcbq_total_participation %></em></p>
