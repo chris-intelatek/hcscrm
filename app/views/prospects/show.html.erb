@@ -140,48 +140,38 @@
           		<button class="btn btn-beige btn-xs pull-right" type="button" data-toggle="collapse" data-target="#hcsq" aria-expanded="false" aria-controls="collapseExample">Close HCSQ</button>
         
               <h3>HCSQ</h3>
-              <p>&nbsp;</p>          
-          		<p>Nature of Business or SIC Code</p>
-          			<em><%= @prospect.hcbq_business_type %></em>
-              <p>&nbsp;</p>
-          		<p># of Eligible Employees</p>
-          			<em><%= @prospect.hcbq_no_of_eligible_employees %></em>
-              <p>&nbsp;</p>
-          		<p>Total Participating:hcbq_total_participation</p>
-          			<em><%= @prospect.hcbq_total_participation %></em>
-              <p>&nbsp;</p>
-          		<p>Current Carrier</p>
-          			<em><%= @prospect.hcbq_current_carrier %></em>
-              <p>&nbsp;</p>
-          		<p>Current Coverage Type</p>
-          			<em><%= @prospect.hcbq_current_coverage_type %></em>
-              <p>&nbsp;</p>
-          		<p>1) What is your total annual healthcare expenditure <em>(employer & employee contributions)</em>?</p>
-          		  <em><%= @prospect.current_health_benefit_cost %></em>
-              <p>&nbsp;</p>
-          		<p>2) For you & your employees, what are the 3 most important elements of your health plan?</p>
-          		  <em><%= @prospect.hcbq_most_important %></em>
-              <p>&nbsp;</p>
-          		<p>3) Do you think the last 3 years of compounding increases in your health benefit costs would be sustainable if continued for the next three years?</p>
-          		  <em><%= @prospect.hcbq_sustainable %></em>
-              <p>&nbsp;</p>
-          		<p>4) Do you think your employees can afford their deductible & out-of-pocket expense under your current plan?</p>
-          		  <em><%= @prospect.hcbq_oop %></em>
-              <p>&nbsp;</p>
-          		<p>5) What do you like best about your health plan?</p>
-          		<em><%= @prospect.hcbq_like_best %></em>
-              <p>&nbsp;</p>
-          		<p>6) What do you like least about your health plan?</p>
-          		<em><%= @prospect.hcbq_like_least %></em>
-              <p>&nbsp;</p>
-          		<p>7) On a scale of 1 to 10, how would you rate your current agent/broker/consultant?</p>
-          		  <em><%= @prospect.hcbq_scale %></em>
-              <p>&nbsp;</p>
-          		<p>8) If you could design the perfect benefit plan for your company what would it look like?</p>
-          		  <em><%= @prospect.hcbq_perfect_plan %></em>
-              <p>&nbsp;</p>
-          		<p>Additional notes and/or comments</p>
-          		  <em><%= @prospect.hcbq_notes %></em>
+          		<p>Nature of Business or SIC Code: <em><%= @prospect.hcbq_business_type %></em></p>
+          		<p># of Eligible Employees:  <em><%= @prospect.hcbq_no_of_eligible_employees %></em></p>
+          		<p>Total Participating:hcbq_total_participation:  <em><%= @prospect.hcbq_total_participation %></em></p>
+          		<p>Current Carrier: <em><%= @prospect.hcbq_current_carrier %></em></p>
+          		<p>Current Coverage Type: <em><%= @prospect.hcbq_current_coverage_type %></em></p>
+          		
+          		<p>1) What is your total annual healthcare expenditure <em>(employer & employee contributions)</em>?<br>
+          		  <em class="tab"><%= @prospect.current_health_benefit_cost %></em></p>
+
+          		<p>2) For you & your employees, what are the 3 most important elements of your health plan?<br>
+          		  <em class="tab"><%= @prospect.hcbq_most_important %></em></p>
+          		  
+          		<p>3) Do you think the last 3 years of compounding increases in your health benefit costs would be sustainable if continued for the next three years?<br>
+          		  <em class="tab"><%= @prospect.hcbq_sustainable %></em></p>
+          		  
+          		<p>4) Do you think your employees can afford their deductible & out-of-pocket expense under your current plan?<br>
+          		  <em class="tab"><%= @prospect.hcbq_oop %></em></p>
+          		  
+          		<p>5) What do you like best about your health plan?<br>
+          		<em class="tab"><%= @prospect.hcbq_like_best %></em></p>
+
+          		<p>6) What do you like least about your health plan?<br>
+          		<em class="tab"><%= @prospect.hcbq_like_least %></em></p>
+
+          		<p>7) On a scale of 1 to 10, how would you rate your current agent/broker/consultant?<br>
+          		  <em class="tab"><%= @prospect.hcbq_scale %></em></p>
+
+          		<p>8) If you could design the perfect benefit plan for your company what would it look like?<br>
+          		  <em class="tab"><%= @prospect.hcbq_perfect_plan %></em></p>
+
+          		<p>Additional notes and/or comments</br>
+          		  <em class="tab"><%= @prospect.hcbq_notes %></em></p>
             </div>
           </div>
         

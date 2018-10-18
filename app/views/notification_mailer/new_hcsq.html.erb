@@ -1,29 +1,29 @@
 <h4>New HCSQ Submitted</h4>
-<p><em>A copy of this email has been sent to Consultant and SME.</em></p>
-<p>&nbsp;</p>
+<p>A copy of this email has been sent to Consultant and SME.</p>
+
 <p>Consultant's Name: <em><%= @prospect.user.advisor_first_name + ' ' + @prospect.user.advisor_last_name %></em></p>
 <p>SME Fact Finding Call: <% if !@prospect.hcs_sme_fact_finding_call_date.nil? %></em>
-  		  <em><%= @prospect.hcs_sme_fact_finding_call_date.strftime("%m/%d/%Y") %></em><% end %></em></p>
-<p>&nbsp;
+  		  <em><%= @prospect.hcs_sme_fact_finding_call_date.strftime("%m/%d/%Y") %></em><% end %></p>
+
 <p>Prospect Company or Organization Name: <em><%= @prospect.organization %></em></p>
-<p>Address:  <em><%= @prospect.street_address %></em>, <em><%= @prospect.address2 %></em>, <em><%= @prospect.city %></em>, <em><%= @prospect.state %></em> <em><%= @prospect.zip %></em></p>
-<p>&nbsp;</p>
-<p>Phone: <em><%= @prospect.phone %></em></p>
+<p>Address:  <em><%= @prospect.street_address %></em>, <em><%= @prospect.address2 %></em>, <em><%= @prospect.city %></em>, <em><%= @prospect.state %></em> <em><%= @prospect.zip %></em><br>
+Website: <em><%= @prospect.website %></em><br>
+Phone: <em><%= @prospect.phone %></em></p>
+
 <p>Employees: <em><%= @prospect.employees %></em></p>
-<p>Website: <em><%= @prospect.website %></em></p>
-<p>&nbsp;</p>
-<strong>Contact 1</strong>
-<p>Name: <em><%= @prospect.contact1_first_name %></em> <em><%= @prospect.contact1_last_name %></em>, <em><%= @prospect.contact1_title %></em></p>
-<p>Direct Phone/Ext: <em><%= @prospect.contact1_phone %></em></p>
-<p>Mobile: <em><%= @prospect.contact1_mobile %></em></p>
-<p>Email: <em><%= @prospect.contact1_email %></em></p>
-<p>&nbsp;</p>
-<strong>Contact 2</strong>
-<p>Name: <em><%= @prospect.contact2_first_name %></em> <em><%= @prospect.contact2_last_name %></em>, <em><%= @prospect.contact2_title %></em></p>
-<p>Direct Phone/Ext: <em><%= @prospect.contact2_phone %></em></p>
-<p>Mobile: <em><%= @prospect.contact2_mobile %></em></p>
-<p>Email: <em><%= @prospect.contact2_email %></em></p>
-<p>&nbsp;</p>
+
+<p><strong>Contact 1</strong><br>
+Name: <em><%= @prospect.contact1_first_name %></em> <em><%= @prospect.contact1_last_name %></em>, <em><%= @prospect.contact1_title %></em><br>
+Direct Phone/Ext: <em><%= @prospect.contact1_phone %></em><br>
+Mobile: <em><%= @prospect.contact1_mobile %></em><br>
+Email: <em><%= @prospect.contact1_email %></em></p>
+
+<p><strong>Contact 2</strong><br>
+Name: <em><%= @prospect.contact2_first_name %></em> <em><%= @prospect.contact2_last_name %></em>, <em><%= @prospect.contact2_title %></em><br>
+Direct Phone/Ext: <em><%= @prospect.contact2_phone %></em><br>
+Mobile: <em><%= @prospect.contact2_mobile %></em><br>
+Email: <em><%= @prospect.contact2_email %></em></p>
+
 <p>Notes: <em><%= @prospect.prospect_note %></em></p>
 
 <hr>
