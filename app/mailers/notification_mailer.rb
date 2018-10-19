@@ -13,7 +13,7 @@ class NotificationMailer < ApplicationMailer
     
     def new_comment(comment)
         @comment = comment
-        mail(to: comment.prospect.user_email,
+        mail(to: [comment.prospect.user_email, 'chris@bluecoastsavings.com'],
              subject: 'New Comment Submitted')
     end
 end
