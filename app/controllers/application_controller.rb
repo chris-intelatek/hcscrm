@@ -1,11 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
+  #Added this method to allow for display in frames
+  after_action :allow_intelatek_frame
   
-  #Added this method to allow for display in frames 
-  def iframe_action
-    response.headers.delete "X-Frame-Options"
-    render_something
+ 
+  private
+  
+  def allow_intelatek_frames
+    response.headers['X-Frame-Options'] = 'ALLOWALL'
   end
   
 end
