@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
   #Added this method to allow for display in frames
-  after_action :allow_intelatek_frame
+  after_action :allow_intelatek_frames
   
  
   private
