@@ -1,4 +1,4 @@
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-8 col-md-offset-2">
   
 	<div class="panel panel-gray">
   <div class="panel-heading">
@@ -9,6 +9,7 @@
       <div class="col-md-6"><h2><%= @prospect.organization %></h2></div>
       <div class="col-md-6"><h4>Status: <%= @prospect.status %></h4></div>
     </div>
+    
     <br>
     <div class="row">
       <div class="col-md-12"><p class="prospect-posted-by">Posted by <%= @prospect.user.advisor_first_name + ' ' +
@@ -16,6 +17,17 @@
   		and last updated <%= time_ago_in_words(@prospect.updated_at) %> ago.</p></div>    
     </div>
   	<br>
+  	
+		<div class="row">
+		  <div class="col-md-12 center next-action">
+		    <strong>Next Action: </strong>
+  		    <% if !@prospect.next_action_date.nil? %>
+    		  <%= @prospect.next_action_date.strftime("%m/%d/%Y") %><% end %> 	 
+    		  <%= @prospect.next_action %>
+		  </div>
+    </div>    
+    <br>
+  	
     <div class="row">
       <div class="col-md-6">
         Address: <%= @prospect.street_address %><br>

@@ -1,4 +1,4 @@
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-8 col-md-offset-2">
   
 	<div class="panel panel-gray">
     <div class="panel-heading">
@@ -7,8 +7,10 @@
     <div class="prospect-show">
   
   		<%= simple_form_for @prospect do |f| %>
-  			<%= f.hidden_field :status, value: "Intro Presentation Scheduled" %>
-  			<%= f.input :organization, required: true, autofocus: true, label: "Prospect Company or Organization Name" %>
+  		
+  			<%= f.input :organization, required: true, autofocus: true, label: "Prospect Company or Organization Name" %>  		
+  		
+  		  			<hr>
   			
   			<div class="row">
   				<div class="col-md-8"><%= f.input :street_address %></div>
@@ -56,38 +58,80 @@
   				<div class="col-md-4"><%= f.input :contact2_email, label: "Email" %></div>
   			</div>
   		
-  		
-  			<hr>
   			<%= f.input :prospect_note, label: "Note" %>
-  			<%= f.input :intro_presentation_date, 
-  				{:include_blank => true, :default => nil, order: [:day, :month, :year] } %>
-  		  <%= f.input :intro_presenter, label: "Intro Presentation (who presented?)" %>
+  			<hr>
+  			<br>
+    		<%= f.input :status, required: true, include_blank: false, include_hidden: false,
+    																collection: [
+  			  																			'Intro Presentation Scheduled',
+  			  																			'Fact Finding Call Scheduled',
+  			  																			'Proposal Meeting Scheduled',
+  			  																			'Waiting for Claims Data',
+  			  																			'Waiting on Agreement',
+  			  																			'Closed - Enrollment Scheduled',
+  			  																			'Closed - Group is Effective',
+  			  																			'Intro Pres Given - No Sale',
+  			  																			'Fact Finder Call Done - No Sale',
+  			  																			'Proposal Given - No Sale',
+  			  																			'Not Qualified - No Sale',
+  			  																			'Other - No Sale'
+  			  																			], label: "Deal Status" %>
+			  																			
+        <br>  			
+  			
+    		<div class="row">
+    		  <div class="col-md-6">
+    		    <%= f.input :next_action, label: "Next Action" %>  		    
+    		  </div>
+    		  <div class="col-md-6">
+    			  <%= f.input :next_action_date, 
+    				  {:include_blank => true, :default => nil, order: [:month, :day, :year], label: "Next Action Date" } %>  		    
+    		  </div>
+        </div>
+  			
+        <br>
+    		<div class="row">
+    		  <div class="col-md-6">
+      			<%= f.input :intro_presentation_date, 
+      				{:include_blank => true, :default => nil, order: [:month, :day, :year], label: "Intro Presentation Date" } %>  		  
+    		  </div>
+    		  <div class="col-md-6">
+            <%= f.input :intro_presenter, label: "Intro Presenter (who presented?)" %>  		  
+    		  </div>
+    		</div>
+        <br>
+    		<div class="row">
+    		  <div class="col-md-6">
+            <%= f.input :current_health_benefit_cost, label: "Current Health Benefit Cost" %>  		  
+    		  </div>
+    		  <div class="col-md-6">
+            <%= f.input :new_estimated_health_benefit_cost, label: "New Estimated Health Benefit Cost" %>
+    		  </div>
+    		</div>
+        <br>
+    		<div class="row">
+    		  <div class="col-md-6">
+  	        <%= f.input :hcs_sme_fact_finding_call_date, {:include_blank => true, :default => nil, order: [:month, :day, :year], label: "SME Fact Finding Call Date" } %>
+    		  </div>
+    		  <div class="col-md-6">
+    		    <%= f.input :hcs_sme, label: "HealthCare Subject Matter Expert" %>  		  
+    		  </div>
+    		</div>
+
   			<br>			
   		
-      <%= f.input :current_health_benefit_cost, label: "Current Health Benefit Cost" %>
-      <%= f.input :new_estimated_health_benefit_cost, label: "New Estimated Health Benefit Cost" %>
-      <%= f.input :hcs_sme_fact_finding_call_date, {:include_blank => true, :default => nil, order: [:month, :day, :year], label: "SME Fact Finding Call" } %>
-  		<%= f.input :hcs_sme, label: "HealthCare Subject Matter Expert" %>
-      <%= f.input :hcs_sme_proposal_meeting_date, {:include_blank => true, :default => nil, order: [:month, :day, :year], label: "SME Proposal Meeting" } %>
-  		<%= f.input :prospect_note, label: "Note" %>
-  		<%= f.input :status, required: true, include_blank: false, include_hidden: false,
-  																collection: [
-			  																			'Intro Presentation Scheduled',
-			  																			'Fact Finding Call Scheduled',
-			  																			'Proposal Meeting Scheduled',
-			  																			'Waiting for Claims Data',
-			  																			'Waiting on Agreement',
-			  																			'Closed - Enrollment Scheduled',
-			  																			'Closed - Group is Effective',
-			  																			'Intro Pres Given - No Sale',
-			  																			'Fact Finder Call Done - No Sale',
-			  																			'Proposal Given - No Sale',
-			  																			'Not Qualified - No Sale',
-			  																			'Other - No Sale'
-			  																			], label: "Deal Status" %>
-      <%= f.input :agreement_date, {:include_blank => true, :default => nil, order: [:month, :day, :year] } %>
-      <%= f.input :effective_date, {:include_blank => true, :default => nil, order: [:month, :day, :year] } %>
-      <br>
+        <%= f.input :hcs_sme_proposal_meeting_date, {:include_blank => true, :default => nil, order: [:month, :day, :year], label: "SME Proposal Meeting Date" } %>
+        <br>
+    		<div class="row">
+    		  <div class="col-md-6">			  																			
+            <%= f.input :agreement_date, {:include_blank => true, :default => nil, order: [:month, :day, :year] } %>
+          </div>
+    		  <div class="col-md-6">
+            <%= f.input :effective_date, {:include_blank => true, :default => nil, order: [:month, :day, :year] } %>
+          </div>
+        </div>
+        
+        <br>
       
     	</div>
     	
