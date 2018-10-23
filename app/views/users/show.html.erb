@@ -6,23 +6,16 @@
         <h4><%= @user.advisor_first_name + ' ' + @user.advisor_last_name %></h4>
       </div>
       <div class="prospect-show">
-    	  <div class="row">
-    	    <div class="col-md-4">
-    	      <%= image_tag avatar_url(@user, 100) %>
-    	    </div>
-    	    <div class="col-md-8">
-            <table valign="middle">
-              <tr>
-                <td>Phone:</td><td><%= @user.advisor_phone %></td>
-              </tr>
-              <tr>
-                <td>Mobile:</td><td><%= @user.advisor_mobile %></td>    
-              </tr>
-                <td>Email:</td><td><%= @user.email %></td>
-              </tr>
-            </table>
-          </div>
-        </div>
+        <table valign="middle">
+          <tr>
+            <td>Phone:</td><td><%= @user.advisor_phone %></td>
+          </tr>
+          <tr>
+            <td>Mobile:</td><td><%= @user.advisor_mobile %></td>    
+          </tr>
+            <td>Email:</td><td><%= @user.email %></td>
+          </tr>
+        </table>
       </div>
     	<div class="panel-footer">
     		<div class="links center">
@@ -162,33 +155,32 @@
 						<% total_hcs_pepm_fee = total_hcs_pepm_fee + prospect.hcs_pepm_fee %>
 					<% end %>
 			  </tbody>
-				<% if current_user.manager? %>
-				  <tfoot>		  
-						<tr>
-							<td>Total</td>
-							<td></td>
-							<td><%= total_employees %></td>
-							<td></td>
-							<td><%= number_to_currency(total_current_cost, precision: 0) %></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td><%= number_to_currency(total_estimated_new_cost, precision: 0) %></td>
-				      <td>
-								<% if total_estimated_new_cost > 0 && total_current_cost > 0 %>
-				      		<% if (total_estimated_new_cost / total_current_cost) > 0.00001 %>
-				      			<%= number_to_percentage((total_estimated_new_cost / total_current_cost)*100, precision: 1) %>
-				      		<% end %>
-				      	<% end %>
-				      </td>
-							<td></td>
-							<td></td>
-							<td><%= number_to_currency(total_hcs_monthly_savings_fee, precision: 0) %></td>
-							<td><%= number_to_currency(total_hcs_pepm_fee, precision: 0) %></td>
-							<td></td>
-						</tr>
-				  </tfoot>
-				 <% end %>
+
+			  <!--<tfoot>		  -->
+					<!--<tr>-->
+					<!--	<td>Total</td>-->
+					<!--	<td></td>-->
+					<!--	<td><%#= total_employees %></td>-->
+					<!--	<td></td>-->
+					<!--	<td><%#= number_to_currency(total_current_cost, precision: 0) %></td>-->
+					<!--	<td></td>-->
+					<!--	<td></td>-->
+					<!--	<td></td>-->
+					<!--	<td><%#= number_to_currency(total_estimated_new_cost, precision: 0) %></td>-->
+			  <!--    <td>-->
+					<!--		<%# if total_estimated_new_cost > 0 && total_current_cost > 0 %>-->
+			  <!--    		<%# if (total_estimated_new_cost / total_current_cost) > 0.00001 %>-->
+			  <!--    			<%#= number_to_percentage((total_estimated_new_cost / total_current_cost)*100, precision: 1) %>-->
+			  <!--    		<%# end %>-->
+			  <!--    	<%# end %>-->
+			  <!--    </td>-->
+					<!--	<td></td>-->
+					<!--	<td></td>-->
+					<!--	<td><%#= number_to_currency(total_hcs_monthly_savings_fee, precision: 0) %></td>-->
+					<!--	<td><%#= number_to_currency(total_hcs_pepm_fee, precision: 0) %></td>-->
+					<!--	<td></td>-->
+					<!--</tr>-->
+			  <!--</tfoot>-->
 			</table>
   	</div>
   	<div class="panel-footer">

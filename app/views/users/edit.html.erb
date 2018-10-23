@@ -14,10 +14,19 @@
         <%= f.input :email, required: true, autofocus: true %>
         <%= f.input :password, autocomplete: "off", required: false %>
         <%= f.input :password_confirmation %>
-        <% if current_user.admin || current_user.manager %>
+
+        <% if current_user.admin || current_user.manager %>        
           <%= f.input :group, required: true %>
-          Admin&#63; <%= f.check_box :admin? %> &nbsp; | &nbsp; Manager&#63; <%= f.check_box :manager? %> &nbsp; | &nbsp; Suport&#63; <%= f.check_box :support? %>
         <% end %>
+
+        <% if current_user.admin || [current_user.manager && current_user.support] %>        
+          SWAT&#63; <%= f.check_box :bc_swat? %> &nbsp; | &nbsp; 
+        <% end %>
+
+        <% if current_user.admin %>
+          Admin&#63; <%= f.check_box :admin? %> &nbsp; | &nbsp; Manager&#63; <%= f.check_box :manager? %> &nbsp; | &nbsp; Support&#63; <%= f.check_box :support? %>
+        <% end %>
+        
       </div>
     </div>
     <div class="panel-footer">
@@ -26,12 +35,11 @@
       </div>
       <% end %>
       <p>&nbsp;</p>
+      <em>Caution: Deleteing a user will delete all of their prospects and associated comments.</em>
   		<div class="links">
     		<%= link_to "Back", :back, class: "btn btn-beige" %> &nbsp;&nbsp;
         <%= link_to "Delete User", user_path(@user), data: { confirm: "Caution: Deleteing a user will delete all of their prospects and associated comments." }, method: :delete, class:"btn btn-danger" %>
       </div>
-      <br>
-      <em>Caution: Deleteing a user will delete all of their prospects and associated comments.</em>
     </div>
   </div>
 </div>

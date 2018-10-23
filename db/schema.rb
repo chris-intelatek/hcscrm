@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181015182023) do
+ActiveRecord::Schema.define(version: 20181023193022) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -84,6 +84,8 @@ ActiveRecord::Schema.define(version: 20181015182023) do
     t.decimal  "hcs_pepm_fee",                      default: 0.0,   null: false
     t.string   "intelatek_time"
     t.boolean  "submitted_hcsq",                    default: false
+    t.string   "next_action"
+    t.date     "next_action_date"
   end
 
   create_table "users", force: :cascade do |t|
@@ -108,6 +110,7 @@ ActiveRecord::Schema.define(version: 20181015182023) do
     t.boolean  "support",                default: false
     t.string   "group"
     t.string   "gravatar"
+    t.boolean  "bc_swat",                default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

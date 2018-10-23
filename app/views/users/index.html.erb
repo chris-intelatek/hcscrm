@@ -1,5 +1,5 @@
 <% if current_user.manager || current_user.support %>
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-8 col-md-offset-2">
 
 
 
@@ -27,11 +27,12 @@
         <table class="table table-sm index-table table-condensed">
           <thead>
             <tr>
-              <th></th>
               <th class="th-left">Name</th>
-              <th>Group</th>
-              <th>Prospects</th>
               <th>Last Logged In</th>
+              <th>Prospects</th>
+              <th>Group</th>
+              <th>Swat</th>
+              <th>Admin</th>
               <th>Manager</th>
               <th>Support</th> 
             </tr>
@@ -40,11 +41,12 @@
           <tbody>
             <% @users.each do |user| %>
               <tr>
-              	<td style="vertical-align:middle"><%= link_to (image_tag avatar_url(user, 60)), user %></td> 
               	<td class="td-left"><%= link_to user.advisor_name, user %></td>
-              	<td style="vertical-align:middle"><%= user.group %></td>
-              	<td style="vertical-align:middle"><%= user.prospects.size %></td>
               	<td style="vertical-align:middle"><%= time_ago_in_words(user.current_sign_in_at) if user.current_sign_in_at %> ago</td>
+              	<td style="vertical-align:middle"><%= user.prospects.size %></td>              	
+              	<td style="vertical-align:middle"><%= user.group %></td>
+              	<td style="vertical-align:middle"><% if user.bc_swat == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
+              	<td style="vertical-align:middle"><% if user.admin == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
               	<td style="vertical-align:middle"><% if user.manager == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
               	<td style="vertical-align:middle"><% if user.support == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
       		    </tr>
