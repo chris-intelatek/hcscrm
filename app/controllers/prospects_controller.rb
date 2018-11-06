@@ -53,7 +53,7 @@ class ProspectsController < ApplicationController
     if @prospect.save
       NotificationMailer.new_meeting(@prospect).deliver_later
       flash[:success] = "New prospect added."
-      redirect_to root_path
+      redirect_to 'http://intelatek.com/intranet/submitted.html'
     else
       render 'new_lead'
     end
