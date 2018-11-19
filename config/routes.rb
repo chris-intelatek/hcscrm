@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'training', to: 'pages#training'
   get 'answers', to: 'pages#answers'
   get 'email-sequences', to: 'pages#email-sequences'
+  get 'cold-phone-script', to: 'pages#cold-phone-script'
   get 'invite-webinar', to: 'pages#invite-webinar'
   get 'steps-to-sale', to: 'pages#steps-to-sale'
   get 'training-vids', to: 'pages#training-vids'
