@@ -7,18 +7,29 @@ class Prospect < ActiveRecord::Base
 
 
   def self.to_csv
-    attributes = %w[advisor_first_name advisor_last_name organization]
-
     CSV.generate(headers: true) do |csv|
-      csv << attributes
-
+      csv << ["Advisor Name", "Advisor Email", "Advisor Phone", "Advisor Mobile",
+      "Organization", "Intro Pres Date", "SME Call Date", "Status"]
       all.each do |prospect|
-        csv << prospect.attributes.values_at(*attributes)
+        advisor_name = prospect.user.advisor_first_name + " " + prospect.user.advisor_last_name
+        csv << [advisor_name, prospect.user.email, prospect.user.advisor_phone,
+              prospect.user.advisor_mobile, prospect.organization, prospect.intro_presentation_date,
+              prospect.hcs_sme_fact_finding_call_date, prospect.status]
       end
     end
   end
 
 
+  # def self.to_csv
+  #   CSV.generate(headers: true) do |csv|
+  #     csv << column_names
+  #     all.each do |prospect|
+  #       csv << prospect.attributes.values_at(*column_names)
+  #     end
+  #   end
+  # end
+
+  
   def self.search(query)
     # Note that PostgreSQL is case specific for like when searching where sqlite3 is not
     where("LOWER(organization) like ?", "%#{query.downcase}%")

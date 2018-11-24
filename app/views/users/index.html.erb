@@ -10,11 +10,14 @@
 	  		<div class="col-md-6">
           <h4>Listing <%= User.count %> Users</h4>
 	  		</div>
-	  		<div class="col-md-6">
+	  		<div class="col-md-4">
       		<%= form_tag(users_path, :method => "get", id: "search-form") do %>
       			<%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
       			<%= submit_tag "Search", class:"btn btn-slate btn-sm" %>
       		<% end %>
+	  		</div>
+	  		<div class="col-md-2 pull-right">
+					<%= link_to "Download CSV", users_path(format: "csv"), class: "btn btn-beige btn-sm" %>
 	  		</div>
 	  	</div>
 	  	

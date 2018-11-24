@@ -3,22 +3,22 @@ class User < ActiveRecord::Base
   has_many :comments, :dependent => :delete_all
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
+        :trackable, :validatable, :timeoutable
 
 
   def self.to_csv
-    attributes = %w{advisor_first_name advisor_last_name advisor_phone advisor_mobile email group}
-
     CSV.generate(headers: true) do |csv|
-      csv << attributes
-
+      csv << ["First Name", "Last Name", "Prospects", "Logged in", "Email", "Phone",
+              "Mobile", "Group", "Manager", "Support"]
       all.each do |user|
-        csv << user.attributes.values_at(*attributes)
+        csv << [user.advisor_first_name, user.advisor_last_name, user.prospects.size, 
+                user.current_sign_in_at, user.email, user.advisor_phone,
+                user.advisor_mobile, user.group, user.manager, user.support]
       end
     end
   end
-
+  
     
   def self.search(query)
     # Note that PostgreSQL is case specific for like when searching where sqlite3 is not
