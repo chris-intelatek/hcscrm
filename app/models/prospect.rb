@@ -2,10 +2,8 @@ class Prospect < ActiveRecord::Base
   belongs_to :user
   has_many :comments, :dependent => :delete_all
   validates :organization, :presence => true
+  validates :intro_presentation_date, :presence => true
   validates :employees, :numericality => {:only_integer => true, :greater_than => 0}
-  # validates :employees, :numericality => {:only_integer => true}
-  # validates_numericality_of employees, :only_integer => true, :greater_than => 0
-
   delegate :email, to: :user, allow_nil: true, prefix: true
 
 

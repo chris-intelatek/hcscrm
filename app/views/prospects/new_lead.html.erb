@@ -32,14 +32,11 @@
 			</div>
 			<hr>
 			<div class="row">
-				<div class="col-md-2"><%= f.input :intelatek_day, collection: DAYS, label: "Day" %>
-				</div>
-				<div class="col-md-6"><%= f.input :intro_presentation_date, 
-							{:include_blank => true, :default => nil, order: [:month, :day, :year] } %></div>
-				<div class="col-md-2"><%= f.input :intelatek_time, collection: TIMES, label: "Time" %>
-				</div>
-				<div class="col-md-2"><%= f.input :intelatek_timezone, collection: TIMEZONES, label: "TimeZone" %>
-				</div>
+				<div class="col-md-2"><%= f.input :intelatek_day, collection: DAYS, label: "Day" %></div>
+				<div class="col-md-4"><%= f.input :intro_presentation_date, :include_blank => true,
+					:default => nil, required: true, as: :date, html5: true, order: [:month, :day, :year] %></div>
+				<div class="col-md-3"><%= f.input :intelatek_time, collection: TIMES, label: "Time" %></div>
+				<div class="col-md-3"><%= f.input :intelatek_timezone, collection: TIMEZONES, label: "TimeZone" %></div>
 			</div>
 			<div class="row">
 				<div class="col-md-12">

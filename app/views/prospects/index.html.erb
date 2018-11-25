@@ -41,6 +41,7 @@
 			    <tr>
 			      <th>Consultant</th>
 			      <th>Prospect</th>
+			      <th></th>
 				    <th>Employees</th>
 			      <th>Intro Pres<br>
 								Days Since</th>
@@ -93,6 +94,38 @@
 					     		<em><%= link_to prospect.organization, prospect %></em>
 					      </td>
 	
+							  <td>
+									<!--I wrote this very clunky section that I need to rework at some point in the future... Chris-->
+							  	<% if prospect.next_action_date.nil? || prospect.next_action_date < Date.yesterday %>
+							      <% update1 = "yes" %>
+							  	<% end %>
+							    <% if prospect.intro_presentation_date.nil? || prospect.intro_presentation_date < Date.yesterday %>
+							      <% update2 = "yes" %>
+							  	<% end %>
+							    <% if prospect.hcs_sme_fact_finding_call_date.nil? || prospect.hcs_sme_fact_finding_call_date < Date.yesterday %>
+							      <% update3 = "yes" %>
+							  	<% end %>
+							  	<% if prospect.hcs_sme_proposal_meeting_date.nil? || prospect.hcs_sme_proposal_meeting_date < Date.yesterday %>
+							      <% update4 = "yes" %>
+							  	<% end %>
+							  	<% if prospect.effective_date.nil? || prospect.effective_date < Date.yesterday %>
+							      <% update5 = "yes" %>
+							  	<% end %>
+							
+						  	  <% if (prospect.status != "Other - No Sale") && 
+						  	        (prospect.status != "Closed - Group is Effective") && 
+						  	        (prospect.status !=  "Intro Pres Given - No Sale") && 
+						  	        (prospect.status != "Fact Finder Call Done - No Sale") && 
+						  	        (prospect.status != "Proposal Given - No Sale") && 
+						  	        (prospect.status != "Not Qualified - No Sale") %>
+							  	  <% if update1 && update2 && update3 && update4 && update5 == "yes" %>
+							  	    <font color="#FFFFE0">Needs<br>Updating</font>
+								    <% end %>
+								    <% else %>
+								  <% end %>
+									<!--End of clunky section.-->
+						  	</td>
+
 					      <td>
 					      	<%= prospect.employees %>
 					      </td>
@@ -182,6 +215,7 @@
 				  <tfoot>		  
 						<tr>
 							<td>Total</td>
+							<td></td>
 							<td></td>
 							<td><%#= total_employees %></td>
 							<td></td>

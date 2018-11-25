@@ -12,17 +12,53 @@
     
     <br>
     <div class="row">
-      <div class="col-md-12"><p class="prospect-posted-by">Posted by <%= @prospect.user.advisor_first_name + ' ' +
-  		@prospect.user.advisor_last_name %> <%= time_ago_in_words(@prospect.created_at) %> ago  
-  		and last updated <%= time_ago_in_words(@prospect.updated_at) %> ago.</p></div>    
+      <div class="col-md-12"><p class="prospect-posted-by">Prospect created 
+        <%= time_ago_in_words(@prospect.created_at) %> ago, last updated 
+        <%= time_ago_in_words(@prospect.updated_at) %> ago 
+        <% if !@prospect.comments.last.nil? %>
+        	, and last commented <%= time_ago_in_words(@prospect.comments.last.updated_at) %> ago.</p>
+    		<% end %>
+  		</div>    
     </div>
-  	<br>
+
+<!--I wrote this very clunky section that I need to rework at some point in the future... Chris-->
+  	<% if @prospect.next_action_date.nil? || @prospect.next_action_date < Date.yesterday %>
+      <% update1 = "yes" %>
+  	<% end %>
+    <% if @prospect.intro_presentation_date.nil? || @prospect.intro_presentation_date < Date.yesterday %>
+      <% update2 = "yes" %>
+  	<% end %>
+    <% if @prospect.hcs_sme_fact_finding_call_date.nil? || @prospect.hcs_sme_fact_finding_call_date < Date.yesterday %>
+      <% update3 = "yes" %>
+  	<% end %>
+  	<% if @prospect.hcs_sme_proposal_meeting_date.nil? || @prospect.hcs_sme_proposal_meeting_date < Date.yesterday %>
+      <% update4 = "yes" %>
+  	<% end %>
+  	<% if @prospect.effective_date.nil? || @prospect.effective_date < Date.yesterday %>
+      <% update5 = "yes" %>
+  	<% end %>
+
+	  <% if (@prospect.status != "Other - No Sale") && 
+	        (@prospect.status != "Closed - Group is Effective") && 
+	        (@prospect.status !=  "Intro Pres Given - No Sale") && 
+	        (@prospect.status != "Fact Finder Call Done - No Sale") && 
+	        (@prospect.status != "Proposal Given - No Sale") && 
+	        (@prospect.status != "Not Qualified - No Sale") %>
+    	<% if update1 && update2 && update3 && update4 && update5 == "yes" %>
+    	  <h3><font color="yellow">Prospect needs updating:  What are we doing next and when are we doing it?</font></h3>
+    	  <br>
+    	  <% else %>
+    	    All's good!
+      <% end %>
+	  <% end %>
+		<!--End of clunky section.-->
   	
 		<div class="row">
 		  <div class="col-md-12 next-action">
 		    <strong>Next Action: </strong>
   		    <% if !@prospect.next_action_date.nil? %>
-    		  <%= @prospect.next_action_date.strftime("%m/%d/%Y") %><% end %> 	 
+    		    <%= @prospect.next_action_date.strftime("%m/%d/%Y") %>
+    		  <% end %> 	 
     		  <%= @prospect.next_action %>
 		  </div>
     </div>    
@@ -30,17 +66,42 @@
   	
     <div class="row">
       <div class="col-md-6">
+        <Strong><%= @prospect.organization %></Strong><br>
         Address: <%= @prospect.street_address %><br>
         Address2: <%= @prospect.address2 %><br>
       	Address3: <%= @prospect.city %>, <%= @prospect.state %> <%= @prospect.zip %>
       </div>
-      <div class="col-md-6">    
+      <div class="col-md-6">
+        <br>    
       	Phone: <%= @prospect.phone %><br>
-      	Website: <%= @prospect.website %><br>
+      	Website: <%= link_to @prospect.website, "http://" + @prospect.website, target: "_blank" %><br>
       	Employees: <%= @prospect.employees %>
   	  </div>
   	</div>
+    
     <br>
+    
+    <div class="row">
+      <% if @prospect.current_health_benefit_cost > 0 %>
+        <div class="col-md-4">
+          Current Health benefit Cost: <%= number_to_currency(@prospect.current_health_benefit_cost, precision: 0) %>
+        </div>
+      <% end %>
+
+      <% if @prospect.new_estimated_health_benefit_cost > 0 %>      
+        <div class="col-md-4">
+          New Est Health Benefit Cost: <%= number_to_currency(@prospect.new_estimated_health_benefit_cost, precision: 0) %>
+        </div>
+      <% end %>
+
+      <% if (@prospect.new_estimated_health_benefit_cost / @prospect.current_health_benefit_cost) > 0.00001 %>       
+        <div class="col-md-4">
+          Savings Percentage: 
+          <%= number_to_percentage((@prospect.new_estimated_health_benefit_cost / @prospect.current_health_benefit_cost)*100, precision: 1) %>
+        </div>
+      <% end %>
+    </div>
+
     <br>
     <div class="row">
       <div class="col-md-6">
@@ -49,20 +110,26 @@
         Title: <%= @prospect.contact1_title %><br>
         Phone: <%= @prospect.contact1_phone %><br>
         Mobile: <%= @prospect.contact1_mobile %><br>
-        Email: <%= @prospect.contact1_email %>
-  		</div>
-      <div class="col-md-6">		
+        Email: <%if !@prospect.contact1_email.nil? %>
+                  <%= link_to @prospect.contact1_email, "mailto:" + @prospect.contact1_email %>
+                <% end %>
+                <br>
+      </div>
+      <div class="col-md-6">
         <strong>Contact 2</strong><br>
         Name: <%= @prospect.contact2_first_name %> <%= @prospect.contact2_last_name %><br>
         Title: <%= @prospect.contact2_title %><br>
         Phone: <%= @prospect.contact2_phone %><br>
         Mobile: <%= @prospect.contact2_mobile %><br>
-        Email: <%= @prospect.contact2_email %>
-  		</div>
+        Email: <%if !@prospect.contact2_email.nil? %>
+                  <%= link_to @prospect.contact2_email, "mailto:" + @prospect.contact2_email %>
+                <% end %>
+                <br>
+      </div>
   	</div>
   	<br>
     <div class="row">
-      <div class="col-md-12">Prospect Note: <%= @prospect.prospect_note %></div>
+      <div class="col-md-12">Prospect Notes: <%= @prospect.prospect_note %></div>
     </div>
     <br>
     <div class="row">
@@ -90,12 +157,7 @@
     <br>
     <br>
     <div class="row">
-      <div class="col-md-6">
-        Current Health benefit Cost: <%= number_to_currency(@prospect.current_health_benefit_cost, precision: 0) %><br>
-        New Est Health Benefit Cost: <%= number_to_currency(@prospect.new_estimated_health_benefit_cost, precision: 0) %><br>
-        Savings Percentage: <% if (@prospect.new_estimated_health_benefit_cost / @prospect.current_health_benefit_cost) > 0.00001 %>
-  	    <%= number_to_percentage((@prospect.new_estimated_health_benefit_cost / @prospect.current_health_benefit_cost)*100, precision: 1) %><% end %><br>    
-      </div>
+
       <div class="col-md-6">
         Agreement Date: <% if !@prospect.agreement_date.nil? %>
   			<%= @prospect.agreement_date.strftime("%m/%d/%Y") %><% end %>
