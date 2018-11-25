@@ -119,7 +119,8 @@
 						  	        (prospect.status != "Proposal Given - No Sale") && 
 						  	        (prospect.status != "Not Qualified - No Sale") %>
 							  	  <% if update1 && update2 && update3 && update4 && update5 == "yes" %>
-							  	    <font color="#FFFFE0">Needs<br>Updating</font>
+							  	    <%= link_to "Needs", edit_prospect_path(prospect) %><br>
+							  	    <%= link_to "Updating", edit_prospect_path(prospect) %>
 								    <% end %>
 								    <% else %>
 								  <% end %>

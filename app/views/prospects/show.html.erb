@@ -45,7 +45,8 @@
 	        (@prospect.status != "Proposal Given - No Sale") && 
 	        (@prospect.status != "Not Qualified - No Sale") %>
     	<% if update1 && update2 && update3 && update4 && update5 == "yes" %>
-    	  <h3><font color="yellow">Prospect needs updating:  What are we doing next and when are we doing it?</font></h3>
+    	  
+    	  <h3><font color="yellow"><%= link_to "Prospect needs updating:  What are we doing next and when are we doing it?", edit_prospect_path(@prospect), {:style=>'color:yellow;'} %></font></h3>
     	  <br>
     	  <% else %>
     	    All's good!
