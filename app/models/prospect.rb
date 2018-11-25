@@ -12,7 +12,6 @@ class Prospect < ActiveRecord::Base
       csv << ["Advisor Name", "Advisor Email", "Advisor Phone", "Advisor Mobile",
       "Organization", "Update", "Intro Pres Date", "SME Call Date", "Status"]
       all.each do |prospect|
-        
         #<!-- I wrote this very clunky section that I need to rework at some point in the future... Chris
       	if prospect.next_action_date.nil? || prospect.next_action_date < Date.yesterday
           update1 = "yes"
@@ -42,7 +41,6 @@ class Prospect < ActiveRecord::Base
           end
     	  end
     		#<!--End of clunky section.-->
-        
         advisor_name = prospect.user.advisor_first_name + " " + prospect.user.advisor_last_name
         csv << [advisor_name, prospect.user.email, prospect.user.advisor_phone,
               prospect.user.advisor_mobile, prospect.organization, update, prospect.intro_presentation_date,

@@ -124,8 +124,8 @@
 						  	        (prospect.status != "Proposal Given - No Sale") && 
 						  	        (prospect.status != "Not Qualified - No Sale") %>
 							  	  <% if update1 && update2 && update3 && update4 && update5 == "yes" %>
-							  	    <%= link_to "Needs", edit_prospect_path(prospect) %><br>
-							  	    <%= link_to "Updating", edit_prospect_path(prospect) %>
+							  	    <%= link_to "Needs", edit_prospect_path(prospect), {:style=>'color:yellow;'} %><br>
+							  	    <%= link_to "Updating", edit_prospect_path(prospect), {:style=>'color:yellow;'} %>
 								    <% end %>
 								  <% end %>
 									<!--End of clunky section.-->
