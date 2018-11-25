@@ -42,7 +42,7 @@
           </thead>
                   
           <tbody>
-            <% @users.each do |user| %>
+            <% @users.order(:advisor_first_name).each do |user| %>
               <tr>
               	<td class="td-left"><%= link_to user.advisor_name, user %></td>
               	<td style="vertical-align:middle"><%= time_ago_in_words(user.current_sign_in_at) if user.current_sign_in_at %> ago</td>
