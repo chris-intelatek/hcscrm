@@ -42,6 +42,22 @@
 			      <th>Consultant</th>
 			      <th>Prospect</th>
 			      <th></th>
+			      <th>Next Action<br>
+			      Date</th>			      
+			      <th>Next Action</th>
+			      <th>Deal 
+			      	<div class="status">
+				      	<li class="dropdown">
+								  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Status <span class="caret"></span></a>
+								  <ul class="dropdown-menu dropdown-menu-right status-menu" style="list-style: none;">
+								    <li><%= link_to "All", prospects_path %></li>
+								    <% @status.each do |a| %>
+								      <li class="black"><%= link_to "#{a.status}", prospects_path(status: a.status) %></li>
+								    <% end %>
+								  </ul>
+								</li>
+							</div>
+						</th>
 				    <th>Employees</th>
 			      <th>Intro Pres<br>
 								Days Since</th>
@@ -64,20 +80,7 @@
 								Savings Fee</th>
 			      <th>PEPM<br>
 								Fee</th>
-			      <th>Deal 
-			      	<div class="status">
-				      	<li class="dropdown">
-								  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Status <span class="caret"></span></a>
-								  <ul class="dropdown-menu dropdown-menu-right status-menu" style="list-style: none;">
-								    <li><%= link_to "All", prospects_path %></li>
-								    <% @status.each do |a| %>
-								      <li class="black"><%= link_to "#{a.status}", prospects_path(status: a.status) %></li>
-								    <% end %>
-								  </ul>
-								</li>
-							</div>
-						</th>
-	
+
 			    </tr>
 			  </thead>
 				
@@ -126,6 +129,22 @@
 								  <% end %>
 									<!--End of clunky section.-->
 						  	</td>
+
+
+
+					      <td>
+					      	<% if !prospect.next_action_date.nil? %>
+					      		<%= prospect.next_action_date.strftime("%m/%d/%Y") %>
+					      	<% end %>
+					      </td>		      
+					      <td>
+					      	<%= prospect.next_action %>
+					      </td>
+
+					      <td>
+					      	<%= prospect.status %>
+					      </td>
+
 
 					      <td>
 					      	<%= prospect.employees %>
@@ -198,10 +217,6 @@
 					      <td>
 					      	<%= prospect.hcs_pepm_fee %>
 					      </td>
-	
-					      <td>
-					      	<%= prospect.status %>
-					      </td>
 					      
 					    </tr>
 						<% end %>
@@ -216,6 +231,9 @@
 				  <tfoot>		  
 						<tr>
 							<td>Total</td>
+							<td></td>
+							<td></td>
+							<td></td>
 							<td></td>
 							<td></td>
 							<td><%#= total_employees %></td>
@@ -236,7 +254,6 @@
 							<td></td>
 							<td><%#= number_to_currency(total_hcs_monthly_savings_fee, precision: 0) %></td>
 							<td><%#= number_to_currency(total_hcs_pepm_fee, precision: 0) %></td>
-							<td></td>
 						</tr>
 				  </tfoot>
 				 <% end %>
