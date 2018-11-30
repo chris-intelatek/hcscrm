@@ -90,5 +90,28 @@
 			</div>
 		</div>
 
+
+		<div class="col-md-3">
+			<div class="well dashboard-panel dashboard-bckg-6">
+				<h3 align="center">Follow up in:</h4>
+	
+				<h4>
+					&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in January").count %>&nbsp; January<br>
+					&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in February").count %>&nbsp;  February<br>
+					&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in March").count %>&nbsp;  March<br>
+					&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in April").count %>&nbsp;  April<br>
+					&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in May").count %>&nbsp;  May<br>
+					&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in June").count %>&nbsp;  June<br>
+					&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in July").count %>&nbsp;  July<br>
+					&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in August").count %>&nbsp;  August<br>
+					&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in September").count %>&nbsp;  September<br>
+					&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in October").count %>&nbsp;  October<br>
+					&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in November").count %>&nbsp;  November<br>
+					&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in December").count %>&nbsp;  December</h4>
+			</div>
+		</div>
+
+
 	</div>
+	
 <% end %>
