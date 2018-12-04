@@ -30,6 +30,11 @@ class ProspectsController < ApplicationController
     @users = User.all
   end
 
+  def intelatek
+    @prospects = Prospect.all.order("created_at DESC")
+    @users = User.all
+  end
+  
   def new
     @prospect = current_user.prospects.build
   end

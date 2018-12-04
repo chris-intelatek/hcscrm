@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get 'training-vids', to: 'pages#training-vids'
   get 'lead-generation', to: 'pages#lead-generation'
   get 'lead-generation-faq', to: 'pages#lead-generation-faq'
-  
+  get 'intelatek', to: 'prospects#intelatek'
   get 'dashboard', to: 'prospects#dashboard'
   get :new_lead, to: 'prospects#new_lead', as: :new_lead
   post :new_lead, to: 'prospects#new_lead_create', as: :new_lead_create
