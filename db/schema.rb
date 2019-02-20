@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181023193022) do
+ActiveRecord::Schema.define(version: 20190219231016) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20181023193022) do
     t.boolean  "submitted_hcsq",                    default: false
     t.string   "next_action"
     t.date     "next_action_date"
+    t.string   "renewal_month"
   end
 
   create_table "users", force: :cascade do |t|

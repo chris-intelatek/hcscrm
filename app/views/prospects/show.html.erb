@@ -66,69 +66,47 @@
     <div class="row">
       <div class="col-md-6">
         <Strong><%= @prospect.organization %></Strong><br>
-        Address: <%= @prospect.street_address %><br>
-        Address2: <%= @prospect.address2 %><br>
-      	Address3: <%= @prospect.city %>, <%= @prospect.state %> <%= @prospect.zip %>
+        Address: <em><%= @prospect.street_address %></em><br>
+        Address2: <em><%= @prospect.address2 %></em><br>
+        City/State: <em><%= @prospect.city %>, <%= @prospect.state %> <%= @prospect.zip %></em>
       </div>
       <div class="col-md-6">
         <br>    
-      	Phone: <%= @prospect.phone %><br>
-      	Website: <%= link_to @prospect.website, "http://" + @prospect.website, target: "_blank" %><br>
-      	Employees: <%= @prospect.employees %>
+      	Phone: <em><%= @prospect.phone %></em><br>
+      	Website: <em><%= link_to @prospect.website, "http://" + @prospect.website, target: "_blank" %></em><br>
+      	Employees: <em><%= @prospect.employees %></em>
   	  </div>
   	</div>
-    
     <br>
-    
-    <div class="row">
-      <% if @prospect.current_health_benefit_cost > 0 %>
-        <div class="col-md-4">
-          Current Health benefit Cost: <%= number_to_currency(@prospect.current_health_benefit_cost, precision: 0) %>
-        </div>
-      <% end %>
-
-      <% if @prospect.new_estimated_health_benefit_cost > 0 %>      
-        <div class="col-md-4">
-          New Est Health Benefit Cost: <%= number_to_currency(@prospect.new_estimated_health_benefit_cost, precision: 0) %>
-        </div>
-      <% end %>
-
-      <% if (@prospect.new_estimated_health_benefit_cost / @prospect.current_health_benefit_cost) > 0.00001 %>       
-        <div class="col-md-4">
-          Savings Percentage: 
-          <%= number_to_percentage((@prospect.new_estimated_health_benefit_cost / @prospect.current_health_benefit_cost)*100, precision: 1) %>
-        </div>
-      <% end %>
-    </div>
-
     <br>
     <div class="row">
       <div class="col-md-6">
         <strong>Contact 1</strong><br>
-        Name: <%= @prospect.contact1_first_name %> <%= @prospect.contact1_last_name %><br>
-        Title: <%= @prospect.contact1_title %><br>
-        Phone: <%= @prospect.contact1_phone %><br>
-        Mobile: <%= @prospect.contact1_mobile %><br>
+        Name: <em><%= @prospect.contact1_first_name %> <%= @prospect.contact1_last_name %></em><br>
+        Title: <em><%= @prospect.contact1_title %></em><br>
+        Phone: <em><%= @prospect.contact1_phone %></em><br>
+        Mobile: <em><%= @prospect.contact1_mobile %></em><br>
         Email: <%if !@prospect.contact1_email.nil? %>
-                  <%= link_to @prospect.contact1_email, "mailto:" + @prospect.contact1_email %>
+                  <em><%= link_to @prospect.contact1_email, "mailto:" + @prospect.contact1_email %></em>
                 <% end %>
                 <br>
       </div>
       <div class="col-md-6">
         <strong>Contact 2</strong><br>
-        Name: <%= @prospect.contact2_first_name %> <%= @prospect.contact2_last_name %><br>
-        Title: <%= @prospect.contact2_title %><br>
-        Phone: <%= @prospect.contact2_phone %><br>
-        Mobile: <%= @prospect.contact2_mobile %><br>
-        Email: <%if !@prospect.contact2_email.nil? %>
-                  <%= link_to @prospect.contact2_email, "mailto:" + @prospect.contact2_email %>
+        Name: <em><%= @prospect.contact2_first_name %> <%= @prospect.contact2_last_name %></em><br>
+        Title: <em><%= @prospect.contact2_title %></em><br>
+        Phone: <em><%= @prospect.contact2_phone %></em><br>
+        Mobile: <em><%= @prospect.contact2_mobile %></em><br>
+        Email: <em><%if !@prospect.contact2_email.nil? %>
+                  <%= link_to @prospect.contact2_email, "mailto:" + @prospect.contact2_email %></em>
                 <% end %>
                 <br>
       </div>
   	</div>
   	<br>
+  	<br>
     <div class="row">
-      <div class="col-md-12">Prospect Notes: <%= @prospect.prospect_note %></div>
+      <div class="col-md-12">Prospect Notes: <em><%= @prospect.prospect_note %></em></div>
     </div>
     <br>
     <div class="row">
@@ -139,30 +117,32 @@
     <br>
   
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
         Intro Pres Date: <% if !@prospect.intro_presentation_date.nil? %>
-  		  <%= @prospect.intro_presentation_date.strftime("%m/%d/%Y") %><% end %>
+  		  <em><%= @prospect.intro_presentation_date.strftime("%m/%d/%Y") %></em><% end %>
   		  <br>
-  		  Intro Presented by: <%= @prospect.intro_presenter %>      
+  		  Intro Presented by: <em><%= @prospect.intro_presenter %></em>
+  		  <br>
+  		  <br>
+  		  New Cost: <% if @prospect.new_estimated_health_benefit_cost != 0 %>
+  		              <em><%= number_to_currency(@prospect.new_estimated_health_benefit_cost, precision: 0) %></em>
+  		            <% end %>
       </div>
-      <div class="col-md-6">
-        SME Fact Finding Call: <% if !@prospect.hcs_sme_fact_finding_call_date.nil? %>
-  		  <%= @prospect.hcs_sme_fact_finding_call_date.strftime("%m/%d/%Y") %><% end %><br>
-  		  Subject Matter Expert: <%= @prospect.hcs_sme %><br>
-        Proposal Meeting: <% if !@prospect.hcs_sme_proposal_meeting_date.nil? %>
-  		  <%= @prospect.hcs_sme_proposal_meeting_date.strftime("%m/%d/%Y") %><% end %>
+      <div class="col-md-4">
+        SME Presentation Date: <% if !@prospect.hcs_sme_fact_finding_call_date.nil? %>
+  		  <%= @prospect.hcs_sme_fact_finding_call_date.strftime("%m/%d/%Y") %></em><% end %>
+  		  <br>
+  		  Subject Matter Expert: <em><%= @prospect.hcs_sme %></em><br>
       </div>
-    </div>
-    <br>
-    <br>
-    <div class="row">
-
-      <div class="col-md-6">
+      <div class="col-md-4">
+        Proposal Meeting Date: <% if !@prospect.hcs_sme_proposal_meeting_date.nil? %>
+  		  <em><%= @prospect.hcs_sme_proposal_meeting_date.strftime("%m/%d/%Y") %></em><% end %>
+        <br>
         Agreement Date: <% if !@prospect.agreement_date.nil? %>
-  			<%= @prospect.agreement_date.strftime("%m/%d/%Y") %><% end %>
+  			<em><%= @prospect.agreement_date.strftime("%m/%d/%Y") %></em><% end %>
   			<br>
     	  Effective Date: <% if !@prospect.effective_date.nil? %>
-  			<%= @prospect.effective_date.strftime("%m/%d/%Y") %><% end %>
+  			<em><%= @prospect.effective_date.strftime("%m/%d/%Y") %></em><% end %>
       </div>
     </div>
   
@@ -183,82 +163,61 @@
       </div>
     </div>
 
-
-    <div class="row">
-    <!--<div class="row collapse" id="hcsq">-->
-
-    		<!--<button class="btn btn-beige btn-xs pull-right" type="button" data-toggle="collapse" data-target="#hcsq" aria-expanded="false" aria-controls="collapseExample">Close HCSQ</button>-->
-    		
-        <% if @prospect.submitted_hcsq == false %>
-        
-        <div class="col-md-12">
-          <p>&nbsp;</p>
-          <hr>
-          <p>&nbsp;</p>        
-        
-          <center><%= link_to "Submit an HCSQ", hcsq_path(@prospect), class: "btn btn-info" %></center>
-          <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <div class="class=span12" style="border: 2px solid gray">
+      <div class="container">
+        <h3>HCS - HealthCare Savings Questionaire</h3>
+        <p>&nbsp;</p>
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Required Questions</strong></p>
+        		<p>Current Carrier: <em><%= @prospect.hcbq_current_carrier %></em></p>
+        		<p>Current Coverage Type: <em><%= @prospect.hcbq_current_coverage_type %></em></p>
+        		<p>Renewal Month: <em><%= @prospect.renewal_month %></em></p>
+        		<p>Current Annual Cost: 
+        		    <% if @prospect.current_health_benefit_cost != 0 %>
+  		            <em><%= number_to_currency(@prospect.current_health_benefit_cost, precision: 0) %></em>
+  		          <% end %>
+        		    <br><em>(employer & employee contributions)</em></p>
+        		<p># of Eligible Employees:  <em><%= @prospect.hcbq_no_of_eligible_employees %></em></p>
+        		<p>Total Participating:  <em><%= @prospect.hcbq_total_participation %></em></p>
+        		<p>Nature of Business: <em><%= @prospect.hcbq_business_type %></em></p>
+            <p>&nbsp;</p>
+        		<p><em class="tab"><%= @prospect.hcbq_notes %></em></p>    		
+          </div>
           
-      		<p><em><font color="yellow">Please note: An HCSQ (HealthCare Savings Questionnaire) can only be submitted once, should only be submited AFTER you have scheduled a call with an SME at Entrust for a Fact Finding Call, and that upon submission: Entrust will be notified by email and the prospect status will be updated to 'Fact Finding Call Scheduled'.  You must still schedule with Entrust using Calendly.</font></stron></em></p>
+          <div class="col-md-6">
+            <p><strong>Optional Questions</strong></p>
+        		<p>1) For you & your employees, what are the 3 most important elements of your health plan?<br>
+        		  <em class="tab"><%= @prospect.hcbq_most_important %></em></p>
+        		  
+        		<p>2) Do you think the last 3 years of compounding increases in your health benefit costs would be sustainable if continued for the next three years?<br>
+        		  <em class="tab"><%= @prospect.hcbq_sustainable %></em></p>
+        		  
+        		<p>3) Do you think your employees can afford their deductible & out-of-pocket expense under your current plan?<br>
+        		  <em class="tab"><%= @prospect.hcbq_oop %></em></p>
+        		  
+        		<p>4) What do you like best about your health plan?<br>
+        		<em class="tab"><%= @prospect.hcbq_like_best %></em></p>
+      
+        		<p>5) What do you like least about your health plan?<br>
+        		<em class="tab"><%= @prospect.hcbq_like_least %></em></p>
+      
+        		<p>6) On a scale of 1 to 10, how would you rate your current agent/broker/consultant?<br>
+        		  <em class="tab"><%= @prospect.hcbq_scale %></em></p>
+      
+        		<p>7) If you could design the perfect benefit plan for your company what would it look like?<br>
+        		  <em class="tab"><%= @prospect.hcbq_perfect_plan %></em></p>
           </div>
-        <% else %>
- 
-         <div class="col-md-12">
-
-          <div class="row collapse" id="hcsq">
-            <div class="col-md-12">
-              <p>&nbsp;</p>
-              <hr>
-              <p>&nbsp;</p>
-          		<button class="btn btn-beige btn-xs pull-right" type="button" data-toggle="collapse" data-target="#hcsq" aria-expanded="false" aria-controls="collapseExample">Close HCSQ</button>
-        
-              <h3>HCSQ</h3>
-          		<p>Nature of Business or SIC Code: <em><%= @prospect.hcbq_business_type %></em></p>
-          		<p># of Eligible Employees:  <em><%= @prospect.hcbq_no_of_eligible_employees %></em></p>
-          		<p>Total Participating:  <em><%= @prospect.hcbq_total_participation %></em></p>
-          		<p>Current Carrier: <em><%= @prospect.hcbq_current_carrier %></em></p>
-          		<p>Current Coverage Type: <em><%= @prospect.hcbq_current_coverage_type %></em></p>
-          		
-          		<p>1) What is your total annual healthcare expenditure <em>(employer & employee contributions)</em>?<br>
-          		  <em class="tab"><%= @prospect.current_health_benefit_cost %></em></p>
-
-          		<p>2) For you & your employees, what are the 3 most important elements of your health plan?<br>
-          		  <em class="tab"><%= @prospect.hcbq_most_important %></em></p>
-          		  
-          		<p>3) Do you think the last 3 years of compounding increases in your health benefit costs would be sustainable if continued for the next three years?<br>
-          		  <em class="tab"><%= @prospect.hcbq_sustainable %></em></p>
-          		  
-          		<p>4) Do you think your employees can afford their deductible & out-of-pocket expense under your current plan?<br>
-          		  <em class="tab"><%= @prospect.hcbq_oop %></em></p>
-          		  
-          		<p>5) What do you like best about your health plan?<br>
-          		<em class="tab"><%= @prospect.hcbq_like_best %></em></p>
-
-          		<p>6) What do you like least about your health plan?<br>
-          		<em class="tab"><%= @prospect.hcbq_like_least %></em></p>
-
-          		<p>7) On a scale of 1 to 10, how would you rate your current agent/broker/consultant?<br>
-          		  <em class="tab"><%= @prospect.hcbq_scale %></em></p>
-
-          		<p>8) If you could design the perfect benefit plan for your company what would it look like?<br>
-          		  <em class="tab"><%= @prospect.hcbq_perfect_plan %></em></p>
-
-          		<p>Additional notes and/or comments</br>
-          		  <em class="tab"><%= @prospect.hcbq_notes %></em></p>
-            </div>
-          </div>
-        
-          <p>&nbsp;</p>
-      		<center><button class="btn btn-beige" type="button" data-toggle="collapse" data-target="#hcsq" aria-expanded="false" aria-controls="collapseExample">
-          View Submitted HCSQ</button></center>
         </div>
-      <% end %>
-    </div>    
+        
+      </div>  
+    </div>
 	</div>
 	
   <div class="panel-footer">
 		<%= link_to "Back", prospects_path, class: "btn btn-beige" %>
-		<%= link_to "Edit & More Fields", edit_prospect_path(@prospect), class: "btn btn-warning" %>
+		<%= link_to "Edit & Update", edit_prospect_path(@prospect), class: "btn btn-warning" %>
 		<%= link_to "Delete", prospect_path(@prospect), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
   </div>	
 
