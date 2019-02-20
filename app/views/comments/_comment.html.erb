@@ -6,7 +6,7 @@
 	</div>
 	<div class="row">
     <div class="col-md-9">    	
-			<p class="comment-posted-by">Posted by <%= comment.user.advisor_first_name + ' ' + comment.user.advisor_last_name %> <%= time_ago_in_words(comment.created_at) %> ago</p>
+			<p class="comment-posted-by"><em>Posted by <%= comment.user.advisor_first_name + ' ' + comment.user.advisor_last_name %> on <%= comment.created_at.strftime("%m/%d/%Y") %></em></p>
 		</div>
     <div class="col-md-3">
 			<% if comment.user_id == current_user.id %>

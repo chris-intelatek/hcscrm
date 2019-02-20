@@ -4,21 +4,35 @@
   <div class="panel-heading">
     <div class="row">
       <div class="col-md-6"><h2><%= @prospect.organization %></h2></div>
-      <div class="col-md-6"><h4><br>Status: <%= @prospect.status %></h4></div>
-    </div> 
+      <div class="col-md-6"><h4 class="pull-right"><br>Status: <%= @prospect.status %></h4></div>
+    </div>
+    <div class="row">
+      <div class="col-md-12"><p class="prospect-posted-by"><em>Prospect created on
+        <%= @prospect.created_at.strftime("%m/%d/%Y") %>, last updated on
+        <% if !@prospect.comments.last.nil? %>
+          <% if @prospect.comments.last.updated_at > @prospect.updated_at %>
+        	  <%= @prospect.comments.last.updated_at.strftime("%m/%d/%Y") %></em></p>
+          <% else %>
+        	  <%= @prospect.updated_at.strftime("%m/%d/%Y") %></em></p>
+          <% end %>
+        <% else %>
+        	<%= @prospect.updated_at.strftime("%m/%d/%Y") %></em></p>
+    		<% end %>
+
+  		</div>
+    </div>
+		<div class="row">
+		  <div class="col-md-12 next-action">
+		    <strong>Next Action: </strong>
+  		    <% if !@prospect.next_action_date.nil? %>
+    		    <%= @prospect.next_action_date.strftime("%m/%d/%Y") %>
+    		  <% end %> 	 
+    		  <%= @prospect.next_action %>
+		  </div>
+    </div>
   </div>
   <div class="prospect-show">
-    <br>
-    <div class="row">
-      <div class="col-md-12"><p class="prospect-posted-by">Prospect created 
-        <%= time_ago_in_words(@prospect.created_at) %> ago, last updated 
-        <%= time_ago_in_words(@prospect.updated_at) %> ago 
-        <% if !@prospect.comments.last.nil? %>
-        	, and last commented <%= time_ago_in_words(@prospect.comments.last.updated_at) %> ago.</p>
-    		<% end %>
-  		</div>    
-    </div>
-
+    
 <!--I wrote this very clunky section that I need to rework at some point in the future... Chris-->
   	<% if @prospect.next_action_date.nil? || @prospect.next_action_date < Date.yesterday %>
       <% update1 = "yes" %>
@@ -45,21 +59,9 @@
     	<% if update1 && update2 && update3 && update4 && update5 == "yes" %>
     	  
     	  <h3><%= link_to "Prospect needs updating:  What are we doing next and when are we doing it?", edit_prospect_path(@prospect), {:style=>'color:yellow;'} %></h3>
-    	  <br>
       <% end %>
 	  <% end %>
 		<!--End of clunky section.-->
-  	
-		<div class="row">
-		  <div class="col-md-12 next-action">
-		    <strong>Next Action: </strong>
-  		    <% if !@prospect.next_action_date.nil? %>
-    		    <%= @prospect.next_action_date.strftime("%m/%d/%Y") %>
-    		  <% end %> 	 
-    		  <%= @prospect.next_action %>
-		  </div>
-    </div>    
-    <br>
   	
     <div class="row">
       <div class="col-md-6">
