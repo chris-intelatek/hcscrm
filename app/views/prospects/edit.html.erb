@@ -130,11 +130,24 @@
     																															'Fully Insured',
     																															'Self-funded'
     																															], label: "Current Coverage Type" %>
-  					<%= f.input :renewal_month, label: "Renewal Month" %>
+						<%= f.input :renewal_month, collection: [
+  			  																			'January',
+                                                'February',
+                                                'March',
+                                                'April',
+                                                'May',
+                                                'June',
+                                                'July',
+                                                'August',
+                                                'September',
+                                                'October',
+                                                'November',
+                                                'December'
+																				], label: "Renewal Month" %>
   					<%= f.input :current_health_benefit_cost, label: "Current Annual Cost" %>
   	    	  <%= f.input :hcbq_no_of_eligible_employees, label: "# of Eligible Employees" %>
   					<%= f.input :hcbq_total_participation, label: "Total Participating" %>
-  					<%= f.input :hcbq_business_type, label: "Nature of Business or SIC Code" %>
+  					<%= f.input :hcbq_business_type, label: "Nature of Business" %>
             <%= f.input :new_estimated_health_benefit_cost, label: "New Cost" %>
     		  </div>
 
