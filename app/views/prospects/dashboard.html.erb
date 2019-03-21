@@ -4,7 +4,7 @@
 
 		<div class="col-md-6">
 			<div class="well dashboard-panel dashboard-bckg-5">
-				<h1 align="center"><%= all_in_crm %></h1>
+				<h1 align="center"><%= @prospects.count %></h1>
 				<p>&nbsp;</p>
 				<h4 align="center">Total Prospects in CRM</h4>
 			</div>
@@ -29,7 +29,7 @@
 
 		<div class="col-md-6">
 			<div class="well dashboard-panel dashboard-bckg-2">
-				<h1 align="center"><%= (hcs_prospects_in_crm) %></h1>
+				<h1 align="center"><%= @prospects.where(hcs_prospect: true).count %></h1>
 				<p>&nbsp;</p>
 				<h4 align="center">Total HCS Prospects</h4>
 			</div>
@@ -37,7 +37,7 @@
 
 		<div class="col-md-6">
 			<div class="well dashboard-panel dashboard-bckg-3">
-				<h1 align="center"><%= (hcs_prospects_in_crm - hcs_no_sale) %></h1>
+				<h1 align="center"><%= @prospects.where(hcs_prospect: true).count - hcs_no_sale %></h1>
 				<p>&nbsp;</p>
 				<h4 align="center">Total Current HCS Opportunities</h4>
 			</div>
