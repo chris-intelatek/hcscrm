@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  
+
+  get 'healthcare_savings', to: 'pages#healthcare-savings'
+  get 'instant_pay', to: 'pages#instant-pay'  
   get 'home', to: 'pages#home'
   get 'docs', to: 'pages#docs'
   get 'marketing', to: 'pages#marketing'
@@ -20,6 +22,12 @@ Rails.application.routes.draw do
   post :new_lead, to: 'prospects#new_lead_create', as: :new_lead_create
   get 'hcsq/:id', to: 'prospects#hcsq', as: :hcsq
   post 'hcsq/:id', to: 'prospects#hcsq_update', as: :hcsq_update
+  get 'hcs/:id', to: 'prospects#hcs', as: :hcs
+  post 'hcs/:id', to: 'prospects#hcs_update', as: :hcs_update  
+  get 'cps/:id', to: 'prospects#cps', as: :cps
+  post 'cps/:id', to: 'prospects#cps_update', as: :cps_update
+  get 'pay/:id', to: 'prospects#pay', as: :pay
+  post 'pay/:id', to: 'prospects#pay_update', as: :pay_update
   
   match '/users',     to: 'users#index',  via: 'get'
   match '/users/:id', to: 'users#show',   via: 'get'

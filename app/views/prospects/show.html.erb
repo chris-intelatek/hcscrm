@@ -1,10 +1,24 @@
-<div class="col-md-8 col-md-offset-2">
+<div class="col-md-10 col-md-offset-1">
   
 	<div class="panel panel-gray">
   <div class="panel-heading">
     <div class="row">
-      <div class="col-md-6"><h2><%= @prospect.organization %></h2></div>
-      <div class="col-md-6"><h4 class="pull-right"><br>Status: <%= @prospect.status %></h4></div>
+      <div class="col-md-7">
+        <p class="header-title"><%= @prospect.organization %></p>
+      </div>
+      <div class="col-md-5">
+        <% if @prospect.hcs_prospect == false && !@prospect.status? %>
+          <%= link_to "Add HealthCare Savings Service", hcs_path(@prospect), class: "btn btn-slate btn-sm" %>
+        <% else %>
+          <%= link_to "Edit HealthCare Savings Service", hcs_path(@prospect), class: "btn btn-warning btn-sm" %>
+        <% end %>
+        &nbsp; &nbsp;
+        <% if @prospect.pay_prospect == false %>
+          <%= link_to "Add Instant Payments Service", pay_path(@prospect), class: "btn btn-slate btn-sm" %>
+        <% else %>
+          <%= link_to "Edit Instant Payments Service", pay_path(@prospect), class: "btn btn-warning btn-sm" %>
+        <% end %>
+      </div>
     </div>
     <div class="row">
       <div class="col-md-12"><p class="prospect-posted-by"><em>Prospect created on
@@ -21,56 +35,18 @@
 
   		</div>
     </div>
-		<div class="row">
-		  <div class="col-md-12 next-action">
-		    <strong>Next Action: </strong>
-  		    <% if !@prospect.next_action_date.nil? %>
-    		    <%= @prospect.next_action_date.strftime("%m/%d/%Y") %>
-    		  <% end %> 	 
-    		  <%= @prospect.next_action %>
-		  </div>
-    </div>
+
   </div>
   <div class="prospect-show">
     
-<!--I wrote this very clunky section that I need to rework at some point in the future... Chris-->
-  	<% if @prospect.next_action_date.nil? || @prospect.next_action_date < Date.yesterday %>
-      <% update1 = "yes" %>
-  	<% end %>
-    <% if @prospect.intro_presentation_date.nil? || @prospect.intro_presentation_date < Date.yesterday %>
-      <% update2 = "yes" %>
-  	<% end %>
-    <% if @prospect.hcs_sme_fact_finding_call_date.nil? || @prospect.hcs_sme_fact_finding_call_date < Date.yesterday %>
-      <% update3 = "yes" %>
-  	<% end %>
-  	<% if @prospect.hcs_sme_proposal_meeting_date.nil? || @prospect.hcs_sme_proposal_meeting_date < Date.yesterday %>
-      <% update4 = "yes" %>
-  	<% end %>
-  	<% if @prospect.effective_date.nil? || @prospect.effective_date < Date.yesterday %>
-      <% update5 = "yes" %>
-  	<% end %>
-
-	  <% if (@prospect.status != "Other - No Sale") && 
-	        (@prospect.status != "Closed - Group is Effective") && 
-	        (@prospect.status !=  "Intro Pres Given - No Sale") && 
-	        (@prospect.status != "Fact Finder Call Done - No Sale") && 
-	        (@prospect.status != "Proposal Given - No Sale") && 
-	        (@prospect.status != "Not Qualified - No Sale") %>
-    	<% if update1 && update2 && update3 && update4 && update5 == "yes" %>
-    	  
-    	  <h3><%= link_to "Prospect needs updating:  What are we doing next and when are we doing it?", edit_prospect_path(@prospect), {:style=>'color:yellow;'} %></h3>
-      <% end %>
-	  <% end %>
-		<!--End of clunky section.-->
-  	
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-5">
         <Strong><%= @prospect.organization %></Strong><br>
         Address: <em><%= @prospect.street_address %></em><br>
         Address2: <em><%= @prospect.address2 %></em><br>
         City/State: <em><%= @prospect.city %>, <%= @prospect.state %> <%= @prospect.zip %></em>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-7">
         <br>    
       	Phone: <em><%= @prospect.phone %></em><br>
       	Website: <em><%= link_to @prospect.website, "http://" + @prospect.website, target: "_blank" %></em><br>
@@ -80,7 +56,7 @@
     <br>
     <br>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-5">
         <strong>Contact 1</strong><br>
         Name: <em><%= @prospect.contact1_first_name %> <%= @prospect.contact1_last_name %></em><br>
         Title: <em><%= @prospect.contact1_title %></em><br>
@@ -91,17 +67,20 @@
                 <% end %>
                 <br>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-5">
         <strong>Contact 2</strong><br>
         Name: <em><%= @prospect.contact2_first_name %> <%= @prospect.contact2_last_name %></em><br>
         Title: <em><%= @prospect.contact2_title %></em><br>
         Phone: <em><%= @prospect.contact2_phone %></em><br>
         Mobile: <em><%= @prospect.contact2_mobile %></em><br>
-        Email: <em><%if !@prospect.contact2_email.nil? %>
-                  <%= link_to @prospect.contact2_email, "mailto:" + @prospect.contact2_email %></em>
-                <% end %>
-                <br>
+        Email: <%if !@prospect.contact2_email.nil? %>
+                <em><%= link_to @prospect.contact2_email, "mailto:" + @prospect.contact2_email %></em>
+              <% end %>
+            <br>
       </div>
+      <div class="col-md-2">
+		    <%= link_to "Edit & Update", edit_prospect_path(@prospect), class: "btn btn-warning btn-sm" %>
+  	  </div>      
   	</div>
   	<br>
   	<br>
@@ -109,115 +88,16 @@
       <div class="col-md-12">Prospect Notes: <em><%= @prospect.prospect_note %></em></div>
     </div>
     <br>
-    <div class="row">
-      <div class="col-md-12">
-        <hr>
-      </div>
-    </div>
-    <br>
-  
-    <div class="row">
-      <div class="col-md-4">
-        Intro Pres Date: <% if !@prospect.intro_presentation_date.nil? %>
-  		  <em><%= @prospect.intro_presentation_date.strftime("%m/%d/%Y") %></em><% end %>
-  		  <br>
-  		  Intro Presented by: <em><%= @prospect.intro_presenter %></em>
-  		  <br>
-  		  <br>
-  		  New Cost: <% if @prospect.new_estimated_health_benefit_cost != 0 %>
-  		              <em><%= number_to_currency(@prospect.new_estimated_health_benefit_cost, precision: 0) %></em>
-  		            <% end %>
-      </div>
-      <div class="col-md-4">
-        SME Presentation Date: <% if !@prospect.hcs_sme_fact_finding_call_date.nil? %>
-  		  <%= @prospect.hcs_sme_fact_finding_call_date.strftime("%m/%d/%Y") %></em><% end %>
-  		  <br>
-  		  Subject Matter Expert: <em><%= @prospect.hcs_sme %></em><br>
-      </div>
-      <div class="col-md-4">
-        Proposal Meeting Date: <% if !@prospect.hcs_sme_proposal_meeting_date.nil? %>
-  		  <em><%= @prospect.hcs_sme_proposal_meeting_date.strftime("%m/%d/%Y") %></em><% end %>
-        <br>
-        Agreement Date: <% if !@prospect.agreement_date.nil? %>
-  			<em><%= @prospect.agreement_date.strftime("%m/%d/%Y") %></em><% end %>
-  			<br>
-    	  Effective Date: <% if !@prospect.effective_date.nil? %>
-  			<em><%= @prospect.effective_date.strftime("%m/%d/%Y") %></em><% end %>
-      </div>
-    </div>
-  
-    <br>
-    <div class="row">
-      <div class="col-md-12">
-        <hr>
-      </div>
-    </div>
-    <br>
     
-    <div class="row">
-      <div class="col-md-12">
-        <strong>Comments</strong>
-    		<p><%= render @prospect.comments %></p>
-        <br>
-        <%= render 'comments/form' %>
-      </div>
-    </div>
-
-    <p>&nbsp;</p>
-    <hr>
-
-    <h3>HCSQ - HealthCare Savings Questionaire</h3>
-    <p>&nbsp;</p>
-    <div class="row">
-      <div class="col-md-6">
-        <p><strong>Required Questions</strong></p>
-    		<p>Current Carrier: <em><%= @prospect.hcbq_current_carrier %></em></p>
-    		<p>Current Coverage Type: <em><%= @prospect.hcbq_current_coverage_type %></em></p>
-    		<p>Renewal Month: <em><%= @prospect.renewal_month %></em></p>
-    		<p>Current Annual Cost: 
-    		    <% if @prospect.current_health_benefit_cost != 0 %>
-	            <em><%= number_to_currency(@prospect.current_health_benefit_cost, precision: 0) %></em>
-	          <% end %>
-    		    <br><em>(employer & employee contributions)</em></p>
-    		<p># of Eligible Employees:  <em><%= @prospect.hcbq_no_of_eligible_employees %></em></p>
-    		<p>Total Participating:  <em><%= @prospect.hcbq_total_participation %></em></p>
-    		<p>Nature of Business: <em><%= @prospect.hcbq_business_type %></em></p>
-        <p>&nbsp;</p>
-    		<p><em><%= @prospect.hcbq_notes %></em></p>    		
-      </div>
-      
-      <div class="col-md-6">
-        <p><strong>Optional Questions</strong></p>
-    		<p>1) For you & your employees, what are the 3 most important elements of your health plan?<br>
-    		  <em class="tab"><%= @prospect.hcbq_most_important %></em></p>
-    		  
-    		<p>2) Do you think the last 3 years of compounding increases in your health benefit costs would be sustainable if continued for the next three years?<br>
-    		  <em class="tab"><%= @prospect.hcbq_sustainable %></em></p>
-    		  
-    		<p>3) Do you think your employees can afford their deductible & out-of-pocket expense under your current plan?<br>
-    		  <em class="tab"><%= @prospect.hcbq_oop %></em></p>
-    		  
-    		<p>4) What do you like best about your health plan?<br>
-    		<em class="tab"><%= @prospect.hcbq_like_best %></em></p>
-  
-    		<p>5) What do you like least about your health plan?<br>
-    		<em class="tab"><%= @prospect.hcbq_like_least %></em></p>
-  
-    		<p>6) On a scale of 1 to 10, how would you rate your current agent/broker/consultant?<br>
-    		  <em class="tab"><%= @prospect.hcbq_scale %></em></p>
-  
-    		<p>7) If you could design the perfect benefit plan for your company what would it look like?<br>
-    		  <em class="tab"><%= @prospect.hcbq_perfect_plan %></em></p>
-      </div>
-    </div>
-
+   	      <%= render 'prospects/hcs_show' %>
+   	      
+   	      <%= render 'prospects/pay_show' %> 
 
 	</div>
 	
   <div class="panel-footer">
-		<%= link_to "Back", prospects_path, class: "btn btn-beige" %>
-		<%= link_to "Edit & Update", edit_prospect_path(@prospect), class: "btn btn-warning" %>
-		<%= link_to "Delete", prospect_path(@prospect), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+		<%= link_to "Back", prospects_path, class: "btn btn-beige btn-sm" %>
+		<%= link_to "Delete", prospect_path(@prospect), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
   </div>	
 
 </div>

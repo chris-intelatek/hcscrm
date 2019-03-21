@@ -1,0 +1,106 @@
+    		<div class="row">
+          <div class="col-md-4">
+        		<%= f.input :status, required: true, include_blank: false, include_hidden: false,
+    																collection: [
+  			  																			'Intro Presentation Scheduled',
+  			  																			'Fact Finding Call Scheduled',
+  			  																			'Proposal Meeting Scheduled',
+  			  																			'Waiting for Claims Data',
+  			  																			'Waiting on Agreement',
+  			  																			'Closed - Enrollment Scheduled',
+  			  																			'Closed - Group is Effective',
+  			  																			'Intro Pres Given - No Sale',
+  			  																			'Fact Finder Call Done - No Sale',
+  			  																			'Proposal Given - No Sale',
+  			  																			'Not Qualified - No Sale',
+  			  																			'Other - No Sale',
+  			  																			'Follow up in January',
+                                                'Follow up in February',
+                                                'Follow up in March',
+                                                'Follow up in April',
+                                                'Follow up in May',
+                                                'Follow up in June',
+                                                'Follow up in July',
+                                                'Follow up in August',
+                                                'Follow up in September',
+                                                'Follow up in October',
+                                                'Follow up in November',
+                                                'Follow up in December'
+  			  																			], label: "Prospect Status" %>
+          </div>
+
+    		  <div class="col-md-5">
+    		    <%= f.input :hcs_next_action, label: "Next Action" %>  		    
+    		  </div>
+    		  <div class="col-md-3">
+      			<%= f.input :hcs_next_action_date, :include_blank => true, :default => nil,
+      			    as: :date, html5: true, order: [:month, :day, :year], label: "Next Action Date" %>
+    		  </div>
+        </div>
+        
+    		<div class="row">
+    		  <div class="col-md-4">
+      			<%= f.input :intro_presentation_date, :include_blank => true, :default => nil,
+      			    required: true, as: :date, html5: true, order: [:month, :day, :year], label: "Intro Presentation Date" %>
+      			<%= f.input :intro_presenter, label: "Intro Presenter (who presented?)" %>
+    		  </div>
+    		  <div class="col-md-5">
+  	         <%= f.input :hcs_sme_fact_finding_call_date, :include_blank => true, :default => nil,
+      			    as: :date, html5: true, order: [:month, :day, :year], label: "SME Fact Finding Call Date" %>
+      			 <%= f.input :hcs_sme, label: "HealthCare Subject Matter Expert's Name" %> 
+    		  </div>
+    		  <div class="col-md-3">
+      			 <%= f.input :hcs_sme_proposal_meeting_date, :include_blank => true, :default => nil,
+      	      as: :date, html5: true, order: [:month, :day, :year], label: "SME Proposal Meeting Date" %>
+              <%= f.input :agreement_date, :include_blank => true, :default => nil,
+      	      as: :date, html5: true, order: [:month, :day, :year], label: "Agreement Date (Sold)" %>
+              <%= f.input :effective_date, :include_blank => true, :default => nil,
+      	      as: :date, html5: true, order: [:month, :day, :year], label: "Effective Date (Sold)" %>
+    		  </div>
+    		</div>
+        <br>
+        <hr>
+        <h4>HCS - HealthCare Savings Questionaire</h4>
+        <div class="row">
+          <div class="col-md-5">
+            <p><strong>Required Questions</strong></p>
+  					<%= f.input :hcbq_current_carrier, label: "Current Carrier" %>
+  					<%= f.input :hcbq_current_coverage_type, collection: [
+    																															'Fully Insured',
+    																															'Self-funded'
+    																															], label: "Current Coverage Type" %>
+						<%= f.input :renewal_month, collection: [
+  			  																			'January',
+                                                'February',
+                                                'March',
+                                                'April',
+                                                'May',
+                                                'June',
+                                                'July',
+                                                'August',
+                                                'September',
+                                                'October',
+                                                'November',
+                                                'December'
+																				], label: "Renewal Month" %>
+  					<%= f.input :current_health_benefit_cost, label: "Current Annual Cost" %>
+  	    	  <%= f.input :hcbq_no_of_eligible_employees, label: "# of Eligible Employees" %>
+  					<%= f.input :hcbq_total_participation, label: "Total Participating" %>
+  					<%= f.input :hcbq_business_type, label: "Nature of Business" %>
+            <%= f.input :new_estimated_health_benefit_cost, label: "New Cost" %>
+    		  </div>
+
+    		  <div class="col-md-7">
+    		    <p><strong>Optional Questions</strong></p>
+       			<%= f.input :hcbq_most_important, label: 
+      			  "1) For you & your employees, what are the 3 most important elements of your health plan?" %>
+      			<%= f.input :hcbq_sustainable, label: 
+      			  "2) Do you think the last 3 years of compounding increases in your health benefit costs would be sustainable if continued for the next three years?" %>
+      			<%= f.input :hcbq_oop, label: 
+      			  "3) Do you think your employees can afford their deductible & out-of-pocket expense under your current plan?" %>
+      			<%= f.input :hcbq_like_best, label: "4) What do you like best about your health plan?" %>
+      			<%= f.input :hcbq_like_least, label: "5) What do you like least about your health plan?" %>
+      			<%= f.input :hcbq_scale, label: "6) On a scale of 1 to 10, how would you rate your current agent/broker/consultant?" %>
+      			<%= f.input :hcbq_perfect_plan, label: "7) If you could design the perfect benefit plan for your company what would it look like?" %>
+    		  </div>
+				</div>

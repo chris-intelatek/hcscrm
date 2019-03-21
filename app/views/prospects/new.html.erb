@@ -8,7 +8,6 @@
 	  	
 			<%= simple_form_for @prospect do |f| %>
 				<%= f.input :organization, required: true, autofocus: true, label: "Prospect Company or Organization Name" %>
-				<%= f.hidden_field :status, value: "Intro Presentation Scheduled" %>
 				<div class="row">
 					<div class="col-md-8"><%= f.input :street_address %></div>
 					<div class="col-md-4"><%= f.input :address2, label: "Suite # (etc)" %></div>		
@@ -19,8 +18,7 @@
 					</div>
 					<div class="col-md-4"><%= f.input :zip %></div>
 				</div>
-			
-			
+
 				<div class="row">
 					<div class="col-md-4"><%= f.input :phone %></div>
 					<div class="col-md-4"><%= f.input :website %></div>
@@ -44,8 +42,6 @@
 				<hr>
 				<%= f.input :prospect_note, label: "Note" %>
 
-				<%= f.input :intro_presentation_date, :include_blank => true, :default => nil,
-										required: true, as: :date, html5: true, order: [:month, :day, :year] %>
 				<br>
 
 		</div>

@@ -13,3 +13,24 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+function myHCSFunction() {
+  var checkBox = document.getElementById("myHCSCheck");
+  var text = document.getElementById("hcs");
+  if (checkBox.checked == true){
+    text.style.display = "block";
+  } else {
+    text.style.display = "none";
+  }
+}
+
+function myPayFunction() {
+  var checkBox = document.getElementById("myPayCheck");
+  var text = document.getElementById("pay");
+  if (checkBox.checked == true){
+    text.style.display = "block";
+  } else {
+    text.style.display = "none";
+  }
+}

@@ -1,27 +1,47 @@
 class ProspectsController < ApplicationController
-  before_action :find_prospect, only: [:show, :edit, :update, :destroy, :hcsq, :hcsq_update]
+  before_action :find_prospect, only: [:show, :edit, :update, :destroy, :hcsq, :hcsq_update, :hcs, :hcs_update, :pay, :pay_update]
   skip_before_action :authenticate_user!, only: [:new_lead, :new_lead_create]
   
-  def index
-    if params[:status] == nil
+  # def index
+  #   if params[:status] == nil
 
-      if params[:search]
-        @prospects = Prospect.search(params[:search]).order("created_at DESC")
-      else
-        @prospects = Prospect.all.order('user_id DESC')
-      end
+  #     if params[:search]
+  #       @prospects = Prospect.search(params[:search]).order("created_at DESC")
+  #     else
+  #       @prospects = Prospect.all.order('user_id DESC')
+  #     end
 
-    else
-      @prospects = Prospect.where(status: params[:status])
-    end
-    @status = Prospect.select(:status).order(:status).distinct
+  #   else
+  #     @prospects = Prospect.where(status: params[:status])
+  #   end
+  #   @status = Prospect.select(:status).order(:status).distinct
     
+  #   respond_to do |format|
+  #     format.html
+  #     format.csv { send_data @prospects.to_csv, filename: "Prospects-#{Date.today}.csv" }
+  #   end
+  # end
+  
+
+  def index
+    @status = Prospect.select(:status).order(:status).distinct
+    @pay_status = Prospect.select(:pay_status).order(:pay_status).distinct
+    if params[:status] != nil
+      @prospects = Prospect.where(status: params[:status])
+      elsif params[:pay_status] != nil
+        @prospects = Prospect.where(pay_status: params[:pay_status])
+      elsif params[:search]
+        @prospects = Prospect.search(params[:search]).order("created_at DESC")
+      elsif
+        @prospects = Prospect.all.order('user_id DESC')
+    end
+
     respond_to do |format|
       format.html
       format.csv { send_data @prospects.to_csv, filename: "Prospects-#{Date.today}.csv" }
     end
   end
-  
+
   def show
   end
 
@@ -54,7 +74,14 @@ class ProspectsController < ApplicationController
   end
   
   def new_lead_create
-    @prospect = Prospect.new(prospect_params)
+    attrs = prospect_params
+    if prospect_params[:pay_prospect] == '1'
+      attrs.merge!(pay_status: 'Intro Presentation Scheduled')
+    elsif prospect_params[:hcs_prospect] == '1'
+      attrs.merge!(status: 'Intro Presentation Scheduled')
+    end
+
+    @prospect = Prospect.new(attrs)
     if @prospect.save
       NotificationMailer.new_meeting(@prospect).deliver_later
       flash[:success] = "New prospect added."
@@ -64,7 +91,6 @@ class ProspectsController < ApplicationController
     end
   end
   
-
   def edit
   end
   
@@ -89,6 +115,31 @@ class ProspectsController < ApplicationController
       render 'edit'
     end
   end
+
+  def hcs
+  end
+  
+  def hcs_update
+    if @prospect.update(prospect_params)
+      flash[:success] = "Prospect has been updated."
+      redirect_to prospect_path
+    else
+      render 'hcs'
+    end
+  end  
+
+  def pay
+  end
+  
+  def pay_update
+    # binding.pry
+    if @prospect.update(prospect_params)
+      flash[:success] = "Prospect has been updated."
+      redirect_to prospect_path
+    else
+      render 'pay'
+    end
+  end  
   
   def destroy
     @prospect.destroy
@@ -98,7 +149,7 @@ class ProspectsController < ApplicationController
 
   private
     def prospect_params
-      params.require(:prospect).permit(:user_id, :organization, :street_address, :address2, :city, :state, :zip, :phone, :website, :employees, :prospect_note, :created_at, :updated_at, :intro_presentation_date, :hcs_sme_fact_finding_call_date, :current_health_benefit_cost, :new_estimated_health_benefit_cost, :savings_percentage, :status, :agreement_date, :hcs_sme_proposal_meeting_date, :contact1_first_name, :contact1_last_name, :contact1_title, :contact1_phone, :contact1_mobile, :contact1_email, :contact2_first_name, :contact2_last_name, :contact2_title, :contact2_phone, :contact2_mobile, :contact2_email, :primary_contact, :intro_presenter, :hcs_sme, :close_date, :effective_date, :hcbq_business_type, :hcbq_no_of_eligible_employees, :hcbq_total_participation, :hcbq_current_carrier, :hcbq_current_coverage_type, :hcbq_most_important, :hcbq_sustainable, :hcbq_oop, :hcbq_like_best, :hcbq_like_least, :hcbq_scale, :hcbq_perfect_plan, :hcbq_notes, :intelatek_bda, :intelatek_notes, :intelatek_day, :intelatek_timezone, :hcs_monthly_savings_fee, :hcs_pepm_fee, :intelatek_time, :submitted_hcsq, :next_action, :next_action_date)
+      params.require(:prospect).permit(:user_id, :organization, :street_address, :address2, :city, :state, :zip, :phone, :website, :employees, :prospect_note, :created_at, :updated_at, :intro_presentation_date, :hcs_sme_fact_finding_call_date, :current_health_benefit_cost, :new_estimated_health_benefit_cost, :savings_percentage, :agreement_date, :hcs_sme_proposal_meeting_date, :contact1_first_name, :contact1_last_name, :contact1_title, :contact1_phone, :contact1_mobile, :contact1_email, :contact2_first_name, :contact2_last_name, :contact2_title, :contact2_phone, :contact2_mobile, :contact2_email, :primary_contact, :intro_presenter, :hcs_sme, :close_date, :effective_date, :hcbq_business_type, :hcbq_no_of_eligible_employees, :hcbq_total_participation, :hcbq_current_carrier, :hcbq_current_coverage_type, :hcbq_most_important, :hcbq_sustainable, :hcbq_oop, :hcbq_like_best, :hcbq_like_least, :hcbq_scale, :hcbq_perfect_plan, :hcbq_notes, :intelatek_bda, :intelatek_notes, :intelatek_day, :intelatek_timezone, :hcs_monthly_savings_fee, :hcs_pepm_fee, :intelatek_time, :submitted_hcsq, :hcs_next_action, :hcs_next_action_date, :hcs_prospect, :pay_prospect, :pay_intro_presentation_date, :pay_intro_presenter, :pay_sme_presentation_date, :pay_sme, :pay_agreement_date, :pay_hourly_employees, :pay_next_action_date, :pay_next_action, :pay_submitted_to_branch, :status, :pay_status)
     end
 
     def find_prospect

@@ -1,0 +1,64 @@
+    <% if @prospect.pay_prospect == true %>
+      <p>&nbsp;</p>
+      <hr>
+
+      <div class="row">
+        <div class="col-md-3">
+          <h3><strong>Instant Pay</strong></h3>
+        </div>
+        <div class="col-md-5">
+          <br>
+          Status: <%= @prospect.pay_status %><br>
+          Next Action: 
+    		    <% if !@prospect.pay_next_action_date.nil? %>
+      		  <em><%= @prospect.pay_next_action_date.strftime("%m/%d/%y") %> - </em>
+      		<% end %>
+      		<em><%= @prospect.pay_next_action %></em>
+        </div>
+        <div class="col-md-2"><br>
+          <%= link_to "https://get.branchapp.com/bc-lead-registration", :target => "_blank", class: "btn btn-success btn-sm pull-right" do %><i class="glyphicon glyphicon-leaf"></i> Register Lead with Branch<% end %>
+        </div>
+        <div class="col-md-2"><br>
+          <%= link_to "Edit Instant Pay", pay_path(@prospect), class: "btn btn-warning btn-sm" %>      
+        </div>        
+      </div>
+
+      <p>&nbsp;</p>
+      
+      <div class="row">
+        <div class="col-md-4">
+          Intro Pres Date: <% if !@prospect.pay_intro_presentation_date.nil? %>
+    		  <em><%= @prospect.pay_intro_presentation_date.strftime("%m/%d/%y") %></em><% end %>
+    		  <br>
+    		  Intro Presented by: <em><%= @prospect.pay_intro_presenter %></em>  
+        </div>
+        <div class="col-md-4">
+          SME Presentation Date: <% if !@prospect.pay_sme_presentation_date.nil? %>
+    		  <em><%= @prospect.pay_sme_presentation_date.strftime("%m/%d/%y") %></em><% end %><br>
+    		  Subject Matter Expert: <em><%= @prospect.pay_sme %></em><br>
+    		  Lead Submitted to Branch? 
+      		  <% if @prospect.pay_submitted_to_branch? %>
+      		    <em><strong>Yes</strong></em>
+      		  <% else %>
+      		    <em><strong>No</strong></em>    		  
+            <% end %>
+        </div>
+        <div class="col-md-4">
+          Agreement Date: <% if !@prospect.pay_agreement_date.nil? %>
+    		  <em><%= @prospect.pay_agreement_date.strftime("%m/%d/%y") %></em><% end %><br>
+      		Total Hourly Employees: <em><strong><%= @prospect.pay_hourly_employees %></strong></em>
+      	</div>
+      </div>
+
+      <br>
+      
+      <div class="row">
+        <div class="col-md-12">
+          Comments:
+          <%= render @prospect.comments.where.not(pay_content: nil) %>
+          <br>
+          <%= render 'comments/pay_form' %>
+        </div>
+      </div>
+      
+    <% end %>

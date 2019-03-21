@@ -14,6 +14,11 @@
             <%= f.input :advisor_phone, label: 'Phone'  %>
             <%= f.input :advisor_mobile, label: 'Mobile'  %>
             <%= f.input :email, required: true  %>
+            <%= f.input :mailing_address, label: 'Mailing Address'  %>
+            <%= f.input :apt_suite, label: 'Apt/Suite #'  %>
+            <%= f.input :city, label: 'City'  %>
+            <%= f.input :state, collection: STATES %>
+            <%= f.input :zip, label: 'ZipCode'  %>
             <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable) %>
             <%= f.input :password_confirmation, required: true %>
             <%= f.input :group, as: :hidden, input_html: {value: @group_id} %>

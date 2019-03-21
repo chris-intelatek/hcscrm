@@ -1,0 +1,54 @@
+    		<div class="row">
+          <div class="col-md-4">
+        		<%= f.input :pay_status, required: true, include_blank: false, include_hidden: false,
+    																collection: [
+  			  																			'Intro Presentation Scheduled',
+  			  																			'SME Presentation Scheduled',
+  			  																			'Waiting on Agreement',
+  			  																			'Closed - Client is Active',
+  			  																			'Intro Pres Given - No Sale',
+  			  																			'SME Presentation Done - No Sale',
+  			  																			'Not Qualified - No Sale',
+  			  																			'Other - No Sale',
+  			  																			'Follow up in January',
+                                                'Follow up in February',
+                                                'Follow up in March',
+                                                'Follow up in April',
+                                                'Follow up in May',
+                                                'Follow up in June',
+                                                'Follow up in July',
+                                                'Follow up in August',
+                                                'Follow up in September',
+                                                'Follow up in October',
+                                                'Follow up in November',
+                                                'Follow up in December'
+  			  																			], label: "Prospect Status" %>
+          </div>
+
+    		  <div class="col-md-5">
+    		    <%= f.input :pay_next_action, label: "Next Action" %>  		    
+    		  </div>
+    		  <div class="col-md-3">
+      			<%= f.input :pay_next_action_date, :include_blank => true, :default => nil,
+      			    as: :date, html5: true, order: [:month, :day, :year], label: "Next Action Date" %>
+    		  </div>
+        </div>
+        
+    		<div class="row">
+    		  <div class="col-md-4">
+      			<%= f.input :pay_intro_presentation_date, :include_blank => true, :default => nil,
+      			    required: true, as: :date, html5: true, order: [:month, :day, :year], label: "Intro Presentation Date" %>
+      			<%= f.input :pay_intro_presenter, label: "Intro Presenter (who presented?)" %>
+    		  </div>
+    		  <div class="col-md-5">
+  	         <%= f.input :pay_sme_presentation_date, :include_blank => true, :default => nil,
+      			    as: :date, html5: true, order: [:month, :day, :year], label: "SME Presentation Date" %>
+      			 <%= f.input :pay_sme, label: "Intant Pay Subject Matter Expert's Name" %>
+      			 <h4><span class="label label-success"><%= f.check_box :pay_submitted_to_branch?, class:"largerCheckbox" %> Lead Submitted to Branch <i class="glyphicon glyphicon-leaf"></i></span></h4>
+    		  </div>
+    		  <div class="col-md-3">
+    		    <%= f.input :pay_hourly_employees, label: "Hourly Employees" %>
+            <%= f.input :pay_agreement_date, :include_blank => true, :default => nil,
+    	      as: :date, html5: true, order: [:month, :day, :year], label: "Agreement Date (Sold)" %>
+     		  </div>
+    		</div>

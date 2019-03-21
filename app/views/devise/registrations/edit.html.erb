@@ -12,6 +12,11 @@
         <%= f.input :advisor_phone, label: 'Phone'  %>
         <%= f.input :advisor_mobile, label: 'Mobile'  %>
         <%= f.input :email, required: true, autofocus: true %>
+        <%= f.input :mailing_address, label: 'Mailing Address'  %>
+        <%= f.input :apt_suite, label: 'Apt/Suite #'  %>
+        <%= f.input :city, label: 'City'  %>
+        <%= f.input :state, collection: STATES %>
+        <%= f.input :zip, label: 'ZipCode'  %>
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
         <% end %>

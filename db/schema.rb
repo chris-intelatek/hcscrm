@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190219231016) do
+ActiveRecord::Schema.define(version: 20190315045134) do
 
   create_table "comments", force: :cascade do |t|
-    t.text     "content"
+    t.text     "hcs_content"
     t.integer  "prospect_id"
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.text     "pay_content"
   end
 
   add_index "comments", ["prospect_id"], name: "index_comments_on_prospect_id"
@@ -84,9 +85,21 @@ ActiveRecord::Schema.define(version: 20190219231016) do
     t.decimal  "hcs_pepm_fee",                      default: 0.0,   null: false
     t.string   "intelatek_time"
     t.boolean  "submitted_hcsq",                    default: false
-    t.string   "next_action"
-    t.date     "next_action_date"
+    t.string   "hcs_next_action"
+    t.date     "hcs_next_action_date"
     t.string   "renewal_month"
+    t.boolean  "hcs_prospect",                      default: false
+    t.boolean  "pay_prospect",                      default: false
+    t.date     "pay_intro_presentation_date"
+    t.string   "pay_intro_presenter"
+    t.date     "pay_sme_presentation_date"
+    t.string   "pay_sme"
+    t.string   "pay_status"
+    t.date     "pay_agreement_date"
+    t.integer  "pay_hourly_employees",              default: 0
+    t.date     "pay_next_action_date"
+    t.string   "pay_next_action"
+    t.boolean  "pay_submitted_to_branch",           default: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -112,6 +125,11 @@ ActiveRecord::Schema.define(version: 20190219231016) do
     t.string   "group"
     t.string   "gravatar"
     t.boolean  "bc_swat",                default: false
+    t.string   "mailing_address"
+    t.string   "apt_suite"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

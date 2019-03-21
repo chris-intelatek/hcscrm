@@ -1,4 +1,4 @@
 <%= simple_form_for([@prospect, @prospect.comments.build]) do |f| %>
-	<%= f.input :content, label: "Add Comment" %>
+	<%= f.input :pay_content, label: "Add Comment for Instant Pay" %>
 	<%= f.button :submit, :class => 'btn btn-slate pull-right btn-sm' %>
 <% end %>

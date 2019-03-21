@@ -4,7 +4,15 @@
 <!--  </tr>-->
 <!--</table>-->
 
-<center><h4>New Meeting Scheduled by IntelaTek for <%= @prospect.user.advisor_first_name %> <%= @prospect.user.advisor_last_name %></h4></center>
+<center><h4>New 
+      <% if @prospect.hcs_prospect == true %>
+        HealthCare Savings 
+      <% elsif @prospect.pay_prospect == true %>
+          Instant Pay 
+      <% else %>
+        (IntelaTek BDA failed to enter appointment type) 
+      <% end %>
+        Meeting Scheduled by IntelaTek for <%= @prospect.user.advisor_first_name %> <%= @prospect.user.advisor_last_name %></h4></center>
 
 <p>&nbsp;</p>
 
@@ -17,8 +25,17 @@
 <p>Contact Name: <%= @prospect.contact1_first_name %> <%= @prospect.contact1_last_name %>, <%= @prospect.contact1_title %></p>
 <p>Phone: <%= @prospect.phone %></p>
 <p>Employees: <%= @prospect.employees %></p>
-<p><%= @prospect.intelatek_day %> <%= @prospect.intro_presentation_date.strftime("%m/%d/%Y") %> at  
-<%= @prospect.intelatek_time %> <%= @prospect.intelatek_timezone %></p>
+<p>
+  <%= @prospect.intelatek_day %> 
+                                <% if !@prospect.intro_presentation_date.nil? %>
+                                    <%= @prospect.intro_presentation_date.strftime("%m/%d/%Y") %> 
+                                <% elsif !@prospect.pay_intro_presentation_date.nil? %>
+                                        <%= @prospect.pay_intro_presentation_date.strftime("%m/%d/%Y") %> 
+                                <% else %>
+                                    (IntelaTek BDA Failed to enter the meeting date) 
+                                <% end %>
+   at <%= @prospect.intelatek_time %> <%= @prospect.intelatek_timezone %>
+</p>
 <p><i><%= @prospect.intelatek_notes %><i></p>
 <p>Set by IntelaTek BDA:  <%= @prospect.intelatek_bda %></p>
 <p>Thanks,</p>

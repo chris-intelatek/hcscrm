@@ -1,15 +1,13 @@
 <div class="col-md-8 col-md-offset-2">
 	<div class="panel panel-gray">
 	  <div class="panel-heading">
-			<h4>New Meeting Scheduled</h4>
 	  </div>
 	  <div class="prospect-show">
 			<%= simple_form_for @prospect, url: new_lead_create_path do |f| %>
-			<%= f.hidden_field :status, value: "Intro Presentation Scheduled" %>		
 
 			<div class="row">
 				<div class="col-md-6"><%= f.input :organization, required: true, autofocus: true, label: "Prospect Company or Organization Name" %></div>
-				<div class="col-md-6"><%= f.input :user_id, required: true, collection: User.collection, label: "Consultant Name", include_blank: false, include_hidden: false %></div>
+				<div class="col-md-6"><%= f.input :user_id, required: true, collection: User.collection, label: "Consultant Name", include_hidden: false %></div>
 			</div>
 			<div class="row">
 				<div class="col-md-8"><%= f.input :street_address %></div>
@@ -30,17 +28,31 @@
 				<div class="col-md-4"><%= f.input :contact1_last_name, label: "Last Name" %></div>
 				<div class="col-md-4"><%= f.input :contact1_title, label: "Title" %></div>
 			</div>
-			<hr>
+
+			<br>
 			<div class="row">
-				<div class="col-md-2"><%= f.input :intelatek_day, collection: DAYS, label: "Day" %></div>
-				<div class="col-md-4"><%= f.input :intro_presentation_date, :include_blank => true,
-					:default => nil, required: true, as: :date, html5: true, order: [:month, :day, :year] %></div>
-				<div class="col-md-3"><%= f.input :intelatek_time, collection: TIMES, label: "Time" %></div>
-				<div class="col-md-3"><%= f.input :intelatek_timezone, collection: TIMEZONES, label: "TimeZone" %></div>
+				<div class="col-md-6 center">
+					<br>
+					<h4><strong><u>Please Select Meeting Type</strong> <em>(select only one)</em></u></h4><strong>
+					<br>
+					<%= f.check_box :hcs_prospect, id: "myHCSCheck", onclick: "myHCSFunction()" %> HealthCare Meeting 
+					&nbsp; &nbsp; OR &nbsp; &nbsp; 
+					<%= f.check_box :pay_prospect, id: "myPayCheck", onclick: "myPayFunction()" %> Instant Pay Meeting</strong>				
+					<br>
+					<br>
+					<div id="hcs" style="display:none"><%= render 'new_lead_hcs_form', f: f %></div>
+					<div id="pay" style="display:none"><%= render 'new_lead_pay_form', f: f %></div>
+				</div>
+				<div class="col-md-3">
+					<%= f.input :intelatek_day, collection: DAYS, label: "Day" %>
+					<%= f.input :intelatek_time, collection: TIMES, label: "Time" %>
+					<%= f.input :intelatek_timezone, collection: TIMEZONES, label: "TimeZone" %>
+				</div>
 			</div>
+
 			<div class="row">
 				<div class="col-md-12">
-					<%= f.input :intelatek_bda, collection: [
+					<%= f.input :intelatek_bda, required: true, collection: [
 																									'Chris Cunningham',
 																									'Maria Wright',
 																									'Mary Jones',
@@ -55,8 +67,7 @@
 			</div>
 		</div>
     <div class="panel-footer">
-				<%= link_to "Back", prospects_path, class: "btn btn-beige btn-sm" %>
-				<%= f.button :submit, "Submit Meeting", class:"btn btn-slate pull-right" %>
+			<%= f.button :submit, "Submit Meeting", class:"btn btn-slate btn-lg btn-block" %>
 			<% end %>
     </div>
 	</div>

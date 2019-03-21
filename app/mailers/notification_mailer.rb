@@ -4,7 +4,13 @@ class NotificationMailer < ApplicationMailer
         mail(to: [prospect.user_email, 'chris@bluecoastsavings.com'],
              subject: 'New HCSQ Submitted')
     end
-    
+
+    def new_pay(prospect)
+        @prospect = prospect
+        mail(to: [prospect.user_email, 'gunruh@unruhenterprises.com'],
+             subject: 'New Blue Coast Instant Pay Lead')
+    end
+
     def new_meeting(prospect)
         @prospect = prospect
         mail(to: [prospect.user_email, 'appointments@intelatek.com'],
