@@ -67,7 +67,7 @@
 			    <td>&nbsp;</td>
 
 		      <td>Next Action<br>
-		      Date</td>			      
+		      Date</td>
 		      <td>Next Action</td>
 		      <td>
 		      	<div class="status">
@@ -76,7 +76,7 @@
 							  <ul class="dropdown-menu dropdown-menu-right status-menu" style="list-style: none;">
 							    <li><%= link_to "All", prospects_path %></li>
 							    <% @pay_status.each do |b| %>
-							      <li class="black"><%= link_to "#{b.pay_status}", prospects_path(status: b.pay_status) %></li>
+							      <li class="black"><%= link_to "#{b.pay_status}", prospects_path(pay_status: b.pay_status) %></li>
 							    <% end %>
 							  </ul>
 							</li>

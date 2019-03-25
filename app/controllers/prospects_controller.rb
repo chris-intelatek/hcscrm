@@ -2,26 +2,6 @@ class ProspectsController < ApplicationController
   before_action :find_prospect, only: [:show, :edit, :update, :destroy, :hcsq, :hcsq_update, :hcs, :hcs_update, :pay, :pay_update]
   skip_before_action :authenticate_user!, only: [:new_lead, :new_lead_create]
   
-  # def index
-  #   if params[:status] == nil
-
-  #     if params[:search]
-  #       @prospects = Prospect.search(params[:search]).order("created_at DESC")
-  #     else
-  #       @prospects = Prospect.all.order('user_id DESC')
-  #     end
-
-  #   else
-  #     @prospects = Prospect.where(status: params[:status])
-  #   end
-  #   @status = Prospect.select(:status).order(:status).distinct
-    
-  #   respond_to do |format|
-  #     format.html
-  #     format.csv { send_data @prospects.to_csv, filename: "Prospects-#{Date.today}.csv" }
-  #   end
-  # end
-  
 
   def index
     @status = Prospect.select(:status).order(:status).distinct
