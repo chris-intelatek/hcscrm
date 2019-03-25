@@ -16,7 +16,9 @@
       		<em><%= @prospect.pay_next_action %></em>
         </div>
         <div class="col-md-2"><br>
-          <%= link_to "https://get.branchapp.com/bc-lead-registration", :target => "_blank", class: "btn btn-success btn-sm pull-right" do %><i class="glyphicon glyphicon-leaf"></i> Register Lead with Branch<% end %>
+          <% if !@prospect.pay_submitted_to_branch? %>
+            <%= link_to "https://get.branchapp.com/bc-lead-registration", :target => "_blank", class: "btn btn-success btn-sm pull-right" do %><i class="glyphicon glyphicon-leaf"></i> Register Lead with Branch<% end %>
+          <% end %>
         </div>
         <div class="col-md-2"><br>
           <%= link_to "Edit Instant Pay", pay_path(@prospect), class: "btn btn-warning btn-sm" %>      

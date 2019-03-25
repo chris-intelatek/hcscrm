@@ -49,7 +49,10 @@
       <div class="col-md-7">
         <br>    
       	Phone: <em><%= @prospect.phone %></em><br>
-      	Website: <em><%= link_to @prospect.website, "http://" + @prospect.website, target: "_blank" %></em><br>
+      	Website: <%if !@prospect.website.nil? %>
+      	           <em><%= link_to @prospect.website, "http://" + @prospect.website, target: "_blank" %></em>
+      	         <% end %>
+      	         <br>
       	Employees: <em><%= @prospect.employees %></em>
   	  </div>
   	</div>
