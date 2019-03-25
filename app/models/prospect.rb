@@ -48,6 +48,7 @@ class Prospect < ActiveRecord::Base
               prospect.hcs_sme_fact_finding_call_date, prospect.status]
       end
     end
+    
   end
 
   # def self.to_csv
@@ -58,6 +59,20 @@ class Prospect < ActiveRecord::Base
   #     end
   #   end
   # end
+
+
+  #Import CSV file
+  def self.import(file)
+    spreadsheet = open_spreadsheet(file)
+    header = spreadsheet.row(1)
+    (2..spreadsheet.last_row).each do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      prospect = find_by_id(row["id"]) || new
+      prospect.attributes = row.to_hash.slice(*accessible_attributes)
+      prospect.save!
+    end
+  end
+
 
   def self.search(query)
     # Note that PostgreSQL is case specific for like when searching where sqlite3 is not

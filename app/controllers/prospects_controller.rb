@@ -22,22 +22,33 @@ class ProspectsController < ApplicationController
     end
   end
 
+
+  def import
+    Prospect.import(params[:file])
+    redirect_to root_url, notice: "Prospects imported."
+  end
+
+
   def show
   end
+
 
   def dashboard
     @prospects = Prospect.all
     @users = User.all
   end
 
+
   def intelatek
     @prospects = Prospect.all.order("created_at DESC")
     @users = User.all
   end
+
   
   def new
     @prospect = current_user.prospects.build
   end
+
   
   def create
     @prospect = current_user.prospects.build(prospect_params)
@@ -48,10 +59,12 @@ class ProspectsController < ApplicationController
       render 'new'
     end
   end
+
   
   def new_lead
     @prospect = Prospect.new
   end
+
   
   def new_lead_create
     attrs = prospect_params
@@ -70,12 +83,15 @@ class ProspectsController < ApplicationController
       render 'new_lead'
     end
   end
+
   
   def edit
   end
+
   
   def hcsq
   end
+
   
   def hcsq_update
     if @prospect.update(prospect_params)
@@ -86,6 +102,7 @@ class ProspectsController < ApplicationController
       render 'bchq'
     end
   end
+
   
   def update
     if @prospect.update(prospect_params)
@@ -96,8 +113,10 @@ class ProspectsController < ApplicationController
     end
   end
 
+
   def hcs
   end
+
   
   def hcs_update
     if @prospect.update(prospect_params)
@@ -108,11 +127,12 @@ class ProspectsController < ApplicationController
     end
   end  
 
+
   def pay
   end
+
   
   def pay_update
-    # binding.pry
     if @prospect.update(prospect_params)
       flash[:success] = "Prospect has been updated."
       redirect_to prospect_path
@@ -120,6 +140,7 @@ class ProspectsController < ApplicationController
       render 'pay'
     end
   end  
+
   
   def destroy
     @prospect.destroy
@@ -127,10 +148,12 @@ class ProspectsController < ApplicationController
     redirect_to root_path
   end
 
+
   private
     def prospect_params
       params.require(:prospect).permit(:user_id, :organization, :street_address, :address2, :city, :state, :zip, :phone, :website, :employees, :prospect_note, :created_at, :updated_at, :intro_presentation_date, :hcs_sme_fact_finding_call_date, :current_health_benefit_cost, :new_estimated_health_benefit_cost, :savings_percentage, :agreement_date, :hcs_sme_proposal_meeting_date, :contact1_first_name, :contact1_last_name, :contact1_title, :contact1_phone, :contact1_mobile, :contact1_email, :contact2_first_name, :contact2_last_name, :contact2_title, :contact2_phone, :contact2_mobile, :contact2_email, :primary_contact, :intro_presenter, :hcs_sme, :close_date, :effective_date, :hcbq_business_type, :hcbq_no_of_eligible_employees, :hcbq_total_participation, :hcbq_current_carrier, :hcbq_current_coverage_type, :hcbq_most_important, :hcbq_sustainable, :hcbq_oop, :hcbq_like_best, :hcbq_like_least, :hcbq_scale, :hcbq_perfect_plan, :hcbq_notes, :intelatek_bda, :intelatek_notes, :intelatek_day, :intelatek_timezone, :hcs_monthly_savings_fee, :hcs_pepm_fee, :intelatek_time, :submitted_hcsq, :hcs_next_action, :hcs_next_action_date, :hcs_prospect, :pay_prospect, :pay_intro_presentation_date, :pay_intro_presenter, :pay_sme_presentation_date, :pay_sme, :pay_agreement_date, :pay_hourly_employees, :pay_next_action_date, :pay_next_action, :pay_submitted_to_branch, :status, :pay_status, :renewal_month)
     end
+
 
     def find_prospect
       @prospect = Prospect.find(params[:id])

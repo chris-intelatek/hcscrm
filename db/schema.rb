@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190315045134) do
+ActiveRecord::Schema.define(version: 20190325210715) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "hcs_content"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20190315045134) do
     t.string   "phone"
     t.string   "website"
     t.integer  "employees",                         default: 0
-    t.text     "prospect_note"
+    t.text     "hcs_notes"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
     t.date     "intro_presentation_date"
@@ -100,6 +100,9 @@ ActiveRecord::Schema.define(version: 20190315045134) do
     t.date     "pay_next_action_date"
     t.string   "pay_next_action"
     t.boolean  "pay_submitted_to_branch",           default: false
+    t.date     "date_submitted_to_branch"
+    t.text     "pay_notes"
+    t.text     "prospect_notes"
   end
 
   create_table "users", force: :cascade do |t|

@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }, :path_prefix => 'd'
   resources :prospects do
     resources :comments
+    collection { post :import }
   end
   # root 'pages#home'
   root 'users#start_page'
