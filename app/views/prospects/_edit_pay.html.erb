@@ -49,7 +49,9 @@
   	         <%= f.input :pay_sme_presentation_date, :include_blank => true, :default => nil,
       			    as: :date, html5: true, order: [:month, :day, :year], label: "SME Presentation Date" %>
       			 <%= f.input :pay_sme, label: "Intant Pay Subject Matter Expert's Name" %>
-      			 <h4><span class="label label-success"><%= f.check_box :pay_submitted_to_branch?, class:"largerCheckbox" %> Lead Submitted to Branch <i class="glyphicon glyphicon-leaf"></i></span></h4>
+      			 <% if @prospect.pay_prospect? %>
+        			 <h4><span class="label label-success"><%= f.check_box :pay_submitted_to_branch?, class:"largerCheckbox" %> Lead Submitted to Branch <i class="glyphicon glyphicon-leaf"></i></span></h4>
+      			 <% end %>
     		  </div>
     		  <div class="col-md-3">
     		    <%= f.input :pay_hourly_employees, label: "Hourly Employees" %>
