@@ -25,7 +25,11 @@
         <% end %>
 
         <% if current_user.admin || [current_user.manager && current_user.support] %>        
-          SWAT&#63; <%= f.check_box :bc_swat? %> &nbsp; | &nbsp; 
+          Entrust&#63; <%= f.check_box :entrust? %> &nbsp; | &nbsp; 
+        <% end %>
+
+        <% if current_user.admin || [current_user.manager && current_user.support] %>        
+          Branch&#63; <%= f.check_box :branch? %> &nbsp; | &nbsp; 
         <% end %>
 
         <% if current_user.admin %>

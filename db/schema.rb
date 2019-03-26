@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190325210715) do
+ActiveRecord::Schema.define(version: 20190326025842) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "hcs_content"
@@ -127,12 +127,13 @@ ActiveRecord::Schema.define(version: 20190325210715) do
     t.boolean  "support",                default: false
     t.string   "group"
     t.string   "gravatar"
-    t.boolean  "bc_swat",                default: false
     t.string   "mailing_address"
     t.string   "apt_suite"
     t.string   "city"
     t.string   "state"
     t.string   "zip"
+    t.boolean  "entrust",                default: false
+    t.boolean  "branch",                 default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
