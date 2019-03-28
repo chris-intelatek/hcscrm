@@ -65,39 +65,35 @@
 			<table class="table index-table table-condensed">
 		  	<tr class="bordered">
 		  		<td colspan="3"></td>
-		  		<% if !current_user.branch? %>
-  		  		<td>&nbsp;</td>
-  		  		<td colspan="3">HealthCare Savings</td>
-  		  	<% end %>
-		  		<% if !current_user.entrust? %>
-  		  		<td>&nbsp;</td>
-  		  		<td colspan="4">Instant Pay</td>
-		  		<% end %>
+		  		<td>&nbsp;</td>
+		  		<td colspan="3">HealthCare Savings</td>
+		  		<td>&nbsp;</td>
+		  		<td colspan="4">Instant Pay</td>
 		  	</tr>
 
 		    <tr class="bordered">
 		      <td>Consultant</td>
 		      <td>Prospect</td>
 			    <td>Full-Time<br>Employees</td>
-		  		<% if !current_user.branch? %>
-  			    <td>&nbsp;</td>
-  		      <td>Next Action<br>
-  		      Date</td>			      
-  		      <td>Next Action</td>
-  		      <td>Status</td>
-  		    <% end %>
-		  		<% if !current_user.entrust? %>
-			      <td>&nbsp;</td>
-		        <td>Next Action<br>
-		        Date</td>			      
-		        <td>Next Action</td>
-		        <td>Status</td>
-  		    <% end %>
+			    <td>&nbsp;</td>
+			    
+		      <td>Next Action<br>
+		      Date</td>			      
+		      <td>Next Action</td>
+		      <td>Status</td>
+
+			    <td>&nbsp;</td>
+
+		      <td>Next Action<br>
+		      Date</td>			      
+		      <td>Next Action</td>
+		      <td>Status</td>
+		      <td>Hourly<br>Employees</td>
 				</tr>
 				
 			  <tbody class="bordered">
 					<% @user.prospects.each do |prospect| %>
-						<% if (prospect.user_id == current_user.id) || current_user.manager %>
+						<% if (prospect.user_id == current_user.id) || current_user.entrust %>
 					    <tr>
 	
 					      <td class="td-left">
@@ -109,19 +105,58 @@
 					      </td>
 	
 						    <td><%= prospect.employees %></td>
+						    
+								<td>&nbsp;</td>
+								
+							  <!--<td>-->
+									<!--I wrote this very clunky section that I need to rework at some point in the future... Chris-->
+							  <!--	<%# if prospect.hcs_next_action_date.nil? || prospect.hcs_next_action_date < Date.yesterday %>-->
+							  <!--    <%# update1 = "yes" %>-->
+							  <!--	<%# end %>-->
+							  <!--  <%# if prospect.intro_presentation_date.nil? || prospect.intro_presentation_date < Date.yesterday %>-->
+							  <!--    <%# update2 = "yes" %>-->
+							  <!--	<%# end %>-->
+							  <!--  <%# if prospect.hcs_sme_fact_finding_call_date.nil? || prospect.hcs_sme_fact_finding_call_date < Date.yesterday %>-->
+							  <!--    <%# update3 = "yes" %>-->
+							  <!--	<%# end %>-->
+							  <!--	<%# if prospect.hcs_sme_proposal_meeting_date.nil? || prospect.hcs_sme_proposal_meeting_date < Date.yesterday %>-->
+							  <!--    <%# update4 = "yes" %>-->
+							  <!--	<%# end %>-->
+							  <!--	<%# if prospect.effective_date.nil? || prospect.effective_date < Date.yesterday %>-->
+							  <!--    <%# update5 = "yes" %>-->
+							  <!--	<%# end %>-->
+							
+						  	<!--  <%# if (prospect.status != "Other - No Sale") && -->
+						  	<!--        (prospect.status != "Closed - Group is Effective") && -->
+						  	<!--        (prospect.status !=  "Intro Pres Given - No Sale") && -->
+						  	<!--        (prospect.status != "Fact Finder Call Done - No Sale") && -->
+						  	<!--        (prospect.status != "Proposal Given - No Sale") && -->
+						  	<!--        (prospect.status != "Not Qualified - No Sale") %>-->
+							  <!--	  <%# if update1 && update2 && update3 && update4 && update5 == "yes" %>-->
+							  <!--	    <%#= link_to "Needs", edit_prospect_path(prospect), {:style=>'color:yellow;'} %><br>-->
+							  <!--	    <%#= link_to "Updating", edit_prospect_path(prospect), {:style=>'color:yellow;'} %>-->
+								 <!--   <%# end %>-->
+								 <!--   <%# else %>-->
+								 <!-- <%# end %>-->
+									<!--End of clunky section.-->
+						  	<!--</td>-->
 
-  		  		    <% if !current_user.branch? %>
-  								<td>&nbsp;</td>
-  					      <td><% if !prospect.hcs_next_action_date.nil? %><%= prospect.hcs_next_action_date.strftime("%m/%d/%Y") %><% end %></td>
-  					      <td><%= prospect.hcs_next_action %></td>
-  					      <td><%= prospect.status %></td>
-    		        <% end %>
-  		  		    <% if !current_user.entrust? %>
-  								<td>&nbsp;</td>
-  					      <td><% if !prospect.pay_next_action_date.nil? %><%= prospect.pay_next_action_date.strftime("%m/%d/%Y") %><% end %></td>
-  					      <td><%= prospect.pay_next_action %></td>
-  					      <td><%= prospect.pay_status %></td>
-    		        <% end %>
+					      <td><% if !prospect.hcs_next_action_date.nil? %><%= prospect.hcs_next_action_date.strftime("%m/%d/%Y") %><% end %></td>
+					      
+					      <td><%= prospect.hcs_next_action %></td>
+
+					      <td><%= prospect.status %></td>
+					      
+								<td>&nbsp;</td>
+
+					      <td><% if !prospect.pay_next_action_date.nil? %><%= prospect.pay_next_action_date.strftime("%m/%d/%Y") %><% end %></td>
+					      
+					      <td><%= prospect.pay_next_action %></td>
+
+					      <td><%= prospect.pay_status %></td>
+
+					      <td><%= prospect.pay_hourly_employees %></td>
+
 					    </tr>
 						<% end %>
 
@@ -134,3 +169,4 @@
 	 	</div>
   </div>
 <% end %>
+
