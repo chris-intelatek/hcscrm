@@ -64,7 +64,7 @@
 		<div class="prospect-show table-responsive">
 			<table class="table index-table table-condensed">
 		  	<tr class="bordered">
-		  		<td colspan="3"></td>
+		  		<td colspan="2"></td>
 		  		<% if !current_user.branch? %>
 		  		  <td>&nbsp;</td>
 		  		  <td colspan="3">HealthCare Savings</td>
@@ -76,24 +76,22 @@
 		  	</tr>
 
 		    <tr class="bordered">
-		      <td>Consultant</td>
-		      <td>Prospect</td>
-			    <td>Full-Time<br>Employees</td>
-
+		      <td><strong>Prospect</strong></td>
+			    <td><strong>Employees</strong></td>
+			    
 					<% if !current_user.branch? %>
-  			    <td>&nbsp;</td>
-  		      <td>Next Action<br>
-  		      Date</td>			      
-  		      <td>Next Action</td>
-  		      <td>Status</td>
+				    <td>&nbsp;</td>
+			      <td><strong>Next Action<br>Date</strong></td>			      
+			      <td><strong>Next Action</strong></td>
+  		      <td><strong>Status</strong></td>
           <% end %>
           
 					<% if !current_user.entrust? %>
   			    <td>&nbsp;</td>
-  		      <td>Next Action<br>
-  		      Date</td>			      
-  		      <td>Next Action</td>
-  		      <td>Status</td>
+			      <td><strong>Submitted<br>to Branch</strong></td>
+			      <td><strong>Next Action<br>Date</strong></td>			      
+			      <td><strong>Next Action</strong></td>
+  		      <td><strong>Status</strong></td>
           <% end %>
 				</tr>
 				
@@ -101,9 +99,6 @@
 					<% @user.prospects.each do |prospect| %>
 						<% if (prospect.user_id == current_user.id) || current_user.manager %>
 					    <tr>
-					      <td class="td-left">
-					      	<%= prospect.user.advisor_first_name + ' ' + prospect.user.advisor_last_name %>
-					      </td>
 					      <td class="td-left">
 					     		<em><%= link_to prospect.organization, prospect %></em>
 					      </td>
@@ -117,6 +112,8 @@
                 <% end %>
   		  		    <% if !current_user.entrust? %>					      
   								<td>&nbsp;</td>
+              		<td style="vertical-align:middle">
+              	  <% if prospect.pay_submitted_to_branch? %><span class="glyphicon glyphicon-ok"></span><% end %></td>
   					      <td><% if !prospect.pay_next_action_date.nil? %><%= prospect.pay_next_action_date.strftime("%m/%d/%Y") %><% end %></td>
   					      <td><%= prospect.pay_next_action %></td>
   					      <td><%= prospect.pay_status %></td>
