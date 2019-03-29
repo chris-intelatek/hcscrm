@@ -46,7 +46,13 @@
 				<div class="col-md-3">
 					<%= f.input :intelatek_day, collection: DAYS, label: "Day" %>
 					<%= f.input :intelatek_time, collection: TIMES, label: "Time" %>
-					<%= f.input :intelatek_timezone, collection: TIMEZONES, label: "TimeZone" %>
+					<%= f.input :intelatek_timezone, collection: true, collection: [
+																									'Eastern',
+																									'Central',
+																									'Mountain',
+																									'Arizona',
+																									'Pacific'
+																									], label: "TimeZone" %>
 				</div>
 			</div>
 
