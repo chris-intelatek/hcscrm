@@ -79,6 +79,9 @@ class ProspectsController < ApplicationController
       NotificationMailer.new_meeting(@prospect).deliver_later
       flash[:success] = "New prospect added."
       redirect_to 'http://intelatek.com/intranet/submitted.html'
+        if prospect_params[:hcs_prospect] == '1' && prospect_params[:contact1_email].present?
+          NotificationMailer.new_hcs_meeting(@prospect).deliver_later
+        end
     else
       render 'new_lead'
     end

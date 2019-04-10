@@ -22,7 +22,14 @@ class NotificationMailer < ApplicationMailer
         mail(to: [prospect.user_email, 'appointments@intelatek.com'],
              subject: 'New HCS Meeting Scheduled')
     end
-    
+
+    def new_hcs_meeting(prospect)
+        @prospect = prospect
+        mail(from: "info@healthcaresavings.co",
+              to: [prospect.contact1_email, prospect.user_email],
+              subject: 'healthcare savings')
+    end
+
     def new_comment(comment)
         @comment = comment
         mail(to: [comment.prospect.user_email],
