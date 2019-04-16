@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190326025842) do
+ActiveRecord::Schema.define(version: 20190416222925) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "hcs_content"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20190326025842) do
     t.date     "date_submitted_to_branch"
     t.text     "pay_notes"
     t.text     "prospect_notes"
+    t.string   "intelatek_lead_type"
   end
 
   create_table "users", force: :cascade do |t|
