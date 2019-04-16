@@ -10,15 +10,26 @@
       <% elsif @prospect.pay_prospect == true %>
           Instant Pay 
       <% else %>
-        (IntelaTek BDA failed to enter appointment type) 
+        (IntelaTek BDA failed to enter service type) 
       <% end %>
-        <u><%= @prospect.intelatek_lead_type %></u> Scheduled by IntelaTek for <%= @prospect.user.advisor_first_name %> <%= @prospect.user.advisor_last_name %></h4></center>
+      
+      <% if @prospect.intelatek_lead_type? %>
+        <u><%= @prospect.intelatek_lead_type %></u> 
+      <% else %>
+        (IntelaTek BDA failed to enter lead type) 
+      <% end %>
+       Scheduled by IntelaTek for <%= @prospect.user.advisor_first_name %> <%= @prospect.user.advisor_last_name %></h4></center>
 
 <p>&nbsp;</p>
 
 <p><%= @prospect.user.advisor_first_name %>,</p>
 
-<p>We just scheduled a <strong><%= @prospect.intelatek_lead_type %></strong> for you.  The event has been added to the CRM and added to your calendar through Calendly, based on your availability.  The details are below.</p>
+<p>We just scheduled a <% if @prospect.intelatek_lead_type? %>
+                          <strong><%= @prospect.intelatek_lead_type %></strong> 
+                        <% else %>
+                          (IntelaTek BDA failed to enter lead type) 
+                        <% end %>
+                        for you.  The event has been added to the CRM and added to your calendar through Calendly, based on your availability.  The details are below.</p>
 
 <p>Company name: <%= @prospect.organization %></p>
 <p>Address:  <%= @prospect.street_address %>, <%= @prospect.address2 %>, <%= @prospect.city %>, <%= @prospect.state %> <%= @prospect.zip %></p>
