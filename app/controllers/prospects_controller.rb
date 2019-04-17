@@ -1,5 +1,5 @@
 class ProspectsController < ApplicationController
-  before_action :find_prospect, only: [:show, :edit, :update, :destroy, :hcsq, :hcsq_update, :hcs, :hcs_update, :pay, :pay_update]
+  before_action :find_prospect, only: [:show, :edit, :update, :destroy, :hcsq, :hcsq_update, :hcs, :hcs_update, :pay, :pay_update, :lead, :lead_update]
   skip_before_action :authenticate_user!, only: [:new_lead, :new_lead_create]
   
 
@@ -87,14 +87,28 @@ class ProspectsController < ApplicationController
     end
   end
 
+
+  def lead
+  end
+
+
+  def lead_update
+    if @prospect.update(prospect_params)
+      flash[:success] = "Lead has been updated."
+      redirect_to intelatek_path
+    else
+      render 'lead_path'
+    end
+  end
+  
   
   def edit
   end
-
+  
   
   def hcsq
   end
-
+  
   
   def hcsq_update
     if @prospect.update(prospect_params)

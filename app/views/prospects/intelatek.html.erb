@@ -35,8 +35,8 @@
 					      </td>
 	
 					      <td>
-					      	<%#= link_to "Edit HealthCare Savings", hcs_path(@prospect), class: "btn btn-warning btn-sm" %>
-					      	<%= prospect.intelatek_lead_type %>
+					      	<%= prospect.intelatek_lead_type %> &nbsp;
+					      	<%= link_to lead_path(prospect) do %><i class="glyphicon glyphicon-pencil"></i><% end %>
 					      </td>
 					      
 					      <td>
