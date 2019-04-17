@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'prospects#dashboard'
   get :new_lead, to: 'prospects#new_lead', as: :new_lead
   post :new_lead, to: 'prospects#new_lead_create', as: :new_lead_create
+  get 'lead/:id', to: 'prospects#lead', as: :lead
+  post 'lead/:id', to: 'prospects#lead_update', as: :lead_update
   get 'hcsq/:id', to: 'prospects#hcsq', as: :hcsq
   post 'hcsq/:id', to: 'prospects#hcsq_update', as: :hcsq_update
   get 'hcs/:id', to: 'prospects#hcs', as: :hcs

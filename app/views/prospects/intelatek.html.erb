@@ -11,7 +11,7 @@
 			    	<th>BDA</th>
 			      <th>Consultant</th>
 			      <th>Prospect</th>
-			      <th>Employees</th>
+			      <th>Lead Type</th>
 			      <th>Meeting Date</th>
 			    </tr>
 			  </thead>
@@ -35,6 +35,7 @@
 					      </td>
 	
 					      <td>
+					      	<%#= link_to "Edit HealthCare Savings", hcs_path(@prospect), class: "btn btn-warning btn-sm" %>
 					      	<%= prospect.intelatek_lead_type %>
 					      </td>
 					      
