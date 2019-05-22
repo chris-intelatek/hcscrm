@@ -21,13 +21,14 @@ class NotificationMailer < ApplicationMailer
         @prospect = prospect
         mail(to: [prospect.user_email, 'appointments@intelatek.com'],
              subject: 
-                      if prospect_params[:pay_prospect] == '1'
-                        'New Instant Pay Lead Scheduled by IntelaTek')
-                      elsif prospect_params[:vcp_prospect] == '1'
-                        'New Virtual Card Lead Scheduled by IntelaTek')
-                      elsif prospect_params[:hcs_prospect] == '1'
-                        'New HealthCare Lead Scheduled by IntelaTek')
+                      if prospect.pay_prospect == '1'
+                        'New Instant Pay Lead Scheduled by IntelaTek'
+                      elsif prospect.vcp_prospect == '1'
+                        'New Virtual Card Lead Scheduled by IntelaTek'
+                      elsif prospect.hcs_prospect == '1'
+                        'New HealthCare Lead Scheduled by IntelaTek'
                       end
+            )
     end
 
     def new_hcs_meeting(prospect)
