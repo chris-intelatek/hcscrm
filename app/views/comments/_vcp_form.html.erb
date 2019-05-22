@@ -1,0 +1,4 @@
+<%= simple_form_for([@prospect, @prospect.comments.build]) do |f| %>
+	<%= f.input :vcp_content, label: "Add Comment for Virtual cards" %>
+	<%= f.button :submit, :class => 'btn btn-slate pull-right btn-sm' %>
+<% end %>

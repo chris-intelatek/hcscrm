@@ -26,8 +26,8 @@ Rails.application.routes.draw do
   post 'hcsq/:id', to: 'prospects#hcsq_update', as: :hcsq_update
   get 'hcs/:id', to: 'prospects#hcs', as: :hcs
   post 'hcs/:id', to: 'prospects#hcs_update', as: :hcs_update  
-  get 'cps/:id', to: 'prospects#cps', as: :cps
-  post 'cps/:id', to: 'prospects#cps_update', as: :cps_update
+  get 'vcp/:id', to: 'prospects#vcp', as: :vcp
+  post 'vcp/:id', to: 'prospects#vcp_update', as: :vcp_update
   get 'pay/:id', to: 'prospects#pay', as: :pay
   post 'pay/:id', to: 'prospects#pay_update', as: :pay_update
   

@@ -1,0 +1,62 @@
+    		<div class="row">
+          <div class="col-md-4">
+        		<%= f.input :vcp_status, required: true, include_blank: false, include_hidden: false,
+    																collection: [
+  			  																			'Intro Presentation Scheduled',
+  			  																			'SME Presentation Scheduled',
+  			  																			'Supplier Match Pres Scheduled',
+  			  																			'Waiting on Agreement',
+  			  																			'Closed - Client is Active',
+  			  																			'Intro Pres Given - No Sale',
+  			  																			'SME Presentation Done - No Sale',
+  			  																			'Supplier Match Pres Done - No Sale',
+  			  																			'Not Qualified - No Sale',
+  			  																			'Other - No Sale',
+  			  																			'Follow up in January',
+                                                'Follow up in February',
+                                                'Follow up in March',
+                                                'Follow up in April',
+                                                'Follow up in May',
+                                                'Follow up in June',
+                                                'Follow up in July',
+                                                'Follow up in August',
+                                                'Follow up in September',
+                                                'Follow up in October',
+                                                'Follow up in November',
+                                                'Follow up in December'
+  			  																			], label: "Prospect Status" %>
+          </div>
+
+    		  <div class="col-md-5">
+    		    <%= f.input :vcp_next_action, label: "Next Action" %>  		    
+    		  </div>
+    		  <div class="col-md-3">
+      			<%= f.input :vcp_next_action_date, :include_blank => true, :default => nil,
+      			    as: :date, html5: true, order: [:month, :day, :year], label: "Next Action Date" %>
+    		  </div>
+        </div>
+        
+    		<div class="row">
+    		  <div class="col-md-4">
+      			<%= f.input :vcp_intro_presentation_date, :include_blank => true, :default => nil,
+      			    required: true, as: :date, html5: true, order: [:month, :day, :year], label: "Intro Presentation Date" %>
+      			<%= f.input :vcp_intro_presenter, label: "Intro Presenter (who presented?)" %>
+    		  </div>
+    		  <div class="col-md-5">
+  	         <%= f.input :vcp_sme_presentation_date, :include_blank => true, :default => nil,
+      			    as: :date, html5: true, order: [:month, :day, :year], label: "SME Presentation Date" %>
+      			 <%= f.input :vcp_sme, label: "Virtual Card Subject Matter Expert's Name" %>
+    		  </div>
+    		  <div class="col-md-3">
+  	         <%= f.input :vcp_supplier_match_meeting_date, :include_blank => true, :default => nil,
+      			    as: :date, html5: true, order: [:month, :day, :year], label: "Supplier Match Pres Date" %>
+  	         <%= f.input :vcp_agreement_date, :include_blank => true, :default => nil,
+      			    as: :date, html5: true, order: [:month, :day, :year], label: "Agreement Date" %>
+    		  </div>
+    		</div>
+
+    		<div class="row">
+    		  <div class="col-md-12">
+    		    <%= f.input :vcp_notes, label: "Virtual Card Notes" %>
+     		  </div>
+    		</div>

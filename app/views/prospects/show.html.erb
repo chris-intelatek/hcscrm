@@ -3,10 +3,10 @@
 	<div class="panel panel-gray">
   <div class="panel-heading">
     <div class="row">
-      <div class="col-md-7">
+      <div class="col-md-6">
         <p class="header-title"><%= @prospect.organization %></p>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-6">
         <% if @prospect.hcs_prospect == false  %>
           <%= link_to "Add HealthCare Savings Service", hcs_path(@prospect), class: "btn btn-slate btn-sm" %>
         <% else %>
@@ -17,6 +17,12 @@
           <%= link_to "Add Instant Payments Service", pay_path(@prospect), class: "btn btn-slate btn-sm" %>
         <% else %>
           <%= link_to "Edit Instant Payments Service", pay_path(@prospect), class: "btn btn-warning btn-sm" %>
+        <% end %>
+        &nbsp; &nbsp;
+        <% if @prospect.vcp_prospect == false %>
+          <%= link_to "Add Virtual Cards Service", vcp_path(@prospect), class: "btn btn-warning btn-sm" %>
+        <% else %>
+          <%= link_to "Edit Virtual Cards Service", vcp_path(@prospect), class: "btn btn-warning btn-sm" %>
         <% end %>
       </div>
     </div>
@@ -95,7 +101,8 @@
    	      <%= render 'prospects/hcs_show' %>
    	      
    	      <%= render 'prospects/pay_show' %> 
-
+   	      
+   	      <%= render 'prospects/vcp_show' %> 
 	</div>
 	
   <div class="panel-footer">

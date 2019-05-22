@@ -1,0 +1,26 @@
+<div class="col-md-8 col-md-offset-2">
+  
+	<div class="panel panel-gray">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-md-6" ><h4>Editing: &nbsp; <%= @prospect.organization %></h4></div>
+        <div class="col-md-6" ><h4>Virtual Card Payments</h4></div>
+      </div>
+    </div>
+    <div class="prospect-show">
+  
+  		<%= simple_form_for @prospect, url: vcp_update_path, method: :post do |f| %>
+  			<%= f.hidden_field :vcp_prospect, value: 'true' %>
+
+	      <%= render 'prospects/edit_vcp', f: f %>
+
+    </div>
+    	
+    <div class="panel-footer">
+  		<%= link_to "Back", prospect_path, class: "btn btn-default" %>
+        <%= f.button :submit, class:"btn btn-slate" %>
+      <% end %>
+    </div>
+    	
+  </div>
+</div>

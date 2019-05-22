@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
 	private
 
 		def comment_params
-			params.require(:comment).permit(:cps_content, :hcs_content, :pay_content)
+			params.require(:comment).permit(:vcp_content, :hcs_content, :pay_content)
 		end
 
 		def find_prospect

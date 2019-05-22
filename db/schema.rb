@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190521024455) do
+ActiveRecord::Schema.define(version: 20190522231933) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "hcs_content"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20190521024455) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.text     "pay_content"
+    t.text     "vcp_content"
   end
 
   add_index "comments", ["prospect_id"], name: "index_comments_on_prospect_id"
@@ -114,6 +115,7 @@ ActiveRecord::Schema.define(version: 20190521024455) do
     t.date     "vcp_agreement_date"
     t.date     "vcp_next_action_date"
     t.string   "vcp_next_action"
+    t.text     "vcp_notes"
   end
 
   create_table "users", force: :cascade do |t|
@@ -145,6 +147,7 @@ ActiveRecord::Schema.define(version: 20190521024455) do
     t.string   "zip"
     t.boolean  "entrust",                default: false
     t.boolean  "branch",                 default: false
+    t.string   "advisor_company_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
