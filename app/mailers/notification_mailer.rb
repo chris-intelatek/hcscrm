@@ -31,7 +31,7 @@ class NotificationMailer < ApplicationMailer
 
     def new_vcp_meeting(prospect)
         @prospect = prospect
-        mail(from: "#{prospect.user.advisor_first_name + ' ' + prospect.user.advisor_last_name} <ap@accounts-payable.co>",
+        mail(from: "#{prospect.intelatek_bda} <ap@accounts-payable.co>",
               to: prospect.contact1_email, bcc: prospect.user_email, subject: 'accounts payable')
     end
 
