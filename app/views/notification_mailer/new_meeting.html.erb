@@ -9,6 +9,8 @@
         HealthCare Savings 
       <% elsif @prospect.pay_prospect == true %>
           Instant Pay 
+      <% elsif @prospect.vcp_prospect == true %>
+          Virtual Cards 
       <% else %>
         (IntelaTek BDA failed to enter service type) 
       <% end %>

@@ -11,6 +11,7 @@
 			    	<th>BDA</th>
 			      <th>Consultant</th>
 			      <th>Prospect</th>
+			      <th>Prospect Type</th>
 			      <th>Lead Type</th>
 			      <th>Meeting Date</th>
 			    </tr>
@@ -33,7 +34,18 @@
 					      <td class="td-left">
 					     		<em><%= link_to prospect.organization, prospect %></em>
 					      </td>
-	
+					      
+						    <td class="td-left">
+						    	<% if prospect.pay_prospect == true %>
+						    		Instant Pay
+						    		<% elsif prospect.vcp_prospect == true %>
+						    			Virtual Card
+						    		<% elsif prospect.hcs_prospect == true %>
+						    			HealthCare Savings
+						    	<% end %>
+
+					      </td>
+					      
 					      <td>
 					      	<%= prospect.intelatek_lead_type %> &nbsp;
 					      	<%= link_to lead_path(prospect) do %><i class="glyphicon glyphicon-pencil"></i><% end %>

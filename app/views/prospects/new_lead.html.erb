@@ -35,21 +35,25 @@
 					<%= f.input :intelatek_lead_type, collection: true, required: true, collection: [
 																									'Face to Face Meeting',
 																									'Phone Call',
+																									'Virtual Meeting'
 																									], label: "Lead Type" %></div>
 			</div>
 
 			<br>
 			<div class="row">
-				<div class="col-md-6 center">
-					<br>
+				<div class="col-md-4 center">
 					<h4><strong><u>Please Select Meeting Type</strong> <em>(select only one)</em></u></h4><strong>
 					<br>
-					<%= f.check_box :hcs_prospect, id: "myHCSCheck", onclick: "myHCSFunction()" %> HealthCare Meeting 
-					&nbsp; &nbsp; OR &nbsp; &nbsp; 
-					<%= f.check_box :pay_prospect, id: "myPayCheck", onclick: "myPayFunction()" %> Instant Pay Meeting</strong>				
+					<%= f.check_box :hcs_prospect, id: "myHCSCheck", onclick: "myHCSFunction()" %> HealthCare Meeting<br>
 					<br>
+					<%= f.check_box :vcp_prospect, id: "myVCPCheck", onclick: "myVCPFunction()" %> Virtual Card Meeting<br>
+					<br>					
+					<%= f.check_box :pay_prospect, id: "myPayCheck", onclick: "myPayFunction()" %> Instant Pay Meeting</strong>				
+				</div>
+				<div class="col-md-4 center">
 					<br>
 					<div id="hcs" style="display:none"><%= render 'new_lead_hcs_form', f: f %></div>
+					<div id="vcp" style="display:none"><%= render 'new_lead_vcp_form', f: f %></div>
 					<div id="pay" style="display:none"><%= render 'new_lead_pay_form', f: f %></div>
 				</div>
 				<div class="col-md-3">
@@ -70,13 +74,12 @@
 					<%= f.input :intelatek_bda, required: true, collection: [
 																									'Betty White',
 																									'Chris Cunningham',
-																									'Debbie Clark',
-																									'Debbie Hill',
-																									'Lisa Moore',
+																									'Carol Smith',
 																									'Maria Wright',
+																									'Michelle Brown',
 																									'Michelle Lee',
 																									'Nancy White',
-																									'Sharon Green'					
+																									'Susan Hill'
 																									], label: "IntelaTek BDA" %>
 				</div>
 			</div>

@@ -26,7 +26,13 @@ class NotificationMailer < ApplicationMailer
     def new_hcs_meeting(prospect)
         @prospect = prospect
         mail(from: "#{prospect.user.advisor_first_name + ' ' + prospect.user.advisor_last_name} <info@healthcaresavings.co>",
-              to: prospect.contact1_email, bcc: prospect.user_email)
+              to: prospect.contact1_email, bcc: prospect.user_email, subject: 'health benefit savings')
+    end
+
+    def new_vcp_meeting(prospect)
+        @prospect = prospect
+        mail(from: "#{prospect.user.advisor_first_name + ' ' + prospect.user.advisor_last_name} <ap@accounts-payable.co>",
+              to: prospect.contact1_email, bcc: prospect.user_email, subject: 'accounts payable')
     end
 
     def new_comment(comment)

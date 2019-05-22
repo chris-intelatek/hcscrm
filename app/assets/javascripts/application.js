@@ -25,6 +25,16 @@ function myHCSFunction() {
   }
 }
 
+function myVCPFunction() {
+  var checkBox = document.getElementById("myVCPCheck");
+  var text = document.getElementById("vcp");
+  if (checkBox.checked == true){
+    text.style.display = "block";
+  } else {
+    text.style.display = "none";
+  }
+}
+
 function myPayFunction() {
   var checkBox = document.getElementById("myPayCheck");
   var text = document.getElementById("pay");

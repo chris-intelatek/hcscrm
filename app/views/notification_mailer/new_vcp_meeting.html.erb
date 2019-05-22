@@ -1,0 +1,20 @@
+<p>Hi <%= @prospect.contact1_first_name %>,</p>
+
+<p>It was great speaking with you today.</p>
+
+<p>We look forward to sharing with you, how we've been helping AP departments to save both time and money, and to generate additional revenue, each time they pay their suppliers.<p>
+    
+<p>This 2-minute video will give you an overview of what we do http://www.Accounts-Payable.co</p>
+
+<p>I think you will find this article from Forbes <a href="https://www.forbes.com/sites/agoodman/2017/03/07/new-virtual-credit-cards-for-businesses-eliminating-the-need-for-checks">New Virtual Credit Cards for Businesses Eliminating the Need for Checks" to be very interesting as well.</a></p>
+
+<p>As we discussed, <%= @prospect.user.advisor_first_name %> <%= @prospect.user.advisor_last_name %> will be calling you on 
+
+<%= @prospect.intelatek_day %> <%= @prospect.intro_presentation_date.strftime("%m/%d/%Y") %> at <%= @prospect.intelatek_time %> <%= @prospect.intelatek_timezone %>
+Time for a quick 15-minute call to share how we turn the manually intensive operating expense of AP into an automated process that actually generates revenue for your organization.</p>
+
+<p>We’ll send you a calendar invite which will include a screen share link.</p>
+
+<p>Thanks,</p>
+
+<p><%= @prospect.intelatek_bda %><p>
