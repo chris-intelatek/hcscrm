@@ -19,16 +19,16 @@ class NotificationMailer < ApplicationMailer
 
     def new_meeting(prospect)
         @prospect = prospect
-        mail(to: [prospect.user_email, 'appointments@intelatek.com'],
-             subject: 
-                      if prospect.pay_prospect == '1'
-                        'New Instant Pay Lead Scheduled by IntelaTek'
-                      elsif prospect.vcp_prospect == '1'
-                        'New Virtual Card Lead Scheduled by IntelaTek'
-                      elsif prospect.hcs_prospect == '1'
-                        'New HealthCare Lead Scheduled by IntelaTek'
-                      end
-            )
+        if prospect.pay_prospect == '1'
+          mail(to: [prospect.user_email, 'appointments@intelatek.com'],
+             subject: 'New Instant Pay Lead Scheduled by IntelaTek')
+        elsif prospect.vcp_prospect == '1'
+          mail(to: [prospect.user_email, 'appointments@intelatek.com'],
+             subject: 'New Virtual Card Lead Scheduled by IntelaTek')
+        elsif prospect.hcs_prospect == '1'
+          mail(to: [prospect.user_email, 'appointments@intelatek.com'],
+             subject: 'New HealthCare Lead Scheduled by IntelaTek')
+        end
     end
 
     def new_hcs_meeting(prospect)
