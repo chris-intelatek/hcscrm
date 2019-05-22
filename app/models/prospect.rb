@@ -4,7 +4,7 @@ class Prospect < ActiveRecord::Base
   validates :organization, :presence => true
   validates :user_id, :presence => true
   # validates :intro_presentation_date, :presence => true
-  validates :employees, :numericality => {:only_integer => true, :greater_than => 0}
+  validates :employees, :numericality => {:only_integer => true}
   validates :pay_hourly_employees, :numericality => {:only_integer => true}
   delegate :email, to: :user, allow_nil: true, prefix: true
 

@@ -37,13 +37,17 @@
 <p>Address:  <%= @prospect.street_address %>, <%= @prospect.address2 %>, <%= @prospect.city %>, <%= @prospect.state %> <%= @prospect.zip %></p>
 <p>Contact Name: <%= @prospect.contact1_first_name %> <%= @prospect.contact1_last_name %>, <%= @prospect.contact1_title %></p>
 <p>Phone: <%= @prospect.phone %></p>
-<p>Employees: <%= @prospect.employees %></p>
+<% if @prospect.hcs_prospect == true %>
+  <p>Employees: <%= @prospect.employees %></p>
+<% end %>
 <p>
   <%= @prospect.intelatek_day %> 
                                 <% if !@prospect.intro_presentation_date.nil? %>
                                     <%= @prospect.intro_presentation_date.strftime("%m/%d/%Y") %> 
                                 <% elsif !@prospect.pay_intro_presentation_date.nil? %>
                                         <%= @prospect.pay_intro_presentation_date.strftime("%m/%d/%Y") %> 
+                                <% elsif !@prospect.vcp_intro_presentation_date.nil? %>
+                                        <%= @prospect.vcp_intro_presentation_date.strftime("%m/%d/%Y") %> 
                                 <% else %>
                                     (IntelaTek BDA Failed to enter the meeting date) 
                                 <% end %>
