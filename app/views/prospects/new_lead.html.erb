@@ -42,8 +42,9 @@
 			<br>
 			<div class="row">
 				<div class="col-md-4 center">
-					<h4><strong><u>Please Select Meeting Type</strong> <em>(select only one)</em></u></h4><strong>
-					<br>
+					<h4><strong><u>Please Select Meeting Type</strong><br>
+						<em>(select only one)</em></u></h4>
+					<br><strong>
 					<%= f.check_box :hcs_prospect, id: "myHCSCheck", onclick: "myHCSFunction()" %> HealthCare Meeting<br>
 					<br>
 					<%= f.check_box :vcp_prospect, id: "myVCPCheck", onclick: "myVCPFunction()" %> Virtual Card Meeting<br>
@@ -79,6 +80,7 @@
 																									'Michelle Brown',
 																									'Michelle Lee',
 																									'Nancy White',
+																									'Sandra Scott',
 																									'Susan Hill'
 																									], label: "IntelaTek BDA" %>
 				</div>
