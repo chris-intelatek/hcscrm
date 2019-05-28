@@ -9,13 +9,12 @@
 <p>You may find this article on Forbes <a href="https://www.forbes.com/sites/agoodman/2017/03/07/new-virtual-credit-cards-for-businesses-eliminating-the-need-for-checks">New Virtual Credit Cards for Businesses Eliminating the Need for Checks"</a> to be interesting as well.</p>
 
 <p>As we discussed, <%= @prospect.user.advisor_first_name %> <%= @prospect.user.advisor_last_name %> will be calling you on 
+  <%= @prospect.intelatek_day %>  <% if !@prospect.vcp_intro_presentation_date.nil? %>
+                                    <%= @prospect.vcp_intro_presentation_date.strftime("%m/%d/%Y") %> 
+                                  <% end %> 
+  at <%= @prospect.intelatek_time %> <%= @prospect.intelatek_timezone %> Time for a quick 15-minute call to share how we turn the manually intensive operating expense of AP into an automated process that actually generates revenue for your organization.</p>
 
-<%= @prospect.intelatek_day %>  <% if !@prospect.vcp_intro_presentation_date.nil? %>
-                                  <%= @prospect.vcp_intro_presentation_date.strftime("%m/%d/%Y") %> 
-                                <% end %> 
-at <%= @prospect.intelatek_time %> <%= @prospect.intelatek_timezone %> Time for a quick 15-minute call to share how we turn the manually intensive operating expense of AP into an automated process that actually generates revenue for your organization.</p>
-
-<p>We'll send you a calendar invite which will include a screen share link.</p>
+<p>We'll send you a calendar invite which will also include a screen share link so that you can view <%= @prospect.user.advisor_first_name %>'s screen.</p>
 
 <p>Thanks,</p>
 
