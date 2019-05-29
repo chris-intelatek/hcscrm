@@ -32,7 +32,7 @@ class NotificationMailer < ApplicationMailer
     def new_vcp_meeting(prospect)
         @prospect = prospect
         mail(from: "#{prospect.intelatek_bda} <ap@accounts-payable.co>",
-              to: prospect.contact1_email, bcc: prospect.user_email, subject: 'accounts payable')
+              to: prospect.contact1_email, bcc: prospect.user_email, 'chris@intelatek.com', subject: 'accounts payable')
     end
 
     def new_comment(comment)
