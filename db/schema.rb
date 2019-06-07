@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190522231933) do
+ActiveRecord::Schema.define(version: 20190607180852) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "hcs_content"
@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(version: 20190522231933) do
     t.boolean  "entrust",                default: false
     t.boolean  "branch",                 default: false
     t.string   "advisor_company_name"
+    t.boolean  "intelatek",              default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

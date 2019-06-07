@@ -32,9 +32,10 @@
         <% if current_user.admin || [current_user.manager && current_user.support] %>        
           Branch&#63; <%= f.check_box :branch? %> &nbsp; | &nbsp; 
         <% end %>
-
+        <br>
+        
         <% if current_user.admin %>
-          Admin&#63; <%= f.check_box :admin? %> &nbsp; | &nbsp; Manager&#63; <%= f.check_box :manager? %> &nbsp; | &nbsp; Support&#63; <%= f.check_box :support? %>
+          Admin&#63; <%= f.check_box :admin? %> &nbsp; | &nbsp; Manager&#63; <%= f.check_box :manager? %> &nbsp; | &nbsp; Support&#63; <%= f.check_box :support? %> &nbsp; | &nbsp; IntelaTek&#63; <%= f.check_box :intelatek? %>
         <% end %>
         
       </div>
