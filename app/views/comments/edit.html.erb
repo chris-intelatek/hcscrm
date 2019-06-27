@@ -2,7 +2,7 @@
 	<div class="prospect-show">
 		<h3>Edit Comment</h3>
 		<%= simple_form_for([@prospect, @comment]) do |f| %>
-			<%= f.input :content, label: "Comment" %>
+			<%= f.input @comment.content_field.to_sym, label: "Comment" %>
 			<%= f.button :submit, :class => 'btn btn-kontrol' %>
 		<% end %>
 	</div>
