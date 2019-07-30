@@ -80,17 +80,28 @@
     <br></ol>
   </ul>
 
-<% else %>
-  <p><strong>Best Practices for Face to face Meetings</strong></p>
+<% elsif @prospect.hcs_prospect %>
+  <p><strong>Best Practices for Face to Face HealthCare Savings Meetings</strong></p>
   <ul>
     <ol>1) We suggest that you do NOT reach out to prospect's prior to a meeting.<br>
     <br></ol>
     <ol>2) Upon arrival, tell the receptionist: “I have a 2:00 meeting scheduled with Tom Smith”  Don't give the receptionist your name, your company name, or purpose of the meeting unless and until specifically asked.<br>
     <br></ol>
-    <ol>3) Upon greeting the contact, they may say "was that today", or "did we have a meeting" and you should just say one word in response... "Yes".  They definitely did set the meeting, and they know that they set the meeting, but they may not be excited about a perceived sales call.<br>
+    <ol>3) Upon greeting the contact, say: “Hi Tom, I'm Chris Cunningham, you spoke with (IntelaTek Caller's name), in my office, on (day they spoke), and we had a quick meeting scheduled for today 2:00 to discuss how we may be able to help you reduce your health benefit costs."  If they say something like "was that today", or "did we have a meeting", you should respond with just one word... "Yes".  They will then bring you to their office or conference room.  They definitely did set the meeting, and they know that they set the meeting, but they may not be excited about a perceived sales call.<br>
     <br></ol>
   </ul>
-  
+
+<% elsif @prospect.pay_prospect %>
+  <p><strong>Best Practices for Face to Face Same Day Pay Meetings</strong></p>
+  <ul>
+    <ol>1) We suggest that you do NOT reach out to prospect's prior to a meeting.<br>
+    <br></ol>
+    <ol>2) Upon arrival, tell the receptionist: “I have a 2:00 meeting scheduled with Tom Smith”  Don't give the receptionist your name, your company name, or purpose of the meeting unless and until specifically asked.<br>
+    <br></ol>
+    <ol>3) Upon greeting the contact, say: “Hi Tom, I'm Chris Cunningham, you spoke with (IntelaTek Caller's name), in my office, on (day they spoke), and we had a quick meeting scheduled for today 2:00 to discuss how we are helping employers to provide same day access to their alreday earned wages."  If they say something like "was that today", or "did we have a meeting", you should respond with just one word... "Yes".  They will then bring you to their office or conference room.  They definitely did set the meeting, and they know that they set the meeting, but they may not be excited about a perceived sales call.<br>
+    <br></ol>
+  </ul>
+
 <% end %>
 
 <p>Thanks,</p>
