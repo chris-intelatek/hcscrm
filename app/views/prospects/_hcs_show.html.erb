@@ -26,17 +26,16 @@
   		  <em><%= @prospect.intro_presentation_date.strftime("%m/%d/%Y") %></em><% end %>
   		  <br>
   		  Intro Presented by: <em><%= @prospect.intro_presenter %></em>
-  		  <br>
-  		  <br>
-  		  New Cost: <% if @prospect.new_estimated_health_benefit_cost != 0 %>
-  		              <em><%= number_to_currency(@prospect.new_estimated_health_benefit_cost, precision: 0) %></em>
-  		            <% end %>
       </div>
       <div class="col-md-4">
         SME Presentation Date: <% if !@prospect.hcs_sme_fact_finding_call_date.nil? %>
   		  <%= @prospect.hcs_sme_fact_finding_call_date.strftime("%m/%d/%Y") %></em><% end %>
   		  <br>
   		  Subject Matter Expert: <em><%= @prospect.hcs_sme %></em><br>
+  		  <br>
+  		  New Cost: <% if @prospect.new_estimated_health_benefit_cost != 0 %>
+  		              <em><%= number_to_currency(@prospect.new_estimated_health_benefit_cost, precision: 0) %></em>
+  		            <% end %>
       </div>
       <div class="col-md-4">
         Proposal Meeting Date: <% if !@prospect.hcs_sme_proposal_meeting_date.nil? %>
@@ -63,7 +62,6 @@
     <h4>HCSQ - HealthCare Savings Questionaire</h4>
     <div class="row">
       <div class="col-md-4">
-        <p><strong>Required Questions</strong></p>
     		<p>Current Carrier: <em><%= @prospect.hcbq_current_carrier %></em></p>
     		<p>Current Coverage Type: <em><%= @prospect.hcbq_current_coverage_type %></em></p>
     		<p>Renewal Month: <em><%= @prospect.renewal_month %></em></p>
@@ -80,7 +78,6 @@
       </div>
       
       <div class="col-md-8">
-        <p><strong>Optional Questions</strong></p>
     		<p>1) For you & your employees, what are the 3 most important elements of your health plan?<br>
     		  <em class="tab"><%= @prospect.hcbq_most_important %></em></p>
     		  
