@@ -35,6 +35,12 @@ class NotificationMailer < ApplicationMailer
               to: prospect.contact1_email, bcc: prospect.user_email, subject: 'accounts payable')
     end
 
+    def new_pay_meeting(prospect)
+        @prospect = prospect
+        mail(from: "#{prospect.intelatek_bda} <info@savingsconsultants.co>",
+              to: prospect.contact1_email, bcc: prospect.user_email, subject: 'same day pay')
+    end
+
     def new_comment(comment)
         @comment = comment
         mail(to: [comment.prospect.user_email],

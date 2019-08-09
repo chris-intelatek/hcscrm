@@ -1,0 +1,33 @@
+  <p>Hi <%= @prospect.contact1_first_name %>,</p>
+  
+  <p>It was great speaking with you today.</p>
+  
+  <p>We look forward to sharing with you, how we've been helping businesses to reduce turnover and increase the number of applicants, by providing daily access to earned wages, without having to change payroll providers or existing payroll processes.<p>
+      
+  <p>This 2-minute video will give you an overview of what we do https://player.vimeo.com/video/341364698</p>
+
+  <% if @prospect.intelatek_lead_type = "Virtual Meeting" %>
+    
+    <p>As we discussed, <%= @prospect.user.advisor_first_name %> <%= @prospect.user.advisor_last_name %> will be calling you on 
+      <%= @prospect.intelatek_day %>  <% if !@prospect.vcp_intro_presentation_date.nil? %>
+                                        <%= @prospect.vcp_intro_presentation_date.strftime("%m/%d/%Y") %> 
+                                      <% end %> 
+      at <%= @prospect.intelatek_time %> <%= @prospect.intelatek_timezone %> for a quick 15-minute call to share how we how we’re able to help employers give employees instant access to the money they’ve already earned.</p>
+    
+    <p>We'll send you a calendar invite which will also include a screen share link so that you can view <%= @prospect.user.advisor_first_name %>'s screen.</p>
+  
+  <% else %>
+  
+    <p><%= @prospect.user.advisor_first_name %> <%= @prospect.user.advisor_last_name %> looks forward to speaking with you on 
+    	<%= @prospect.intelatek_day %>  <% if !@prospect.intro_presentation_date.nil? %>
+        	                              <%= @prospect.intro_presentation_date.strftime("%m/%d/%Y") %> 
+            	                        <% end %> 
+        at <%= @prospect.intelatek_time %> <%= @prospect.intelatek_timezone %> and sharing how we how we’re able to help employers give employees instant access to the money they’ve already earned.</p>
+  
+  <% end %>
+  
+  <p>Thanks,</p>
+  
+  <p><%= @prospect.intelatek_bda %><br>
+  <%= @prospect.user.advisor_company_name %></p>
+  

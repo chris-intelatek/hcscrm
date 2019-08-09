@@ -8,12 +8,12 @@ class ProspectsController < ApplicationController
     @pay_status = Prospect.select(:pay_status).order(:pay_status).distinct
     if params[:status] != nil
       @prospects = Prospect.where(status: params[:status])
-      elsif params[:pay_status] != nil
-        @prospects = Prospect.where(pay_status: params[:pay_status])
-      elsif params[:search]
-        @prospects = Prospect.search(params[:search]).order("created_at DESC")
-      elsif
-        @prospects = Prospect.all.order('user_id DESC')
+    elsif params[:pay_status] != nil
+      @prospects = Prospect.where(pay_status: params[:pay_status])
+    elsif params[:search]
+      @prospects = Prospect.search(params[:search]).order("created_at DESC")
+    elsif
+      @prospects = Prospect.all.order('user_id DESC')
     end
 
     respond_to do |format|
@@ -86,7 +86,9 @@ class ProspectsController < ApplicationController
         # elsif  prospect_params[:pay_prospect] == '1' && prospect_params[:contact1_email].present?
         #   NotificationMailer.new_hcs_meeting(@prospect).deliver_later
         elsif  prospect_params[:vcp_prospect] == '1' && prospect_params[:contact1_email].present?
-          NotificationMailer.new_vcp_meeting(@prospect).deliver_later          
+          NotificationMailer.new_vcp_meeting(@prospect).deliver_later
+        elsif  prospect_params[:pay_prospect] == '1' && prospect_params[:contact1_email].present?
+          NotificationMailer.new_pay_meeting(@prospect).deliver_later 
         end
     else
       render 'new_lead'
