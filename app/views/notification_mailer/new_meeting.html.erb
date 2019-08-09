@@ -37,7 +37,7 @@
 <p>Address:  <%= @prospect.street_address %>, <%= @prospect.address2 %>, <%= @prospect.city %>, <%= @prospect.state %> <%= @prospect.zip %></p>
 <p>Contact Name: <%= @prospect.contact1_first_name %> <%= @prospect.contact1_last_name %>, <%= @prospect.contact1_title %></p>
 <p>Phone: <%= @prospect.phone %></p>
-<% if @prospect.hcs_prospect == true %>
+<% if @prospect.employees? %>
   <p>Employees: <%= @prospect.employees %></p>
 <% end %>
 <p>

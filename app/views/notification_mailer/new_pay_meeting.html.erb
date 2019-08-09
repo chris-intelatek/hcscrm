@@ -12,7 +12,7 @@
       <%= @prospect.intelatek_day %>  <% if !@prospect.vcp_intro_presentation_date.nil? %>
                                         <%= @prospect.vcp_intro_presentation_date.strftime("%m/%d/%Y") %> 
                                       <% end %> 
-      at <%= @prospect.intelatek_time %> <%= @prospect.intelatek_timezone %> for a quick 15-minute call to share how we how we’re able to help employers give employees instant access to the money they’ve already earned.</p>
+      at <%= @prospect.intelatek_time %> <%= @prospect.intelatek_timezone %> for a quick 15-minute call to share how we’re able to help employers give employees instant access to the money they’ve already earned.</p>
     
     <p>We'll send you a calendar invite which will also include a screen share link so that you can view <%= @prospect.user.advisor_first_name %>'s screen.</p>
   
@@ -22,7 +22,7 @@
     	<%= @prospect.intelatek_day %>  <% if !@prospect.intro_presentation_date.nil? %>
         	                              <%= @prospect.intro_presentation_date.strftime("%m/%d/%Y") %> 
             	                        <% end %> 
-        at <%= @prospect.intelatek_time %> <%= @prospect.intelatek_timezone %> and sharing how we how we’re able to help employers give employees instant access to the money they’ve already earned.</p>
+        at <%= @prospect.intelatek_time %> <%= @prospect.intelatek_timezone %> and sharing how we’re able to help employers give employees instant access to the money they’ve already earned.</p>
   
   <% end %>
   
