@@ -16,7 +16,7 @@
     
     <p>We'll send you a calendar invite which will also include a screen share link so that you can view <%= @prospect.user.advisor_first_name %>'s screen.</p>
   
-  <% else %>
+  <% elsif @prospect.intelatek_lead_type = "Face to Face Meeting" %>
   
     <p><%= @prospect.user.advisor_first_name %> <%= @prospect.user.advisor_last_name %> looks forward to speaking with you on 
     	<%= @prospect.intelatek_day %>  <% if !@prospect.intro_presentation_date.nil? %>
