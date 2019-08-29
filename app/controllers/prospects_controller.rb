@@ -7,13 +7,13 @@ class ProspectsController < ApplicationController
     @status = Prospect.select(:status).order(:status).distinct
     @pay_status = Prospect.select(:pay_status).order(:pay_status).distinct
     if params[:status] != nil
-      @prospects = Prospect.where(status: params[:status])
+      @prospects = Prospect.where(status: params[:status]).paginate(:per_page => 25, :page => params[:page])
     elsif params[:pay_status] != nil
-      @prospects = Prospect.where(pay_status: params[:pay_status])
+      @prospects = Prospect.where(pay_status: params[:pay_status]).paginate(:per_page => 25, :page => params[:page])
     elsif params[:search]
-      @prospects = Prospect.search(params[:search]).order("created_at DESC")
+      @prospects = Prospect.search(params[:search]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
     elsif
-      @prospects = Prospect.all.order('user_id DESC')
+      @prospects = Prospect.all.order('user_id DESC').paginate(:per_page => 25, :page => params[:page])
     end
 
     respond_to do |format|
@@ -44,7 +44,7 @@ class ProspectsController < ApplicationController
     @users = User.all
   end
 
-  
+
   def new
     @prospect = current_user.prospects.build
   end
