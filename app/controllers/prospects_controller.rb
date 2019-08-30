@@ -6,14 +6,23 @@ class ProspectsController < ApplicationController
   def index
     @status = Prospect.select(:status).order(:status).distinct
     @pay_status = Prospect.select(:pay_status).order(:pay_status).distinct
+    # if params[:status] != nil
+    #   @prospects = Prospect.where(status: params[:status]).paginate(:per_page => 25, :page => params[:page])
+    # elsif params[:pay_status] != nil
+    #   @prospects = Prospect.where(pay_status: params[:pay_status]).paginate(:per_page => 25, :page => params[:page])
+    # elsif params[:search]
+    #   @prospects = Prospect.search(params[:search]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
+    # elsif
+    #   @prospects = Prospect.all.order('user_id DESC').paginate(:per_page => 25, :page => params[:page])
+    # end
     if params[:status] != nil
-      @prospects = Prospect.where(status: params[:status]).paginate(:per_page => 25, :page => params[:page])
+      @prospects = Prospect.where(status: params[:status])
     elsif params[:pay_status] != nil
-      @prospects = Prospect.where(pay_status: params[:pay_status]).paginate(:per_page => 25, :page => params[:page])
+      @prospects = Prospect.where(pay_status: params[:pay_status])
     elsif params[:search]
-      @prospects = Prospect.search(params[:search]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
+      @prospects = Prospect.search(params[:search]).order("created_at DESC")
     elsif
-      @prospects = Prospect.all.order('user_id DESC').paginate(:per_page => 25, :page => params[:page])
+      @prospects = Prospect.all.order('user_id DESC')
     end
 
     respond_to do |format|
