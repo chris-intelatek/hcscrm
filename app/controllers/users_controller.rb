@@ -4,10 +4,15 @@ class UsersController < ApplicationController
 
 
   def index
+    # if params[:search]
+    #   @users = User.search(params[:search]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
+    # else
+    #   @users = User.all.paginate(:per_page => 25, :page => params[:page])
+      
     if params[:search]
-      @users = User.search(params[:search]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
+      @users = User.search(params[:search]).order("created_at DESC")
     else
-      @users = User.all.paginate(:per_page => 25, :page => params[:page])
+      @users = User.all
       
       respond_to do |format|
         format.html
