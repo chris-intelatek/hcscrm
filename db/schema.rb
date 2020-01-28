@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190607180852) do
+ActiveRecord::Schema.define(version: 20200128204822) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "hcs_content"
@@ -149,6 +149,26 @@ ActiveRecord::Schema.define(version: 20190607180852) do
     t.boolean  "branch",                 default: false
     t.string   "advisor_company_name"
     t.boolean  "intelatek",              default: false
+    t.string   "attachment1"
+    t.string   "attachment2"
+    t.string   "attachment3"
+    t.string   "attachment4"
+    t.string   "attachment5"
+    t.string   "attachment6"
+    t.string   "attachment7"
+    t.string   "attachment8"
+    t.string   "attachment9"
+    t.string   "attachment10"
+    t.string   "attachment1_name"
+    t.string   "attachment2_name"
+    t.string   "attachment3_name"
+    t.string   "attachment4_name"
+    t.string   "attachment5_name"
+    t.string   "attachment6_name"
+    t.string   "attachment7_name"
+    t.string   "attachment8_name"
+    t.string   "attachment9_name"
+    t.string   "attachment10_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

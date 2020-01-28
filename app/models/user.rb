@@ -5,6 +5,16 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
         :trackable, :validatable, :timeoutable
+  mount_uploader :attachment1, AttachmentUploader
+  mount_uploader :attachment2, AttachmentUploader
+  mount_uploader :attachment3, AttachmentUploader
+  mount_uploader :attachment4, AttachmentUploader
+  mount_uploader :attachment5, AttachmentUploader
+  mount_uploader :attachment6, AttachmentUploader
+  mount_uploader :attachment7, AttachmentUploader
+  mount_uploader :attachment8, AttachmentUploader
+  mount_uploader :attachment9, AttachmentUploader
+  mount_uploader :attachment10, AttachmentUploader
 
 
   def self.to_csv

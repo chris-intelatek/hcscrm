@@ -16,6 +16,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sendgrid-ruby'
 gem 'will_paginate', '~> 3.1', '>= 3.1.6'
 gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
+gem 'carrierwave', '~> 1.0'
+gem 'fog', '~> 1.40', require: 'fog/aws'
+
 
 group :development, :test do
   gem 'sqlite3', '~> 1.3.0'
