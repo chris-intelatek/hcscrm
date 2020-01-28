@@ -23,115 +23,113 @@
 
         <% if current_user.admin || current_user.manager %>        
 
-<hr>
+          <hr>
+          
+          <h4>Attachments</h4>
+          
+            <div class="row">
+              <div class="col-md-6"><%= f.input :attachment1_name, label: 'Attachment 1', placeholder: "Attachment Name" %></div>
+              <div class="col-md-6"><br>
+                <%= f.file_field :attachment1 %> 
+                <% if @user.attachment1? %>      
+                  <%= link_to @user.attachment1_url.last(30), target: :_blank %>
+                <% end %>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6"><%= f.input :attachment2_name, label: 'Attachment 2', placeholder: "Attachment Name" %></div>
+              <div class="col-md-6"><br>
+                <%= f.file_field :attachment2 %>
+                <% if @user.attachment2? %>      
+                  <%= link_to @user.attachment2_url.last(30), target: :_blank %>
+                <% end %>
+              </div>
+            </div>
+          
+            <div class="row">
+              <div class="col-md-6"><%= f.input :attachment3_name, label: 'Attachment 3', placeholder: "Attachment Name" %></div>
+              <div class="col-md-6"><br>
+                <%= f.file_field :attachment3 %>
+                <% if @user.attachment3? %>      
+                  <%= link_to @user.attachment3_url.last(30), target: :_blank %>
+                <% end %>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6"><%= f.input :attachment4_name, label: 'Attachment 4', placeholder: "Attachment Name" %></div>
+              <div class="col-md-6"><br>
+                <%= f.file_field :attachment4 %>
+                <% if @user.attachment4? %>
+                  <%= link_to @user.attachment4_url.last(30), target: :_blank %>
+                <% end %>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6"><%= f.input :attachment5_name, label: 'Attachment 5', placeholder: "Attachment Name" %></div>
+              <div class="col-md-6"><br>
+                <%= f.file_field :attachment5 %>
+                <% if @user.attachment5? %>
+                  <%= link_to @user.attachment5_url.last(30), target: :_blank %>
+                <% end %>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6"><%= f.input :attachment6_name, label: 'Attachment 6', placeholder: "Attachment Name" %></div>
+              <div class="col-md-6"><br>
+                <%= f.file_field :attachment6 %>
+                <% if @user.attachment6? %>      
+                  <%= link_to @user.attachment6_url.last(30), target: :_blank %>
+                <% end %>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6"><%= f.input :attachment7_name, label: 'Attachment 7', placeholder: "Attachment Name" %></div>
+              <div class="col-md-6"><br>
+                <%= f.file_field :attachment7 %>
+                <% if @user.attachment7? %>      
+                  <%= link_to @user.attachment7_url.last(30), target: :_blank %>
+                <% end %>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6"><%= f.input :attachment8_name, label: 'Attachment 8', placeholder: "Attachment Name" %></div>
+              <div class="col-md-6"><br>
+                <%= f.file_field :attachment8 %>
+                <% if @user.attachment8? %>      
+                  <%= link_to @user.attachment8_url.last(30), target: :_blank %>
+                <% end %>
+              </div>
+            </div>
+          
+            <div class="row">
+              <div class="col-md-6"><%= f.input :attachment9_name, label: 'Attachment 9', placeholder: "Attachment Name" %></div>
+              <div class="col-md-6"><br>
+                <%= f.file_field :attachment9 %>
+                <% if @user.attachment9? %>
+                  <%= link_to @user.attachment9_url.last(30), target: :_blank %>
+                <% end %>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6"><%= f.input :attachment10_name, label: 'Attachment 10', placeholder: "Attachment Name" %></div>
+              <div class="col-md-6"><br>
+                <%= f.file_field :attachment10 %>
+                <% if @user.attachment10? %>
+                  <%= link_to @user.attachment10_url.last(30), target: :_blank %>
+                <% end %>
+              </div>
+            </div>
 
-<h4>Attachments</h4>
-
-  <div class="row">
-    <div class="col-md-6"><%= f.input :attachment1_name, label: 'Attachment 1', placeholder: "Attachment Name" %></div>
-    <div class="col-md-6"><br>
-      <%= f.file_field :attachment1 %> 
-      <% if @user.attachment1? %>      
-        <%= link_to @user.attachment1_url.last(30), target: :_blank %>
-      <% end %>
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-md-6"><%= f.input :attachment2_name, label: 'Attachment 2', placeholder: "Attachment Name" %></div>
-    <div class="col-md-6"><br>
-      <%= f.file_field :attachment2 %>
-      <% if @user.attachment2? %>      
-        <%= link_to @user.attachment2_url.last(30), target: :_blank %>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6"><%= f.input :attachment3_name, label: 'Attachment 3', placeholder: "Attachment Name" %></div>
-    <div class="col-md-6"><br>
-      <%= f.file_field :attachment3 %>
-      <% if @user.attachment3? %>      
-        <%= link_to @user.attachment3_url.last(30), target: :_blank %>
-      <% end %>
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-md-6"><%= f.input :attachment4_name, label: 'Attachment 4', placeholder: "Attachment Name" %></div>
-    <div class="col-md-6"><br>
-      <%= f.file_field :attachment4 %>
-      <% if @user.attachment4? %>
-        <%= link_to @user.attachment4_url.last(30), target: :_blank %>
-      <% end %>
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-md-6"><%= f.input :attachment5_name, label: 'Attachment 5', placeholder: "Attachment Name" %></div>
-    <div class="col-md-6"><br>
-      <%= f.file_field :attachment5 %>
-      <% if @user.attachment5? %>
-        <%= link_to @user.attachment5_url.last(30), target: :_blank %>
-      <% end %>
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-md-6"><%= f.input :attachment6_name, label: 'Attachment 6', placeholder: "Attachment Name" %></div>
-    <div class="col-md-6"><br>
-      <%= f.file_field :attachment6 %>
-      <% if @user.attachment6? %>      
-        <%= link_to @user.attachment6_url.last(30), target: :_blank %>
-      <% end %>
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-md-6"><%= f.input :attachment7_name, label: 'Attachment 7', placeholder: "Attachment Name" %></div>
-    <div class="col-md-6"><br>
-      <%= f.file_field :attachment7 %>
-      <% if @user.attachment7? %>      
-        <%= link_to @user.attachment7_url.last(30), target: :_blank %>
-      <% end %>
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-md-6"><%= f.input :attachment8_name, label: 'Attachment 8', placeholder: "Attachment Name" %></div>
-    <div class="col-md-6"><br>
-      <%= f.file_field :attachment8 %>
-      <% if @user.attachment8? %>      
-        <%= link_to @user.attachment8_url.last(30), target: :_blank %>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6"><%= f.input :attachment9_name %></div>
-    <div class="col-md-6"><br>
-      <%= f.file_field :attachment9 %>
-      <% if @user.attachment9? %>
-        <%= link_to @user.attachment9_url.last(30), target: :_blank %>
-      <% end %>
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-md-6"><%= f.input :attachment10_name, label: 'Attachment 10', placeholder: "Attachment Name" %></div>
-    <div class="col-md-6"><br>
-      <%= f.file_field :attachment10 %>
-      <% if @user.attachment10? %>
-        <%= link_to @user.attachment10_url.last(30), target: :_blank %>
-      <% end %>
-    </div>
-  </div>
-
-
-        
-          <%= f.input :group, required: true %>
-        <% end %>
-
+            <hr>
+            <%= f.input :group, required: true %>
+          <% end %>
 
 
         <% if current_user.admin || [current_user.manager && current_user.support] %>        
