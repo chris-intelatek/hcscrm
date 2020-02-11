@@ -1,48 +1,85 @@
 <% if current_user.manager || current_user.support %>
 
-  <div class="col-md-4 col-md-offset-4">
+
+
+  <div class="col-md-10 col-md-offset-1">
   	<div class="panel panel-gray">
       <div class="panel-heading">
         <h4><%= @user.advisor_first_name + ' ' + @user.advisor_last_name %></h4>
       </div>
       <div class="prospect-show">
-        <table valign="middle">
-          <tr>
-            <td>Company: </td><td><%= @user.advisor_company_name %></td>
-          </tr>
-          <tr>
-            <td>Phone: </td><td><%= @user.advisor_phone %></td>
-          </tr>
-          <tr>
-            <td>Mobile: </td><td><%= @user.advisor_mobile %></td>    
-          </tr>
-          <tr>
-            <td>Email: </td><td><%= @user.email %></td>
-          </tr>
-          <tr>
-            <td>Address: &nbsp;&nbsp;<br>&nbsp;</td><td><%= @user.mailing_address %><br>
-              <%= @user.apt_suite %>
-              <%= @user.city %>, <%= @user.state %>  <%= @user.zip %>
-          		<br>
-            </td>
-          </tr>
-				</table>
+      	
+        <div class="row">
 
-				<hr>          	
-				<h4>Attachments</h4>
+          <div class="col-md-5 col-md-offset-1">
+		        <table valign="middle">
+
+		          <tr>
+		            <td>Consultant: </td><td><%= @user.advisor_first_name + ' ' + @user.advisor_last_name %></td>
+		          </tr>
+		          <tr>
+		            <td>Company: </td><td><%= @user.advisor_company_name %></td>
+		          </tr>
+		          <tr>
+		            <td>Phone: </td><td><%= @user.advisor_phone %></td>
+		          </tr>
+		          <tr>
+		            <td>Mobile: </td><td><%= @user.advisor_mobile %></td>    
+		          </tr>
+		          <tr>
+		            <td>Email: </td><td><%= @user.email %></td>
+		          </tr>
+		          <tr>
+		            <td>Address: &nbsp;&nbsp;<br>&nbsp;</td><td><%= @user.mailing_address %><br>
+		              <%= @user.apt_suite %>
+		              <%= @user.city %>, <%= @user.state %>  <%= @user.zip %>
+		          		<br>
+		            </td>
+		          </tr>
+		          
+		          <tr>
+		            <td>Training Completed Date: </td><td><% if !@user.training_date.nil? %>
+		    		  																					<%= @user.training_date.strftime("%m/%d/%y") %>
+		      																						<% end %></td>
+		          </tr>
+		          
+		          <tr>
+		            <td>Business Plan Scheduled<br>
+		            		or Completed Date: </td><td><% if !@user.business_plan_date.nil? %>
+																			    		 		<%= @user.business_plan_date.strftime("%m/%d/%y") %>
+																								<% end %></td>
+		          </tr>
+						</table>
+					</div>
+
+          <div class="col-md-5 col-md-offset-1">
 				
-				<%= link_to "#{@user.attachment1_name}", @user.attachment1_url, target: :_blank %><br>
-				<%= link_to "#{@user.attachment2_name}", @user.attachment2_url, target: :_blank %><br>  	
-				<%= link_to "#{@user.attachment3_name}", @user.attachment3_url, target: :_blank %><br>
-				<%= link_to "#{@user.attachment4_name}", @user.attachment4_url, target: :_blank %><br>
-				<%= link_to "#{@user.attachment5_name}", @user.attachment5_url, target: :_blank %><br>
-				<%= link_to "#{@user.attachment6_name}", @user.attachment6_url, target: :_blank %><br>  	
-				<%= link_to "#{@user.attachment7_name}", @user.attachment7_url, target: :_blank %><br>
-				<%= link_to "#{@user.attachment8_name}", @user.attachment8_url, target: :_blank %><br>
-				<%= link_to "#{@user.attachment9_name}", @user.attachment9_url, target: :_blank %><br>
-				<%= link_to "#{@user.attachment10_name}", @user.attachment10_url, target: :_blank %><br>  	
+						<p><strong>Documents</strong></p>
+						
+						<ul>
+							<%= link_to "#{@user.attachment1_name}", @user.attachment1_url, target: :_blank %><br>
+							<%= link_to "#{@user.attachment2_name}", @user.attachment2_url, target: :_blank %><br>  	
+							<%= link_to "#{@user.attachment3_name}", @user.attachment3_url, target: :_blank %><br>
+							<%= link_to "#{@user.attachment4_name}", @user.attachment4_url, target: :_blank %><br>
+							<%= link_to "#{@user.attachment5_name}", @user.attachment5_url, target: :_blank %><br>
+							<%= link_to "#{@user.attachment6_name}", @user.attachment6_url, target: :_blank %><br>  	
+							<%= link_to "#{@user.attachment7_name}", @user.attachment7_url, target: :_blank %><br>
+							<%= link_to "#{@user.attachment8_name}", @user.attachment8_url, target: :_blank %><br>
+							<%= link_to "#{@user.attachment9_name}", @user.attachment9_url, target: :_blank %><br>
+							<%= link_to "#{@user.attachment10_name}", @user.attachment10_url, target: :_blank %>
+						</ul>	
+					</div>
+				</div>
+
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+          	<hr>
+						<p><strong>Notes</strong></p>
+					</div>
+				</div>
 
       </div>
+      
     	<div class="panel-footer">
     		<div class="links center">
     			<%= link_to "Back", users_path, class: "btn btn-beige" %> &nbsp;&nbsp;

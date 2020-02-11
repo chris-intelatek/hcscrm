@@ -204,6 +204,20 @@ nav .navbar-nav li a:hover {
 	font-family: 'Muli', sans-serif;
 	font-weight: 100;
 	text-shadow: 1px 1px 2px #393D3F;
+
+	a:link {
+    color: #FDFDFF;
+	}
+	a:visited {
+	  color: #FDFDFF;
+	}
+	a:hover {
+	  color: #C6C5B9;
+	}
+	a:active {
+	  color: #FDFDFF;
+	}
+	
 	h2 {
 		margin-top: 0;
 	}

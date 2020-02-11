@@ -59,6 +59,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:advisor_first_name, :advisor_last_name, :advisor_phone, :advisor_mobile, :admin, :manager, :support, :email, :password, :password_confirmation, :group, :entrust, :branch, :mailing_address, :apt_suite, :city, :state, :zip, :advisor_company_name, :intelatek, :attachment1, :attachment2, :attachment3, :attachment4, :attachment5, :attachment6, :attachment7, :attachment8, :attachment9, :attachment10, :attachment1_name, :attachment2_name, :attachment3_name, :attachment4_name, :attachment5_name, :attachment6_name, :attachment7_name, :attachment8_name, :attachment9_name, :attachment10_name)
+    params.require(:user).permit(:advisor_first_name, :advisor_last_name, :advisor_phone, :advisor_mobile, :admin, :manager, :support, :email, :password, :password_confirmation, :group, :entrust, :branch, :mailing_address, :apt_suite, :city, :state, :zip, :advisor_company_name, :intelatek, :attachment1, :attachment2, :attachment3, :attachment4, :attachment5, :attachment6, :attachment7, :attachment8, :attachment9, :attachment10, :attachment1_name, :attachment2_name, :attachment3_name, :attachment4_name, :attachment5_name, :attachment6_name, :attachment7_name, :attachment8_name, :attachment9_name, :attachment10_name, :training_date, :business_plan_date)
   end
 end

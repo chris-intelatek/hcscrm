@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200128204822) do
+ActiveRecord::Schema.define(version: 20200211154542) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "hcs_content"
@@ -169,6 +169,8 @@ ActiveRecord::Schema.define(version: 20200128204822) do
     t.string   "attachment8_name"
     t.string   "attachment9_name"
     t.string   "attachment10_name"
+    t.date     "training_date"
+    t.date     "business_plan_date"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
