@@ -32,6 +32,19 @@
     					  <li><%= link_to users_path do %><i class="fa fa-users"></i> Users<% end %></li>
               <% end %>
 
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Services
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <ul class="nav">
+                  <li><%= link_to healthcare_savings_path do %><i class="fa fa-user-md"></i> HealthCare<% end %></li>
+                  <li><%= link_to healthcare_savings_path do %><i class="glyphicon glyphicon-warning-sign"></i> Coming Soon<% end %></li>
+                  <li><%= link_to healthcare_savings_path do %><i class="glyphicon glyphicon-warning-sign"></i> Coming Soon<% end %></li>                  
+                  </ul>
+                </div>
+              </li>
+
               <li><%= link_to prospects_path, class: 'nav-link' do %><i class="fa fa-crosshairs"></i> Prospects<% end %></li>
 
               <li><%= link_to new_prospect_path, class: "nav-link" do %><i class="fa fa-user-plus"></i> Add Prospect<% end %></li>
