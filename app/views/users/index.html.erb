@@ -67,7 +67,7 @@
             <% @users.order(:advisor_first_name).each do |user| %>
               <tr>
               	<td class="td-left"><%= link_to user.advisor_name, user %></td>
-              	<td style="vertical-align:middle"><%= link_to user.state, user %></td>              	
+              	<td style="vertical-align:middle"><%= user.state %></td>              	
               	<td style="vertical-align:middle">
               	  <%= time_ago_in_words(user.current_sign_in_at) if user.current_sign_in_at %> ago</td>
               	<td style="vertical-align:middle"><%= user.group %></td>
