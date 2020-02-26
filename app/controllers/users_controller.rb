@@ -8,8 +8,10 @@ class UsersController < ApplicationController
     #   @users = User.search(params[:search]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
     # else
     #   @users = User.all.paginate(:per_page => 25, :page => params[:page])
-      
-    if params[:search]
+    @state = User.select(:state).order(:state).distinct      
+    if params[:state] != nil
+      @users = User.where(state: params[:state])
+    elsif params[:search]
       @users = User.search(params[:search]).order("created_at DESC")
     else
       @users = User.all
@@ -21,6 +23,7 @@ class UsersController < ApplicationController
       
     end
   end
+
 
   def show
   end
