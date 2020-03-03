@@ -29,7 +29,11 @@
           <div class="col-md-5 col-md-offset-1">
 
             <% if current_user.admin || current_user.manager %>
-
+            
+      			<%= f.input :signup_date, :include_blank => true, :default => nil,
+      			    required: true, as: :date, html5: true, order: [:month, :day, :year], label: "Sign Date" %>
+            <%= f.input :fee, required: true, label: 'Fee Paid'  %>
+            <%= f.input :occupation, required: true, label: 'Occupation'  %>
         			<%= f.input :training_date, :include_blank => true, :default => nil,
         			    required: true, as: :date, html5: true, order: [:month, :day, :year], label: "Training Completed Date" %>
         			    

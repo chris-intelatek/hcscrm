@@ -15,40 +15,82 @@
 		        <table valign="middle">
 
 		          <tr>
-		            <td>Consultant: </td><td><%= @user.advisor_first_name + ' ' + @user.advisor_last_name %></td>
+		            <td>Consultant: </td><td>&nbsp;&nbsp;</td><td><%= @user.advisor_first_name + ' ' + @user.advisor_last_name %></td>
 		          </tr>
 		          <tr>
-		            <td>Company: </td><td><%= @user.advisor_company_name %></td>
+		            <td colspan="2">&nbsp;</td>
+		          </tr>	
+		          <tr>
+		            <td>Company: </td><td>&nbsp;&nbsp;</td><td><%= @user.advisor_company_name %></td>
 		          </tr>
 		          <tr>
-		            <td>Phone: </td><td><%= @user.advisor_phone %></td>
+		            <td colspan="2">&nbsp;</td>
+		          </tr>			          
+		          <tr>
+		            <td>Phone: </td><td>&nbsp;&nbsp;</td><td><%= @user.advisor_phone %></td>
 		          </tr>
 		          <tr>
-		            <td>Mobile: </td><td><%= @user.advisor_mobile %></td>    
+		            <td colspan="2">&nbsp;</td>
+		          </tr>	
+		          <tr>
+		            <td>Mobile: </td><td>&nbsp;&nbsp;</td><td><%= @user.advisor_mobile %></td>    
 		          </tr>
 		          <tr>
-		            <td>Email: </td><td><%= @user.email %></td>
+		            <td colspan="2">&nbsp;</td>
+		          </tr>	
+		          <tr>
+		            <td>Email: </td><td>&nbsp;&nbsp;</td><td><%= @user.email %></td>
 		          </tr>
 		          <tr>
-		            <td>Address: &nbsp;&nbsp;<br>&nbsp;</td><td><%= @user.mailing_address %><br>
+		            <td colspan="2">&nbsp;</td>
+		          </tr>	
+		          <tr>
+		            <td>Address: &nbsp;&nbsp;<br>&nbsp;</td><td>&nbsp;&nbsp;</td><td><%= @user.mailing_address %><br>
 		              <%= @user.apt_suite %>
 		              <%= @user.city %>, <%= @user.state %>  <%= @user.zip %>
 		          		<br>
 		            </td>
 		          </tr>
-		          
 		          <tr>
-		            <td>Training Completed Date: </td><td><% if !@user.training_date.nil? %>
+		            <td colspan="2">&nbsp;</td>
+		          </tr>	
+		          <tr>
+		            <td>Sign Date: </td><td>&nbsp;&nbsp;</td><td><% if !@user.signup_date.nil? %>
+																			    		 		<%= @user.signup_date.strftime("%m/%d/%y") %>
+																								<% end %></td>
+		          </tr>		  
+		          <tr>
+		            <td colspan="2">&nbsp;</td>
+		          </tr>	
+		          <tr>
+		            <td>Training Completed Date: </td><td>&nbsp;&nbsp;</td><td><% if !@user.training_date.nil? %>
 		    		  																					<%= @user.training_date.strftime("%m/%d/%y") %>
 		      																						<% end %></td>
 		          </tr>
-		          
+		          <tr>
+		            <td colspan="2">&nbsp;</td>
+		          </tr>			          
 		          <tr>
 		            <td>Business Plan Scheduled<br>
-		            		or Completed Date: </td><td><% if !@user.business_plan_date.nil? %>
+		            		or Completed Date: </td><td>&nbsp;&nbsp;</td><td><% if !@user.business_plan_date.nil? %>
 																			    		 		<%= @user.business_plan_date.strftime("%m/%d/%y") %>
 																								<% end %></td>
 		          </tr>
+		          <tr>
+		            <td colspan="2">&nbsp;</td>
+		          </tr>			          
+		          <tr>
+		            <td>Fee Paid: </td><td>&nbsp;&nbsp;</td><td><%= @user.fee %></td>
+		          </tr>        
+		          <tr>
+		            <td colspan="2">&nbsp;</td>
+		          </tr>			          
+		          <tr>
+		            <td>Occupation: </td><td>&nbsp;&nbsp;</td><td><%= @user.occupation %></td>
+		          </tr> 		          
+		          <tr>
+		            <td colspan="2">&nbsp;</td>
+		          </tr>			          
 						</table>
 					</div>
 
@@ -57,16 +99,16 @@
 						<p><strong>Documents</strong></p>
 						
 						<ul>
-							<%= link_to "#{@user.attachment1_name}", @user.attachment1_url, target: :_blank %><br>
-							<%= link_to "#{@user.attachment2_name}", @user.attachment2_url, target: :_blank %><br>  	
-							<%= link_to "#{@user.attachment3_name}", @user.attachment3_url, target: :_blank %><br>
-							<%= link_to "#{@user.attachment4_name}", @user.attachment4_url, target: :_blank %><br>
-							<%= link_to "#{@user.attachment5_name}", @user.attachment5_url, target: :_blank %><br>
-							<%= link_to "#{@user.attachment6_name}", @user.attachment6_url, target: :_blank %><br>  	
-							<%= link_to "#{@user.attachment7_name}", @user.attachment7_url, target: :_blank %><br>
-							<%= link_to "#{@user.attachment8_name}", @user.attachment8_url, target: :_blank %><br>
-							<%= link_to "#{@user.attachment9_name}", @user.attachment9_url, target: :_blank %><br>
-							<%= link_to "#{@user.attachment10_name}", @user.attachment10_url, target: :_blank %>
+							<%= link_to "#{@user.attachment1_name}", @user.attachment1_url, target: :_blank %><br><br>
+							<%= link_to "#{@user.attachment2_name}", @user.attachment2_url, target: :_blank %><br><br>  	
+							<%= link_to "#{@user.attachment3_name}", @user.attachment3_url, target: :_blank %><br><br>
+							<%= link_to "#{@user.attachment4_name}", @user.attachment4_url, target: :_blank %><br><br>
+							<%= link_to "#{@user.attachment5_name}", @user.attachment5_url, target: :_blank %><br><br>
+							<%= link_to "#{@user.attachment6_name}", @user.attachment6_url, target: :_blank %><br><br>
+							<%= link_to "#{@user.attachment7_name}", @user.attachment7_url, target: :_blank %><br><br>
+							<%= link_to "#{@user.attachment8_name}", @user.attachment8_url, target: :_blank %><br><br>
+							<%= link_to "#{@user.attachment9_name}", @user.attachment9_url, target: :_blank %><br><br>
+							<%= link_to "#{@user.attachment10_name}", @user.attachment10_url, target: :_blank %><br>
 						</ul>	
 					</div>
 				</div>
