@@ -19,9 +19,11 @@
 					<% end %>
 				</div>
 		  		<div class="col-md-2 pull-right">
-		  			<% if current_user.manager %>
+		  			<% if current_user.manager || current_user.admin %>
 							<%= link_to "Download CSV", prospects_path(format: "csv"), class: "btn btn-beige btn-sm" %>
-							<%#= form_tag import_prospects_path, multipart: true do %><%#= file_field_tag :file %><%#= submit_tag "Temporary Import CSV" %><%# end %>
+						<% end %>
+						<% if current_user.admin %>
+							<%= form_tag import_prospects_path, multipart: true do %><%= file_field_tag :file %><%= submit_tag "Temporary Import CSV", class:"btn btn-danger btn-sm" %><% end %>
 						<% end %>
 		  		</div>
 	  	</div>
@@ -131,7 +133,7 @@
 			
 		</div>
 
-		<div class="panel-footer center">
+		<div class="panel-footer">
 			<%#= will_paginate @prospects, renderer: BootstrapPagination::Rails %>
 	 	</div>
 

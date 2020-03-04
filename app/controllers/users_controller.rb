@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show]
+  before_filter :authenticate_user!, :except => [:show, :import]
   before_action :set_user, only: [:show, :edit, :destroy, :update]
 
 
@@ -22,6 +22,12 @@ class UsersController < ApplicationController
       end   
       
     end
+  end
+
+
+  def import
+    User.import(params[:file])
+    redirect_to root_url, notice: "Users imported."
   end
 
 

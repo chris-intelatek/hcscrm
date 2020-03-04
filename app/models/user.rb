@@ -17,18 +17,43 @@ class User < ActiveRecord::Base
   mount_uploader :attachment10, AttachmentUploader
 
 
+  # def self.to_csv
+  #   CSV.generate(headers: true) do |csv|
+  #     csv << ["User ID", "First Name", "Last Name", "Prospects", "Logged in", "Email", "Phone",
+  #             "Mobile", "Group", "Manager", "Support"]
+  #     all.each do |user|
+  #       csv << [user.id, user.advisor_first_name, user.advisor_last_name, user.prospects.size, 
+  #               user.current_sign_in_at, user.email, user.advisor_phone,
+  #               user.advisor_mobile, user.group, user.manager, user.support]
+  #     end
+  #   end
+  # end
+
   def self.to_csv
-    CSV.generate(headers: true) do |csv|
-      csv << ["User ID", "First Name", "Last Name", "Prospects", "Logged in", "Email", "Phone",
-              "Mobile", "Group", "Manager", "Support"]
+    CSV.generate do |csv|
+      csv << column_names
       all.each do |user|
-        csv << [user.id, user.advisor_first_name, user.advisor_last_name, user.prospects.size, 
-                user.current_sign_in_at, user.email, user.advisor_phone,
-                user.advisor_mobile, user.group, user.manager, user.support]
+        csv << user.attributes.values_at(*column_names)
       end
     end
+  end  
+
+
+  # def self.import(file)
+  #   CSV.foreach(file.path, headers: true) do |row|
+  #     user_hash = row.to_hash
+  #     user = find_or_create_by!(id: user_hash['id'])
+  #     user.update_attributes(user_hash)
+  #   end
+  # end
+
+
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      User.create! row.to_hash
+    end
   end
-  
+
     
   def self.search(query)
     # Note that PostgreSQL is case specific for like when searching where sqlite3 is not

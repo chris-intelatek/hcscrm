@@ -18,6 +18,11 @@
 	  		</div>
 	  		<div class="col-md-2 pull-right">
 					<%= link_to "Download CSV", users_path(format: "csv"), class: "btn btn-beige btn-sm" %>
+					<% if current_user.admin %>
+					  <%= form_tag import_users_path, multipart: true do %>
+					  <%= file_field_tag :file %><%= submit_tag "Import Users", class:"btn btn-danger btn-sm" %>
+					  <% end %>
+					<% end %>
 	  		</div>
 	  	</div>
 	  	
