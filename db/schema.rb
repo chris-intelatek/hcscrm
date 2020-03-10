@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200310163951) do
+ActiveRecord::Schema.define(version: 20200310180238) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "hcs_content"
@@ -177,6 +177,7 @@ ActiveRecord::Schema.define(version: 20200310163951) do
     t.string   "broker"
     t.string   "fee_payment_method"
     t.boolean  "staff",                  default: false
+    t.string   "advisor_home_phone"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
