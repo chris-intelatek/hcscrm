@@ -1,7 +1,5 @@
-<% if current_user.manager || current_user.support %>
+<% if current_user.manager || current_user.staff %>
   <div class="col-md-8 col-md-offset-2">
-
-
 
 	<div class="panel panel-gray">
 	  <div class="panel-heading">
@@ -63,7 +61,7 @@
               <th>Branch</th>
               <th>Admin</th>
               <th>Manager</th>
-              <th>Support</th>
+              <th>Staff</th>
               <th>IntelaTek</th>
             </tr>
           </thead>
@@ -88,7 +86,7 @@
               	<td style="vertical-align:middle">
               	  <% if user.manager == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
               	<td style="vertical-align:middle">
-              	  <% if user.support == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
+              	  <% if user.staff == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
               	<td style="vertical-align:middle">
               	  <% if user.intelatek == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
       		    </tr>

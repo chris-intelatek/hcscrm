@@ -1,7 +1,4 @@
-<% if current_user.manager || current_user.support %>
-
-
-
+<% if current_user.manager || current_user.staff %>
   <div class="col-md-10 col-md-offset-1">
   	<div class="panel panel-gray">
       <div class="panel-heading">
@@ -51,46 +48,43 @@
 		          		<br>
 		            </td>
 		          </tr>
-		          <tr>
-		            <td colspan="2">&nbsp;</td>
-		          </tr>	
-		          <tr>
-		            <td>Sign Date: </td><td>&nbsp;&nbsp;</td><td><% if !@user.signup_date.nil? %>
-																			    		 		<%= @user.signup_date.strftime("%m/%d/%y") %>
-																								<% end %></td>
-		          </tr>		  
-		          <tr>
-		            <td colspan="2">&nbsp;</td>
-		          </tr>	
-		          <tr>
-		            <td>Training Completed Date: </td><td>&nbsp;&nbsp;</td><td><% if !@user.training_date.nil? %>
-		    		  																					<%= @user.training_date.strftime("%m/%d/%y") %>
-		      																						<% end %></td>
-		          </tr>
-		          <tr>
-		            <td colspan="2">&nbsp;</td>
-		          </tr>			          
-		          <tr>
-		            <td>Business Plan Scheduled<br>
-		            		or Completed Date: </td><td>&nbsp;&nbsp;</td><td><% if !@user.business_plan_date.nil? %>
-																			    		 		<%= @user.business_plan_date.strftime("%m/%d/%y") %>
-																								<% end %></td>
-		          </tr>
-		          <tr>
-		            <td colspan="2">&nbsp;</td>
-		          </tr>			          
-		          <tr>
-		            <td>Fee Paid: </td><td>&nbsp;&nbsp;</td><td><%= @user.fee %></td>
-		          </tr>        
-		          <tr>
-		            <td colspan="2">&nbsp;</td>
-		          </tr>			          
-		          <tr>
-		            <td>Occupation: </td><td>&nbsp;&nbsp;</td><td><%= @user.occupation %></td>
-		          </tr> 		          
-		          <tr>
-		            <td colspan="2">&nbsp;</td>
-		          </tr>			          
+		          <% if current_user.staff %>
+			          <tr>
+			            <td colspan="2">&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>Occupation: </td><td>&nbsp;&nbsp;</td><td><%= @user.occupation %></td>
+			          </tr>
+			          <tr>
+			            <td colspan="2">&nbsp;</td>
+			          </tr>	
+			          <tr>
+			            <td>Sign Date: </td><td>&nbsp;&nbsp;</td><td><% if !@user.signup_date.nil? %>
+																				    		 		<%= @user.signup_date.strftime("%m/%d/%y") %>
+																									<% end %></td>
+			          </tr>		  
+			          <tr>
+			            <td colspan="2">&nbsp;</td>
+			          </tr>	
+			          <tr>
+			            <td>Training Completed Date: </td><td>&nbsp;&nbsp;</td><td><% if !@user.training_date.nil? %>
+			    		  																					<%= @user.training_date.strftime("%m/%d/%y") %>
+			      																						<% end %></td>
+			          </tr>
+			          <tr>
+			            <td colspan="2">&nbsp;</td>
+			          </tr>			          
+			          <tr>
+			            <td>Business Plan Scheduled<br>
+			            		or Completed Date: </td><td>&nbsp;&nbsp;</td><td><% if !@user.business_plan_date.nil? %>
+																				    		 		<%= @user.business_plan_date.strftime("%m/%d/%y") %>
+																									<% end %></td>
+			          </tr>
+			          <tr>
+			            <td colspan="2">&nbsp;</td>
+			          </tr>
+          
+							<% end %>
 						</table>
 					</div>
 
@@ -109,9 +103,31 @@
 							<%= link_to "#{@user.attachment8_name}", @user.attachment8_url, target: :_blank %><br><br>
 							<%= link_to "#{@user.attachment9_name}", @user.attachment9_url, target: :_blank %><br><br>
 							<%= link_to "#{@user.attachment10_name}", @user.attachment10_url, target: :_blank %><br>
-						</ul>	
+						</ul>
+						
+						<table>
+		          <tr>
+		            <td>Broker: </td><td>&nbsp;&nbsp;<%= @user.broker %></td>
+		          </tr>        
+		          <tr>
+		            <td colspan="2">&nbsp;</td>
+		          </tr>			          
+		          <tr>
+		            <td>Fee Paid: </td><td>&nbsp;&nbsp;<%= @user.fee %></td>
+		          </tr>        
+		          <tr>
+		            <td colspan="2">&nbsp;</td>
+		          </tr>
+		          <tr>
+		            <td>Fee Paid by: </td><td>&nbsp;&nbsp;<%= @user.fee_payment_method %></td>
+		          </tr>
+		          <tr>
+		            <td colspan="2">&nbsp;</td>
+		          </tr>			          							
+						</table>
 					</div>
 				</div>
+
 
         <div class="row">
           <div class="col-md-10 col-md-offset-1">

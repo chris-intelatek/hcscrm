@@ -1,185 +1,180 @@
-<div class="col-md-10 col-md-offset-1">
-	<div class="panel panel-gray">
-	  <div class="panel-heading">
-			<h4>Edit/Update User</h4>
-	  </div>
-	  <div class="prospect-show">
-      <%= simple_form_for @user, :html => {:multipart => true} do |f| %>
-      <%= f.error_notification %>
-      <div class="form-inputs">
-        
-        <div class="row">
+<% if current_user.staff %>
 
-          <div class="col-md-5 col-md-offset-1">
-            <%= f.input :advisor_first_name, required: true, autofocus: true, label: 'First Name' %>
-            <%= f.input :advisor_last_name, required: true, label: 'Last Name'  %>
-            <%= f.input :advisor_company_name, label: 'Company Name' %>
-            <%= f.input :advisor_phone, label: 'Phone'  %>
-            <%= f.input :advisor_mobile, label: 'Mobile'  %>
-            <%= f.input :email, required: true, autofocus: true %>
-            <%= f.input :mailing_address, label: 'Mailing Address'  %>
-            <%= f.input :apt_suite, label: 'Apt/Suite #'  %>
-            <%= f.input :city, label: 'City'  %>
-            <%= f.input :state, collection: STATES %>
-            <%= f.input :zip, label: 'ZipCode'  %>
-            <%= f.input :password, autocomplete: "off", required: false %>
-            <%= f.input :password_confirmation %>
-          </div>
-
-          <div class="col-md-5 col-md-offset-1">
-
-            <% if current_user.admin || current_user.manager %>
-            
-      			<%= f.input :signup_date, :include_blank => true, :default => nil,
-      			    required: true, as: :date, html5: true, order: [:month, :day, :year], label: "Sign Date" %>
-            <%= f.input :fee, required: true, label: 'Fee Paid'  %>
-            <%= f.input :occupation, required: true, label: 'Occupation'  %>
+  <div class="col-md-10 col-md-offset-1">
+  	<div class="panel panel-gray">
+  	  <div class="panel-heading">
+  			<h4>Edit/Update User</h4>
+  	  </div>
+  	  <div class="prospect-show">
+        <%= simple_form_for @user, :html => {:multipart => true} do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          
+          <div class="row">
+  
+            <div class="col-md-5 col-md-offset-1">
+              <%= f.input :advisor_first_name, required: true, autofocus: true, label: 'First Name' %>
+              <%= f.input :advisor_last_name, required: true, label: 'Last Name'  %>
+              <%= f.input :advisor_company_name, label: 'Company Name' %>
+              <%= f.input :advisor_phone, label: 'Phone'  %>
+              <%= f.input :advisor_mobile, label: 'Mobile'  %>
+              <%= f.input :email, required: true, autofocus: true %>
+              <%= f.input :mailing_address, label: 'Mailing Address'  %>
+              <%= f.input :apt_suite, label: 'Apt/Suite #'  %>
+              <%= f.input :city, label: 'City'  %>
+              <%= f.input :state, collection: STATES %>
+              <%= f.input :zip, label: 'ZipCode'  %>
+              <%= f.input :password, autocomplete: "off", required: false %>
+              <%= f.input :password_confirmation %>
+              <%= f.input :occupation, required: true, label: 'Occupation' %>
+        			<%= f.input :signup_date, :include_blank => true, :default => nil,
+        			    required: true, as: :date, html5: true, order: [:month, :day, :year], label: "Sign Date" %>
+              <%= f.input :broker, required: true, label: 'Broker' %>			    
+              <%= f.input :fee, required: true, label: 'Fee Paid' %>
+              <%= f.input :fee_payment_method, required: true, label: 'Fee Paid By' %>
         			<%= f.input :training_date, :include_blank => true, :default => nil,
         			    required: true, as: :date, html5: true, order: [:month, :day, :year], label: "Training Completed Date" %>
         			    
         			<%= f.input :business_plan_date, :include_blank => true, :default => nil,
         			    required: true, as: :date, html5: true, order: [:month, :day, :year], label: "Business Plan Scheduled or Completed Date" %>
-              
-                <div class="row">
-                  <div class="col-md-6"><%= f.input :attachment1_name, label: 'Attachment 1', placeholder: "Attachment Name" %></div>
-                  <div class="col-md-6"><br>
-                    <%= f.file_field :attachment1 %> 
-                    <% if @user.attachment1? %>      
-                      <%= link_to @user.attachment1_url.last(30), target: :_blank %>
-                    <% end %>
-                  </div>
-                </div>
-                
-                <div class="row">
-                  <div class="col-md-6"><%= f.input :attachment2_name, label: 'Attachment 2', placeholder: "Attachment Name" %></div>
-                  <div class="col-md-6"><br>
-                    <%= f.file_field :attachment2 %>
-                    <% if @user.attachment2? %>      
-                      <%= link_to @user.attachment2_url.last(30), target: :_blank %>
-                    <% end %>
-                  </div>
-                </div>
-              
-                <div class="row">
-                  <div class="col-md-6"><%= f.input :attachment3_name, label: 'Attachment 3', placeholder: "Attachment Name" %></div>
-                  <div class="col-md-6"><br>
-                    <%= f.file_field :attachment3 %>
-                    <% if @user.attachment3? %>      
-                      <%= link_to @user.attachment3_url.last(30), target: :_blank %>
-                    <% end %>
-                  </div>
-                </div>
-                
-                <div class="row">
-                  <div class="col-md-6"><%= f.input :attachment4_name, label: 'Attachment 4', placeholder: "Attachment Name" %></div>
-                  <div class="col-md-6"><br>
-                    <%= f.file_field :attachment4 %>
-                    <% if @user.attachment4? %>
-                      <%= link_to @user.attachment4_url.last(30), target: :_blank %>
-                    <% end %>
-                  </div>
-                </div>
-                
-                <div class="row">
-                  <div class="col-md-6"><%= f.input :attachment5_name, label: 'Attachment 5', placeholder: "Attachment Name" %></div>
-                  <div class="col-md-6"><br>
-                    <%= f.file_field :attachment5 %>
-                    <% if @user.attachment5? %>
-                      <%= link_to @user.attachment5_url.last(30), target: :_blank %>
-                    <% end %>
-                  </div>
-                </div>
-                
-                <div class="row">
-                  <div class="col-md-6"><%= f.input :attachment6_name, label: 'Attachment 6', placeholder: "Attachment Name" %></div>
-                  <div class="col-md-6"><br>
-                    <%= f.file_field :attachment6 %>
-                    <% if @user.attachment6? %>      
-                      <%= link_to @user.attachment6_url.last(30), target: :_blank %>
-                    <% end %>
-                  </div>
-                </div>
-                
-                <div class="row">
-                  <div class="col-md-6"><%= f.input :attachment7_name, label: 'Attachment 7', placeholder: "Attachment Name" %></div>
-                  <div class="col-md-6"><br>
-                    <%= f.file_field :attachment7 %>
-                    <% if @user.attachment7? %>      
-                      <%= link_to @user.attachment7_url.last(30), target: :_blank %>
-                    <% end %>
-                  </div>
-                </div>
-                
-                <div class="row">
-                  <div class="col-md-6"><%= f.input :attachment8_name, label: 'Attachment 8', placeholder: "Attachment Name" %></div>
-                  <div class="col-md-6"><br>
-                    <%= f.file_field :attachment8 %>
-                    <% if @user.attachment8? %>      
-                      <%= link_to @user.attachment8_url.last(30), target: :_blank %>
-                    <% end %>
-                  </div>
-                </div>
-              
-                <div class="row">
-                  <div class="col-md-6"><%= f.input :attachment9_name, label: 'Attachment 9', placeholder: "Attachment Name" %></div>
-                  <div class="col-md-6"><br>
-                    <%= f.file_field :attachment9 %>
-                    <% if @user.attachment9? %>
-                      <%= link_to @user.attachment9_url.last(30), target: :_blank %>
-                    <% end %>
-                  </div>
-                </div>
-                
-                <div class="row">
-                  <div class="col-md-6"><%= f.input :attachment10_name, label: 'Attachment 10', placeholder: "Attachment Name" %></div>
-                  <div class="col-md-6"><br>
-                    <%= f.file_field :attachment10 %>
-                    <% if @user.attachment10? %>
-                      <%= link_to @user.attachment10_url.last(30), target: :_blank %>
-                    <% end %>
-                  </div>
-                </div>
-    
-                <hr>
-                <%= f.input :group, required: true %>
-                <% end %>
-      
-      
-                <% if current_user.admin || [current_user.manager && current_user.support] %>        
-                  Entrust&#63; <%= f.check_box :entrust? %> &nbsp; | &nbsp; 
-                <% end %>
-        
-                <% if current_user.admin || [current_user.manager && current_user.support] %>        
-                  Branch&#63; <%= f.check_box :branch? %> &nbsp; | &nbsp; 
-                <% end %>
-                <br>
-                
-                <% if current_user.admin %>
-                  Admin&#63; <%= f.check_box :admin? %> &nbsp; | &nbsp; Manager&#63; <%= f.check_box :manager? %> &nbsp; | &nbsp; Support&#63; <%= f.check_box :support? %> &nbsp; | &nbsp; IntelaTek&#63; <%= f.check_box :intelatek? %>
-                <% end %>
+            </div>
+  
+            <div class="col-md-5 col-md-offset-1">
 
 
+              <div class="row">
+                <div class="col-md-6"><%= f.input :attachment1_name, label: 'Attachment 1', placeholder: "Attachment Name" %></div>
+                <div class="col-md-6"><br>
+                  <%= f.file_field :attachment1 %> 
+                  <% if @user.attachment1? %>      
+                    <%= link_to @user.attachment1_url.last(30), target: :_blank %>
+                  <% end %>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6"><%= f.input :attachment2_name, label: 'Attachment 2', placeholder: "Attachment Name" %></div>
+                <div class="col-md-6"><br>
+                  <%= f.file_field :attachment2 %>
+                  <% if @user.attachment2? %>      
+                    <%= link_to @user.attachment2_url.last(30), target: :_blank %>
+                  <% end %>
+                </div>
+              </div>
+            
+              <div class="row">
+                <div class="col-md-6"><%= f.input :attachment3_name, label: 'Attachment 3', placeholder: "Attachment Name" %></div>
+                <div class="col-md-6"><br>
+                  <%= f.file_field :attachment3 %>
+                  <% if @user.attachment3? %>      
+                    <%= link_to @user.attachment3_url.last(30), target: :_blank %>
+                  <% end %>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6"><%= f.input :attachment4_name, label: 'Attachment 4', placeholder: "Attachment Name" %></div>
+                <div class="col-md-6"><br>
+                  <%= f.file_field :attachment4 %>
+                  <% if @user.attachment4? %>
+                    <%= link_to @user.attachment4_url.last(30), target: :_blank %>
+                  <% end %>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6"><%= f.input :attachment5_name, label: 'Attachment 5', placeholder: "Attachment Name" %></div>
+                <div class="col-md-6"><br>
+                  <%= f.file_field :attachment5 %>
+                  <% if @user.attachment5? %>
+                    <%= link_to @user.attachment5_url.last(30), target: :_blank %>
+                  <% end %>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6"><%= f.input :attachment6_name, label: 'Attachment 6', placeholder: "Attachment Name" %></div>
+                <div class="col-md-6"><br>
+                  <%= f.file_field :attachment6 %>
+                  <% if @user.attachment6? %>      
+                    <%= link_to @user.attachment6_url.last(30), target: :_blank %>
+                  <% end %>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6"><%= f.input :attachment7_name, label: 'Attachment 7', placeholder: "Attachment Name" %></div>
+                <div class="col-md-6"><br>
+                  <%= f.file_field :attachment7 %>
+                  <% if @user.attachment7? %>      
+                    <%= link_to @user.attachment7_url.last(30), target: :_blank %>
+                  <% end %>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6"><%= f.input :attachment8_name, label: 'Attachment 8', placeholder: "Attachment Name" %></div>
+                <div class="col-md-6"><br>
+                  <%= f.file_field :attachment8 %>
+                  <% if @user.attachment8? %>      
+                    <%= link_to @user.attachment8_url.last(30), target: :_blank %>
+                  <% end %>
+                </div>
+              </div>
+            
+              <div class="row">
+                <div class="col-md-6"><%= f.input :attachment9_name, label: 'Attachment 9', placeholder: "Attachment Name" %></div>
+                <div class="col-md-6"><br>
+                  <%= f.file_field :attachment9 %>
+                  <% if @user.attachment9? %>
+                    <%= link_to @user.attachment9_url.last(30), target: :_blank %>
+                  <% end %>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6"><%= f.input :attachment10_name, label: 'Attachment 10', placeholder: "Attachment Name" %></div>
+                <div class="col-md-6"><br>
+                  <%= f.file_field :attachment10 %>
+                  <% if @user.attachment10? %>
+                    <%= link_to @user.attachment10_url.last(30), target: :_blank %>
+                  <% end %>
+                </div>
+              </div>
+  
+              <hr>
+              <%= f.input :group, required: true %>
+
+              <strong>If Vendor: </strong> &nbsp;&nbsp; Entrust&#63; <%= f.check_box :entrust? %> &nbsp; | &nbsp; Branch&#63; <%= f.check_box :branch? %> &nbsp; | &nbsp; 
+
+              <br>
+              
+              <% if current_user.admin %>
+                Admin&#63; <%= f.check_box :admin? %> &nbsp; | &nbsp; Staff&#63; <%= f.check_box :staff? %> &nbsp; | &nbsp; Manager&#63; <%= f.check_box :manager? %> &nbsp; | &nbsp; Support&#63; <%= f.check_box :support? %> &nbsp; | &nbsp; IntelaTek&#63; <%= f.check_box :intelatek? %>
+              <% end %>
+  
             </div>
             
           </div>
-
-        
+          
+        </div>
       </div>
-    </div>
-    
-    
-    
-    <div class="panel-footer">
-      <div class="form-actions">
-        <%= f.button :submit, "Update", class:"btn btn-slate btn-block" %>
-      </div>
-      <% end %>
-      <br>
-      <em><div text align="center">Caution: Deleteing a user will delete all of their prospects and associated comments.</em></div>
-  		<div class="links center">
-    		<%= link_to "Back", :back, class: "btn btn-beige" %> &nbsp;&nbsp;
-        <%= link_to "Delete User", user_path(@user), data: { confirm: "Caution: Deleteing a user will delete all of their prospects and associated comments." }, method: :delete, class:"btn btn-danger" %>
+      
+      
+      
+      <div class="panel-footer">
+        <div class="form-actions">
+          <%= f.button :submit, "Update", class:"btn btn-slate btn-block" %>
+        </div>
+        <% end %>
+        <br>
+        <em><div text align="center">Caution: Deleteing a user will delete all of their prospects and associated comments.</em></div>
+    		<div class="links center">
+      		<%= link_to "Back", :back, class: "btn btn-beige" %> &nbsp;&nbsp;
+          <%= link_to "Delete User", user_path(@user), data: { confirm: "Caution: Deleteing a user will delete all of their prospects and associated comments." }, method: :delete, class:"btn btn-danger" %>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+<% end %>
