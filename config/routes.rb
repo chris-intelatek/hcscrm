@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   post 'vcp/:id', to: 'prospects#vcp_update', as: :vcp_update
   get 'pay/:id', to: 'prospects#pay', as: :pay
   post 'pay/:id', to: 'prospects#pay_update', as: :pay_update
+  get :export_users, to: 'users#export_users', as: :export_users
   
   match '/users',     to: 'users#index',  via: 'get'
   match '/users/:id', to: 'users#show',   via: 'get'
@@ -47,6 +48,6 @@ Rails.application.routes.draw do
     resources :comments
     collection { post :import }
   end
-  # root 'pages#home'
-  root 'users#start_page'
+    root 'pages#home'
+  # root 'users#start_page'
 end

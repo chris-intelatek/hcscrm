@@ -2,47 +2,50 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :import]
   before_action :set_user, only: [:show, :edit, :destroy, :update]
 
-
   def index
     # if params[:search]
-    #   @users = User.search(params[:search]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
+    #   @users = User.search(params[:search]).order("created_at DESC").paginate(:per_page => 5, :page => params[:page])
     # else
-    #   @users = User.all.paginate(:per_page => 25, :page => params[:page])
-    @state = User.select(:state).order(:state).distinct      
+    #   @users = User.all.paginate(:per_page => 5, :page => params[:page])
+    @state = User.select(:state).order(:state).distinct
     if params[:state] != nil
-      @users = User.where(state: params[:state])
+      @users = User.where(state: params[:state]).paginate(:per_page => 5, :page => params[:page])
     elsif params[:search]
-      @users = User.search(params[:search]).order("created_at DESC")
+      @users = User.search(params[:search]).order("created_at DESC").paginate(:per_page => 5, :page => params[:page])
     else
-      @users = User.all
-      
-      respond_to do |format|
-        format.html
-        format.csv { send_data @users.to_csv, filename: "users-#{Date.today}.csv" }
-      end   
-      
+      @users = User.all.paginate(:per_page => 5, :page => params[:page])
+      # respond_to do |format|
+      #   format.html
+      #   format.csv { send_data @users.to_csv, filename: "users-#{Date.today}.csv" }
+      # end
     end
   end
 
+  def export_users
+      @users = User.all
+      respond_to do |format|
+        format.html
+        format.csv { send_data @users.to_csv, filename: "users-#{Date.today}.csv" }
+      end 
+  end
 
   def import
     User.import(params[:file])
     redirect_to root_url, notice: "Users imported."
   end
 
-
   def show
   end
 
-  def start_page
-    if current_user.manager
-      @users = User.all
-      @prospects = Prospect.all
-      render(:template => 'prospects/dashboard')
-    else
-      render(:template => 'pages/home')
-    end
-  end
+  # def start_page
+  #   if current_user.manager
+  #     @users = User.all
+  #     @prospects = Prospect.all
+  #     render(:template => 'prospects/dashboard')
+  #   else
+  #     render(:template => 'pages/home')
+  #   end
+  # end
 
   def edit
   end

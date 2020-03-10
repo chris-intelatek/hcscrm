@@ -5,7 +5,7 @@
 	  <div class="panel-heading">
 	  	
 	  	<div class="row">
-	  		<div class="col-md-6">
+	  		<div class="col-md-3">
           <h4>Listing <%= User.count %> Users</h4>
 	  		</div>
 	  		<div class="col-md-4">
@@ -14,11 +14,14 @@
       			<%= submit_tag "Search", class:"btn btn-slate btn-sm" %>
       		<% end %>
 	  		</div>
-	  		<div class="col-md-2 pull-right">
-					<%= link_to "Download CSV", users_path(format: "csv"), class: "btn btn-beige btn-sm" %>
+	  		<div class="col-md-2">
+          <%= link_to "Export Users", export_users_path(format: "csv"), class: "btn btn-beige btn-xs" %>
+	  		</div>	  		
+
+	  		<div class="col-md-3">
 					<% if current_user.admin %>
 					  <%= form_tag import_users_path, multipart: true do %>
-					  <%= file_field_tag :file %><%= submit_tag "Import Users", class:"btn btn-danger btn-sm" %>
+					  <%= file_field_tag :file %><%= submit_tag "Import Users", class:"btn btn-danger btn-xs" %>
 					  <% end %>
 					<% end %>
 	  		</div>
@@ -96,16 +99,17 @@
               	  <% if user.intelatek == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
       		    </tr>
         		<% end %>
+        		
           </tbody>
+        		<tr><td colspan="13" style="text-align:middle"><%= will_paginate @users, renderer: BootstrapPagination::Rails %></td></tr>
           
         </table>
-        
+
       </div>
 
     </div>
 		<div class="panel-footer center">
-		  <%#= will_paginate @users, renderer: BootstrapPagination::Rails %>
-		  <p><em>Only managers & support can see this page.</em></p>
+		  <p><em>Only managers & staff can see this page.</em></p>
 		</div>        
 
   </div>
