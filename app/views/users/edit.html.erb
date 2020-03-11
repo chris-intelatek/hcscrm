@@ -28,11 +28,10 @@
               <%= f.input :password, autocomplete: "off", required: false %>
               <%= f.input :password_confirmation %>
               <%= f.input :occupation, required: true, label: 'Occupation' %>
-        			<%= f.input :signup_date, :include_blank => true, :default => nil,
-        			    required: true, as: :date, html5: true, order: [:month, :day, :year], label: "Sign Date" %>
-              <%= f.input :broker, required: true, label: 'Broker' %>			    
-              <%= f.input :fee, required: true, label: 'Fee Paid' %>
-              <%= f.input :fee_payment_method, required: true, label: 'Fee Paid By' %>
+        			<%= f.input :signup_date, label: "Sign Date" %>
+              <%= f.input :broker, label: 'Broker' %>			    
+              <%= f.input :fee, label: 'Fee Paid' %>
+              <%= f.input :fee_payment_method, label: 'Fee Paid By' %>
         			<%= f.input :training_date, :include_blank => true, :default => nil,
         			    required: true, as: :date, html5: true, order: [:month, :day, :year], label: "Training Completed Date" %>
         			    
@@ -160,7 +159,6 @@
           
         </div>
       </div>
-      
       
       
       <div class="panel-footer">

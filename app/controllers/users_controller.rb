@@ -9,11 +9,11 @@ class UsersController < ApplicationController
     #   @users = User.all.paginate(:per_page => 5, :page => params[:page])
     @state = User.select(:state).order(:state).distinct
     if params[:state] != nil
-      @users = User.where(state: params[:state]).paginate(:per_page => 5, :page => params[:page])
+      @users = User.where(state: params[:state]).paginate(:per_page => 10, :page => params[:page])
     elsif params[:search]
-      @users = User.search(params[:search]).order("created_at DESC").paginate(:per_page => 5, :page => params[:page])
+      @users = User.search(params[:search]).order("created_at DESC").paginate(:per_page => 10, :page => params[:page])
     else
-      @users = User.all.paginate(:per_page => 5, :page => params[:page])
+      @users = User.all.paginate(:per_page => 10, :page => params[:page])
       # respond_to do |format|
       #   format.html
       #   format.csv { send_data @users.to_csv, filename: "users-#{Date.today}.csv" }

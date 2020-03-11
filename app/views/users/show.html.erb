@@ -65,9 +65,7 @@
 			            <td colspan="2">&nbsp;</td>
 			          </tr>	
 			          <tr>
-			            <td>Sign Date: </td><td>&nbsp;&nbsp;</td><td><% if !@user.signup_date.nil? %>
-																				    		 		<%= @user.signup_date.strftime("%m/%d/%y") %>
-																									<% end %></td>
+			            <td>Sign Date: </td><td>&nbsp;&nbsp;</td><td><%= @user.signup_date %></td>
 			          </tr>		  
 			          <tr>
 			            <td colspan="2">&nbsp;</td>
