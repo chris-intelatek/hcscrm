@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show, :import]
+  before_filter :authenticate_user!, :except => [:show, :import, :new]
   before_action :set_user, only: [:show, :edit, :destroy, :update]
 
   def index
@@ -33,6 +33,25 @@ class UsersController < ApplicationController
     User.import(params[:file])
     redirect_to root_url, notice: "Users imported."
   end
+
+
+
+  def new
+    @user = User.new
+  end
+
+  
+  def create
+    attrs = user_params    
+    @user = User.new(attrs)
+    if @user.save
+      flash[:success] = "New User Added."
+      redirect_to users_path
+    else
+      render 'new'
+    end
+  end
+
 
   def show
   end

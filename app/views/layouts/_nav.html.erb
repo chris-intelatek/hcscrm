@@ -30,6 +30,7 @@
               
               <% if current_user.manager || current_user.support %>
     					  <li><%= link_to users_path do %><i class="fa fa-users"></i> Users<% end %></li>
+                <li><%= link_to new_user_path, class: "nav-link" do %><i class="fa fa-user-plus"></i> Add User<% end %></li>    					  
               <% end %>
 
               <li class="nav-item dropdown">

@@ -33,9 +33,9 @@ Rails.application.routes.draw do
   get :export_users, to: 'users#export_users', as: :export_users
   
   match '/users',     to: 'users#index',  via: 'get'
-  match '/users/:id', to: 'users#show',   via: 'get'
-
-  # resources :users
+  
+  # ************** I removed the line below to get Add User to work but not sure what effect it may have down the road ***********
+  # match '/users/:id', to: 'users#show',   via: 'get'
 
   devise_for :users, :controllers => { registrations: 'registrations' }, :path_prefix => 'd'
 

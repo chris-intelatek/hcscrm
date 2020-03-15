@@ -38,7 +38,7 @@
               <th colspan="4"></th>
               <th colspan="3">Prospects</th>
               <th colspan="2">Vendor</th>
-              <th colspan="4">Permissions</th>
+              <th colspan="3">Permissions</th>
             </tr>
               <th class="th-left">Name</th>
               <th>
@@ -65,7 +65,9 @@
               <th>Admin</th>
               <th>Manager</th>
               <th>Staff</th>
-              <th>IntelaTek</th>
+              <% if current_user.intelatek || current_user.admin %>
+                <th>IntelaTek</th>
+              <% end %>
             </tr>
           </thead>
                   
@@ -95,8 +97,10 @@
               	  <% if user.manager == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
               	<td style="vertical-align:middle">
               	  <% if user.staff == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
-              	<td style="vertical-align:middle">
+                <% if current_user.intelatek || current_user.admin %>
+                  <td style="vertical-align:middle">
               	  <% if user.intelatek == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
+                <% end %>
       		    </tr>
         		<% end %>
         		
