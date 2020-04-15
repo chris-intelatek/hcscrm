@@ -19,7 +19,7 @@
 					<% end %>
 				</div>
 		  		<div class="col-md-2 pull-right">
-		  			<% if current_user.manager || current_user.admin %>
+		  			<% if current_user.staff %>
 							<%= link_to "Download CSV", prospects_path(format: "csv"), class: "btn btn-beige btn-sm" %>
 						<% end %>
 						<% if current_user.admin %>

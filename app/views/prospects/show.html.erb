@@ -134,7 +134,7 @@
 	
   <div class="panel-footer">
     <% if !current_user.shipstore && !current_user.entrust && !current_user.branch %>
-  		<%= link_to "Back", redirect_back, class: "btn btn-beige btn-sm" %>
+  		<%= link_to "Back", prospects_path, class: "btn btn-beige btn-sm" %>
   		<%= link_to "Delete", prospect_path(@prospect), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
   	<% end %>	
   </div>	
