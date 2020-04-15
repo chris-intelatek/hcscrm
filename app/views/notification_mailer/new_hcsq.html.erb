@@ -2,8 +2,8 @@
 <p>A copy of this email has been sent to Consultant and SME.</p>
 
 <p>Consultant's Name: <em><%= @prospect.user.advisor_first_name + ' ' + @prospect.user.advisor_last_name %></em></p>
-<p>SME Fact Finding Call: <% if !@prospect.hcs_sme_fact_finding_call_date.nil? %></em>
-  		  <em><%= @prospect.hcs_sme_fact_finding_call_date.strftime("%m/%d/%Y") %></em><% end %></p>
+<!--<p>SME Fact Finding Call: <#% if !@prospect.hcs_sme_fact_finding_call_date.nil? %></em>-->
+<!--  		  <em><#%= @prospect.hcs_sme_fact_finding_call_date.strftime("%m/%d/%Y") %></em><#% end %></p>-->
 
 <p>Prospect Company or Organization Name: <em><%= @prospect.organization %></em></p>
 <p>Address:  <em><%= @prospect.street_address %></em>, <em><%= @prospect.address2 %></em>, <em><%= @prospect.city %></em>, <em><%= @prospect.state %></em> <em><%= @prospect.zip %></em><br>

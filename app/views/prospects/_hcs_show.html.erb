@@ -5,6 +5,7 @@
         <div class="col-md-3">
           <h4><strong>HealthCare Savings</strong></h4>
         </div>
+    
         <div class="col-md-5"><br>
           Status: <em><%= @prospect.hcs_opportunity_status %></em><br>
             Next Action: 
@@ -20,7 +21,7 @@
           <% elsif @prospect.hcs_lead_status == "Declined" %>Declined
           <% end %></em>
         </div>        
-        <div class="col-md-2 col-md-offset-2"><br>
+        <div class="col-md-2"><br>
           <%= link_to "Edit HealthCare Savings", hcs_path(@prospect), class: "btn btn-warning btn-sm" %>
         </div>
       </div>

@@ -1,20 +1,23 @@
 <center><h4>A New Shipping Profile has been submitted by <%= @prospect.user.advisor_first_name + ' ' + @prospect.user.advisor_last_name %></h4></center>
-<p>&nbsp;</p>
-<p>Company name: <strong><%= @prospect.organization %></strong></p>
-<p>Address: <em><%= @prospect.street_address %></em>
-	<%if @prospect.address2.nil? %><em>, <%= @prospect.address2 %></em><% end %><br>
-	City/State: <em><%= @prospect.city %>, <%= @prospect.state %> <%= @prospect.zip %></em><br>
-	<br>
-	Phone: <em><%= @prospect.phone %></em><br>
-	Website: <%if !@prospect.website.nil? %><em><%= link_to @prospect.website, "http://" + @prospect.website %></em><% end %></p>
-<p>&nbsp;</p>
-<p><strong>Shipping Contact</strong><br>
-Name: <em><%= @prospect.shipping_contact_first_name %> <%= @prospect.shipping_contact_last_name %></em><br>
-Title: <em><%= @prospect.shipping_contact_title %></em><br>
-Direct Line/Ext: <em><%= @prospect.shipping_contact_direct_phone %></em><br>
-Mobile: <em><%= @prospect.shipping_contact_mobile %></em><br>
-Email: <em><%= @prospect.shipping_contact_email %></em><br>
-<p>&nbsp;</p>
+
+<table>
+	<tr>
+		<td>Company name: <strong><%= @prospect.organization %></strong><br>
+				Address: <em><%= @prospect.street_address %></em>
+					<%if @prospect.address2.nil? %><em>, <%= @prospect.address2 %></em><% end %><br>
+					City/State: <em><%= @prospect.city %>, <%= @prospect.state %> <%= @prospect.zip %></em><br>
+					Phone: <em><%= @prospect.phone %></em><br>
+					Website: <%if !@prospect.website.nil? %><em><%= link_to @prospect.website, "http://" + @prospect.website %></em><% end %></td>
+		<td>&nbsp; &nbsp;</td>
+		<td><strong>Shipping Contact</strong><br>
+					Name: <em><%= @prospect.shipping_contact_first_name %> <%= @prospect.shipping_contact_last_name %></em><br>
+					Title: <em><%= @prospect.shipping_contact_title %></em><br>
+					Direct Line/Ext: <em><%= @prospect.shipping_contact_direct_phone %></em><br>
+					Mobile: <em><%= @prospect.shipping_contact_mobile %></em><br>
+					Email: <em><%= @prospect.shipping_contact_email %></em></td>
+	</tr>
+</table>
+
 <p>Shipping Type: <em><%= @prospect.shipping_type %></em></p>
 <p>Estimated Parcels Shipped Per Day: <em><%= @prospect.shipping_parcels_per_day %></em></p>
 <p>Estimated Annual Parcel Spend: <em><%= @prospect.shipping_annual_parcel_spend %></em></p>
@@ -22,5 +25,4 @@ Email: <em><%= @prospect.shipping_contact_email %></em><br>
 <p>Using carriers provided software to manage parcel shipping?: <em><%= @prospect.shipping_carrier_provided_system %></em></p>
 <p>Would SHIPSTORE potentially integrate with other systems? (WMS, ERP, Inventory Management, Shopping Cart):  <em><%= @prospect.shipping_integration %></em></p>
 <p>Interested in a no-cost comparative rate analysis?: <em><%= @prospect.shipping_interest_in_rate_analysis %></em></p>
-<p>&nbsp;</p>
 <p>Account opportunity summary:<em><%= @prospect.shipping_notes %></em></p>
