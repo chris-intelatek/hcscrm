@@ -166,7 +166,7 @@ class ProspectsController < ApplicationController
       flash[:success] = "Prospect has been updated."
       redirect_to prospect_path
     else
-      render 'bchq'
+      render 'hcsq'
     end
   end
 

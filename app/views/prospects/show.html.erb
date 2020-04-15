@@ -16,7 +16,7 @@
             </button>
             <ul class="dropdown-menu" role="menu">
               <% if !@prospect.hcs_prospect %>
-              	<li><%= link_to "Add HealthCare Opportunity", hcs_path(@prospect) %></li>      
+              	<li><%= link_to "Add HealthCare Opportunity", hcsq_path(@prospect) %></li>      
               <% end %>
               <% if !@prospect.shipping_prospect %>
               	<li><%= link_to "Add Shipping Opportunity", shipping_profile_path(@prospect) %></li>      

@@ -1,72 +1,26 @@
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-8 col-md-offset-2">
 	<div class="panel panel-gray">
   <div class="panel-heading">
-		<h4>Submit HCSQ</h4>
+		<h4>Add HealthCare Opportunity & Submit Healthcare Profile to Trident Benefits</h4>
   </div>
   <div class="prospect-show">
 		<%= simple_form_for @prospect, url: hcsq_update_path, method: :post do |f| %>
-			<%= f.hidden_field :status, value: "Fact Finding Call Scheduled" %>
+			<%= f.hidden_field :status, value: "Prospect Submitted to Trident Benefits" %>
 			<%= f.hidden_field :submitted_hcsq, value: 'true' %>
+			<%= f.hidden_field :hcs_lead_status, value: 'Submitted' %>
 
-			<%= f.input :organization, required: true, autofocus: true, label: "Prospect Company or Organization Name" %>
+      Prospect: <Strong><%= @prospect.organization %></Strong>
+      <br>
+      <br>
 			<div class="row">
-				<div class="col-md-8"><%= f.input :street_address %></div>
-				<div class="col-md-4"><%= f.input :address2, label: "Suite # (etc)" %></div>		
-			</div>	
-			<div class="row">
-				<div class="col-md-4"><%= f.input :city %></div>
-				<div class="col-md-4"><%= f.input :state, collection: STATES %>
-				</div>
-				<div class="col-md-4"><%= f.input :zip %></div>
-			</div>
-		
-			<div class="row">
-				<div class="col-md-4"><%= f.input :phone %></div>
-				<div class="col-md-4"><%= f.input :website %></div>
-				<div class="col-md-4"><%= f.input :employees, label: "Employees" %></div>
-			</div>
-		
-			<br>
-		  <h4>Contact 1</h4>		
-			<div class="row">
-				<div class="col-md-4"><%= f.input :contact1_first_name, label: "First Name" %></div>
-				<div class="col-md-4"><%= f.input :contact1_last_name, label: "Last Name" %></div>
-				<div class="col-md-4"><%= f.input :contact1_title, label: "Title" %></div>
-			</div>
-		
-			<div class="row">
-				<div class="col-md-4"><%= f.input :contact1_phone, label: "Direct Phone or Ext" %></div>
-				<div class="col-md-4"><%= f.input :contact1_mobile, label: "Mobile" %></div>
-				<div class="col-md-4"><%= f.input :contact1_email, label: "Email" %></div>
-			</div>
-
-			<br>
-		  <h4>Contact 2</h4>		
-			<div class="row">
-				<div class="col-md-4"><%= f.input :contact2_first_name, label: "First Name" %></div>
-				<div class="col-md-4"><%= f.input :contact2_last_name, label: "Last Name" %></div>
-				<div class="col-md-4"><%= f.input :contact2_title, label: "Title" %></div>
-			</div>
-		
-			<div class="row">
-				<div class="col-md-4"><%= f.input :contact2_phone, label: "Direct Phone or Ext" %></div>
-				<div class="col-md-4"><%= f.input :contact2_mobile, label: "Mobile" %></div>
-				<div class="col-md-4"><%= f.input :contact2_email, label: "Email" %></div>
-			</div>
-
-			<br>
-			<div class="row">
-				<div class="col-md-12"><%= f.input :prospect_note, label: "Note" %>
-					<br>
-					<hr>
-					<br>
-				</div>
-    	</div>
-
-			<div class="row">
-				<div class="col-md-6"><%= f.input :hcs_sme_fact_finding_call_date, {:include_blank => true, :default => nil, order: [:month, :day, :year], label: "SME Fact Finding Call" } %></div>
-    		<div class="col-md-6"></div>
-    	</div>
+				<div class="col-md-4">Address: <em><%= @prospect.street_address %></em>
+				<%if @prospect.address2.nil? %><em>, <%= @prospect.address2 %></em><% end %><br>
+				City/State: <em><%= @prospect.city %>, <%= @prospect.state %> <%= @prospect.zip %></em></div>
+				<div class="col-md-4">Phone: <em><%= @prospect.phone %></em><br>
+				Website: <%if !@prospect.website.nil? %><em><%= link_to @prospect.website, "http://" + @prospect.website, target: "_blank" %></em><% end %></div>
+  	  </div>
+	    <br>
+	    <br>
 
 			<div class="row">
 				<div class="col-md-12"><%= f.input :hcbq_business_type, label: "Nature of Business or SIC Code" %></div>
@@ -105,7 +59,7 @@
   <div class="panel-footer">
   	<div class="row">
 	  	<div class="col-md-5"><%= link_to "Back", prospect_path, class: "btn btn-beige" %></div>
-	  	<div class="col-md-7"><%= f.button :submit, "Submit HCSQ", class:"btn btn-slate btn-block" %></div>
+	  	<div class="col-md-7"><%= f.button :submit, "Submit HealthCare Profile to Trident Benefits", class:"btn btn-slate btn-block" %></div>
   	</div>
     <% end %>
   </div>
