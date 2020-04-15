@@ -90,6 +90,26 @@
 							<strong>Instant Pay Status</strong>
 						<% end %>
 					</td>
+					
+		      <td>
+		      	<% if current_user.staff %>			      	
+			      	<div class="status">
+				      	<li class="dropdown">
+								  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong>Accounts Payable Status</strong><span class="caret"></span></a>
+								  <ul class="dropdown-menu dropdown-menu-right status-menu" style="list-style: none;">
+								    <li><%= link_to "All", prospects_path %></li>
+								    <% @vcp_status.each do |b| %>
+								      <li class="black"><%= link_to "#{b.vcp_status}", prospects_path(vcp_status: b.vcp_status) %></li>
+								    <% end %>
+								  </ul>
+								</li>
+							</div>
+						<% else %>
+							<strong>Accounts Payable Status</strong>
+						<% end %>
+					</td>					
+					
+					
 				</tr>
 				
 			  <tbody class="bordered">
@@ -102,6 +122,7 @@
 					      <td><%= prospect.shipping_opportunity_status %></td>
 						    <td><%= prospect.hcs_opportunity_status %></td>
 					      <td><%= prospect.pay_status %></td>
+					      <td><%= prospect.vcp_status %></td>					      
 					    </tr>
 						<% end %>				    
 					<% end %>

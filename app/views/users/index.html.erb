@@ -15,8 +15,10 @@
       		<% end %>
 	  		</div>
 	  		<div class="col-md-2">
-          <%= link_to "Export Users", export_users_path(format: "csv"), class: "btn btn-beige btn-xs" %>
-	  		</div>	  		
+	  		  <% if current_user.staff %>
+            <%= link_to "Export Users", export_users_path(format: "csv"), class: "btn btn-beige btn-xs" %>
+          <% end %>
+	  		</div>
 
 	  		<div class="col-md-3">
 					<% if current_user.admin %>
@@ -35,10 +37,13 @@
         <table class="table table-sm index-table table-condensed">
           <thead>
             <tr>
-              <th colspan="4"></th>
-              <th colspan="3">Prospects</th>
-              <th colspan="2">Vendor</th>
-              <th colspan="3">Permissions</th>
+              <th colspan="3"></th>
+              <% if current_user.staff %>
+                <th colspan="5">Prospects</th>
+                <th></th>                
+                <th colspan="3">Vendor</th>
+                <th colspan="4">Permissions</th>
+              <% end %>
             </tr>
               <th class="th-left">Name</th>
               <th>
@@ -54,23 +59,30 @@
   								</li>
   							</div>
   						</th>
-
               <th>Last Logged In</th>
-              <th>Group</th>
-              <th>Total</th>
-              <th>HCS</th>
-              <th>Pay</th>
-              <th>Entrust</th>
-              <th>Branch</th>
-              <th>Admin</th>
-              <th>Manager</th>
-              <th>Staff</th>
+              <% if !current_user.staff %>
+                <th>Prospects</th>
+              <% else %>
+                <th>Ship</th>
+                <th>HCS</th>
+                <th>Pay</th>
+                <th>AP</th>
+                <th>Total</th>                
+                <th>Group</th>    
+                <th>Shipstore</th>
+                <th>Entrust</th>
+                <th>Branch</th>
+                <th>Admin</th>
+                <th>Manager</th>
+                <th>Staff</th>
+              <% end %>
               <% if current_user.intelatek || current_user.admin %>
                 <th>IntelaTek</th>
               <% end %>
             </tr>
           </thead>
-                  
+               
+
           <tbody>
             <% @users.order(:advisor_first_name).each do |user| %>
               <tr>
@@ -81,12 +93,24 @@
               	    <%= time_ago_in_words(user.current_sign_in_at) if user.current_sign_in_at %> ago
               	  <% else %>
               	    Never
-              	    <% end %>
+              	  <% end %>
               	</td>
-              	<td style="vertical-align:middle"><%= user.group %></td>
-              	<td style="vertical-align:middle"><%= user.prospects.size %></td>
+
+              <% if current_user.shipstore || current_user.staff %>
+              	<td style="vertical-align:middle"><%= user.prospects.where(shipping_prospect: true).count %></td>
+              <% end %>
+              <% if current_user.entrust || current_user.staff %>              	
               	<td style="vertical-align:middle"><%= user.prospects.where(hcs_prospect: true).count %></td>
+              <% end %>
+              <% if current_user.branch || current_user.staff %> 
               	<td style="vertical-align:middle"><%= user.prospects.where(pay_prospect: true).count %></td>
+              <% end %>
+              <% if current_user.staff %> 
+              	<td style="vertical-align:middle"><%= user.prospects.where(vcp_prospect: true).count %></td>              	
+              	<td style="vertical-align:middle"><%= user.prospects.size %></td>
+              	<td style="vertical-align:middle"><%= user.group %></td>
+              	<td style="vertical-align:middle">
+              	  <% if user.shipstore == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
               	<td style="vertical-align:middle">
               	  <% if user.entrust == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
               	<td style="vertical-align:middle">
@@ -97,6 +121,7 @@
               	  <% if user.manager == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
               	<td style="vertical-align:middle">
               	  <% if user.staff == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
+              <% end %>
                 <% if current_user.intelatek || current_user.admin %>
                   <td style="vertical-align:middle">
               	  <% if user.intelatek == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
@@ -105,7 +130,7 @@
         		<% end %>
         		
           </tbody>
-        		<tr><td colspan="13" style="text-align:middle"><%= will_paginate @users, renderer: BootstrapPagination::Rails %></td></tr>
+        		<tr><td colspan="15" style="text-align:middle"><%= will_paginate @users, renderer: BootstrapPagination::Rails %></td></tr>
           
         </table>
 
@@ -113,7 +138,6 @@
 
     </div>
 		<div class="panel-footer center">
-		  <p><em>Only managers & staff can see this page.</em></p>
 		</div>        
 
   </div>

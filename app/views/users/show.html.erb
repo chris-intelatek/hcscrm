@@ -145,8 +145,10 @@
     	<div class="panel-footer">
     		<div class="links center">
     			<%= link_to "Back", users_path, class: "btn btn-beige" %> &nbsp;&nbsp;
-    			<%= link_to "Edit User", edit_user_path(@user), class: "btn btn-warning" %>
-          <%#= link_to "Delete User", user_path(@user), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-danger" %>
+    			<% if current_user.staff %>
+    				<%= link_to "Edit User", edit_user_path(@user), class: "btn btn-warning" %>
+          	<%#= link_to "Delete User", user_path(@user), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-danger" %>
+          <% end %>
     		</div>
        </div>
     </div>
@@ -163,142 +165,94 @@
 	  	<div class="row">
 	  		<div class="col-md-6">
 	  			<h4>Listing
-						<% if current_user.manager %>
+						<% if current_user.staff %>
 			 				<%= @user.prospects.count %>
 						<% else %>
 							All
 						<% end %>
 					Prospects</h4>
 	  		</div>
-	  		<div class="col-md-6">
-		  		<%= form_tag(prospects_path, :method => "get", id: "search-form") do %>
-						<%= text_field_tag :search, params[:search], placeholder: "Search Prospects" %>
-						<%= submit_tag "Search", class:"btn btn-slate btn-sm" %>
-					<% end %>
-	  		</div>
+	  		<!--<div class="col-md-6">-->
+		  	<!--	<%#= form_tag(prospects_path, :method => "get", id: "search-form") do %>-->
+					<!--	<%#= text_field_tag :search, params[:search], placeholder: "Search Prospects" %>-->
+					<!--	<%#= submit_tag "Search", class:"btn btn-slate btn-sm" %>-->
+					<!--<%# end %>-->
+	  		<!--</div>-->
 	  	</div>
 	  </div>
 		<div class="prospect-show table-responsive">
 			<table class="table index-table table-condensed">
-		  	<tr class="bordered">
-		  		<td colspan="2"></td>
-		  		<% if !current_user.branch? %>
-		  		  <td>&nbsp;</td>
-		  		  <td colspan="3">HealthCare Savings</td>
-		  		<% end %>
-		  		<% if !current_user.entrust? %>
-		  		  <td>&nbsp;</td>
-		  		  <td colspan="4">Instant Pay</td>
+		  	<tr>
+		  		<% if current_user.shipstore %>
+		  		  <td colspan="4">Shipping</td>
+		  		<% elsif current_user.entrust %>
+		  			<td colspan="4">HealthCare Savings</td>
+		  		<% elsif current_user.branch %>
+		  		  <td colspan="5">Instant Pay</td>
 		  	  <% end %>
 		  	</tr>
 
-		    <tr class="bordered">
+		    <tr>
 		      <td><strong>Prospect</strong></td>
-		      
-			    <td><strong>Employees</strong></td>
-			    
-					<% if !current_user.branch? %>
-				    <td>&nbsp;</td>
+
+					<% if current_user.shipstore || current_user.entrust %>
 			      <td><strong>Next Action<br>Date</strong></td>			      
 			      <td><strong>Next Action</strong></td>
   		      <td><strong>Status</strong></td>
-          <% end %>
-          
-					<% if !current_user.entrust? %>
-  			    <td>&nbsp;</td>
+					<% elsif current_user.branch %>
 			      <td><strong>Submitted<br>to Branch</strong></td>
 			      <td><strong>Next Action<br>Date</strong></td>			      
 			      <td><strong>Next Action</strong></td>
   		      <td><strong>Status</strong></td>
-          <% end %>
+          <% else %>
+			      <td><strong>Shipping</strong></td>			      
+			      <td><strong>HealthCare</strong></td>
+  		      <td><strong>Instant Pay</strong></td>
+  		      <td><strong>Accounts Payable</strong></td>    
+          <% end %>          
 				</tr>
 				
 			  <tbody class="bordered">
-					<% @user.prospects.each do |prospect| %>
-						<% if (prospect.user_id == current_user.id) || current_user.manager %>
-					    <tr>
-					      <td class="td-left">
-					     		<%= link_to prospect.organization, prospect %>
-					     		
-  									<!--I wrote this very clunky section that I need to rework at some point in the future... Chris-->
-  							  	<% if prospect.hcs_prospect? && (prospect.hcs_next_action_date.nil? || prospect.hcs_next_action_date < Date.today) %> 
-  							      <% update1 = "yes" %>
-  							  	<% end %>
-  							    <% if prospect.intro_presentation_date.nil? || prospect.intro_presentation_date < Date.today %>
-  							      <% update2 = "yes" %>
-  							  	<% end %>
-  							    <% if prospect.hcs_sme_fact_finding_call_date.nil? || prospect.hcs_sme_fact_finding_call_date < Date.today %>
-  							      <% update3 = "yes" %>
-  							  	<% end %>
-  							  	<% if prospect.hcs_sme_proposal_meeting_date.nil? || prospect.hcs_sme_proposal_meeting_date < Date.today %>
-  							      <% update4 = "yes" %>
-  							  	<% end %>
-  							  	<% if prospect.effective_date.nil? || prospect.effective_date < Date.today %>
-  							      <% update5 = "yes" %>
-  							  	<% end %>
-  							
-  						  	  <% if (prospect.hcs_opportunity_status != "Other - No Sale") && 
-  						  	        (prospect.hcs_opportunity_status != "Closed - Group is Effective") && 
-  						  	        (prospect.hcs_opportunity_status !=  "Intro Pres Given - No Sale") && 
-  						  	        (prospect.hcs_opportunity_status != "Fact Finder Call Done - No Sale") && 
-  						  	        (prospect.hcs_opportunity_status != "Proposal Given - No Sale") && 
-  						  	        (prospect.hcs_opportunity_status != "Not Qualified - No Sale") %>
-  							  	  <% if update1 && update2 && update3 && update4 && update5 == "yes" %>
-  						  	      <br>
-  						  	      <%= link_to "Healthcare Needs Updating", hcs_path(prospect), {:style=>'color:yellow;'} %>						  	  
-  								    <% end %>
-  								  <% end %>
-
-
-
-  							  	<% if prospect.pay_prospect? && (prospect.pay_next_action_date.nil? || prospect.pay_next_action_date < Date.today) %> 
-  							      <% update7 = "yes" %>
-  							  	<% end %>
-  							    <% if prospect.pay_intro_presentation_date.nil? || prospect.pay_intro_presentation_date < Date.today %>
-  							      <% update8 = "yes" %>
-  							  	<% end %>
-  							    <% if prospect.pay_sme_presentation_date.nil? || prospect.pay_sme_presentation_date < Date.today %>
-  							      <% update9 = "yes" %>
-  							  	<% end %>
-  							  	<% if prospect.pay_agreement_date.nil? || prospect.pay_agreement_date < Date.today %>
-  							      <% update10 = "yes" %>
-  							  	<% end %>
-  							
-  						  	  <% if (prospect.pay_status != "Other - No Sale") && 
-  						  	        (prospect.pay_status != "Closed - Client is Active") && 
-  						  	        (prospect.pay_status != "Intro Pres Given - No Sale") && 
-  						  	        (prospect.pay_status != "SME Presentation Done - No Sale") && 
-  						  	        (prospect.pay_status != "Not Qualified - No Sale") %>
-
-  							  	  <% if update7 && update8 && update9 && update10 == "yes" %>
-  							  	    <br>
-  							  	    <%= link_to "Instant Pay Needs Updating", pay_path(prospect), {:style=>'color:yellow;'} %>
-  								    <% end %>
-  								  <% end %>
-  									<!--End of clunky section.-->		
-
-					      </td>
-
-						    <td><%= prospect.employees %></td>
-						    
-  		  		    <% if !current_user.branch? %>						    
-  								<td>&nbsp;</td>
-  					      <td><% if !prospect.hcs_next_action_date.nil? %><%= prospect.hcs_next_action_date.strftime("%m/%d/%Y") %><% end %></td>
-  					      <td><%= prospect.hcs_next_action %></td>
-  					      <td><%= prospect.hcs_opportunity_status %></td>
-                <% end %>
-  		  		    <% if !current_user.entrust? %>					      
-  								<td>&nbsp;</td>
-              		<td style="vertical-align:middle">
-              	  <% if prospect.pay_submitted_to_branch? %><span class="glyphicon glyphicon-ok"></span><% end %></td>
-  					      <td><% if !prospect.pay_next_action_date.nil? %><%= prospect.pay_next_action_date.strftime("%m/%d/%Y") %><% end %></td>
-  					      <td><%= prospect.pay_next_action %></td>
-  					      <td><%= prospect.pay_status %></td>
-                <% end %>
+  		  	<% if current_user.shipstore %>
+						<% @user.prospects.where(shipping_prospect: true).each do |prospect| %>
+							<tr>
+				      	<td class="td-left"><%= link_to prospect.organization, prospect %></td>
+					      <td><% if !prospect.shipping_next_action_date.nil? %><%= prospect.shipping_next_action_date.strftime("%m/%d/%Y") %><% end %></td>
+					      <td><%= prospect.shipping_next_action %></td>
+					      <td><%= prospect.shipping_opportunity_status %></td>
 					    </tr>
-						<% end %>
-
-					<% end %>
+			    	<% end %>
+  		    <% elsif current_user.entrust %>
+						<% @user.prospects.where(hcs_prospect: true).each do |prospect| %>
+							<tr>
+				      	<td class="td-left"><%= link_to prospect.organization, prospect %></td>
+					      <td><% if !prospect.hcs_next_action_date.nil? %><%= prospect.hcs_next_action_date.strftime("%m/%d/%Y") %><% end %></td>
+					      <td><%= prospect.hcs_next_action %></td>
+					      <td><%= prospect.hcs_opportunity_status %></td>
+					    </tr>
+				   	<% end %>
+  		    <% elsif current_user.branch %>
+						<% @user.prospects.where(pay_prospect: true).each do |prospect| %>
+							<tr>
+					      <td class="td-left"><%= link_to prospect.organization, prospect %></td>  		  		    
+            		<td style="vertical-align:middle">
+            	  <% if prospect.pay_submitted_to_branch? %><span class="glyphicon glyphicon-ok"></span><% end %></td>
+					      <td><% if !prospect.pay_next_action_date.nil? %><%= prospect.pay_next_action_date.strftime("%m/%d/%Y") %><% end %></td>
+					      <td><%= prospect.pay_next_action %></td>
+					      <td><%= prospect.pay_status %></td>
+					    </tr>
+				   	<% end %>
+			   	<% else %>
+						<% @user.prospects.each do |prospect| %>  
+					    <tr>
+					      <td class="td-left"><%= link_to prospect.organization, prospect %></td>  					   	
+					   		<td><%= prospect.shipping_opportunity_status %></td>
+					   		<td><%= prospect.hcs_opportunity_status %></td>
+					   		<td><%= prospect.pay_status %></td>
+					   		<td><%= prospect.vcp_status %></td>
+						  </tr>
+				   	<% end %>
+          <% end %>
 			  </tbody>
 
 			</table>

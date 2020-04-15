@@ -6,30 +6,32 @@
       <div class="col-md-8">
         <p class="header-title"><%= @prospect.organization %></p>
       </div>
-      <div class="col-md-4">
-
-        <div class="btn-group pull-right">
-          <button type="button" class="btn btn-slate">Add New Opportunity</button>
-          <button type="button" class="btn btn-slate dropdown-toggle" data-toggle="dropdown">
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <% if !@prospect.hcs_prospect %>
-            	<li><%= link_to "Add HealthCare Opportunity", hcs_path(@prospect) %></li>      
-            <% end %>
-            <% if !@prospect.shipping_prospect %>
-            	<li><%= link_to "Add Shipping Opportunity", shipping_profile_path(@prospect) %></li>      
-            <% end %>
-            <% if !@prospect.pay_prospect %>
-            	<li><%= link_to "Add Instant Payments Opportunity", pay_path(@prospect) %></li>      
-            <% end %>
-            <% if !@prospect.vcp_prospect %>
-            	<li><%= link_to "Add Accounts Payable Opportunity", vcp_path(@prospect) %></li>      
-            <% end %>
-          </ul>
+      
+      <% if !current_user.shipstore && !current_user.entrust && !current_user.branch %>
+        <div class="col-md-4">
+          <div class="btn-group pull-right">
+            <button type="button" class="btn btn-slate">Add New Opportunity</button>
+            <button type="button" class="btn btn-slate dropdown-toggle" data-toggle="dropdown">
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <% if !@prospect.hcs_prospect %>
+              	<li><%= link_to "Add HealthCare Opportunity", hcs_path(@prospect) %></li>      
+              <% end %>
+              <% if !@prospect.shipping_prospect %>
+              	<li><%= link_to "Add Shipping Opportunity", shipping_profile_path(@prospect) %></li>      
+              <% end %>
+              <% if !@prospect.pay_prospect %>
+              	<li><%= link_to "Add Instant Payments Opportunity", pay_path(@prospect) %></li>      
+              <% end %>
+              <% if !@prospect.vcp_prospect %>
+              	<li><%= link_to "Add Accounts Payable Opportunity", vcp_path(@prospect) %></li>      
+              <% end %>
+            </ul>
+          </div>
         </div>
-     
-      </div>
+      <% end %>
+    
     </div>
     <div class="row">
       <div class="col-md-12"><p class="prospect-posted-by"><em>Prospect created on
@@ -99,16 +101,16 @@
     
     <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="tab" href="#home">Select Opportunity</a></li>
-      <% if @prospect.hcs_prospect? %>
+      <% if @prospect.hcs_prospect? && !current_user.shipstore && !current_user.branch %>
       	<li><a data-toggle="tab" href="#health">HealthCare</a></li>      
       <% end %>
-      <% if @prospect.shipping_prospect? %>
+      <% if @prospect.shipping_prospect? && !current_user.entrust && !current_user.branch %>
       	<li><a data-toggle="tab" href="#ship">Shipping</a></li>     
       <% end %>
-      <% if @prospect.pay_prospect? %>
+      <% if @prospect.pay_prospect? && !current_user.shipstore && !current_user.entrust %>
         <li><a data-toggle="tab" href="#pay">Instant Pay</a></li>   
       <% end %>
-      <% if @prospect.vcp_prospect? %>
+      <% if @prospect.vcp_prospect? && !current_user.shipstore && !current_user.entrust && !current_user.branch %>
       <li><a data-toggle="tab" href="#ap">Accounts Payable</a></li>  
       <% end %>
     </ul>
@@ -131,8 +133,10 @@
 	</div>
 	
   <div class="panel-footer">
-		<%= link_to "Back", prospects_path, class: "btn btn-beige btn-sm" %>
-		<%= link_to "Delete", prospect_path(@prospect), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+    <% if !current_user.shipstore && !current_user.entrust && !current_user.branch %>
+  		<%= link_to "Back", redirect_back, class: "btn btn-beige btn-sm" %>
+  		<%= link_to "Delete", prospect_path(@prospect), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+  	<% end %>	
   </div>	
 
 </div>

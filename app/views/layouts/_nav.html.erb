@@ -52,7 +52,7 @@
                 <% elsif current_user.entrust %>
                   <%= link_to entrust_path, class: 'nav-link' do %><i class="fa fa-crosshairs"></i> Prospects<% end %>              
                 <% elsif current_user.branch %>
-                
+                  <%= link_to branch_path, class: 'nav-link' do %><i class="fa fa-crosshairs"></i> Prospects<% end %>
                 <% else %>              
                   <%= link_to prospects_path, class: 'nav-link' do %><i class="fa fa-crosshairs"></i> Prospects<% end %>
                 <% end %>
