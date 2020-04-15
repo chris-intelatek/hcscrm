@@ -26,10 +26,10 @@
               
               <% if current_user.manager %>
     					  <li><%= link_to dashboard_path do %><i class="glyphicon glyphicon-th"></i> Dashboard<% end %></li>
-              <% end %>              
-              
-              <% if current_user.manager || current_user.support %>
     					  <li><%= link_to users_path do %><i class="fa fa-users"></i> Users<% end %></li>
+    					<% end %>
+    					
+              <% if current_user.staff %>    					  
                 <li><%= link_to new_user_path, class: "nav-link" do %><i class="fa fa-user-plus"></i> Add User<% end %></li>    					  
               <% end %>
 
@@ -46,7 +46,18 @@
                 </div>
               </li>
 
-              <li><%= link_to prospects_path, class: 'nav-link' do %><i class="fa fa-crosshairs"></i> Prospects<% end %></li>
+              <li>
+                <% if current_user.shipstore %>
+                  <%= link_to shipstore_path, class: 'nav-link' do %><i class="fa fa-crosshairs"></i> Prospects<% end %>
+                <% elsif current_user.entrust %>
+                  <%= link_to entrust_path, class: 'nav-link' do %><i class="fa fa-crosshairs"></i> Prospects<% end %>              
+                <% elsif current_user.branch %>
+                
+                <% else %>              
+                  <%= link_to prospects_path, class: 'nav-link' do %><i class="fa fa-crosshairs"></i> Prospects<% end %>
+                <% end %>
+              </li>
+
 
               <li><%= link_to new_prospect_path, class: "nav-link" do %><i class="fa fa-user-plus"></i> Add Prospect<% end %></li>
 

@@ -1,29 +1,34 @@
-<div class="col-md-10 col-md-offset-1">
+<div class="col-md-8 col-md-offset-2">
   
 	<div class="panel panel-gray">
   <div class="panel-heading">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-8">
         <p class="header-title"><%= @prospect.organization %></p>
       </div>
-      <div class="col-md-6">
-        <% if @prospect.hcs_prospect == false  %>
-          <%= link_to "Add HealthCare Savings Service", hcs_path(@prospect), class: "btn btn-slate btn-sm" %>
-        <% else %>
-          <%= link_to "Edit HealthCare Savings Service", hcs_path(@prospect), class: "btn btn-warning btn-sm" %>
-        <% end %>
-        &nbsp; &nbsp;
-        <% if @prospect.pay_prospect == false %>
-          <%= link_to "Add Instant Payments Service", pay_path(@prospect), class: "btn btn-slate btn-sm" %>
-        <% else %>
-          <%= link_to "Edit Instant Payments Service", pay_path(@prospect), class: "btn btn-warning btn-sm" %>
-        <% end %>
-        &nbsp; &nbsp;
-        <% if @prospect.vcp_prospect == false %>
-          <%= link_to "Add Virtual Cards Service", vcp_path(@prospect), class: "btn btn-warning btn-sm" %>
-        <% else %>
-          <%= link_to "Edit Virtual Cards Service", vcp_path(@prospect), class: "btn btn-warning btn-sm" %>
-        <% end %>
+      <div class="col-md-4">
+
+        <div class="btn-group pull-right">
+          <button type="button" class="btn btn-slate">Add New Opportunity</button>
+          <button type="button" class="btn btn-slate dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <% if !@prospect.hcs_prospect %>
+            	<li><%= link_to "Add HealthCare Opportunity", hcs_path(@prospect) %></li>      
+            <% end %>
+            <% if !@prospect.shipping_prospect %>
+            	<li><%= link_to "Add Shipping Opportunity", shipping_profile_path(@prospect) %></li>      
+            <% end %>
+            <% if !@prospect.pay_prospect %>
+            	<li><%= link_to "Add Instant Payments Opportunity", pay_path(@prospect) %></li>      
+            <% end %>
+            <% if !@prospect.vcp_prospect %>
+            	<li><%= link_to "Add Accounts Payable Opportunity", vcp_path(@prospect) %></li>      
+            <% end %>
+          </ul>
+        </div>
+     
       </div>
     </div>
     <div class="row">
@@ -38,58 +43,50 @@
         <% else %>
         	<%= @prospect.updated_at.strftime("%m/%d/%Y") %></em></p>
     		<% end %>
-
   		</div>
     </div>
-
   </div>
   <div class="prospect-show">
+    Prospect: <Strong><%= @prospect.organization %></Strong>
+    <br>
+    <br>    
     
     <div class="row">
-      <div class="col-md-5">
-        <Strong><%= @prospect.organization %></Strong><br>
-        Address: <em><%= @prospect.street_address %></em><br>
-        Address2: <em><%= @prospect.address2 %></em><br>
-        City/State: <em><%= @prospect.city %>, <%= @prospect.state %> <%= @prospect.zip %></em>
-      </div>
-      <div class="col-md-7">
-        <br>    
-      	Phone: <em><%= @prospect.phone %></em><br>
-      	Website: <%if !@prospect.website.nil? %>
-      	           <em><%= link_to @prospect.website, "http://" + @prospect.website, target: "_blank" %></em>
-      	         <% end %>
-      	         <br>
-      	Employees: <em><%= @prospect.employees %></em>
+			<div class="col-md-4">Address: <em><%= @prospect.street_address %></em>
+				<%if @prospect.address2.nil? %><em>, <%= @prospect.address2 %></em><% end %><br>
+				City/State: <em><%= @prospect.city %>, <%= @prospect.state %> <%= @prospect.zip %></em><br>
+				Website: <%if !@prospect.website.nil? %><em><%= link_to @prospect.website, "http://" + @prospect.website, target: "_blank" %></em><% end %>
+			</div>
+      <div class="col-md-4">
+        Phone: <em><%= @prospect.phone %></em><br>
+      	Employees: <em><%= @prospect.employees %></em><br>
+      	Annual Revenue: <em><%= @prospect.annual_revenue %></em>      	
   	  </div>
   	</div>
     <br>
     <br>
     <div class="row">
-      <div class="col-md-5">
+      <div class="col-md-4">
         <strong>Contact 1</strong><br>
         Name: <em><%= @prospect.contact1_first_name %> <%= @prospect.contact1_last_name %></em><br>
         Title: <em><%= @prospect.contact1_title %></em><br>
         Phone: <em><%= @prospect.contact1_phone %></em><br>
         Mobile: <em><%= @prospect.contact1_mobile %></em><br>
         Email: <%if !@prospect.contact1_email.nil? %>
-                  <em><%= link_to @prospect.contact1_email, "mailto:" + @prospect.contact1_email %></em>
-                <% end %>
-                <br>
+          <em><%= link_to @prospect.contact1_email, "mailto:" + @prospect.contact1_email %></em><% end %>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-4">
         <strong>Contact 2</strong><br>
         Name: <em><%= @prospect.contact2_first_name %> <%= @prospect.contact2_last_name %></em><br>
         Title: <em><%= @prospect.contact2_title %></em><br>
         Phone: <em><%= @prospect.contact2_phone %></em><br>
         Mobile: <em><%= @prospect.contact2_mobile %></em><br>
         Email: <%if !@prospect.contact2_email.nil? %>
-                <em><%= link_to @prospect.contact2_email, "mailto:" + @prospect.contact2_email %></em>
-              <% end %>
-            <br>
+          <em><%= link_to @prospect.contact2_email, "mailto:" + @prospect.contact2_email %></em><% end %>
       </div>
       <div class="col-md-2">
 		    <%= link_to "Edit & Update", edit_prospect_path(@prospect), class: "btn btn-warning btn-sm" %>
-  	  </div>      
+  	  </div>
   	</div>
   	<br>
   	<br>
@@ -97,12 +94,40 @@
       <div class="col-md-12">Prospect Notes: <em><%= @prospect.prospect_notes %></em></div>
     </div>
     <br>
+
+    <p>&nbsp;</p>
     
-   	      <%= render 'prospects/hcs_show' %>
-   	      
-   	      <%= render 'prospects/pay_show' %> 
-   	      
-   	      <%= render 'prospects/vcp_show' %> 
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#home">Select Opportunity</a></li>
+      <% if @prospect.hcs_prospect? %>
+      	<li><a data-toggle="tab" href="#health">HealthCare</a></li>      
+      <% end %>
+      <% if @prospect.shipping_prospect? %>
+      	<li><a data-toggle="tab" href="#ship">Shipping</a></li>     
+      <% end %>
+      <% if @prospect.pay_prospect? %>
+        <li><a data-toggle="tab" href="#pay">Instant Pay</a></li>   
+      <% end %>
+      <% if @prospect.vcp_prospect? %>
+      <li><a data-toggle="tab" href="#ap">Accounts Payable</a></li>  
+      <% end %>
+    </ul>
+    
+    <div class="tab-content">
+      <div id="health" class="tab-pane fade">
+        <%= render 'prospects/hcs_show' %>
+      </div>
+      <div id="ship" class="tab-pane fade">
+       	<%= render 'prospects/shipping_show' %> 
+      </div>
+      <div id="pay" class="tab-pane fade">
+       	<%= render 'prospects/pay_show' %> 
+      </div>
+      <div id="ap" class="tab-pane fade">
+       	<%= render 'prospects/vcp_show' %> 
+      </div>
+    </div>
+
 	</div>
 	
   <div class="panel-footer">

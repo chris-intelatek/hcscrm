@@ -1,0 +1,77 @@
+<div class="col-md-8 col-md-offset-2">
+	<div class="panel panel-gray">
+  <div class="panel-heading">
+		<h4>Submit Shipping Profile</h4>
+  </div>
+  <div class="prospect-show">
+		<%= simple_form_for @prospect, url: shipping_profile_update_path, method: :post do |f| %>
+			<%= f.hidden_field :shipping_opportunity_status, value: "Prospect Submitted to ShipStore" %>
+			<%= f.hidden_field :shipping_prospect, value: 'true' %>
+			<%= f.hidden_field :shipping_lead_status, value: "Submitted" %>
+
+      Prospect: <Strong><%= @prospect.organization %></Strong>
+      <br>
+      <br>
+			<div class="row">
+				<div class="col-md-4">Address: <em><%= @prospect.street_address %></em>
+				<%if @prospect.address2.nil? %><em>, <%= @prospect.address2 %></em><% end %><br>
+				City/State: <em><%= @prospect.city %>, <%= @prospect.state %> <%= @prospect.zip %></em></div>
+				<div class="col-md-4">Phone: <em><%= @prospect.phone %></em><br>
+				Website: <%if !@prospect.website.nil? %><em><%= link_to @prospect.website, "http://" + @prospect.website, target: "_blank" %></em><% end %></div>
+  	  </div>
+	    <br>
+	    <br>
+
+			<div class="row">
+				<div class="col-md-12"><strong>Shipping Contact Info<br>&nbsp;</strong></div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"><%= f.input :shipping_contact_first_name, label: "First Name" %></div>
+				<div class="col-md-4"><%= f.input :shipping_contact_last_name, label: "Last name" %></div>
+				<div class="col-md-4"><%= f.input :shipping_contact_title, label: "Title" %></div>					
+			</div>
+			<div class="row">
+				<div class="col-md-4"><%= f.input :shipping_contact_direct_phone, label: "Direct Phone or Ext" %></div>
+				<div class="col-md-4"><%= f.input :shipping_contact_mobile, label: "Mobile" %></div>
+				<div class="col-md-4"><%= f.input :shipping_contact_email, label: "Email" %></div>					
+			</div>
+			<p>&nbsp;</p>
+			<div class="row">
+				<div class="col-md-4"><%= f.input :shipping_type, collection: ['Small Parcel Only',
+																																				'Small Parcel & LTL',
+																																				'Small Parcel & TL',
+																																				'LTL Only',
+																																				'LTL & TL',
+																																				'TL Only',
+																																				'Small Parcel, LTL, & TL'
+																																			], label: "What Do They Ship?" %></div>
+				<div class="col-md-4">Parcel = Single Package<br>LTL = Less than Truckload<br>TL = Full Truckload"</div>
+			</div>
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-md-4"><%= f.input :shipping_parcels_per_day, label: "Estimated Parcels Shipped Per Day" %></div>																																			
+				<div class="col-md-4"><%= f.input :shipping_annual_parcel_spend, label: "Estimated Annual Parcel Spend" %></div>
+				<div class="col-md-4"><%= f.input :shipping_total_spend, label: "Estimated Total Annual Shipping Spend" %></div>
+			</div>				
+			<div class="row">
+				<div class="col-md-4"><br><%= f.input :shipping_carrier_provided_system, label: "Using carriers provided software to manage parcel shipping?" %></div>
+				<div class="col-md-4"><%= f.input :shipping_integration, label: "Would SHIPSTORE potentially integrate with other systems? (WMS, ERP, Inventory Management, Shopping Cart)" %></div>
+				<div class="col-md-4"><br><%= f.input :shipping_interest_in_rate_analysis, label: "Interested in a no-cost comparative rate analysis?" %></div>
+			</div>
+			<p>&nbsp;</p>
+			<div class="row">
+				<div class="col-md-12"><%= f.input :shipping_notes, label: "Please Provide an account opportunity summary" %></div>
+			</div>
+		</div>
+	
+  <div class="panel-footer">
+  	<div class="row">
+	  	<div class="col-md-5"><%= link_to "Back", prospect_path, class: "btn btn-beige" %></div>
+	  	<div class="col-md-7"><%= f.button :submit, "Submit Shipping Profile to SHIPSTORE", class:"btn btn-slate btn-block" %></div>
+  	</div>
+    <% end %>
+  </div>
+	
+</div>
+</div>

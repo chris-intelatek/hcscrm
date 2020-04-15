@@ -31,7 +31,7 @@ class Prospect < ActiveRecord::Base
   #             "current_health_benefit_cost,", 
   #             "new_estimated_health_benefit_cost,", 
   #             "savings_percentage,", 
-  #             "status", 
+  #             "hcs_opportunity_status", 
   #             "agreement_date", 
   #             "user_id", 
   #             "hcs_sme_proposal_meeting_date", 

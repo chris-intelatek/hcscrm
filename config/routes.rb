@@ -26,10 +26,21 @@ Rails.application.routes.draw do
   post 'hcsq/:id', to: 'prospects#hcsq_update', as: :hcsq_update
   get 'hcs/:id', to: 'prospects#hcs', as: :hcs
   post 'hcs/:id', to: 'prospects#hcs_update', as: :hcs_update  
+  get 'entrust', to: 'prospects#entrust'
+  get 'hcs_lead_status/:id', to: 'prospects#hcs_lead_status', as: :hcs_lead_status
+  post 'hcs_lead_status/:id', to: 'prospects#hcs_lead_status_update', as: :hcs_lead_status_update
   get 'vcp/:id', to: 'prospects#vcp', as: :vcp
   post 'vcp/:id', to: 'prospects#vcp_update', as: :vcp_update
+  get 'branch', to: 'prospects#branch'
   get 'pay/:id', to: 'prospects#pay', as: :pay
   post 'pay/:id', to: 'prospects#pay_update', as: :pay_update
+  get 'shipping_profile/:id', to: 'prospects#shipping_profile', as: :shipping_profile
+  post 'shipping_profile/:id', to: 'prospects#shipping_profile_update', as: :shipping_profile_update
+  get 'shipping/:id', to: 'prospects#shipping', as: :shipping
+  post 'shipping/:id', to: 'prospects#shipping_update', as: :shipping_update
+  get 'shipstore', to: 'prospects#shipstore'
+  get 'shipping_lead_status/:id', to: 'prospects#shipping_lead_status', as: :shipping_lead_status
+  post 'shipping_lead_status/:id', to: 'prospects#shipping_lead_status_update', as: :shipping_lead_status_update
   get :export_users, to: 'users#export_users', as: :export_users
   
   match '/users',     to: 'users#index',  via: 'get'

@@ -5,6 +5,12 @@ class NotificationMailer < ApplicationMailer
              subject: 'New HCSQ Submitted')
     end
 
+    def new_shipping_profile(prospect)
+        @prospect = prospect
+        mail(to: [prospect.user_email, 'chris@bluecoastsavings.com'],
+             subject: 'New Shipping Profile Submitted')
+    end
+
     def new_branch_lead(prospect)
         @prospect = prospect
         mail(to: [prospect.user_email, 'chris@bluecoastsavings.com', 'gunruh@unruhenterprises.com', 'shawn@bluecoastsavings.com'],

@@ -4,16 +4,16 @@
     <div class="panel-heading">
       <div class="row">
         <div class="col-md-6" ><h4>Editing: &nbsp; <%= @prospect.organization %></h4></div>
-        <div class="col-md-6" ><h4>HealthCare Savings</h4></div>
+        <div class="col-md-6" ><h4>Instant Shipping</h4></div>
       </div>
     </div>
     <div class="prospect-show">
-  		<%= simple_form_for @prospect, url: hcs_update_path, method: :post do |f| %>
-  			<%= f.hidden_field :hcs_prospect, value: 'true' %>
-			  <%= f.hidden_field :hcs_opportunity_status, value: "HealthCare Prospect Submitted" %>  			
-			  <%= f.hidden_field :shipping_lead_status, value: "Submitted" %>
-			  
-	      <%= render 'prospects/edit_hcs', f: f %>
+  
+  		<%= simple_form_for @prospect, url: shipping_update_path, method: :post do |f| %>
+  			<%= f.hidden_field :pay_prospect, value: 'true' %>
+
+	      <%= render 'prospects/edit_shipping', f: f %>
+
     </div>
     	
     <div class="panel-footer">

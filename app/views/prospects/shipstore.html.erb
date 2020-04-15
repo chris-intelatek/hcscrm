@@ -1,0 +1,59 @@
+<% if current_user.shipstore || current_user.staff %>
+	<div class="col-md-12">
+		<div class="panel panel-gray">
+		  <div class="panel-heading">
+	
+		  	<div class="row">
+		  		<div class="col-md-12">
+						<h4>Shipping Prospects</h4>
+			  	</div>
+		  	</div>
+		  </div>
+	
+			<div class="prospect-show table-responsive">
+				<table class="table index-table table-condensed">
+				  <thead>
+				    <tr>
+				    	<th>Created</th>
+				      <th>Consultant</th>
+				      <th>Prospect</th>
+				      <th>Lead Status</th>
+				      <th>Opportunity Stage</th>				      
+				    </tr>
+				  </thead>
+					
+				  <tbody class="bordered">
+						<% @prospects.each do |prospect| %>
+					    <tr>
+					      <td class="td-left">
+					      	<%= prospect.created_at.strftime("%m/%d/%Y") %>
+					      </td>
+					      <td class="td-left">
+					      	<%= prospect.user.advisor_first_name + ' ' + prospect.user.advisor_last_name %>
+					      </td>
+					      
+					      <td class="td-left">
+					     		<em><%= link_to prospect.organization, prospect %></em>
+					      </td>
+					      <td>
+					      	<%= prospect.shipping_lead_status %> &nbsp;
+					      	<%= link_to shipping_lead_status_path(prospect) do %><i class="glyphicon glyphicon-pencil"></i><% end %>
+					      </td>
+					      <td>
+					      	<%= prospect.shipping_opportunity_status %>
+					      </td>					      
+					    </tr>
+						<% end %>
+	
+				  </tbody>
+				</table>
+				
+			</div>
+	
+			<div class="panel-footer center">
+				&nbsp;
+		 	</div>
+	
+		</div>
+	</div>
+<% end %>	

@@ -1,0 +1,69 @@
+    <% if @prospect.shipping_prospect %>
+      <p>&nbsp;</p>
+
+      <div class="row">
+        <div class="col-md-3">
+          <h4><strong>Shipping</strong></h4>
+        </div>
+        <div class="col-md-5">
+          <br>
+          Status: <em><%= @prospect.shipping_opportunity_status %></em><br>
+          Next Action: 
+    		    <% if !@prospect.shipping_next_action_date.nil? %>
+      		  <em><%= @prospect.shipping_next_action_date.strftime("%m/%d/%y") %> - </em>
+      		<% end %>
+      		<em><%= @prospect.shipping_next_action %></em>
+        </div>
+        <div class="col-md-2"><br>
+          <% if @prospect.shipping_lead_status = "submitted" %>Not Yet Reviewed
+          <% elsif @prospect.shipping_lead_status = "pending"%>Pending Discovery Call
+          <% elsif @prospect.shipping_lead_status = "approved"%>Accepted
+          <% else @prospect.shipping_lead_status = "approved"%>Declined
+          <% end %>
+        </div>
+        <div class="col-md-2"><br>
+          <%= link_to "Edit Shipping", shipping_path(@prospect), class: "btn btn-warning btn-sm" %>      
+        </div>        
+      </div>
+
+      <p>&nbsp;</p>
+
+
+      <div class="row">
+        <div class="col-md-4">
+          <strong>Shipping Contact</strong><br>
+          Name: <em><%= @prospect.shipping_contact_first_name %> <%= @prospect.shipping_contact_last_name %></em><br>
+          Title: <em><%= @prospect.shipping_contact_title %></em><br>
+          Direct Line/Ext: <em><%= @prospect.shipping_contact_direct_phone %></em><br>
+          Mobile: <em><%= @prospect.shipping_contact_mobile %></em><br>
+          Email: <em><%= @prospect.shipping_contact_email %></em>
+        </div>
+        <div class="col-md-8">
+          Shipping Type: <em><%= @prospect.shipping_type %></em><br>
+          Estimated Parcels Shipped Per Day: <em><%= @prospect.shipping_parcels_per_day %></em><br>
+          Estimated Annual Parcel Spend: <em><%= @prospect.shipping_annual_parcel_spend %></em><br>
+          Estimated Total Annual Shipping Spend: <em><%= @prospect.shipping_total_spend %></em><br>
+          Using carriers provided software to manage parcel shipping?: <em><%= @prospect.shipping_carrier_provided_system %></em><br>
+          Would SHIPSTORE potentially integrate with other systems? (WMS, ERP, Inventory Management, Shopping Cart):  <em><%= @prospect.shipping_integration %></em><br>
+          Interested in a no-cost comparative rate analysis?: <em><%= @prospect.shipping_interest_in_rate_analysis %></em>
+        </div>
+      </div>
+      <p>&nbsp;</p>
+      <div class="row">
+        <div class="col-md-12">
+          Shipping Notes: <em><%= @prospect.shipping_notes %></em>
+        </div>
+      </div>
+      
+      <br>
+      
+      <div class="row">
+        <div class="col-md-12">
+          Comments:
+          <%= render @prospect.comments.where.not(shipping_content: nil) %>
+          <br>
+          <%= render 'comments/shipping_form' %>
+        </div>
+      </div>
+      
+    <% end %>
