@@ -13,6 +13,13 @@
       		<% end %>
       		<em><%= @prospect.hcs_next_action %></em>
         </div>
+        <div class="col-md-2"><strong><br>Lead Status</strong><br><em>
+          <% if @prospect.hcs_lead_status == "Submitted" %>Not Yet Reviewed
+          <% elsif @prospect.hcs_lead_status == "Pending Review" %>Pending Discovery Call
+          <% elsif @prospect.hcs_lead_status == "Approved" %>Accepted
+          <% elsif @prospect.hcs_lead_status == "Declined" %>Declined
+          <% end %></em>
+        </div>        
         <div class="col-md-2 col-md-offset-2"><br>
           <%= link_to "Edit HealthCare Savings", hcs_path(@prospect), class: "btn btn-warning btn-sm" %>
         </div>
