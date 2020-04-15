@@ -14,12 +14,12 @@
       		<% end %>
       		<em><%= @prospect.shipping_next_action %></em>
         </div>
-        <div class="col-md-2"><br>
-          <% if @prospect.shipping_lead_status = "submitted" %>Not Yet Reviewed
-          <% elsif @prospect.shipping_lead_status = "pending"%>Pending Discovery Call
-          <% elsif @prospect.shipping_lead_status = "approved"%>Accepted
-          <% else @prospect.shipping_lead_status = "approved"%>Declined
-          <% end %>
+        <div class="col-md-2"><strong><br>Lead Status</strong><br><em>
+          <% if @prospect.shipping_lead_status == "Submitted" %>Not Yet Reviewed
+          <% elsif @prospect.shipping_lead_status == "Pending Review" %>Pending Discovery Call
+          <% elsif @prospect.shipping_lead_status == "Approved" %>Accepted
+          <% elsif @prospect.shipping_lead_status == "Declined" %>Declined
+          <% end %></em>
         </div>
         <div class="col-md-2"><br>
           <%= link_to "Edit Shipping", shipping_path(@prospect), class: "btn btn-warning btn-sm" %>      

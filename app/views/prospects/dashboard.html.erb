@@ -1,6 +1,6 @@
 <% if current_user.manager %>
 
-	<% if !current_user.branch? && !current_user.entrust? %>
+	<% if current_user.staff %>
 		<div class="col-md-12">
 			<div class="col-md-6">
 				<div class="well dashboard-panel dashboard-bckg-5">
@@ -21,9 +21,9 @@
 		</div>
 		<p>&nbsp;</p>
 		<p>&nbsp;</p>
-	<% end %>	
+	<% end %>
 	
-	<% if !current_user.branch? %>	
+	<% if current_user.entrust %>	
 		<div class="col-md-12">
 			<div class="col-md-12">
 				<div class="well dashboard-panel dashboard-bckg-1">
@@ -137,7 +137,7 @@
 		<p>&nbsp;</p>
 	<% end %>	
 	
-	<% if !current_user.entrust? %>
+	<% if current_user.branch %>
 		<div class="col-md-12">
 			<div class="col-md-12">
 				<div class="well dashboard-panel dashboard-bckg-2">
