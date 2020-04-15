@@ -2,13 +2,14 @@
 
 <table>
 	<tr>
-		<td>Company name: <strong><%= @prospect.organization %></strong><br>
+		<td><strong>Prospect</strong>
+			Company/Org: <em><%= @prospect.organization %></em><br>
 				Address: <em><%= @prospect.street_address %></em>
 					<%if @prospect.address2.nil? %><em>, <%= @prospect.address2 %></em><% end %><br>
 					City/State: <em><%= @prospect.city %>, <%= @prospect.state %> <%= @prospect.zip %></em><br>
 					Phone: <em><%= @prospect.phone %></em><br>
 					Website: <%if !@prospect.website.nil? %><em><%= link_to @prospect.website, "http://" + @prospect.website %></em><% end %></td>
-		<td>&nbsp; &nbsp;</td>
+		<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
 		<td><strong>Shipping Contact</strong><br>
 					Name: <em><%= @prospect.shipping_contact_first_name %> <%= @prospect.shipping_contact_last_name %></em><br>
 					Title: <em><%= @prospect.shipping_contact_title %></em><br>
