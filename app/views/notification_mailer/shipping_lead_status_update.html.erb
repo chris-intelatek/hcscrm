@@ -1,0 +1,31 @@
+Hi <%= @prospect.user.advisor_first_name + ' ' + @prospect.user.advisor_last_name %>, 
+
+<% if @prospect.shipping_lead_status == 'Approved' %>
+	<p>Congratulations! Your prospect, <strong><%= @prospect.organization %></strong>, has been fully approved. You have now been assigned the partner of
+	record for this opportunity. You can monitor the status of your accepted prospect here <a href="https://bluecoastcrm.com">https://bluecoastcrm.com</a>.</p>
+	
+	<p>The next step is to schedule a SHIPSTORE Software demo to explore the opportunity further. Please follow the
+	link below and select an available time slot that works for your contact:<br>
+	<a href="https://calendly.com/shipstore/demo">https://calendly.com/shipstore/demo</a></p>
+
+<% elsif @prospect.shipping_lead_status == 'Pending Review' %>
+	<p>Congratulations! Your prospect, <strong><%= @prospect.organization %></strong>, has been approved pending a Discovery Call. You have now been assigned
+	the partner of record for this opportunity. You can monitor the status of your prospect here <a href="https://bluecoastcrm.com">https://bluecoastcrm.com</a>.</p>
+	
+	<p>The next step is to schedule a discovery call to verify additional details and/or confirm prospect viability.</p>
+	
+	<p>Please follow the link below and select an available time slot that works for your contact:<br>
+	<a href="https://calendly.com/shipstore/discovery-call">https://calendly.com/shipstore/discovery-call</p>
+
+<% elsif @prospect.shipping_lead_status == 'Declined' %>
+	<p>Unfortunately, your prospect, <strong><%= @prospect.organization %></strong>, has been declined for one of the following reasons:</p>
+		<ol>
+			<li>Current SHIPSTORE client</li>
+			<li>Already registered by another partner or actively engaged with SHIPSTORE direct team</li>
+			<li>Does not meet the qualifying requirements for SHIPSTORE</li>
+			<li>Other – please contact SHIPSTORE at <a mailto="info@shipstoresoftware.com">info@shipstoresoftware.com</a> for additional details</li>		
+		</ol>
+<% end %>
+
+<p>Sincerely,</p>
+<p>The SHIPSTORE Team</p>

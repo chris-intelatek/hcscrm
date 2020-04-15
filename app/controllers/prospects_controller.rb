@@ -234,13 +234,14 @@ class ProspectsController < ApplicationController
 
   def shipping_lead_status_update
     if @prospect.update(prospect_params)
+      NotificationMailer.shipping_lead_status_update(@prospect).deliver_later      
       flash[:success] = "Lead has been updated."
       redirect_to shipstore_path
     else
       render 'shipping_lead_status_path'
     end
   end
-  
+
 
 
 # Controllers for Instant Pay Program
