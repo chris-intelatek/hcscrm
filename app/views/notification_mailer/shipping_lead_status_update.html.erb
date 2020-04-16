@@ -15,7 +15,7 @@ Hi <%= @prospect.user.advisor_first_name + ' ' + @prospect.user.advisor_last_nam
 	<p>The next step is to schedule a discovery call to verify additional details and/or confirm prospect viability.</p>
 	
 	<p>Please follow the link below and select an available time slot that works for your contact:<br>
-	<a href="https://calendly.com/shipstore/discovery-call">https://calendly.com/shipstore/discovery-call</p>
+	<a href="https://calendly.com/shipstore/discovery-call">https://calendly.com/shipstore/discovery-call</a></p>
 
 <% elsif @prospect.shipping_lead_status == 'Declined' %>
 	<p>Unfortunately, your prospect, <strong><%= @prospect.organization %></strong>, has been declined for one of the following reasons:</p>
