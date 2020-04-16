@@ -22,8 +22,144 @@
 		<p>&nbsp;</p>
 		<p>&nbsp;</p>
 	<% end %>
+
+																								
+
+	<% if current_user.shipstore || current_user.staff %>	
+		<div class="col-md-12">
+			<div class="col-md-12">
+				<div class="well dashboard-panel dashboard-bckg-1">
+					<h1 align="center">Shipping</h1>
+				</div>		
+			</div>
 	
-	<% if current_user.entrust %>	
+			<div class="col-md-6">
+				<div class="well dashboard-panel dashboard-bckg-2">
+					<h1 align="center"><%= @prospects.where(shipping_prospect: true).count %></h1>
+					<p>&nbsp;</p>
+					<h4 align="center">Total Shipping Prospects</h4>
+				</div>
+			</div>
+	
+			<div class="col-md-6">
+				<div class="well dashboard-panel dashboard-bckg-3">
+					<h1 align="center"><%= @prospects.where(shipping_prospect: true).count - shipping_no_sale %></h1>
+					<p>&nbsp;</p>
+					<h4 align="center">Active Shipping Opportunities</h4>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="well dashboard-panel dashboard-bckg-6">
+					<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Prospect Submitted to ShipStore").count %></h1>
+					<p>&nbsp;</p>
+					<h4 align="center">Submitted to ShipStore</h4>
+				</div>
+			</div>
+	
+			<div class="col-md-3">
+				<div class="well dashboard-panel dashboard-bckg-4">
+					<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Discovery").count %></h1>
+					<p>&nbsp;</p>
+					<h4 align="center">Discovery</h4>
+				</div>
+			</div>
+			
+			<div class="col-md-3">
+				<div class="well dashboard-panel dashboard-bckg-5">
+				<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Demo").count %></h1>
+				<p>&nbsp;</p>
+				<h4 align="center">Demo</h4>
+				</div>
+			</div>
+		
+			<div class="col-md-3">
+				<div class="well dashboard-panel dashboard-bckg-6">
+					<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Demo & Analysis").count %></h1>
+					<p>&nbsp;</p>
+					<h4 align="center">Demo & Analysis</h4>
+				</div>
+			</div>
+		
+			<div class="col-md-3">
+				<div class="well dashboard-panel dashboard-bckg-7">
+					<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Exploration").count %></h1>
+					<p>&nbsp;</p>
+					<h4 align="center">Exploration</h4>
+				</div>
+			</div>
+		
+			<div class="col-md-3">
+				<div class="well dashboard-panel dashboard-bckg-8">
+					<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Scope - Proposal").count %></h1>
+					<p>&nbsp;</p>
+					<h4 align="center">Scope - Proposal</h4>
+				</div>
+			</div>
+			
+			<div class="col-md-3">
+				<div class="well dashboard-panel dashboard-bckg-9">
+					<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Closed Won").count %></h1>
+					<p>&nbsp;</p>
+					<h4 align="center">Closed Won</h4>
+				</div>
+			</div>			
+			
+			<div class="col-md-3">
+				<div class="well dashboard-panel dashboard-bckg-10">
+					<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Closed Lost").count %></h1>
+					<p>&nbsp;</p>
+					<h4 align="center">Closed Lost</h4>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="well dashboard-panel dashboard-bckg-10">
+					<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Closed Not Qualified").count %></h1>
+					<p>&nbsp;</p>
+					<h4 align="center">Closed Not Qualified</h4>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="well dashboard-panel dashboard-bckg-10">
+					<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Lead Declined by ShipStore").count %></h1>
+					<p>&nbsp;</p>
+					<h4 align="center">Lead Declined by ShipStore</h4>
+				</div>
+			</div>
+
+	
+			<div class="col-md-3">
+				<div class="well dashboard-panel dashboard-bckg-6">
+					<h3 align="center">Follow up in:</h4>
+		
+					<h4>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(shipping_opportunity_status: "Follow up in January").count %>&nbsp; January<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(shipping_opportunity_status: "Follow up in February").count %>&nbsp;  February<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(shipping_opportunity_status: "Follow up in March").count %>&nbsp;  March<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(shipping_opportunity_status: "Follow up in April").count %>&nbsp;  April<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(shipping_opportunity_status: "Follow up in May").count %>&nbsp;  May<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(shipping_opportunity_status: "Follow up in June").count %>&nbsp;  June<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(shipping_opportunity_status: "Follow up in July").count %>&nbsp;  July<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(shipping_opportunity_status: "Follow up in August").count %>&nbsp;  August<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(shipping_opportunity_status: "Follow up in September").count %>&nbsp;  September<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(shipping_opportunity_status: "Follow up in October").count %>&nbsp;  October<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(shipping_opportunity_status: "Follow up in November").count %>&nbsp;  November<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(shipping_opportunity_status: "Follow up in December").count %>&nbsp;  December</h4>
+				</div>
+			</div>
+		</div>
+
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+	<% end %>	
+
+
+
+
+	
+	<% if current_user.entrust || current_user.staff %>	
 		<div class="col-md-12">
 			<div class="col-md-12">
 				<div class="well dashboard-panel dashboard-bckg-1">
@@ -35,7 +171,7 @@
 				<div class="well dashboard-panel dashboard-bckg-2">
 					<h1 align="center"><%= @prospects.where(hcs_prospect: true).count %></h1>
 					<p>&nbsp;</p>
-					<h4 align="center">Total HCS Prospects</h4>
+					<h4 align="center">Total HealthCare Prospects</h4>
 				</div>
 			</div>
 	
@@ -43,13 +179,21 @@
 				<div class="well dashboard-panel dashboard-bckg-3">
 					<h1 align="center"><%= @prospects.where(hcs_prospect: true).count - hcs_no_sale %></h1>
 					<p>&nbsp;</p>
-					<h4 align="center">Total Current HCS Opportunities</h4>
+					<h4 align="center">Active Healthcare Opportunities</h4>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="well dashboard-panel dashboard-bckg-6">
+					<h1 align="center"><%= @prospects.where(hcs_opportunity_status: "Prospect Submitted to Trident Benefits").count %></h1>
+					<p>&nbsp;</p>
+					<h4 align="center">Submitted to Trident Benefits</h4>
 				</div>
 			</div>
 	
 			<div class="col-md-3">
 				<div class="well dashboard-panel dashboard-bckg-4">
-					<h1 align="center"><%= @prospects.where(status: "Intro Presentation Scheduled").count %></h1>
+					<h1 align="center"><%= @prospects.where(hcs_opportunity_status: "Intro Presentation Scheduled").count %></h1>
 					<p>&nbsp;</p>
 					<h4 align="center">Intro Presentation Scheduled</h4>
 				</div>
@@ -57,7 +201,7 @@
 			
 			<div class="col-md-3">
 				<div class="well dashboard-panel dashboard-bckg-5">
-				<h1 align="center"><%= @prospects.where(status: "Fact Finding Call Scheduled").count %></h1>
+				<h1 align="center"><%= @prospects.where(hcs_opportunity_status: "Fact Finding Call Scheduled").count %></h1>
 				<p>&nbsp;</p>
 				<h4 align="center">Fact Finding Call Scheduled</h4>
 				</div>
@@ -65,7 +209,7 @@
 		
 			<div class="col-md-3">
 				<div class="well dashboard-panel dashboard-bckg-6">
-					<h1 align="center"><%= @prospects.where(status: "Proposal Meeting Scheduled").count %></h1>
+					<h1 align="center"><%= @prospects.where(hcs_opportunity_status: "Proposal Meeting Scheduled").count %></h1>
 					<p>&nbsp;</p>
 					<h4 align="center">Proposal Meeting Scheduled</h4>
 				</div>
@@ -73,7 +217,7 @@
 		
 			<div class="col-md-3">
 				<div class="well dashboard-panel dashboard-bckg-7">
-					<h1 align="center"><%= @prospects.where(status: "Waiting for Claims Data").count %></h1>
+					<h1 align="center"><%= @prospects.where(hcs_opportunity_status: "Waiting for Claims Data").count %></h1>
 					<p>&nbsp;</p>
 					<h4 align="center">Waiting for Claims Data</h4>
 				</div>
@@ -81,7 +225,7 @@
 		
 			<div class="col-md-3">
 				<div class="well dashboard-panel dashboard-bckg-8">
-					<h1 align="center"><%= @prospects.where(status: "Waiting on Agreement").count %></h1>
+					<h1 align="center"><%= @prospects.where(hcs_opportunity_status: "Waiting on Agreement").count %></h1>
 					<p>&nbsp;</p>
 					<h4 align="center">Waiting on Agreement</h4>
 				</div>
@@ -89,7 +233,7 @@
 			
 			<div class="col-md-3">
 				<div class="well dashboard-panel dashboard-bckg-9">
-					<h1 align="center"><%= @prospects.where(status: "Closed - Enrollment Scheduled").count %></h1>
+					<h1 align="center"><%= @prospects.where(hcs_opportunity_status: "Closed - Enrollment Scheduled").count %></h1>
 					<p>&nbsp;</p>
 					<h4 align="center">Closed - Enrollment Scheduled</h4>
 				</div>
@@ -97,7 +241,7 @@
 			
 			<div class="col-md-3">
 				<div class="well dashboard-panel dashboard-bckg-10">
-					<h1 align="center"><%= @prospects.where(status: "Closed - Group is Effective").count %></h1>
+					<h1 align="center"><%= @prospects.where(hcs_opportunity_status: "Closed - Group is Effective").count %></h1>
 					<p>&nbsp;</p>
 					<h4 align="center">Closed - Group is Effective</h4>
 				</div>
@@ -117,18 +261,18 @@
 					<h3 align="center">Follow up in:</h4>
 		
 					<h4>
-						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in January").count %>&nbsp; January<br>
-						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in February").count %>&nbsp;  February<br>
-						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in March").count %>&nbsp;  March<br>
-						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in April").count %>&nbsp;  April<br>
-						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in May").count %>&nbsp;  May<br>
-						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in June").count %>&nbsp;  June<br>
-						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in July").count %>&nbsp;  July<br>
-						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in August").count %>&nbsp;  August<br>
-						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in September").count %>&nbsp;  September<br>
-						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in October").count %>&nbsp;  October<br>
-						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in November").count %>&nbsp;  November<br>
-						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(status: "Follow up in December").count %>&nbsp;  December</h4>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(hcs_opportunity_status: "Follow up in January").count %>&nbsp; January<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(hcs_opportunity_status: "Follow up in February").count %>&nbsp;  February<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(hcs_opportunity_status: "Follow up in March").count %>&nbsp;  March<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(hcs_opportunity_status: "Follow up in April").count %>&nbsp;  April<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(hcs_opportunity_status: "Follow up in May").count %>&nbsp;  May<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(hcs_opportunity_status: "Follow up in June").count %>&nbsp;  June<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(hcs_opportunity_status: "Follow up in July").count %>&nbsp;  July<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(hcs_opportunity_status: "Follow up in August").count %>&nbsp;  August<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(hcs_opportunity_status: "Follow up in September").count %>&nbsp;  September<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(hcs_opportunity_status: "Follow up in October").count %>&nbsp;  October<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(hcs_opportunity_status: "Follow up in November").count %>&nbsp;  November<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @prospects.where(hcs_opportunity_status: "Follow up in December").count %>&nbsp;  December</h4>
 				</div>
 			</div>
 		</div>
@@ -136,8 +280,13 @@
 		<p>&nbsp;</p>
 		<p>&nbsp;</p>
 	<% end %>	
+
+
+
+
+
 	
-	<% if current_user.branch %>
+	<% if current_user.branch || current_user.staff %>
 		<div class="col-md-12">
 			<div class="col-md-12">
 				<div class="well dashboard-panel dashboard-bckg-2">

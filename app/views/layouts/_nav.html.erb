@@ -53,7 +53,17 @@
                   <%= link_to entrust_path, class: 'nav-link' do %><i class="fa fa-crosshairs"></i> Prospects<% end %>              
                 <% elsif current_user.branch %>
                   <%= link_to branch_path, class: 'nav-link' do %><i class="fa fa-crosshairs"></i> Prospects<% end %>
-                <% else %>              
+                <% elsif current_user.admin %>
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-crosshairs"></i> Prospects</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="nav">
+                      <li><%= link_to shipstore_path, class: 'nav-link' do %> Shipping<% end %></li>
+                      <li><%= link_to entrust_path, class: 'nav-link' do %> HealthCare<% end %></li>
+                      <li><%= link_to branch_path, class: 'nav-link' do %> Instant Pay<% end %></li>                  
+                    </ul>
+                  </div>                
+                <% else %>
                   <%= link_to prospects_path, class: 'nav-link' do %><i class="fa fa-crosshairs"></i> Prospects<% end %>
                 <% end %>
               </li>
