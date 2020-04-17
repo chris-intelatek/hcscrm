@@ -13,7 +13,7 @@ class NotificationMailer < ApplicationMailer
 
     def shipping_lead_status_update(prospect)
         @prospect = prospect
-        mail(from: "ShipStore <info@healthcaresavings.co>",
+        mail(from: "ShipStore <noreply@bluecoastcrm.com>",
              to: [prospect.user_email, 'chris@bluecoastsavings.com', 'info@shipstoresoftware.com'],
              subject: 'Shipping Lead Status Updated')
     end
