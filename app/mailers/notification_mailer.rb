@@ -7,13 +7,14 @@ class NotificationMailer < ApplicationMailer
 
     def new_shipping_profile(prospect)
         @prospect = prospect
-        mail(to: [prospect.user_email, 'chris@bluecoastsavings.com', 'agooch@shipstoresoftware.com'],
+        mail(to: [prospect.user_email, 'chris@bluecoastsavings.com', 'info@shipstoresoftware.com'],
              subject: 'New Shipping Profile Submitted')
     end
 
     def shipping_lead_status_update(prospect)
         @prospect = prospect
-        mail(to: [prospect.user_email, 'chris@bluecoastsavings.com', 'agooch@shipstoresoftware.com'],
+        mail(from: "ShipStore <info@healthcaresavings.co>",
+             to: [prospect.user_email, 'chris@bluecoastsavings.com', 'info@shipstoresoftware.com'],
              subject: 'Shipping Lead Status Updated')
     end
 
