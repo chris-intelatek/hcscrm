@@ -69,10 +69,9 @@
                 <% end %>
               </li>
 
-
-              <% if !current_user.shipstore && !current_user.entrust && !current_user.branch %>            
+              <%# if !current_user.shipstore && !current_user.entrust && !current_user.branch %>            
                 <li><%= link_to new_prospect_path, class: "nav-link" do %><i class="fa fa-user-plus"></i> Add Prospect<% end %></li>
-              <% end %>
+              <%# end %>
               
     					<li><%= link_to edit_user_registration_path do %><i class="fa fa-gear"></i> <%= current_user.advisor_name  %><% end %></li>
 

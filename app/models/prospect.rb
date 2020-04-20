@@ -1,6 +1,7 @@
 class Prospect < ActiveRecord::Base
   belongs_to :user
   has_many :comments, :dependent => :delete_all
+  has_many :attachments, :dependent => :delete_all
   validates :organization, :presence => true
   validates :user_id, :presence => true
   # validates :intro_presentation_date, :presence => true
