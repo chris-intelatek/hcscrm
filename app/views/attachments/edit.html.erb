@@ -1,0 +1,17 @@
+<div class="col-md-6 col-md-offset-3">
+	<div class="prospect-show">
+		<h3>Edit Document</h3>
+		<%= simple_form_for([@prospect, @prospect_attachment]) do |f| %>
+		  <div class="row">
+		    <div class="col-md-6">	
+					<%= f.input :description, label: 'Attachment', placeholder: "Attachment Description" %>
+				</div>
+		    <div class="col-md-6">
+		    	<br>
+					<%= f.file_field :document %>
+				</div>
+			</div>
+			<%= f.button :submit, "Edit or Upload Document", :class => 'btn' %>
+		<% end %>
+	</div>
+</div>

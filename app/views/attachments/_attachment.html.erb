@@ -1,0 +1,17 @@
+<div class="comment">
+  <div class="row">
+    <div class="col-md-10">
+    	<em><%= link_to "#{attachment.description}", attachment.document_url, target: :_blank %></em>
+    	<p class="comment-posted-by">Uploaded by <%= attachment.user.advisor_first_name + ' ' + attachment.user.advisor_last_name %> on
+    	<%= attachment.created_at.strftime("%m/%d/%y") %></p>
+		</div>
+
+    <div class="col-md-2">
+			<% if attachment.user_id == current_user.id %>
+				<%= link_to "Edit", edit_prospect_attachment_path(attachment.prospect, attachment), class: "btn btn-warning btn-xs" %> &nbsp; 
+				<%= link_to "Delete", prospect_attachment_path(attachment.prospect, attachment), method: :delete,
+						data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs" %>
+			<% end %>
+		</div>
+	</div>
+</div>

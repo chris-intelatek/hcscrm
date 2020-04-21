@@ -108,9 +108,45 @@
       </div>
     </div>
 
+      <br>
+
+      <div class="row">
+        <div class="col-md-12">
+          <hr>
+          <strong>HealthCare Files</strong>
+          <br>
+          <br>
+          <table>
+            <% @prospect.attachments.where(service_type: 'healthcare').each do |attachment| %>
+              <tr>
+                <td><%= link_to "#{attachment.description}", attachment.document_url, target: :_blank %></td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td>Uploaded by <%= attachment.user.advisor_first_name + ' ' + attachment.user.advisor_last_name %> on <%= attachment.created_at.strftime("%m/%d/%y") %></td>
+                <td>&nbsp;&nbsp;&nbsp;</td>                
+                <td>
+                  <% if attachment.user_id == current_user.id %>
+            				<%= link_to "Edit", edit_prospect_attachment_path(attachment.prospect, attachment), class: "btn btn-warning btn-xs" %> &nbsp; 
+            				<%= link_to "Delete", prospect_attachment_path(attachment.prospect, attachment), method: :delete,
+            						data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs" %>
+            			<% end %>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5">&nbsp;</td>
+              </tr>
+            <% end %>              
+          </table>
+          <br>
+          <%= render 'attachments/hcs_form' %>
+        </div>
+      </div>
+
+    <br>
+    <hr>
     <div class="row">
       <div class="col-md-12">
-        Comments
+        <strong>HealthCare Comments</strong>
+        <br>
         <%= render @prospect.comments.where.not(hcs_content: nil) %>
         <br>
         <%= render 'comments/hcs_form' %>

@@ -57,12 +57,47 @@
           Pay Notes: <em><%= @prospect.pay_notes %></em>
         </div>
       </div>
-      
+
       <br>
-      
+
+      <p>&nbsp;</p>
+      <hr>
+
       <div class="row">
         <div class="col-md-12">
-          Comments:
+          <strong>Same Day Pay Files</strong>
+          <br>
+          <br>
+          <table>
+            <% @prospect.attachments.where(service_type: 'pay').each do |attachment| %>
+              <tr>
+                <td><%= link_to "#{attachment.description}", attachment.document_url, target: :_blank %></td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td>Uploaded by <%= attachment.user.advisor_first_name + ' ' + attachment.user.advisor_last_name %> on <%= attachment.created_at.strftime("%m/%d/%y") %></td>
+                <td>&nbsp;&nbsp;&nbsp;</td>                
+                <td>
+                  <% if attachment.user_id == current_user.id %>
+            				<%= link_to "Edit", edit_prospect_attachment_path(attachment.prospect, attachment), class: "btn btn-warning btn-xs" %> &nbsp; 
+            				<%= link_to "Delete", prospect_attachment_path(attachment.prospect, attachment), method: :delete,
+            						data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs" %>
+            			<% end %>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5">&nbsp;</td>
+              </tr>
+            <% end %>              
+          </table>
+          <br>
+          <%= render 'attachments/pay_form' %>
+        </div>
+      </div>
+
+      <br>
+      <hr>      
+      <div class="row">
+        <div class="col-md-12">
+        <strong>Same Day Pay Comments</strong>
           <%= render @prospect.comments.where.not(pay_content: nil) %>
           <br>
           <%= render 'comments/pay_form' %>

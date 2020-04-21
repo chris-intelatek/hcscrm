@@ -1,13 +1,16 @@
 class AttachmentsController < ApplicationController
-
+	before_action :find_prospect, only: [:create, :edit, :update, :destroy]
+	before_action :find_attachment, only: [:edit, :update, :destroy]
+	
 	def create
 		@prospect_attachment = @prospect.attachments.create(attachment_params)
-		@user_attachment = @user.attachments.create(attachment_params)
-		if @attachment.save
+		@prospect_attachment.user_id = current_user.id
+		# @user_attachment = @user.attachments.create(attachment_params)
+		if @prospect_attachment.save
 		  flash[:success] = "Your file bas been attached"
-			redirect_to :back
+			redirect_to prospect_path(@prospect)
 		else
-			redirect_to :back
+			render 'new'
 		end
 	end
 
@@ -15,22 +18,28 @@ class AttachmentsController < ApplicationController
 	end
 
 	def update
-		if @attachment.update(attachment_params)
-			redirect_to :back
+		if @prospect_attachment.update(attachment_params)
+			redirect_to prospect_path(@prospect)
 		else
 			render 'edit'
 		end
 	end
 
 	def destroy
-		@attachment.destroy
-		redirect_to :back
+		@prospect_attachment.destroy
+		redirect_to prospect_path(@prospect)
 	end
 
 	private
-
 		def attachment_params
-			params.require(:attachment).permit(:description, :document)
+			params.require(:attachment).permit(:description, :document, :user_id, :service_type)
 		end
 
+		def find_prospect
+			@prospect = Prospect.find(params[:prospect_id])
+		end
+
+		def find_attachment
+			@prospect_attachment = @prospect.attachments.find(params[:id])
+		end
 end

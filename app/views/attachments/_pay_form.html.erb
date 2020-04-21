@@ -1,0 +1,18 @@
+<%= simple_form_for([@prospect, @prospect.attachments.build]) do |f| %>    
+	<%= f.error_notification %>
+	<%= f.hidden_field :service_type, value: "pay" %>	
+  <div class="row">
+    <div class="col-md-2"><br><strong><i class="glyphicon glyphicon-cloud-upload"></i> Upload New File</strong></div>
+    <div class="col-md-4">	
+			<%= f.input :description, label: 'File Description', placeholder: "File Description", required: true %>
+		</div>
+    <div class="col-md-4">
+    	<br>
+			<%= f.file_field :document %>
+		</div>
+    <div class="col-md-2">
+    	<br>
+			<%= f.button :submit, "Upload File", :class => 'btn btn-slate pull-right btn-sm' %>
+		</div>		
+	</div>
+<% end %>

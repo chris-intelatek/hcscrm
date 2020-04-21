@@ -52,11 +52,13 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :comments
+    resources :attachments    
     collection { post :import }
   end
 
   resources :prospects do
     resources :comments
+    resources :attachments    
     collection { post :import }
   end
     root 'pages#home'
