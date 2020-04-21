@@ -149,7 +149,7 @@ class ProspectsController < ApplicationController
   def hcs_update
     if @prospect.update(prospect_params)
       flash[:success] = "Prospect has been updated."
-      redirect_to entrust_path
+      redirect_to prospect_path
     else
       render 'hcs'
     end

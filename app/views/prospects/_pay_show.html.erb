@@ -8,11 +8,15 @@
         <div class="col-md-5">
           <br>
           Status: <em><%= @prospect.pay_status %></em><br>
-          Next Action: 
     		    <% if !@prospect.pay_next_action_date.nil? %>
-      		  <em><%= @prospect.pay_next_action_date.strftime("%m/%d/%y") %> - </em>
-      		<% end %>
-      		<em><%= @prospect.pay_next_action %></em>
+	      			<% if @prospect.pay_next_action_date < Date.today %>
+	      				<div class="alert-alert">
+	      			<% else %>
+	      				<div>
+	      			<% end %>		
+	      			Next Action: <em><%= @prospect.pay_next_action_date.strftime("%m/%d/%Y") %> - <%= @prospect.pay_next_action %></em>
+	      			</div>
+	      		<% end %>
         </div>
         <div class="col-md-2"><br>
           <% if !@prospect.pay_submitted_to_branch? %>
@@ -63,7 +67,7 @@
 
       <div class="row">
         <div class="col-md-12">
-          <strong>Shipping Files</strong>
+          <strong>Same Day Pay Files</strong>
           <br>
           <br>
           <% @prospect.attachments.where(service_type: 'pay').each do |attachment| %>  
