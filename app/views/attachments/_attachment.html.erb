@@ -1,8 +1,8 @@
-<div class="comment">
+<div class="attachment">
   <div class="row">
     <div class="col-md-10">
     	<em><%= link_to "#{attachment.description}", attachment.document_url, target: :_blank %></em>
-    	<p class="comment-posted-by">Uploaded by <%= attachment.user.advisor_first_name + ' ' + attachment.user.advisor_last_name %> on
+    	<p class="posted-by">Uploaded by <%= attachment.user.advisor_first_name + ' ' + attachment.user.advisor_last_name %> on
     	<%= attachment.created_at.strftime("%m/%d/%y") %></p>
 		</div>
 

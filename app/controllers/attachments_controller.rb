@@ -10,7 +10,8 @@ class AttachmentsController < ApplicationController
 		  flash[:success] = "Your file bas been attached"
 			redirect_to prospect_path(@prospect)
 		else
-			render 'new'
+      flash[:danger] = "File not Uploaded!  Must select file & add description"
+			redirect_to :back
 		end
 	end
 

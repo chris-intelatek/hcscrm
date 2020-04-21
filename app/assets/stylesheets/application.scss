@@ -299,7 +299,17 @@ nav .navbar-nav li a:hover {
 
 
 
-/* Comment styles */
+/* Attachment & Comment styles */
+
+.attachment {
+	border-bottom: .5px dotted;
+	padding-top: 10px;
+	padding-bottom: 5px;
+	.posted-by {
+		color: #eee;
+		font-size: 0.8em;
+	}
+}
 
 .comment {
 	border-bottom: .5px dotted;
