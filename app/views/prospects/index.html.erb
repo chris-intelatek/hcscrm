@@ -119,10 +119,50 @@
 						    <td class="td-left"><%= prospect.created_at.strftime("%m/%d/%Y") %></td>
 					      <td class="td-left"><%= prospect.user.advisor_first_name + ' ' + prospect.user.advisor_last_name %></td>
 					      <td class="td-left"><em><%= link_to prospect.organization, prospect %></em></td>
-					      <td><%= prospect.shipping_opportunity_status %></td>
-						    <td><%= prospect.hcs_opportunity_status %></td>
-					      <td><%= prospect.pay_status %></td>
-					      <td><%= prospect.vcp_status %></td>					      
+					      <td class="td-left"><%= prospect.shipping_opportunity_status %><br>
+										<% if !prospect.shipping_next_action_date.nil? %>
+					      			<% if prospect.shipping_next_action_date < Date.today %>
+					      				<div class="alert-alert">
+					      			<% else %>
+					      				<div>
+					      			<% end %>		
+					      			<%= prospect.shipping_next_action_date.strftime("%m/%d/%Y") %> - <%= prospect.shipping_next_action %>
+					      			</div>
+					      		<% end %>
+					      </td>
+						    <td class="td-left"><%= prospect.hcs_opportunity_status %><br>
+					      	<% if !prospect.hcs_next_action_date.nil? %>
+				      			<% if prospect.hcs_next_action_date < Date.today %>
+				      				<div class="alert-alert">
+				      			<% else %>
+				      				<div>
+				      			<% end %>		
+				      			<%= prospect.hcs_next_action_date.strftime("%m/%d/%Y") %> - <%= prospect.hcs_next_action %>
+				      			</div>
+			      			<% end %>
+						    </td>
+					      <td class="td-left"><%= prospect.pay_status %><br>
+					      	<% if !prospect.pay_next_action_date.nil? %>
+				      			<% if prospect.pay_next_action_date < Date.today %>
+				      				<div class="alert-alert">
+				      			<% else %>
+				      				<div>
+				      			<% end %>		
+				      			<%= prospect.pay_next_action_date.strftime("%m/%d/%Y") %> - <%= prospect.pay_next_action %>
+				      			</div>
+				      		<% end %>
+					      </td>
+					      <td class="td-left"><%= prospect.vcp_status %><br>
+					      	<% if !prospect.vcp_next_action_date.nil? %>
+				      			<% if prospect.vcp_next_action_date < Date.today %>
+				      				<div class="alert-alert">
+				      			<% else %>
+				      				<div>
+				      			<% end %>		
+				      			<%= prospect.vcp_next_action_date.strftime("%m/%d/%Y") %> - <%= prospect.vcp_next_action %>
+				      			</div>
+				      		<% end %>
+					      </td>
 					    </tr>
 						<% end %>				    
 					<% end %>
