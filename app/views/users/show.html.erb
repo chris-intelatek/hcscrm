@@ -92,54 +92,56 @@
 						</table>
 					</div>
 
-          <div class="col-md-5 col-md-offset-1">
-				
-						<p><strong>Documents</strong></p>
-						
-						<ul>
-							<%= link_to "#{@user.attachment1_name}", @user.attachment1_url, target: :_blank %><br><br>
-							<%= link_to "#{@user.attachment2_name}", @user.attachment2_url, target: :_blank %><br><br>  	
-							<%= link_to "#{@user.attachment3_name}", @user.attachment3_url, target: :_blank %><br><br>
-							<%= link_to "#{@user.attachment4_name}", @user.attachment4_url, target: :_blank %><br><br>
-							<%= link_to "#{@user.attachment5_name}", @user.attachment5_url, target: :_blank %><br><br>
-							<%= link_to "#{@user.attachment6_name}", @user.attachment6_url, target: :_blank %><br><br>
-							<%= link_to "#{@user.attachment7_name}", @user.attachment7_url, target: :_blank %><br><br>
-							<%= link_to "#{@user.attachment8_name}", @user.attachment8_url, target: :_blank %><br><br>
-							<%= link_to "#{@user.attachment9_name}", @user.attachment9_url, target: :_blank %><br><br>
-							<%= link_to "#{@user.attachment10_name}", @user.attachment10_url, target: :_blank %><br>
-						</ul>
-						
-						<table>
-		          <tr>
-		            <td>Broker: </td><td>&nbsp;&nbsp;<%= @user.broker %></td>
-		          </tr>        
-		          <tr>
-		            <td colspan="2">&nbsp;</td>
-		          </tr>			          
-		          <tr>
-		            <td>Fee Paid: </td><td>&nbsp;&nbsp;<%= @user.fee %></td>
-		          </tr>        
-		          <tr>
-		            <td colspan="2">&nbsp;</td>
-		          </tr>
-		          <tr>
-		            <td>Fee Paid by: </td><td>&nbsp;&nbsp;<%= @user.fee_payment_method %></td>
-		          </tr>
-		          <tr>
-		            <td colspan="2">&nbsp;</td>
-		          </tr>			          							
-						</table>
-					</div>
+		      <% if current_user.staff %>
+	          <div class="col-md-5 col-md-offset-1">
+					
+							<p><strong>Documents</strong></p>
+							
+							<ul>
+								<%= link_to "#{@user.attachment1_name}", @user.attachment1_url, target: :_blank %><br><br>
+								<%= link_to "#{@user.attachment2_name}", @user.attachment2_url, target: :_blank %><br><br>  	
+								<%= link_to "#{@user.attachment3_name}", @user.attachment3_url, target: :_blank %><br><br>
+								<%= link_to "#{@user.attachment4_name}", @user.attachment4_url, target: :_blank %><br><br>
+								<%= link_to "#{@user.attachment5_name}", @user.attachment5_url, target: :_blank %><br><br>
+								<%= link_to "#{@user.attachment6_name}", @user.attachment6_url, target: :_blank %><br><br>
+								<%= link_to "#{@user.attachment7_name}", @user.attachment7_url, target: :_blank %><br><br>
+								<%= link_to "#{@user.attachment8_name}", @user.attachment8_url, target: :_blank %><br><br>
+								<%= link_to "#{@user.attachment9_name}", @user.attachment9_url, target: :_blank %><br><br>
+								<%= link_to "#{@user.attachment10_name}", @user.attachment10_url, target: :_blank %><br>
+							</ul>
+							
+							<table>
+			          <tr>
+			            <td>Broker: </td><td>&nbsp;&nbsp;<%= @user.broker %></td>
+			          </tr>        
+			          <tr>
+			            <td colspan="2">&nbsp;</td>
+			          </tr>			          
+			          <tr>
+			            <td>Fee Paid: </td><td>&nbsp;&nbsp;<%= @user.fee %></td>
+			          </tr>        
+			          <tr>
+			            <td colspan="2">&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>Fee Paid by: </td><td>&nbsp;&nbsp;<%= @user.fee_payment_method %></td>
+			          </tr>
+			          <tr>
+			            <td colspan="2">&nbsp;</td>
+			          </tr>			          							
+							</table>
+						</div>
+					<% end %>
 				</div>
 
-
-        <div class="row">
-          <div class="col-md-10 col-md-offset-1">
-          	<hr>
-						<p><strong>Notes</strong></p>
+		    <% if current_user.staff %>
+	        <div class="row">
+	          <div class="col-md-10 col-md-offset-1">
+	          	<hr>
+							<p><strong>Notes</strong></p>
+						</div>
 					</div>
-				</div>
-
+				<% end %>
       </div>
       
     	<div class="panel-footer">

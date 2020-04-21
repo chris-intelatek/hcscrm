@@ -6,12 +6,11 @@ class CommentsController < ApplicationController
 		# creates a comment with respect to the prospect
 		@comment = @prospect.comments.create(comment_params)
 		@comment.user_id = current_user.id
-
 		if @comment.save
 		  NotificationMailer.new_comment(@comment).deliver_later
 			redirect_to prospect_path(@prospect)
 		else
-			render 'new'
+			redirect_to :back
 		end
 	end
 
@@ -22,7 +21,7 @@ class CommentsController < ApplicationController
 		if @comment.update(comment_params)
 			redirect_to prospect_path(@prospect)
 		else
-			render 'edit'
+			redirect_to :back
 		end
 	end
 
