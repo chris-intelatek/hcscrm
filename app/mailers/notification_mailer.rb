@@ -11,6 +11,12 @@ class NotificationMailer < ApplicationMailer
              subject: 'New Shipping Profile Submitted')
     end
 
+    def new_shipping_attachment(attachment)
+        @prospect_attachment = attachment
+        mail(to: [attachment.prospect.user_email, 'chris@bluecoastsavings.com', 'info@shipstoresoftware.com'],
+             subject: 'New File Uploaded')
+    end
+
     def shipping_lead_status_update(prospect)
         @prospect = prospect
         mail(from: "ShipStore <noreply@bluecoastcrm.com>",
