@@ -68,11 +68,28 @@
 			</div>
 			<br>
 			<br>
+
 			<div class="row">
 				<div class="col-md-4"><%= f.input :shipping_parcels_per_day, label: "Estimated Parcels Shipped Per Day" %></div>																																			
 				<div class="col-md-4"><%= f.input :shipping_annual_parcel_spend, label: "Estimated Annual Parcel Spend" %></div>
-				<div class="col-md-4"><%= f.input :shipping_total_spend, label: "Estimated Total Annual Shipping Spend" %></div>
-			</div>				
+				<div class="col-md-4"><%= f.input :shipping_parcel_carrier, collection: ['USPS',
+																																									'Fedex',
+																																									'USPS',
+																																									'USPS & Fedex',
+																																									'USPS & UPS',																																									
+																																									'USPS, Fedex & UPS',
+																																									'Fedex & UPS'], label: "Parcel Shipping Carrier" %></div>
+			</div>
+			<div class="row">			
+				<div class="col-md-4"><%= f.input :shipping_ltl_per_week, label: "Estimated LTL Per Week" %></div>
+				<div class="col-md-4"><%= f.input :shipping_annual_ltl_spend, label: "Annual LTL Spend" %></div>
+			</div>
+
+			<div class="row">					
+				<div class="col-md-4"><%= f.input :shipping_tl_per_week, label: "Estimated TL Per Week" %></div>
+				<div class="col-md-4"><%= f.input :shipping_annual_tl_spend, label: "Annual TL Spend" %></div>
+			</div>
+				
 			<div class="row">
 				<div class="col-md-4"><br><%= f.input :shipping_carrier_provided_system, label: "Using carriers provided software to manage parcel shipping?" %></div>
 				<div class="col-md-4"><%= f.input :shipping_integration, label: "Would SHIPSTORE potentially integrate with other systems? (WMS, ERP, Inventory Management, Shopping Cart)" %></div>

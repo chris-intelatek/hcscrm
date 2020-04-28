@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200420071322) do
+ActiveRecord::Schema.define(version: 20200427063946) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "description"
@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 20200420071322) do
     t.string   "shipping_contact_email"
     t.string   "shipping_type"
     t.integer  "shipping_annual_parcel_spend"
-    t.integer  "shipping_total_spend"
+    t.integer  "shipping_annual_ltl_spend"
     t.string   "shipping_carrier_provided_system"
     t.string   "shipping_interest_in_rate_analysis"
     t.integer  "shipping_parcels_per_day"
@@ -151,6 +151,10 @@ ActiveRecord::Schema.define(version: 20200420071322) do
     t.date     "shipping_next_action_date"
     t.string   "shipping_next_action"
     t.string   "hcs_lead_status"
+    t.string   "shipping_parcel_carrier"
+    t.integer  "shipping_ltl_per_week"
+    t.integer  "shipping_tl_per_week"
+    t.integer  "shipping_annual_tl_spend"
   end
 
   create_table "users", force: :cascade do |t|
