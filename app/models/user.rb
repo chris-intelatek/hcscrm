@@ -39,21 +39,17 @@ class User < ActiveRecord::Base
     end
   end  
 
-  # # Use this Import Function to Update USERS
+
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
+      # Use the following line to import just new user
+      # User.create! row.to_hash
+      # Or use The following 3 lines to update existing users
       user_hash = row.to_hash
       user = find_or_create_by!(id: user_hash['id'])
       user.update_attributes(user_hash)
     end
   end
-
-  # # Use this Import Function to Upload NEW USERS
-  # def self.import(file)
-  #   CSV.foreach(file.path, headers: true) do |row|
-  #     User.create! row.to_hash
-  #   end
-  # end
 
     
   def self.search(query)

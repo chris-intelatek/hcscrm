@@ -117,7 +117,7 @@
 						<% if (prospect.user_id == current_user.id) || current_user.staff %>						
 					    <tr>
 						    <td class="td-left"><%= prospect.created_at.strftime("%m/%d/%Y") %></td>
-					      <td class="td-left"><%= prospect.user.advisor_first_name + ' ' + prospect.user.advisor_last_name %></td>
+					      <td class="td-left"><%= prospect.user&.advisor_name %></td>
 					      <td class="td-left"><em><%= link_to prospect.organization, prospect %></em></td>
 					      <td class="td-left"><%= prospect.shipping_opportunity_status %><br>
 										<% if !prospect.shipping_next_action_date.nil? %>

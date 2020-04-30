@@ -72,13 +72,21 @@
 			<div class="row">
 				<div class="col-md-4"><%= f.input :shipping_parcels_per_day, label: "Estimated Parcels Shipped Per Day" %></div>																																			
 				<div class="col-md-4"><%= f.input :shipping_annual_parcel_spend, label: "Estimated Annual Parcel Spend" %></div>
-				<div class="col-md-4"><%= f.input :shipping_parcel_carrier, collection: ['USPS',
-																																									'Fedex',
-																																									'USPS',
-																																									'USPS & Fedex',
-																																									'USPS & UPS',																																									
-																																									'USPS, Fedex & UPS',
-																																									'Fedex & UPS'], label: "Parcel Shipping Carrier" %></div>
+				<div class="col-md-4"><%= f.input :shipping_parcel_carrier, collection: ['UPS',
+																																								'UPS, Fedex',
+																																								'UPS, Fedex, DHL',		
+																																								'UPS, Fedex, DHL, USPS',
+																																								'UPS, Fedex, DHL, USPS, Other',
+																																								'Fedex',
+																																								'Fedex, DHL',
+																																								'Fedex, DHL, USPS',	
+																																								'Fedex, DHL, USPS, Other',
+																																								'DHL',
+																																								'DHL, USPS',
+																																								'DHL, USPS, Other',
+																																								'USPS',
+																																								'USPS, Other',
+																																								'Other'], label: "Parcel Shipping Carrier" %></div>
 			</div>
 			<div class="row">			
 				<div class="col-md-4"><%= f.input :shipping_ltl_per_week, label: "Estimated LTL Per Week" %></div>
