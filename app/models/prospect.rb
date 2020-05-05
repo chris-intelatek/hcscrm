@@ -51,20 +51,17 @@ class Prospect < ActiveRecord::Base
     end
   end  
 
+# Built this import function with Alfie
   def self.import(file)
     CSV.foreach(file.path, encoding: 'bom|utf-8', headers: true) do |row|
-
-      # Prospect.create! row.to_hash
-      # Use The following 3 lines to update existing prospects
       prospect_hash = row.to_hash.select{ |k,v| v.present? }
       prospect = find_or_initialize_by(id: prospect_hash['id'])
       #binding.pry
       prospect.assign_attributes(prospect_hash.except('id'))
       prospect.save
-
-      dates_hash = prospect_hash.slice('created_at', 'updated_at')
-      dates_hash.each{|k, v| dates_hash[k] = DateTime.strptime(v, "%m/%d/%Y") }
-      prospect.update_columns(dates_hash) if dates_hash.present?
+      # dates_hash = prospect_hash.slice('created_at', 'updated_at')
+      # dates_hash.each{|k, v| dates_hash[k] = DateTime.strptime(v, "%m/%d/%Y") }
+      # prospect.update_columns(dates_hash) if dates_hash.present?
     end
   end
 
