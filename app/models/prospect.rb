@@ -51,11 +51,9 @@ class Prospect < ActiveRecord::Base
     end
   end  
 
-
   def self.import(file)
-    ActiveRecord::Base.transaction do
     CSV.foreach(file.path, encoding: 'bom|utf-8', headers: true) do |row|
-      # Use the following line to import just new prospects
+
       # Prospect.create! row.to_hash
       # Use The following 3 lines to update existing prospects
       prospect_hash = row.to_hash.select{ |k,v| v.present? }
@@ -63,9 +61,30 @@ class Prospect < ActiveRecord::Base
       #binding.pry
       prospect.assign_attributes(prospect_hash.except('id'))
       prospect.save
-    end
+
+      dates_hash = prospect_hash.slice('created_at', 'updated_at')
+      dates_hash.each{|k, v| dates_hash[k] = DateTime.strptime(v, "%m/%d/%Y") }
+      prospect.update_columns(dates_hash) if dates_hash.present?
     end
   end
+
+  # Use The following just to update existing prospects
+  # def self.import(file)
+  #   CSV.foreach(file.path, headers: true) do |row|
+  #     prospect_hash = row.to_hash
+  #     prospect = find_or_create_by!(id: prospect_hash['id'])
+  #     prospect.update_attributes(prospect_hash)
+  #   end
+  # end
+
+
+  # Use the following line to import just new prospects
+  # def self.import(file)
+  #   CSV.foreach(file.path, headers: true) do |row|
+  #     Prospect.create! row.to_hash
+  #   end
+  # end
+
 
 
   def self.search(query)
