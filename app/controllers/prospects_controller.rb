@@ -172,8 +172,12 @@ class ProspectsController < ApplicationController
 
 
   def entrust
-    @prospects = Prospect.where(hcs_prospect: true).order("created_at DESC")    
     @users = User.all
+    if params[:search]
+      @prospects = Prospect.where(hcs_prospect: true).search(params[:search]).order("created_at DESC")
+    else  
+      @prospects = Prospect.where(hcs_prospect: true).order("created_at DESC")          
+    end
   end
 
 
@@ -251,8 +255,12 @@ class ProspectsController < ApplicationController
 # Controllers for Instant Pay Program
 
   def branch
-    @prospects = Prospect.where(pay_prospect: true).order("created_at DESC")    
     @users = User.all
+    if params[:search]
+      @prospects = Prospect.where(pay_prospect: true).search(params[:search]).order("created_at DESC")
+    else
+      @prospects = Prospect.where(pay_prospect: true).order("created_at DESC")
+    end
   end
   
   

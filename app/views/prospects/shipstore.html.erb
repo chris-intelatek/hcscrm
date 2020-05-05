@@ -4,19 +4,15 @@
 		  <div class="panel-heading">
 	
 		  	<div class="row">
-		  		<div class="col-md-6">
+		  		<div class="col-md-5">
 						<h4>Shipping Prospects</h4>
 			  	</div>
-			  	
-	  		<div class="col-md-6">
-		  		<%= form_tag(shipstore_path, :method => "get", id: "search-form") do %>
-						<%= text_field_tag :search, params[:search], placeholder: "Search Prospects" %>
-						<%= submit_tag "Search", class:"btn btn-slate btn-sm" %>
-					<% end %>
-				</div>			  	
-			  	
-			  	
-			  	
+		  		<div class="col-md-7">
+			  		<%= form_tag(shipstore_path, :method => "get", id: "search-form") do %>
+							<%= text_field_tag :search, params[:search], placeholder: "Search Prospects" %>
+							<%= submit_tag "Search", class:"btn btn-slate btn-sm" %>
+						<% end %>
+					</div>
 		  	</div>
 		  </div>
 	
