@@ -59,9 +59,9 @@ class Prospect < ActiveRecord::Base
       #binding.pry
       prospect.assign_attributes(prospect_hash.except('id'))
       prospect.save
-      # dates_hash = prospect_hash.slice('created_at', 'updated_at')
-      # dates_hash.each{|k, v| dates_hash[k] = DateTime.strptime(v, "%m/%d/%Y") }
-      # prospect.update_columns(dates_hash) if dates_hash.present?
+      dates_hash = prospect_hash.slice('created_at', 'updated_at')
+      dates_hash.each{|k, v| dates_hash[k] = DateTime.strptime(v, "%m/%d/%Y") }
+      prospect.update_columns(dates_hash) if dates_hash.present?
     end
   end
 
