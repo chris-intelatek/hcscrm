@@ -4,9 +4,19 @@
 		  <div class="panel-heading">
 	
 		  	<div class="row">
-		  		<div class="col-md-12">
+		  		<div class="col-md-6">
 						<h4>Shipping Prospects</h4>
 			  	</div>
+			  	
+	  		<div class="col-md-6">
+		  		<%= form_tag(shipstore_path, :method => "get", id: "search-form") do %>
+						<%= text_field_tag :search, params[:search], placeholder: "Search Prospects" %>
+						<%= submit_tag "Search", class:"btn btn-slate btn-sm" %>
+					<% end %>
+				</div>			  	
+			  	
+			  	
+			  	
 		  	</div>
 		  </div>
 	
@@ -27,10 +37,10 @@
 						<% @prospects.each do |prospect| %>
 					    <tr>
 					      <td class="td-left">
-					      	<%= prospect.created_at.strftime("%m/%d/%Y") %>
+					      	<%= prospect.created_at&.strftime("%m/%d/%Y") %>
 					      </td>
 					      <td class="td-left">
-					      	<%= prospect.user.advisor_first_name + ' ' + prospect.user.advisor_last_name %>
+					      	<%= prospect.user&.advisor_name %>
 					      </td>
 					      
 					      <td class="td-left">

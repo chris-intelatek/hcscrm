@@ -223,8 +223,12 @@ class ProspectsController < ApplicationController
 
 
   def shipstore
-    @prospects = Prospect.where(shipping_prospect: true).order("created_at DESC")    
     @users = User.all
+    if params[:search]
+      @prospects = Prospect.where(shipping_prospect: true).search(params[:search]).order("created_at DESC")
+    else  
+      @prospects = Prospect.where(shipping_prospect: true).order("created_at DESC")          
+    end
   end
 
 
