@@ -8,14 +8,6 @@
     <div class="prospect-show">
   
   		<%= simple_form_for @prospect do |f| %>
-
-    <div class="row">
-      <div class="col-md-4">
-      		<%= f.input :created_at, as: :date, html5: true, order: [:month, :day, :year], label: "Fix Created At Date" %>
-      </div>
-    </div>
-
-
   			<h4>Company/Organization Info</h4>
   			<%= f.input :organization, required: true, autofocus: true, label: "Prospect Company or Organization Name" %>
   			<div class="row">
