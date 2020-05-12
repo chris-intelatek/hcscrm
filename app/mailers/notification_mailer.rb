@@ -1,7 +1,7 @@
 class NotificationMailer < ApplicationMailer
     def new_hcsq(prospect)
         @prospect = prospect
-        mail(to: [prospect.user_email, 'chris@bluecoastsavings.com,', 'csharp@tridentbenefits.net'],
+        mail(to: [prospect.user_email, 'chris@bluecoastsavings.com,', 'csharp@tridentbenefits.net', 'mvela@tridentbenefits.net'],
              subject: 'New HealthCare Prospect Submitted')
     end
 

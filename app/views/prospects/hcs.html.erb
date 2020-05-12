@@ -10,9 +10,8 @@
     <div class="prospect-show">
   		<%= simple_form_for @prospect, url: hcs_update_path, method: :post do |f| %>
   			<%= f.hidden_field :hcs_prospect, value: 'true' %>
-			  <%= f.hidden_field :hcs_opportunity_status, value: "HealthCare Prospect Submitted" %>  			
+			  <%= f.hidden_field :hcs_opportunity_status, value: "Prospect Submitted to Trident Benefits" %>  			
 			  <%= f.hidden_field :shipping_lead_status, value: "Submitted" %>
-			  
 	      <%= render 'prospects/edit_hcs', f: f %>
     </div>
     	
