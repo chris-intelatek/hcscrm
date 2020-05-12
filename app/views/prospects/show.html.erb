@@ -7,30 +7,28 @@
         <p class="header-title"><%= @prospect.organization %></p>
       </div>
       
-      <% if !current_user.shipstore && !current_user.entrust && !current_user.branch %>
-        <div class="col-md-4">
-          <div class="btn-group pull-right">
-            <button type="button" class="btn btn-slate">Add New Opportunity</button>
-            <button type="button" class="btn btn-slate dropdown-toggle" data-toggle="dropdown">
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-              <% if !@prospect.hcs_prospect %>
-              	<li><%= link_to "Add HealthCare Opportunity", hcsq_path(@prospect) %></li>      
-              <% end %>
-              <% if !@prospect.shipping_prospect %>
-              	<li><%= link_to "Add Shipping Opportunity", shipping_profile_path(@prospect) %></li>      
-              <% end %>
-              <% if !@prospect.pay_prospect %>
-              	<li><%= link_to "Add Instant Payments Opportunity", pay_path(@prospect) %></li>      
-              <% end %>
-              <% if !@prospect.vcp_prospect %>
-              	<li><%= link_to "Add Accounts Payable Opportunity", vcp_path(@prospect) %></li>      
-              <% end %>
-            </ul>
-          </div>
+      <div class="col-md-4">
+        <div class="btn-group pull-right">
+          <button type="button" class="btn btn-slate">Add New Opportunity</button>
+          <button type="button" class="btn btn-slate dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <% if !@prospect.hcs_prospect && !current_user.shipstore && !current_user.branch %>
+            	<li><%= link_to "Add HealthCare Opportunity", hcsq_path(@prospect) %></li>      
+            <% end %>
+            <% if !@prospect.shipping_prospect && !current_user.entrust && !current_user.branch%>
+            	<li><%= link_to "Add Shipping Opportunity", shipping_profile_path(@prospect) %></li>      
+            <% end %>
+            <% if !@prospect.pay_prospect && !current_user.shipstore && !current_user.entrust %>
+            	<li><%= link_to "Add Instant Payments Opportunity", pay_path(@prospect) %></li>      
+            <% end %>
+            <% if !@prospect.vcp_prospect && !current_user.shipstore && !current_user.entrust && !current_user.branch %>
+            	<li><%= link_to "Add Accounts Payable Opportunity", vcp_path(@prospect) %></li>      
+            <% end %>
+          </ul>
         </div>
-      <% end %>
+      </div>
     
     </div>
     <div class="row">
