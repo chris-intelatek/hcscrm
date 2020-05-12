@@ -12,7 +12,7 @@
     		<% if current_user.manager %>
     		  <div class="row alert-alert">
     		    <div class="col-md-6"><br><br>WARNING - Consultant name should NOT typically be changed.</div>
-            <div class="col-md-6"><%= f.input :user_id, collection: User.collection, label: "Consultant Name", include_hidden: false %></div>
+            <div class="col-md-6"><%= f.input :user_id, collection: User.collection, label: "Select Consultant Name", include_hidden: false %></div>
           </div>
     		<% end %>
   		
