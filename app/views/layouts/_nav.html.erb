@@ -53,7 +53,7 @@
                   <%= link_to entrust_path, class: 'nav-link' do %><i class="fa fa-crosshairs"></i> Prospects<% end %>              
                 <% elsif current_user.branch %>
                   <%= link_to branch_path, class: 'nav-link' do %><i class="fa fa-crosshairs"></i> Prospects<% end %>
-                <% elsif current_user.admin %>
+                <% elsif current_user.staff %>
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-crosshairs"></i> Prospects</a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
