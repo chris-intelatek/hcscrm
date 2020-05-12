@@ -9,12 +9,12 @@
   
   		<%= simple_form_for @prospect do |f| %>
   		
-    		<% if current_user.staff || current_user.entrust ||  current_user.shipstore || current_user.branch %>
+    		<% if current_user.manager %>
     		  <div class="row alert-alert">
     		    <div class="col-md-6"><br><br>WARNING - Consultant name should NOT typically be changed.</div>
             <div class="col-md-6"><%= f.input :user_id, collection: User.collection, label: "Consultant Name", include_hidden: false %></div>
           </div>
-    		<% end %>  		
+    		<% end %>
   		
   			<h4>Company/Organization Info</h4>
   			<%= f.input :organization, required: true, autofocus: true, label: "Prospect Company or Organization Name" %>
