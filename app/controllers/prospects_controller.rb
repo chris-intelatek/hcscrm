@@ -17,9 +17,9 @@ class ProspectsController < ApplicationController
     elsif params[:vcp_status] != nil
       @prospects = Prospect.where(vcp_status: params[:vcp_status])
     elsif params[:search]
-      @prospects = Prospect.search(params[:search]).order("created_at DESC")
+      @prospects = Prospect.search(params[:search]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
     elsif
-      @prospects = Prospect.all
+      @prospects = Prospect.all.paginate(:per_page => 25, :page => params[:page])
     end
 
     respond_to do |format|
@@ -174,9 +174,9 @@ class ProspectsController < ApplicationController
   def entrust
     @users = User.all
     if params[:search]
-      @prospects = Prospect.where(hcs_prospect: true).search(params[:search]).order("created_at DESC")
+      @prospects = Prospect.where(hcs_prospect: true).search(params[:search]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
     else  
-      @prospects = Prospect.where(hcs_prospect: true).order("created_at DESC")          
+      @prospects = Prospect.where(hcs_prospect: true).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
     end
   end
 
@@ -229,9 +229,9 @@ class ProspectsController < ApplicationController
   def shipstore
     @users = User.all
     if params[:search]
-      @prospects = Prospect.where(shipping_prospect: true).search(params[:search]).order("created_at DESC")
+      @prospects = Prospect.where(shipping_prospect: true).search(params[:search]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
     else  
-      @prospects = Prospect.where(shipping_prospect: true).order("created_at DESC")          
+      @prospects = Prospect.where(shipping_prospect: true).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
     end
   end
 
@@ -257,9 +257,9 @@ class ProspectsController < ApplicationController
   def branch
     @users = User.all
     if params[:search]
-      @prospects = Prospect.where(pay_prospect: true).search(params[:search]).order("created_at DESC")
+      @prospects = Prospect.where(pay_prospect: true).search(params[:search]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
     else
-      @prospects = Prospect.where(pay_prospect: true).order("created_at DESC")
+      @prospects = Prospect.where(pay_prospect: true).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
     end
   end
   
