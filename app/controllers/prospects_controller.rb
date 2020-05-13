@@ -17,9 +17,9 @@ class ProspectsController < ApplicationController
     elsif params[:vcp_status] != nil
       @prospects = Prospect.where(vcp_status: params[:vcp_status])
     elsif params[:search]
-      @prospects = Prospect.search(params[:search]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
+      @prospects = Prospect.search(params[:search]).order("created_at DESC")
     elsif
-      @prospects = Prospect.all.paginate(:per_page => 25, :page => params[:page])
+      @prospects = Prospect.all
     end
 
     respond_to do |format|
