@@ -52,27 +52,27 @@ class Prospect < ActiveRecord::Base
   end  
 
 # Built this import function with Alfie
-  def self.import(file)
-    CSV.foreach(file.path, encoding: 'bom|utf-8', headers: true) do |row|
-      prospect_hash = row.to_hash.select{ |k,v| v.present? }
-      prospect = find_or_initialize_by(id: prospect_hash['id'])
-      #binding.pry
-      prospect.assign_attributes(prospect_hash.except('id'))
-      prospect.save
-      dates_hash = prospect_hash.slice('created_at', 'updated_at')
-      dates_hash.each{|k, v| dates_hash[k] = DateTime.strptime(v, "%m/%d/%Y") }
-      prospect.update_columns(dates_hash) if dates_hash.present?
-    end
-  end
-
-  # Use The following just to update existing prospects
   # def self.import(file)
-  #   CSV.foreach(file.path, headers: true) do |row|
-  #     prospect_hash = row.to_hash
-  #     prospect = find_or_create_by!(id: prospect_hash['id'])
-  #     prospect.update_attributes(prospect_hash)
+  #   CSV.foreach(file.path, encoding: 'bom|utf-8', headers: true) do |row|
+  #     prospect_hash = row.to_hash.select{ |k,v| v.present? }
+  #     prospect = find_or_initialize_by(id: prospect_hash['id'])
+  #     #binding.pry
+  #     prospect.assign_attributes(prospect_hash.except('id'))
+  #     prospect.save
+  #     dates_hash = prospect_hash.slice('created_at', 'updated_at')
+  #     dates_hash.each{|k, v| dates_hash[k] = DateTime.strptime(v, "%m/%d/%Y") }
+  #     prospect.update_columns(dates_hash) if dates_hash.present?
   #   end
   # end
+
+  # Use The following just to update existing prospects
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      prospect_hash = row.to_hash
+      prospect = find_or_create_by!(id: prospect_hash['id'])
+      prospect.update_attributes(prospect_hash)
+    end
+  end
 
 
   # Use the following line to import just new prospects
