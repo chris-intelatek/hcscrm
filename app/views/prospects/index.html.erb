@@ -172,9 +172,9 @@
 		</div>
 
 		<div class="panel-footer center">
-			<%# if current_user.staff %>
-				<%#= will_paginate @prospects, renderer: BootstrapPagination::Rails %>
-			<%# end %>
+			<% if current_user.staff %>
+				<%= will_paginate @prospects, renderer: BootstrapPagination::Rails %>
+			<% end %>
 	 	</div>
 
 	</div>

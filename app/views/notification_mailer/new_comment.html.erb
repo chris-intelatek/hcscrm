@@ -1,9 +1,13 @@
-<h2>New Comment</h2>
+<h3>New Comment</h3>
 <p>&nbsp;</p>
-<p>A new comment has been added to <%= @comment.prospect.organization %></p>
+<p>A new comment has been added to Prospect: <%= @comment.prospect.organization %></p>
 <p>&nbsp;</p>
-<p><%= @comment.hcs_content %><%= @comment.pay_content %><%= @comment.vcp_content %></p>
+<p><%= @comment.hcs_content %><%= @comment.pay_content %><%= @comment.vcp_content %><%= @comment.shipping_content %></p>
 <p><em>Comment posted by <%= @comment.user.advisor_first_name + ' ' + @comment.user.advisor_last_name %><em></p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p><em>Please note that ONLY the owner of this prospect will receive this automated message and that responses to this email will not be received.</em></p>
+<p><em>This email has been auto generated from the Blue Coast CRM</em></p>
+
+<% if @comment.prospect.pay_prospect? || @comment.prospect.vcp_prospect? %>
+  <p><b>Please note that this vendor is not receiving CRM notifications or accessing the CRM at this time.</b></p>
+<% end %>

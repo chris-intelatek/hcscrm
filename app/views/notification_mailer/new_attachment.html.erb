@@ -1,0 +1,12 @@
+<h3>New File</h3>
+<p>&nbsp;</p>
+<p>A new file has been uploaded and attached to prospect: <%= @prospect_attachment.prospect.organization %></p>
+<p>&nbsp;</p>
+<p>File: <%= link_to "#{@prospect_attachment.description}", @prospect_attachment.document_url %></p>
+<p>Uploaded by: <%= @prospect_attachment.user.advisor_first_name + ' ' + @prospect_attachment.user.advisor_last_name %></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><em>This email has been auto generated from the Blue Coast CRM</em></p>
+<% if @prospect_attachment.prospect.pay_prospect? || @prospect_attachment.prospect.vcp_prospect? %>
+  <p><b>Please note that this vendor is not receiving CRM notifications or accessing the CRM at this time.</b></p>
+<% end %>

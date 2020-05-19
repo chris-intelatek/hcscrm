@@ -9,9 +9,7 @@ class AttachmentsController < ApplicationController
 		if @prospect_attachment.save
 		  flash[:success] = "Your file bas been uploaded and attached to opportunity"		  
 			redirect_to prospect_path(@prospect)		  
-		  if @prospect_attachment.service_type == "shipping"
-		    NotificationMailer.new_shipping_attachment(@prospect_attachment).deliver_later
-		  end
+	    NotificationMailer.new_attachment(@prospect_attachment).deliver_later
 		else
       flash[:danger] = "File not Uploaded!  Must select file & add description"
 			redirect_to :back

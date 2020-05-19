@@ -24,8 +24,7 @@ class ProspectsController < ApplicationController
       end
     elsif
       if current_user.staff
-        # @prospects = Prospect.all.paginate(:per_page => 25, :page => params[:page])
-        @prospects = Prospect.all      
+        @prospects = Prospect.all.paginate(:per_page => 25, :page => params[:page])
       else
         @prospects = Prospect.all
       end
