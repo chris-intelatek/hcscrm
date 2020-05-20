@@ -1,5 +1,5 @@
 <% flash.each do |key, value| %>
-  <% unless key.to_s == 'timedout'%>
+  <% unless ((key.to_s == 'timedout') || value.blank?) %>
     <div class="alert alert-<%= key %>">
       <a href="#" data-dismiss="alert" class="close">×</a>
         <ul>
