@@ -91,18 +91,15 @@ class ProspectsController < ApplicationController
 
 
 # Controllers for IntelaTek appointment setting.
-
   def intelatek
     @prospects = Prospect.all.order("created_at DESC")
     @users = User.all
   end
 
-
   def new_lead
     @prospect = Prospect.new
   end
 
-  
   def new_lead_create
     attrs = prospect_params
     if prospect_params[:pay_prospect] == '1'
@@ -132,10 +129,8 @@ class ProspectsController < ApplicationController
     end
   end
 
-
   def lead
   end
-
 
   def lead_update
     if @prospect.update(prospect_params)
@@ -145,15 +140,13 @@ class ProspectsController < ApplicationController
       render 'lead_path'
     end
   end
-  
+# End of IntelaTek Controllers  
   
 
 # Controllers for healthcare program
-
   def hcs
   end
 
-  
   def hcs_update
     if @prospect.update(prospect_params)
       flash[:success] = "Prospect has been updated."
@@ -163,10 +156,8 @@ class ProspectsController < ApplicationController
     end
   end  
   
-  
   def hcsq
   end
-  
   
   def hcsq_update
     if @prospect.update(prospect_params)
@@ -178,7 +169,6 @@ class ProspectsController < ApplicationController
     end
   end
 
-
   def entrust
     @users = User.all
     if params[:search]
@@ -187,7 +177,6 @@ class ProspectsController < ApplicationController
       @prospects = Prospect.where(hcs_prospect: true).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
     end
   end
-
 
   def hcs_lead_status
   end
@@ -202,12 +191,9 @@ class ProspectsController < ApplicationController
   end
 
 
-
 # Controllers for Shipping Program
-
   def shipping_profile
   end
-  
   
   def shipping_profile_update
     if @prospect.update(prospect_params)
@@ -219,11 +205,9 @@ class ProspectsController < ApplicationController
     end
   end
 
-
   def shipping
   end
 
-  
   def shipping_update
     if @prospect.update(prospect_params)
       flash[:success] = "Prospect has been updated."
@@ -232,7 +216,6 @@ class ProspectsController < ApplicationController
       render 'shipping'
     end
   end
-
 
   def shipstore
     @users = User.all
@@ -243,10 +226,8 @@ class ProspectsController < ApplicationController
     end
   end
 
-
   def shipping_lead_status
   end
-
 
   def shipping_lead_status_update
     if @prospect.update(prospect_params)
@@ -261,7 +242,6 @@ class ProspectsController < ApplicationController
 
 
 # Controllers for Instant Pay Program
-
   def branch
     @users = User.all
     if params[:search]
@@ -271,11 +251,9 @@ class ProspectsController < ApplicationController
     end
   end
   
-  
   def pay
   end
 
-  
   def pay_update
     if @prospect.update(prospect_params)
       flash[:success] = "Prospect has been updated."
@@ -286,12 +264,9 @@ class ProspectsController < ApplicationController
   end  
 
 
-
 # Controllers for Virtual Card Program
-
   def vcp
   end
-
 
   def vcp_update
     if @prospect.update(prospect_params)

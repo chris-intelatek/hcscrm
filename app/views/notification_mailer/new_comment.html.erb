@@ -8,6 +8,6 @@
 <p>&nbsp;</p>
 <p><em>This email has been auto generated from the Blue Coast CRM</em></p>
 
-<% if @comment.prospect.pay_prospect? || @comment.prospect.vcp_prospect? %>
+<% if @comment.pay_content? || @comment.vcp_content? %>
   <p><b>Please note that this vendor is not receiving CRM notifications or accessing the CRM at this time.</b></p>
 <% end %>
