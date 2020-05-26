@@ -218,10 +218,16 @@ class ProspectsController < ApplicationController
   end
 
   def shipstore
+    @shipping_opportunity_status = Prospect.select(:shipping_opportunity_status).order(:shipping_opportunity_status).distinct
+    @shipping_lead_status = Prospect.select(:shipping_lead_status).order(:shipping_lead_status).distinct
     @users = User.all
-    if params[:search]
+    if params[:shipping_opportunity_status] != nil
+      @prospects = Prospect.where(shipping_opportunity_status: params[:shipping_opportunity_status]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
+    elsif params[:shipping_lead_status] != nil
+      @prospects = Prospect.where(shipping_lead_status: params[:shipping_lead_status]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
+    elsif params[:search]
       @prospects = Prospect.where(shipping_prospect: true).search(params[:search]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
-    else  
+    else
       @prospects = Prospect.where(shipping_prospect: true).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
     end
   end
