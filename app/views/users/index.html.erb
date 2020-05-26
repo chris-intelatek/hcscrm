@@ -59,10 +59,10 @@
   								</li>
   							</div>
   						</th>
-              <th>Last Logged In</th>
               <% if !current_user.staff %>
                 <th>Prospects</th>
               <% else %>
+                <th>Last Logged In</th>              
                 <th>Ship</th>
                 <th>HCS</th>
                 <th>Pay</th>
@@ -82,46 +82,44 @@
             </tr>
           </thead>
                
-
           <tbody>
             <% @users.order(:advisor_first_name).each do |user| %>
               <tr>
               	<td class="td-left"><%= link_to user.advisor_name, user %></td>
-              	<td style="vertical-align:middle"><%= user.state %></td>              	
-              	<td style="vertical-align:middle">
-              	  <% if user.current_sign_in_at %>
-              	    <%= time_ago_in_words(user.current_sign_in_at) if user.current_sign_in_at %> ago
-              	  <% else %>
-              	    Never
-              	  <% end %>
-              	</td>
-
-              <% if current_user.shipstore || current_user.staff %>
-              	<td style="vertical-align:middle"><%= user.prospects.where(shipping_prospect: true).count %></td>
-              <% end %>
-              <% if current_user.entrust || current_user.staff %>              	
-              	<td style="vertical-align:middle"><%= user.prospects.where(hcs_prospect: true).count %></td>
-              <% end %>
-              <% if current_user.branch || current_user.staff %> 
-              	<td style="vertical-align:middle"><%= user.prospects.where(pay_prospect: true).count %></td>
-              <% end %>
-              <% if current_user.staff %> 
-              	<td style="vertical-align:middle"><%= user.prospects.where(vcp_prospect: true).count %></td>              	
-              	<td style="vertical-align:middle"><%= user.prospects.size %></td>
-              	<td style="vertical-align:middle"><%= user.group %></td>
-              	<td style="vertical-align:middle">
-              	  <% if user.shipstore == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
-              	<td style="vertical-align:middle">
-              	  <% if user.entrust == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
-              	<td style="vertical-align:middle">
-              	  <% if user.branch == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
-              	<td style="vertical-align:middle">
-              	  <% if user.admin == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
-              	<td style="vertical-align:middle">
-              	  <% if user.manager == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
-              	<td style="vertical-align:middle">
-              	  <% if user.staff == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
-              <% end %>
+              	<td style="vertical-align:middle"><%= user.state %></td>
+                <% if current_user.shipstore || current_user.staff %>
+                	<td style="vertical-align:middle"><%= user.prospects.where(shipping_prospect: true).count %></td>
+                <% end %>
+                <% if current_user.entrust || current_user.staff %>              	
+                	<td style="vertical-align:middle"><%= user.prospects.where(hcs_prospect: true).count %></td>
+                <% end %>
+                <% if current_user.branch || current_user.staff %> 
+                	<td style="vertical-align:middle"><%= user.prospects.where(pay_prospect: true).count %></td>
+                <% end %>
+                <% if current_user.staff %>
+                	<td style="vertical-align:middle">
+                	  <% if user.current_sign_in_at %>
+                	    <%= time_ago_in_words(user.current_sign_in_at) if user.current_sign_in_at %> ago
+                	  <% else %>
+                	    Never
+                	  <% end %>
+                	</td>                
+                	<td style="vertical-align:middle"><%= user.prospects.where(vcp_prospect: true).count %></td>              	
+                	<td style="vertical-align:middle"><%= user.prospects.size %></td>
+                	<td style="vertical-align:middle"><%= user.group %></td>
+                	<td style="vertical-align:middle">
+                	  <% if user.shipstore == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
+                	<td style="vertical-align:middle">
+                	  <% if user.entrust == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
+                	<td style="vertical-align:middle">
+                	  <% if user.branch == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
+                	<td style="vertical-align:middle">
+                	  <% if user.admin == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
+                	<td style="vertical-align:middle">
+                	  <% if user.manager == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
+                	<td style="vertical-align:middle">
+                	  <% if user.staff == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
+                <% end %>
                 <% if current_user.intelatek || current_user.admin %>
                   <td style="vertical-align:middle">
               	  <% if user.intelatek == true %><span class="glyphicon glyphicon-ok"></span><% end %></td>
