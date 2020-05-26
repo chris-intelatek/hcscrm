@@ -9,13 +9,13 @@ class ProspectsController < ApplicationController
     @pay_status = Prospect.select(:pay_status).order(:pay_status).distinct
     @vcp_status = Prospect.select(:vcp_status).order(:vcp_status).distinct    
     if params[:shipping_opportunity_status] != nil
-      @prospects = Prospect.where(shipping_opportunity_status: params[:shipping_opportunity_status])
+      @prospects = Prospect.where(shipping_opportunity_status: params[:shipping_opportunity_status]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
     elsif params[:hcs_opportunity_status] != nil
-      @prospects = Prospect.where(hcs_opportunity_status: params[:hcs_opportunity_status])
+      @prospects = Prospect.where(hcs_opportunity_status: params[:hcs_opportunity_status]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
     elsif params[:pay_status] != nil
-      @prospects = Prospect.where(pay_status: params[:pay_status])
+      @prospects = Prospect.where(pay_status: params[:pay_status]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
     elsif params[:vcp_status] != nil
-      @prospects = Prospect.where(vcp_status: params[:vcp_status])
+      @prospects = Prospect.where(vcp_status: params[:vcp_status]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
     elsif params[:search]
       if current_user.staff
         @prospects = Prospect.search(params[:search]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
