@@ -24,5 +24,6 @@ module ProspectsHelper
     @prospects.where(pay_status: "Other - No Sale").count
   end
 
+
 end
 

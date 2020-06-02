@@ -23,6 +23,10 @@
 				    	<th>Created</th>
 				      <th>Consultant</th>
 				      <th>Prospect</th>
+				      <th>Parcel Spend</th>
+				      <th>LTL Spend</th>
+				      <th>TL Spend</th>
+				      <th>Total Spend</th>				      
 							<th>
 				      	<div class="status">
 					      	<li class="dropdown">
@@ -67,6 +71,18 @@
 					      
 					      <td class="td-left">
 					     		<em><%= link_to prospect.organization, prospect %></em>
+					      </td>
+					      <td>
+					     		<%= prospect.shipping_annual_parcel_spend %>
+					      </td>
+					      <td>
+					     		<%= prospect.shipping_annual_ltl_spend %>
+					      </td>	
+					      <td>
+					     		<%= prospect.shipping_annual_tl_spend %>
+					      </td>
+					      <td>
+					     		<%= prospect.shipping_annual_parcel_spend.to_i + prospect.shipping_annual_ltl_spend.to_i + prospect.shipping_annual_tl_spend.to_i %>
 					      </td>
 					      <td>
 					      	<%= prospect.shipping_lead_status %> &nbsp;
