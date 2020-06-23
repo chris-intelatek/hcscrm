@@ -17,7 +17,8 @@ class NotificationMailer < ApplicationMailer
         @prospect = prospect
         mail(from: "ShipStore <noreply@bluecoastcrm.com>",
              to: [prospect.user_email, 'info@shipstoresoftware.com'],
-             subject: 'Shipping Lead Status Updated')
+            # subject: 'Shipping Lead Status Updated')
+             subject: "Shipping Lead Status Update: " + prospect.shipping_lead_status)
     end
 
 
