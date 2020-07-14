@@ -47,10 +47,15 @@
     </div>
   </div>
   <div class="prospect-show">
-    Prospect: <Strong><%= @prospect.organization %></Strong>
-    <br>
+    <div class="row">
+			<div class="col-md-4">
+        Prospect: <Strong><%= @prospect.organization %></Strong>			  
+			</div>
+			<div class="col-md-4">
+        Advisor: <%= @prospect.user.advisor_name %>		  
+			</div>    			
+    </div>
     <br>    
-    
     <div class="row">
 			<div class="col-md-4">Address: <em><%= @prospect.street_address %></em>
 				<%if @prospect.address2.nil? %><em>, <%= @prospect.address2 %></em><% end %><br>

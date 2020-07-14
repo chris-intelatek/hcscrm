@@ -1,5 +1,5 @@
 class ProspectsController < ApplicationController
-  before_action :find_prospect, only: [:show, :edit, :update, :destroy, :hcsq, :hcsq_update, :hcs, :hcs_update, :pay, :pay_update, :vcp, :vcp_update, :lead, :lead_update, :shipping_profile, :shipping_profile_update, :shipping, :shipping_update, :shipping_lead_status, :shipping_lead_status_update, :hcs_lead_status, :hcs_lead_status_update]
+  before_action :find_prospect, only: [:show, :edit, :update, :destroy, :hcsq, :hcsq_update, :hcs, :hcs_update, :pay, :pay_update, :vcp, :vcp_update, :lead, :lead_update, :shipping_profile, :shipping_profile_update, :shipping, :shipping_update, :shipping_lead_status, :shipping_lead_status_update, :shipping_opportunity_status, :shipping_opportunity_status_update, :hcs_lead_status, :hcs_lead_status_update]
   skip_before_action :authenticate_user!, only: [:new_lead, :new_lead_create]
   
 
@@ -222,13 +222,13 @@ class ProspectsController < ApplicationController
     @shipping_lead_status = Prospect.select(:shipping_lead_status).order(:shipping_lead_status).distinct
     @users = User.all
     if params[:shipping_opportunity_status] != nil
-      @prospects = Prospect.where(shipping_opportunity_status: params[:shipping_opportunity_status]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
+      @prospects = Prospect.where(shipping_opportunity_status: params[:shipping_opportunity_status]).order("created_at DESC").paginate(:per_page => 100, :page => params[:page])
     elsif params[:shipping_lead_status] != nil
-      @prospects = Prospect.where(shipping_lead_status: params[:shipping_lead_status]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
+      @prospects = Prospect.where(shipping_lead_status: params[:shipping_lead_status]).order("created_at DESC").paginate(:per_page => 100, :page => params[:page])
     elsif params[:search]
-      @prospects = Prospect.where(shipping_prospect: true).search(params[:search]).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
+      @prospects = Prospect.where(shipping_prospect: true).search(params[:search]).order("created_at DESC").paginate(:per_page => 100, :page => params[:page])
     else
-      @prospects = Prospect.where(shipping_prospect: true).order("created_at DESC").paginate(:per_page => 25, :page => params[:page])
+      @prospects = Prospect.where(shipping_prospect: true, shipping_lead_status: ["Submitted","Pending Review","Approved"]).order("created_at DESC").paginate(:per_page => 100, :page => params[:page])
     end
   end
 
@@ -242,6 +242,19 @@ class ProspectsController < ApplicationController
       redirect_to shipstore_path
     else
       render 'shipping_lead_status_path'
+    end
+  end
+
+  def shipping_opportunity_status
+  end
+
+  def shipping_opportunity_status_update
+    if @prospect.update(prospect_params)
+      NotificationMailer.shipping_opportunity_status_update(@prospect).deliver_later      
+      flash[:success] = "Opportunity Status has been updated."
+      redirect_to shipstore_path
+    else
+      render 'shipping_opportunity_status_path'
     end
   end
 

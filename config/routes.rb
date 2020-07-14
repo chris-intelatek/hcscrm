@@ -41,6 +41,8 @@ Rails.application.routes.draw do
   get 'shipstore', to: 'prospects#shipstore'
   get 'shipping_lead_status/:id', to: 'prospects#shipping_lead_status', as: :shipping_lead_status
   post 'shipping_lead_status/:id', to: 'prospects#shipping_lead_status_update', as: :shipping_lead_status_update
+  get 'shipping_opportunity_status/:id', to: 'prospects#shipping_opportunity_status', as: :shipping_opportunity_status
+  post 'shipping_opportunity_status/:id', to: 'prospects#shipping_opportunity_status_update', as: :shipping_opportunity_status_update  
   get :export_users, to: 'users#export_users', as: :export_users
   
   match '/users',     to: 'users#index',  via: 'get'

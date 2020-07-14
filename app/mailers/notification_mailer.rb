@@ -22,6 +22,22 @@ class NotificationMailer < ApplicationMailer
     end
 
 
+    def shipping_opportunity_status_update(prospect)
+        @prospect = prospect
+        mail(from: "ShipStore <noreply@bluecoastcrm.com>",
+              to: [prospect.user_email, 
+                if prospect.shipping_opportunity_status == 'Analysis'
+                  'rengle@shipstoresoftware.com'
+                elsif prospect.shipping_opportunity_status == 'Closed Won'
+                  'info@shipstoresoftware.com'
+                else
+                  'info@shipstoresoftware.com'
+                end
+                ],
+              subject: "Shipping Opportunity Status Update: " + prospect.shipping_opportunity_status)
+    end
+
+
     def new_branch_lead(prospect)
         @prospect = prospect
         mail(to: [prospect.user_email, 'chris@bluecoastsavings.com'],

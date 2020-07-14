@@ -1,0 +1,43 @@
+<div class="col-md-4 col-md-offset-4">
+	<div class="panel panel-gray">
+	  <div class="panel-heading">
+	  	<h4>Editing: &nbsp; <%= @prospect.organization %></h4>
+	  </div>
+	  <div class="prospect-show">
+  		<%= simple_form_for @prospect, url: shipping_opportunity_status_update_path, method: :post do |f| %>
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<%= f.input :shipping_opportunity_status, collection: true, required: true, 
+								collection: ['Prospect Submitted to ShipStore',
+														'Discovery',
+														'Demo',
+														'Analysis',
+														'Demo & Analysis',
+														'Exploration',
+														'Scope - Proposal',
+														'Closed Won',
+														'Closed Lost',
+														'Closed Not Qualified',
+														'Lead Declined by ShipStore',
+														'Follow up in January',
+														'Follow up in February',
+														'Follow up in March',
+														'Follow up in April',
+														'Follow up in May',
+														'Follow up in June',
+														'Follow up in July',
+														'Follow up in August',
+														'Follow up in September',
+														'Follow up in October',
+														'Follow up in November',
+														'Follow up in December'], label: "Prospect Status" %>
+         </div>
+			</div>
+		</div>
+		<div class="panel-footer center">
+			<%= link_to "Back", shipstore_path, class: "btn btn-default" %>
+      <%= f.button :submit, class:"btn btn-slate" %>
+    <% end %>
+  	</div>
+	</div>
+</div>

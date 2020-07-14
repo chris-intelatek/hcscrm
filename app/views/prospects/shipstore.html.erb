@@ -52,7 +52,7 @@
 									    <% end %>
 									  </ul>
 									</li>
-								</div>				      
+								</div>
 				      </th>
 				      
 				      <th>Next Action</th>				      
@@ -89,7 +89,8 @@
 					      	<%= link_to shipping_lead_status_path(prospect) do %><i class="glyphicon glyphicon-pencil"></i><% end %>
 					      </td>
 					      <td>
-					      	<%= prospect.shipping_opportunity_status %>
+					      	<%= prospect.shipping_opportunity_status %> &nbsp;
+					      	<%= link_to shipping_opportunity_status_path(prospect) do %><i class="glyphicon glyphicon-pencil"></i><% end %>
 					      </td>
 					      
 					      <td class="td-left">
