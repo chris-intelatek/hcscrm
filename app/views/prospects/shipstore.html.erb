@@ -97,6 +97,8 @@
 					      	<% if !prospect.shipping_next_action_date.nil? %>
 				      			<% if prospect.shipping_next_action_date < Date.today %>
 				      				<div class="alert-alert">
+				      			<% elsif prospect.shipping_next_action_date < Date.today + 2 %>
+				      				<div class="alert-warning">
 				      			<% else %>
 				      				<div>
 				      			<% end %>

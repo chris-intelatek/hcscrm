@@ -4,14 +4,14 @@
     <div class="panel-heading">
       <div class="row">
         <div class="col-md-6" ><h4>Editing: &nbsp; <%= @prospect.organization %></h4></div>
-        <div class="col-md-6" ><h4>Instant Shipping</h4></div>
+        <div class="col-md-6" ><h4>Shipping</h4></div>
       </div>
     </div>
     <div class="prospect-show">
   
   		<%= simple_form_for @prospect, url: shipping_update_path, method: :post do |f| %>
   			<%= f.hidden_field :pay_prospect, value: 'true' %>
-
+  			<%#= f.hidden_field :pay_created, value: Time.now %>
 	      <%= render 'prospects/edit_shipping', f: f %>
 
     </div>
