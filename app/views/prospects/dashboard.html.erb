@@ -50,7 +50,7 @@
 			</div>
 
 			<div class="col-md-3">
-				<div class="well dashboard-panel dashboard-bckg-6">
+				<div class="well dashboard-panel dashboard-bckg-4">
 					<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Prospect Submitted to ShipStore").count %></h1>
 					<p>&nbsp;</p>
 					<h4 align="center">Submitted to ShipStore</h4>
@@ -58,7 +58,7 @@
 			</div>
 	
 			<div class="col-md-3">
-				<div class="well dashboard-panel dashboard-bckg-4">
+				<div class="well dashboard-panel dashboard-bckg-5">
 					<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Discovery").count %></h1>
 					<p>&nbsp;</p>
 					<h4 align="center">Discovery</h4>
@@ -66,15 +66,31 @@
 			</div>
 			
 			<div class="col-md-3">
-				<div class="well dashboard-panel dashboard-bckg-5">
+				<div class="well dashboard-panel dashboard-bckg-6">
 				<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Demo").count %></h1>
 				<p>&nbsp;</p>
 				<h4 align="center">Demo</h4>
 				</div>
 			</div>
-		
+
 			<div class="col-md-3">
-				<div class="well dashboard-panel dashboard-bckg-6">
+				<div class="well dashboard-panel dashboard-bckg-7">
+					<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Analysis - Need Data").count %></h1>
+					<p>&nbsp;</p>
+					<h4 align="center">Analysis - Need Data</h4>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="well dashboard-panel dashboard-bckg-8">
+					<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Analysis - Data Received").count %></h1>
+					<p>&nbsp;</p>
+					<h4 align="center">Analysis - Data Received</h4>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="well dashboard-panel dashboard-bckg-9">
 					<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Demo & Analysis").count %></h1>
 					<p>&nbsp;</p>
 					<h4 align="center">Demo & Analysis</h4>
@@ -82,7 +98,7 @@
 			</div>
 		
 			<div class="col-md-3">
-				<div class="well dashboard-panel dashboard-bckg-7">
+				<div class="well dashboard-panel dashboard-bckg-10">
 					<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Exploration").count %></h1>
 					<p>&nbsp;</p>
 					<h4 align="center">Exploration</h4>
@@ -90,7 +106,7 @@
 			</div>
 		
 			<div class="col-md-3">
-				<div class="well dashboard-panel dashboard-bckg-8">
+				<div class="well dashboard-panel dashboard-bckg-1">
 					<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Scope - Proposal").count %></h1>
 					<p>&nbsp;</p>
 					<h4 align="center">Scope - Proposal</h4>
@@ -98,7 +114,7 @@
 			</div>
 			
 			<div class="col-md-3">
-				<div class="well dashboard-panel dashboard-bckg-9">
+				<div class="well dashboard-panel dashboard-bckg-2">
 					<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Closed Won").count %></h1>
 					<p>&nbsp;</p>
 					<h4 align="center">Closed Won</h4>
@@ -106,7 +122,7 @@
 			</div>			
 			
 			<div class="col-md-3">
-				<div class="well dashboard-panel dashboard-bckg-10">
+				<div class="well dashboard-panel dashboard-bckg-3">
 					<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Closed Lost").count %></h1>
 					<p>&nbsp;</p>
 					<h4 align="center">Closed Lost</h4>
@@ -114,7 +130,7 @@
 			</div>
 
 			<div class="col-md-3">
-				<div class="well dashboard-panel dashboard-bckg-10">
+				<div class="well dashboard-panel dashboard-bckg-4">
 					<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Closed Not Qualified").count %></h1>
 					<p>&nbsp;</p>
 					<h4 align="center">Closed Not Qualified</h4>
@@ -122,7 +138,7 @@
 			</div>
 
 			<div class="col-md-3">
-				<div class="well dashboard-panel dashboard-bckg-10">
+				<div class="well dashboard-panel dashboard-bckg-5">
 					<h1 align="center"><%= @prospects.where(shipping_opportunity_status: "Lead Declined by ShipStore").count %></h1>
 					<p>&nbsp;</p>
 					<h4 align="center">Lead Declined by ShipStore</h4>

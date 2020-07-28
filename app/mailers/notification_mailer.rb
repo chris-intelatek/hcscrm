@@ -26,7 +26,7 @@ class NotificationMailer < ApplicationMailer
         @prospect = prospect
         mail(from: "ShipStore <noreply@bluecoastcrm.com>",
               to: [prospect.user_email, 
-                if prospect.shipping_opportunity_status == 'Analysis'
+                if prospect.shipping_opportunity_status == 'Analysis - Need Data'
                   'rengle@shipstoresoftware.com'
                 elsif prospect.shipping_opportunity_status == 'Closed Won'
                   'info@shipstoresoftware.com'
