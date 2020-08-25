@@ -3,29 +3,14 @@
           <div class="col-md-4">
         		<%= f.input :shipping_opportunity_status, required: true, include_blank: false, include_hidden: false, multiple: true,
     																collection: ['Prospect Submitted to ShipStore',
-    																						'Discovery',
-																								'Demo',
-																								'Analysis',
-																								'Demo & Analysis',
-																								'Exploration',
-																								'Scope - Proposal',
-																								'Closed Won',
-																								'Closed Lost',
-																								'Closed Not Qualified',
-																								'Lead Declined by ShipStore',
-																								'Follow up in January',
-																								'Follow up in February',
-																								'Follow up in March',
-																								'Follow up in April',
-																								'Follow up in May',
-																								'Follow up in June',
-																								'Follow up in July',
-																								'Follow up in August',
-																								'Follow up in September',
-																								'Follow up in October',
-																								'Follow up in November',
-																								'Follow up in December'
-  			  																			], label: "Prospect Status" %>
+																									'Discovery/Brief Demo Call',
+																									'Analysis - Need Data',
+																									'Analysis - Data Received',
+																									'Analysis Review',
+																									'Full Demo',
+																									'Proposal/Agreement',
+																									'Closed Won',
+																									'Closed Lost'], label: "Prospect Status" %>
           </div>
 
     		  <div class="col-md-5">
