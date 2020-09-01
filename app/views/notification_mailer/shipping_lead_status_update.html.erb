@@ -5,16 +5,16 @@ Hi <%= @prospect.user.advisor_first_name + ' ' + @prospect.user.advisor_last_nam
 	record for this opportunity. You can monitor the status of your accepted prospect here <a href="https://www.bluecoastcrm.com/">https://bluecoastcrm.com</a>.</p>
 	
 	<p>The next step is to schedule a SHIPSTORE Discovery/Demo call to explore the opportunity further. Click <br>
-	<a href="https://calendly.com/shipstore/shipstore">here to select an available time slot that works for your contact.</a></p>
+	<a href="https://calendly.com/shipstore/1l11i011rll1r01lriil11s11g01pi010i10">here to select an available time slot that works for your contact.</a></p>
 
-<% elsif @prospect.shipping_lead_status == 'Pending Review' %>
-	<p>Congratulations! Your prospect, <strong><%= @prospect.organization %></strong>, has been approved pending a Discovery Call. You have now been assigned
-	the partner of record for this opportunity. You can monitor the status of your prospect here <a href="https://www.bluecoastcrm.com/">https://bluecoastcrm.com</a>.</p>
+<!--<%# elsif @prospect.shipping_lead_status == 'Pending Review' %>-->
+<!--	<p>Congratulations! Your prospect, <strong><%#= @prospect.organization %></strong>, has been approved pending a Discovery Call. You have now been assigned-->
+<!--	the partner of record for this opportunity. You can monitor the status of your prospect here <a href="https://www.bluecoastcrm.com/">https://bluecoastcrm.com</a>.</p>-->
 	
-	<p>The next step is to schedule a discovery call to verify additional details and/or confirm prospect viability.</p>
+<!--	<p>The next step is to schedule a discovery call to verify additional details and/or confirm prospect viability.</p>-->
 	
-	<p>Please follow the link below and select an available time slot that works for your contact:<br>
-	<a href="https://calendly.com/shipstore/discovery-call">https://calendly.com/shipstore/discovery-call</a></p>
+<!--	<p>Please follow the link below and select an available time slot that works for your contact:<br>-->
+<!--	<a href="https://calendly.com/shipstore/discovery-call">https://calendly.com/shipstore/discovery-call</a></p>-->
 
 <% elsif @prospect.shipping_lead_status == 'Declined' %>
 	<p>Unfortunately, your prospect, <strong><%= @prospect.organization %></strong>, has been declined for one of the following reasons:</p>
