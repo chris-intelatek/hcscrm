@@ -87,6 +87,16 @@
               <tr>
               	<td class="td-left"><%= link_to user.advisor_name, user %></td>
               	<td style="vertical-align:middle"><%= user.state %></td>
+                <% if current_user.staff %>
+                	<td style="vertical-align:middle">
+                	  <% if user.current_sign_in_at %>
+                	    <%= time_ago_in_words(user.current_sign_in_at) if user.current_sign_in_at %> ago
+                	  <% else %>
+                	    Never
+                	  <% end %>
+                	 </td>
+                <% end %>
+
                 <% if current_user.shipstore || current_user.staff %>
                 	<td style="vertical-align:middle"><%= user.prospects.where(shipping_prospect: true).count %></td>
                 <% end %>
@@ -97,13 +107,6 @@
                 	<td style="vertical-align:middle"><%= user.prospects.where(pay_prospect: true).count %></td>
                 <% end %>
                 <% if current_user.staff %>
-                	<td style="vertical-align:middle">
-                	  <% if user.current_sign_in_at %>
-                	    <%= time_ago_in_words(user.current_sign_in_at) if user.current_sign_in_at %> ago
-                	  <% else %>
-                	    Never
-                	  <% end %>
-                	</td>                
                 	<td style="vertical-align:middle"><%= user.prospects.where(vcp_prospect: true).count %></td>              	
                 	<td style="vertical-align:middle"><%= user.prospects.size %></td>
                 	<td style="vertical-align:middle"><%= user.group %></td>
