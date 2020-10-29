@@ -41,15 +41,40 @@ class Prospect < ActiveRecord::Base
   #   end
   # end
 
-
-  def self.to_csv
+  def self.to_csv_index
     CSV.generate do |csv|
       csv << column_names
       all.each do |prospect|
         csv << prospect.attributes.values_at(*column_names)
       end
     end
-  end  
+  end
+
+  def self.to_csv_shipping_store
+    prospects = self.where(shipping_prospect: true).order("created_at DESC")
+
+    CSV.generate do |csv|
+      attributes = %w[Organization Adress City State ZIP Phone Contact_First_name Contact_Last_Name Contact_Title Contact_Phone Contact_Mobile Contact_Email Shipping_Status]
+      csv << attributes
+      prospects.each do |prospect|
+        row = []
+        row << prospect.organization
+        row << prospect.street_address
+        row << prospect.city
+        row << prospect.state
+        row << prospect.zip
+        row << prospect.phone
+        row << prospect.contact1_first_name
+        row << prospect.contact1_last_name
+        row << prospect.contact1_title
+        row << prospect.contact1_phone
+        row << prospect.contact1_mobile
+        row << prospect.contact1_email
+        row << prospect.shipping_opportunity_status
+        csv << row
+      end
+    end
+  end
 
 # Built this import function with Alfie
   # def self.import(file)
