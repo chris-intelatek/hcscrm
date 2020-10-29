@@ -32,7 +32,7 @@ class ProspectsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data @prospects.to_csv, filename: "Prospects-#{Date.today}.csv" }
+      format.csv { send_data @prospects.to_csv_index, filename: "Prospects-#{Date.today}.csv" }
     end
   end
 
@@ -229,6 +229,11 @@ class ProspectsController < ApplicationController
       @prospects = Prospect.where(shipping_prospect: true).search(params[:search]).order("created_at DESC").paginate(:per_page => 100, :page => params[:page])
     else
       @prospects = Prospect.where(shipping_prospect: true, shipping_lead_status: ["Submitted","Pending Review","Approved"]).order("created_at DESC").paginate(:per_page => 100, :page => params[:page])
+    end
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data Prospect.all.to_csv_shipping_store, filename: "Prospects-#{Date.today}.csv" }
     end
   end
 
