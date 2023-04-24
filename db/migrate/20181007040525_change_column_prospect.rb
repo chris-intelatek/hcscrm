@@ -1,4 +1,4 @@
-class ChangeColumnProspect < ActiveRecord::Migration
+class ChangeColumnProspect < ActiveRecord::Migration[7.0]
   def change
     rename_column :prospects,  :sm_presentation_date,	:hcs_sme_first_presentation_date
     rename_column :prospects,  :actual_ap,	            :current_health_benefit_cost

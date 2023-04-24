@@ -1,4 +1,4 @@
-class AddAttachmentmentsToUser < ActiveRecord::Migration
+class AddAttachmentmentsToUser < ActiveRecord::Migration[7.0]
   def change
     add_column :users, :advisor_nda, :string
     add_column :users, :advisor_documents, :string

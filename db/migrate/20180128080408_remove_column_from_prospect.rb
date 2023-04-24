@@ -1,4 +1,4 @@
-class RemoveColumnFromProspect < ActiveRecord::Migration
+class RemoveColumnFromProspect < ActiveRecord::Migration[7.0]
   def change
     remove_column :prospects, :accounts_payable, :decimal
   end

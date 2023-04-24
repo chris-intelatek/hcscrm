@@ -1,4 +1,4 @@
-class RemoveColumnsFromProspects < ActiveRecord::Migration
+class RemoveColumnsFromProspects < ActiveRecord::Migration[7.0]
   def change
     remove_column :prospects, :revenue
     remove_column :prospects, :vc_already

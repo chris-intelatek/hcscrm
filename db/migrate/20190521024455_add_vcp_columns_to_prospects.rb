@@ -1,4 +1,4 @@
-class AddVcpColumnsToProspects < ActiveRecord::Migration
+class AddVcpColumnsToProspects < ActiveRecord::Migration[7.0]
   def change
     add_column :prospects, :vcp_intro_presentation_date, :date
     add_column :prospects, :vcp_intro_presenter, :string

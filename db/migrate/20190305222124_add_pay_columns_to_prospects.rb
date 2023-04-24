@@ -1,4 +1,4 @@
-class AddPayColumnsToProspects < ActiveRecord::Migration
+class AddPayColumnsToProspects < ActiveRecord::Migration[7.0]
   def change
     add_column :prospects, :hcs_prospect, :boolean, default: false
     add_column :prospects, :pay_prospect, :boolean, default: false

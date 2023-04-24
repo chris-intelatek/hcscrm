@@ -1,4 +1,4 @@
-class ChangeUserAttachmentColumnNames < ActiveRecord::Migration
+class ChangeUserAttachmentColumnNames < ActiveRecord::Migration[7.0]
   def change
     rename_column :users, :advisor_nda, :attachment2
     rename_column :users, :advisor_documents, :attachment3

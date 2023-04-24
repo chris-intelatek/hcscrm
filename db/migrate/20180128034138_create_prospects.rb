@@ -1,4 +1,4 @@
-class CreateProspects < ActiveRecord::Migration
+class CreateProspects < ActiveRecord::Migration[7.0]
   def change
     create_table :prospects do |t|
       t.string :organization
