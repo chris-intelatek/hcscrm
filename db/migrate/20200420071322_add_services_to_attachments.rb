@@ -1,4 +1,4 @@
-class AddServicesToAttachments < ActiveRecord::Migration
+class AddServicesToAttachments < ActiveRecord::Migration[7.0]
   def change
     add_column :attachments, :service_type, :string
   end

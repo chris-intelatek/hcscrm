@@ -1,4 +1,4 @@
-class AddGroupToUsers < ActiveRecord::Migration
+class AddGroupToUsers < ActiveRecord::Migration[7.0]
   def change
     add_column :users, :group, :string
   end

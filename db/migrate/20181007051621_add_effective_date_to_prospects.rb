@@ -1,4 +1,4 @@
-class AddEffectiveDateToProspects < ActiveRecord::Migration
+class AddEffectiveDateToProspects < ActiveRecord::Migration[7.0]
   def change
     add_column :prospects, :effective_date, :date
     add_column :prospects, :hcbq_business_type, :string

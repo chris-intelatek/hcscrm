@@ -1,4 +1,4 @@
-class AddShippingToProspects < ActiveRecord::Migration
+class AddShippingToProspects < ActiveRecord::Migration[7.0]
   def change
     add_column :prospects, :shipping_prospect, :boolean
     add_column :prospects, :annual_revenue, :integer

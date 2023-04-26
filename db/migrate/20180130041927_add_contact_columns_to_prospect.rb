@@ -1,4 +1,4 @@
-class AddContactColumnsToProspect < ActiveRecord::Migration
+class AddContactColumnsToProspect < ActiveRecord::Migration[7.0]
   def change
     add_column :prospects, :contact1_first_name, :string
     add_column :prospects, :contact1_last_name, :string

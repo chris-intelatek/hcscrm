@@ -1,4 +1,4 @@
-class AddColumnsToProspect < ActiveRecord::Migration
+class AddColumnsToProspect < ActiveRecord::Migration[7.0]
   def change
     add_column :prospects, :intro_presentation_date, :date
     add_column :prospects, :estimated_ap, :decimal,        default: 0,  null: false
