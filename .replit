@@ -1,4 +1,4 @@
-run = "bin/rails server -p $PORT -e $RAILS_ENV"
+run = "bundle exec rails server -p $PORT -e $RAILS_ENV --binding=0.0.0.0"
 hidden = [".bundle"]
 entrypoint = "main.rb"
 
