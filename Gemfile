@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.0.2'
+ruby '3.0.4'
 
 gem 'rails', '7.0.1'
 
@@ -21,9 +21,7 @@ gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
 gem 'carrierwave', '~> 1.0'
 gem 'fog', '~> 1.40', require: 'fog/aws'
 
-# gem 'webrick', '~> 1.7'
 gem 'puma', '~> 5.2'
-
 
 group :development, :test do
   gem 'sqlite3'
@@ -37,6 +35,8 @@ group :development do
 end
 
 group :production do
-  gem 'pg', '~> 0.20'
   gem 'rails_12factor'
 end
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data'
