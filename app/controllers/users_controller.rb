@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show, :import, :new]
+  before_action :authenticate_user!, :except => [:show, :import, :new]
   before_action :set_user, only: [:show, :edit, :destroy, :update]
 
   def index
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       respond_to do |format|
         format.html
         format.csv { send_data @users.to_csv, filename: "users-#{Date.today}.csv" }
-      end 
+      end
   end
 
   def import
@@ -40,9 +40,9 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  
+
   def create
-    attrs = user_params    
+    attrs = user_params
     @user = User.new(attrs)
     if @user.save
       flash[:success] = "New User Added."
@@ -68,12 +68,12 @@ class UsersController < ApplicationController
 
   def edit
   end
-  
+
   def destroy
     @user.destroy
     redirect_to users_path
   end
-  
+
   def update
 	  if @user.update_attributes(user_params)
 		  redirect_to users_path
@@ -84,7 +84,7 @@ class UsersController < ApplicationController
 
 
   private
-  
+
   def set_user
     @user ||= User.find(params[:id])
   end
